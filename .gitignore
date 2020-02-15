@@ -1,5 +1,4 @@
 # djdg ignore file
-blocks/
 3cy._LS
 djdg.cui
 djdg.cuix
@@ -72,3 +71,5 @@ adim.lsp
 checkdwg.LSP
 cloth.LSP
 edat.lsp
+block_list.txt
+block_list1.txt
