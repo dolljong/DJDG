@@ -21,7 +21,7 @@
 (autoload (strcat (prefix) "DJDG/RCD")     '("RCD"    ))
 (autoload (strcat (prefix) "DJDG/ROUND")   '("ROUND"  ))
 (autoload (strcat (prefix) "DJDG/SARW")    '("SARW"   ))
-(autoload (strcat (prefix) "DJDG/ELM.fas")     '("ELM" "pel" "melm"   ))
+(autoload (strcat (prefix) "DJDG/ELM")     '("ELM" "pel" "melm"   ))
 (autoload (strcat (prefix) "DJDG/THUN")    '("THUN"   ))
 (autoload (strcat (prefix) "DJDG/TRI")     '("TRI"    ))
 (autoload (strcat (prefix) "DJDG/PLMARK")  '("PLMARK" ))
@@ -35,9 +35,9 @@
 (autoload (strcat (prefix) "DJDG/cutpipe1") '("cutpipe1"   ))
 (autoload (strcat (prefix) "DJDG/MLEAD")   '("MLEAD"  ))
 (autoload (strcat (prefix) "DJDG/SHOE")    '("SHOE"   ))
-(autoload (strcat (prefix) "DJDG/LEAD.fas")    '("LEAD"  "LEADC" ))
-(autoload (strcat (prefix) "DJDG/LEAD2.fas")    '("LEAD2"   ))
-(autoload (strcat (prefix) "DJDG/aLEAD.fas")    '("ALEAD"   ))
+(autoload (strcat (prefix) "DJDG/LEAD")    '("LEAD"  "LEADC" ))
+(autoload (strcat (prefix) "DJDG/LEAD2")    '("LEAD2"   ))
+(autoload (strcat (prefix) "DJDG/aLEAD")    '("ALEAD"   ))
 (autoload (strcat (prefix) "DJDG/mtLEAD")  '("mtLEAD"   ))
 (autoload (strcat (prefix) "DJDG/DIRMRK")  '("DIRMRK" ))
 (autoload (strcat (prefix) "DJDG/BOR")     '("BOR"    ))
@@ -49,7 +49,7 @@
 (autoload (strcat (prefix) "DJDG/boring")  '("boring" ))
 (autoload (strcat (prefix) "DJDG/conc")    '("conc"   ))
 (autoload (strcat (prefix) "DJDG/sungto")  '("sungto" ))
-(autoload (strcat (prefix) "DJDG/rnori.fas")   '("rnori" ))
+(autoload (strcat (prefix) "DJDG/rnori")   '("rnori" ))
 (autoload (strcat (prefix) "DJDG/pnori")   '("pnori" ))
 (autoload (strcat (prefix) "DJDG/noripf")   '("noripf" ))    
 (autoload (strcat (prefix) "DJDG/notebox") '("notebox" ))
@@ -63,7 +63,7 @@
 (autoload (strcat (prefix) "DJDG/pscbeam") '("pscbeam"))
 (autoload (strcat (prefix) "DJDG/pier")    '("pier"))
 (autoload (strcat (prefix) "DJDG/spiles")  '("spiles"))
-(autoload (strcat (prefix) "DJDG/piles.fas")  '("piles"))
+(autoload (strcat (prefix) "DJDG/piles")  '("piles"))
 (autoload (strcat (prefix) "DJDG/abut")    '("abut"))
 (autoload (strcat (prefix) "DJDG/rwall")   '("ddrwall"))
 (autoload (strcat (prefix) "DJDG/brr")     '("brr"))
@@ -75,11 +75,11 @@
 (autoload (strcat (prefix) "DJDG/basec")   '("basec"))
 (autoload (strcat (prefix) "DJDG/aslab")   '("aslab"))
 (autoload (strcat (prefix) "DJDG/aslab1")   '("aslab1"))
-(autoload (strcat (prefix) "DJDG/bearing.fas")   '("bearing"))
-(autoload (strcat (prefix) "DJDG/dlive.fas")   '("dlive"))
-(autoload (strcat (prefix) "DJDG/fanch.fas")   '("fanch"))
-(autoload (strcat (prefix) "DJDG/ddrect.fas")   '("ddrect"))
-(autoload (strcat (prefix) "DJDG/sheet.fas")   '("sheet"))
+(autoload (strcat (prefix) "DJDG/bearing")   '("bearing"))
+(autoload (strcat (prefix) "DJDG/dlive")   '("dlive"))
+(autoload (strcat (prefix) "DJDG/fanch")   '("fanch"))
+(autoload (strcat (prefix) "DJDG/ddrect")   '("ddrect"))
+(autoload (strcat (prefix) "DJDG/sheet")   '("sheet"))
 
 ;-------------------------------------------------------
 ; [다정다감] 배근도 그리기
@@ -115,13 +115,13 @@
 (autoload (strcat (prefix) "DJDG/ARD")     '("ARD"))
 (autoload (strcat (prefix) "DJDG/ARSLOP")  '("ARSLOP"))
 (autoload (strcat (prefix) "DJDG/RCORNER")  '("RCORNER"))
-(autoload (strcat (prefix) "DJDG/ALIGNBAR.FAS")  '("ALIGNBAR"))
-(autoload (strcat (prefix) "DJDG/LAP.FAS")  '("LAP" "MLAP"))
-(autoload (strcat (prefix) "DJDG/TBAR.FAS")  '("TBAR"))
-(autoload (strcat (prefix) "DJDG/TRIM2.FAS")  '("TRIM2" "TRIMS"))
-(autoload (strcat (prefix) "DJDG/DREBAR.FAS")  '("DREBAR" "CPDIM" "D2L"))
-(autoload (strcat (prefix) "DJDG/FCORNER.FAS")  '("FCORNER"))
-(autoload (strcat (prefix) "DJDG/EREBAR.FAS")  '("ER" "ERA"))
+(autoload (strcat (prefix) "DJDG/ALIGNBAR")  '("ALIGNBAR"))
+(autoload (strcat (prefix) "DJDG/LAP")  '("LAP" "MLAP"))
+(autoload (strcat (prefix) "DJDG/TBAR")  '("TBAR"))
+(autoload (strcat (prefix) "DJDG/TRIM2")  '("TRIM2" "TRIMS"))
+(autoload (strcat (prefix) "DJDG/DREBAR")  '("DREBAR" "CPDIM" "D2L"))
+(autoload (strcat (prefix) "DJDG/FCORNER")  '("FCORNER"))
+(autoload (strcat (prefix) "DJDG/EREBAR")  '("ER" "ERA"))
 
 ;-------------------------------------------------------
 ; [다정다감] 강재도 그리기
@@ -134,20 +134,20 @@
 (autoload (strcat (prefix) "DJDG/tc15")      '("tc15"))
 (autoload (strcat (prefix) "DJDG/weld")      '("weld"))
 (autoload (strcat (prefix) "DJDG/gusset")    '("gusset"))
-(autoload (strcat (prefix) "DJDG/scallop.fas")    '("scallop"))
-(autoload (strcat (prefix) "DJDG/rib.fas")    '("rib" "scallop1" "scallop2"))
-(autoload (strcat (prefix) "DJDG/stud.fas")    '("stud"))
-(autoload (strcat (prefix) "DJDG/hstiff.fas")    '("hstiff"))
-(autoload (strcat (prefix) "DJDG/lstiff.fas")    '("lstiff"))
-(autoload (strcat (prefix) "DJDG/mhole.fas")    '("mhole"))
-(autoload (strcat (prefix) "DJDG/truss.fas")   '("truss"))
+(autoload (strcat (prefix) "DJDG/scallop")    '("scallop"))
+(autoload (strcat (prefix) "DJDG/rib")    '("rib" "scallop1" "scallop2"))
+(autoload (strcat (prefix) "DJDG/stud")    '("stud"))
+(autoload (strcat (prefix) "DJDG/hstiff")    '("hstiff"))
+(autoload (strcat (prefix) "DJDG/lstiff")    '("lstiff"))
+(autoload (strcat (prefix) "DJDG/mhole")    '("mhole"))
+(autoload (strcat (prefix) "DJDG/truss")   '("truss"))
 
 ;-------------------------------------------------------
 ; [다정다감] PSC 그리기
 ;-------------------------------------------------------
 (autoload (strcat (prefix) "DJDG/tdpf")    '("tdpf"))
-(autoload (strcat (prefix) "DJDG/anch1.fas")   '("anch1"))
-(autoload (strcat (prefix) "DJDG/ahole.fas")   '("ahole"))
+(autoload (strcat (prefix) "DJDG/anch1")   '("anch1"))
+(autoload (strcat (prefix) "DJDG/ahole")   '("ahole"))
 
 
 ;-------------------------------------------------------
@@ -155,10 +155,10 @@
 ;-------------------------------------------------------
 (autoload (strcat (prefix) "DJDG/dh")        '("dh" "dv" "da" "arwh" "ldim" "dss" "dt" "dsm"))
 ;(autoload (strcat (prefix) "DJDG/dv")        '("dv"))
-;(autoload (strcat (prefix) "DJDG/da.fas")        '("da" "ldim"))
+;(autoload (strcat (prefix) "DJDG/da")        '("da" "ldim"))
 (autoload (strcat (prefix) "DJDG/do")        '("do"))
-(autoload (strcat (prefix) "DJDG/dc.fas")        '("dc" "dima"))
-(autoload (strcat (prefix) "DJDG/nt.fas")        '("nt"))
+(autoload (strcat (prefix) "DJDG/dc")        '("dc" "dima"))
+(autoload (strcat (prefix) "DJDG/nt")        '("nt"))
 (autoload (strcat (prefix) "DJDG/dud")       '("dud"))
 (autoload (strcat (prefix) "DJDG/cds")       '("cds"))
 (autoload (strcat (prefix) "DJDG/ob")        '("ob"))
@@ -166,16 +166,16 @@
 (autoload (strcat (prefix) "DJDG/dimdot")        '("dimdot"))
 (autoload (strcat (prefix) "DJDG/rmark1")        '("rmark1"))
 (autoload (strcat (prefix) "DJDG/dsk")        '("dsk" "ddr"))  
-(autoload (strcat (prefix) "DJDG/edim.fas")        '("edim"))  
-(autoload (strcat (prefix) "DJDG/pldim.fas")       '("pldim" "pln"))
+(autoload (strcat (prefix) "DJDG/edim")        '("edim"))  
+(autoload (strcat (prefix) "DJDG/pldim")       '("pldim" "pln"))
 
 
 
 ;-------------------------------------------------------
 ; [다정다감] 계산서
 ;-------------------------------------------------------
-(autoload (strcat (prefix) "DJDG/modelm.fas")        '("modelm" "extip" "makeattblock" "insertattblock"))  
-(autoload (strcat (prefix) "DJDG/ldd.fas")        '("ldd"))  
+(autoload (strcat (prefix) "DJDG/modelm")        '("modelm" "extip" "makeattblock" "insertattblock"))  
+(autoload (strcat (prefix) "DJDG/ldd")        '("ldd"))  
 
 
 ;-------------------------------------------------------
@@ -206,7 +206,7 @@
 (autoload (strcat (prefix) "DJDG/rref")      '("rref"))
 (autoload (strcat (prefix) "DJDG/mtxt")      '("mtxt"))
 (autoload (strcat (prefix) "DJDG/challsty")      '("challsty"))
-(autoload (strcat (prefix) "DJDG/pfix.fas")      '("pfix"))
+(autoload (strcat (prefix) "DJDG/pfix")      '("pfix"))
 
 ;-------------------------------------------------------
 ; [다정다감] 도우미
@@ -223,9 +223,9 @@
 (autoload (strcat (prefix) "DJDG/wlen")      '("wlen" "wcpl" "wcpl2"))
 (autoload (strcat (prefix) "DJDG/aplot")     '("aplot"))
 (autoload (strcat (prefix) "DJDG/allplot")   '("allplot"))
-(autoload (strcat (prefix) "DJDG/allplotb.fas")   '("allplotb" "aq"))
-(autoload (strcat (prefix) "DJDG/allplotn.fas")   '("allplotn"))
-(autoload (strcat (prefix) "DJDG/allplotx.fas")   '("allplotx"))
+(autoload (strcat (prefix) "DJDG/allplotb")   '("allplotb" "aq"))
+(autoload (strcat (prefix) "DJDG/allplotn")   '("allplotn"))
+(autoload (strcat (prefix) "DJDG/allplotx")   '("allplotx"))
 (autoload (strcat (prefix) "DJDG/xypline")   '("xypline"))
 (autoload (strcat (prefix) "DJDG/table")     '("table"))
 (autoload (strcat (prefix) "DJDG/earth")     '("earth"))
@@ -249,12 +249,12 @@
 (autoload (strcat (prefix) "DJDG/dwgrtxt")    '("dwgrtxt")) 
 (autoload (strcat (prefix) "DJDG/plote")    '("plote")) 
 (autoload (strcat (prefix) "DJDG/ploteps")    '("ploteps")) 
-(autoload (strcat (prefix) "DJDG/sarea.fas")    '("sarea" "cala")) 
+(autoload (strcat (prefix) "DJDG/sarea")    '("sarea" "cala")) 
 (autoload (strcat (prefix) "DJDG/trs")    '("trs"))
-(autoload (strcat (prefix) "DJDG/iblk.fas")    '("iblk"))
-(autoload (strcat (prefix) "DJDG/sscl.fas")    '("sscl"))
+(autoload (strcat (prefix) "DJDG/iblk")    '("iblk"))
+(autoload (strcat (prefix) "DJDG/sscl")    '("sscl"))
 (autoload (strcat (prefix) "DJDG/psnp")    '("aa1" "aa2" "aa3" "setatt"))
-(autoload (strcat (prefix) "DJDG/gel.fas")    '("gel"))
+(autoload (strcat (prefix) "DJDG/gel")    '("gel"))
 (autoload (strcat (prefix) "DJDG/chbdrtxt")    '("chbdrtxt"))
 (autoload (strcat (prefix) "DJDG/checkdate")    '("checkdate"))
 (autoload (strcat (prefix) "DJDG/ve")    '("ve"))
