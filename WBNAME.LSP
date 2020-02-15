@@ -1,0 +1,39 @@
+;-------------------
+; Program : WBNAME (WBlock File NAME)
+;           YI Suk Jong
+;           99/9/9
+;-------------------
+(defun c:wbname()
+  (setq ss (ssget '((0 . "TEXT"))))                 ;text entity·³b
+  (setq ns (sslength ss))                           ;selection set· entityˆ•®
+;  (setq fname (strcat (getvar "dwgprefix") "/"))    ;filename·i ¤w·¡Ÿq·a¡
+  (setq fname (getvar "dwgprefix"))    ;filename·i ¤w·¡Ÿq·a¡
+  (setq index 0)
+  (repeat ns
+    (setq txt (cdr (assoc 1 (entget (ssname ss index))))) ;textˆt
+    (if (> index 0)
+      (setq fname (strcat fname "-" txt))   ;–¤å¼ text¦Èá“e text´|µA "-"Âˆa
+      (setq fname (strcat fname txt))       ;Àõ¤å¼ text·¥ ‰w¶µE ¤w·¡ŸqµA ¦›·±
+    );if
+    (setq index (1+ index))
+  );repeat
+
+  (setq ipnt (getpoint "\nInsertion base point:")) ;¬s·³¸ñ ¬åÈ‚
+  (setq sse (ssget))                        ;wblockÐi entity¬åÈ‚
+
+  (setvar "FILEDIA" 0)                      ;¡ww»¥Ð—¯¡ dialog box›a»¡ ´g•¡¢
+
+  (command "WBLOCK"          ;wblock¡ww ¯©Ð—
+           fname             ;filename
+           ""                ;block name
+           ipnt              ;insert point
+           sse               ;¬åÈ‚–E entity
+           "")               ;end selection
+           
+  (command "oops")
+  
+  (setvar "FILEDIA" 1)                      ;
+
+);defun
+
+

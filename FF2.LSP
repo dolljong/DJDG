@@ -1,0 +1,117 @@
+;****************************************
+; Program : FFP
+;           oFFset 2
+;           By Yi Suk-Jong
+;           1995/12/28
+;****************************************
+
+(defun C:FF2(/
+              ffd  ff_dst  newc  newlt  ss_lst  ss_num  index
+              entl entype  s_pnt e_pnt  ang     mid_pnt ff_pnt1
+              ff_pnt2      pick_pnt     last_ent        cen_pnt
+              r    s_ang   s_pnt
+
+)
+
+  (defun SETERR(s)
+    (if (/= s "Function cancelled")
+        (princ (strcat "\nError: " s))
+    ); of If
+    (setq *error* oer seterr nil)
+    (princ)
+  ); of SETERR
+  (setq oer *error* *error* seterr)
+
+  (push-env)                               ;ÑÅ‰w¥e® ”Ï¡
+
+  (setq ffd (getvar "OFFSETDIST"))         ;offset ˆáŸ¡ ÂáÐq
+
+  (princ "\nOffset distance<")             ;offset ˆáŸ¡ ¢‰´á¥±
+  (princ ffd)
+  (princ ">: ")
+  (setq ff_dst (getdist))
+  (if (= ff_dst nil)
+    (setq ff_dst ffd)
+  )
+
+  (setq newc (getint "\nColor number<7>: "))   ;¬¡¶… ¬‚Œi ¢‰´á¥±
+  (if (= newc nil) (setq newc 7))              ;default = 7 (white)
+
+  (initget "Continuous Hidden Center Dashed")
+  (setq newlt (getkword "\nContinuous/Hidden/CEnter/Dashed<Continuous>: "))
+  (if (= newlt nil) (setq newlt "Continuous"))  ;¬¡¶… line-type
+                                                ;default = continuous
+  (setq ss_lst (ssget))                         ;entity¬åÈ‚
+  (setq ss_num (sslength ss_lst))               ;entityˆ•®
+
+  (setq index 0)
+
+  (repeat ss_num                                ;entityˆ•® eÇq ¤e¥¢
+    (setq entl (entget (ssname ss_lst index)))  ;entity‹až“º—µA Ðeˆ ÂáÐq
+    (setq entype (cdr (assoc 0 entl)))          ;entity Type
+    (cond
+      ((= entype "LINE")                        ;eneityˆa LINE·© ‰w¶
+        (setq s_pnt (cdr (assoc 10 entl))       ;line· ¯¡¸b¸ñ
+              e_pnt (cdr (assoc 11 entl)))      ;line· {¸ñ
+        (setq ang (angle s_pnt e_pnt))          ;line·¡ ·¡ž“e ˆb
+        (setq mid_pnt (mid-point s_pnt e_pnt))  ;œa·¥· º—ˆe¸ñ
+        (setq ff_pnt1 (polar mid_pnt (+ ang (* pi 0.5)) ff_dst))   ;offset¸ñ-1
+        (setq ff_pnt2 (polar mid_pnt (- ang (* pi 0.5)) ff_dst))   ;offset¸ñ-2
+        (setq pick_pnt (list (cdr (assoc -1 entl)) mid_pnt))       ;¬åÈ‚¸ñ
+        (command "OFFSET" ff_dst pick_pnt ff_pnt1 "")   ;offset¡ww-1
+        (setq last_ent (entget (entlast)))              ;offset–E entity·
+        (modi_clt last_ent newc newlt)                  ;¬‚‰Á linetype¥e‰w
+        (command "OFFSET" ff_dst pick_pnt ff_pnt2 "")   ;offset¡ww-2
+        (setq last_ent (entget (entlast)))              ;offset–E entity·
+        (modi_clt last_ent newc newlt)                  ;¬‚‰Á linetype¥e‰w
+      )
+      ((= entype "ARC")
+        (setq cen_pnt (cdr (assoc 10 entl)))
+        (setq r (cdr (assoc 40 entl)))
+        (setq s_ang (cdr (assoc 50 entl)))
+        (setq s_pnt (polar cen_pnt s_ang r))
+        (setq pick_pnt (list (cdr (assoc -1 entl)) s_pnt))
+        (setq ff_pnt1 (polar cen_pnt s_ang (+ r ff_dst)))
+        (setq ff_pnt2 (polar cen_pnt s_ang (- r ff_dst)))
+        (command "OFFSET" ff_dst pick_pnt ff_pnt1 "")
+        (setq last_ent (entget (entlast)))
+        (modi_clt last_ent newc newlt)
+        (command "OFFSET" ff_dst pick_pnt ff_pnt2 "")
+        (setq last_ent (entget (entlast)))
+        (modi_clt last_ent newc newlt)
+      )
+    ) ;of cond
+    (setq index (1+ index))
+  ) ;of repea t
+  (setq *error* oer seterr nil)
+) ;of defun
+
+
+;*****************************************************
+; Function : MODI_CLT (Entity list, Color, Linetype)
+;            MODify Color and Line-Type
+;            By Yi Suk-Jong
+;            1995/12/28
+;*****************************************************
+
+(defun modi_clt( ent c lt /
+                            ent   c   lt  newlt  newc  oldc oldlt
+ )
+
+   (setq oldc (assoc 62 ent))
+   (setq oldlt (assoc 6 ent))
+   (if (= oldc nil)
+     (setq ent (append ent (list (cons 62 c))))
+     (setq newc (cons 62 c)
+           ent (subst newc oldc ent))
+   ) ;of if
+   (if (= oldlt nil)
+     (setq ent (append ent (list (cons 6 lt))))
+     (setq newlt (cons 6 lt)
+           ent (subst newlt oldlt ent))
+   ) ;of if
+
+   (entmod ent)
+) ;of defun
+
+(princ)

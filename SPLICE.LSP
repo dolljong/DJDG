@@ -1,0 +1,364 @@
+;**********************************
+; Program : SPLICE
+;           SPLICE draw
+;           By Jong-Suk Yi
+;           1995/7/19
+;**********************************
+
+(defun C:SPLICE (/                ;Main program
+                ipnt    2pnt    ang
+)
+
+  ;;
+  ;; ¸w error routine
+  ;;
+  (defun SETERR(s)                                      ;¸w µAœážË¥ ¸÷·
+  ;If an error (CTRL-C) occurs when this command is active.
+    (if (/= s "Function cancelled")
+      (if (= s "quit / exit abort")
+        (princ "\n*cancel*")
+        (princ (strcat "\nError " s))
+      ) ;of if
+    ); of If
+  ;Restore previous error handler
+    (setq *error* oer seterr nil)
+    (princ)
+  ); of SETERR
+
+
+  ;;
+  ;; Function: SPLICE_DIALOG (Dialog box¡ ·³b¤h‹¡)
+  ;;
+  (defun SPLICE_DIALOG (/
+                       dcl_id
+  )
+    (setq dcl_id (load_dialog "DJDG"))                ;dialogÑ¡Â‰
+    (if (not (new_dialog "SPLICE" dcl_id)) (exit))
+
+    (start_image "dd_splice")                           ;image ¥¡·¡‹¡
+    (slide_image
+                 0 0
+                 (dimx_tile "dd_splice") (dimy_tile "dd_splice")
+                 "djdg(ddsplice)"
+    )
+    (end_image)
+
+    (if (= #N1 nil) (setq #N1 2))                       ;Á¡‹¡Ã¡ ¬é¸÷
+    (if (= #P1 nil) (setq #P1 85))
+    (if (= #E1 nil) (setq #E1 60))
+    (if (= #N2 nil) (setq #N2 2))
+    (if (= #P2 nil) (setq #P2 85))
+    (if (= #E2 nil) (setq #E2 60))
+    (if (= #G nil) (setq  #G 100))
+
+    (set_tile "n1" (itoa #N1))                          ;Á¡‹¡Ã¡¡ edit box setting
+    (set_tile "p1" (rtos #P1 2 1))
+    (set_tile "e1" (rtos #E1 2 1))
+    (set_tile "n2" (itoa #N2))
+    (set_tile "p2" (rtos #P2 2 1))
+    (set_tile "e2" (rtos #E2 2 1))
+    (set_tile  "g" (rtos #G 2 1))
+    (set_tile "total1" (rtos (+ #G (* #N1 #P1) (* 2 #E1)) 2 1))
+    (set_tile "total2" (rtos (+ (* #N2 #P2) (* 2 #E2)) 2 1))
+    (set_tile "dist" (rtos #DST 2 1))
+
+    (action_tile "n1" "(set_n1)")                       ;dialog box Action
+    (action_tile "p1" "(set_p1)")
+    (action_tile "e1" "(set_e1)")
+    (action_tile "n2" "(set_n2)")
+    (action_tile "p2" "(set_p2)")
+    (action_tile "e2" "(set_e2)")
+    (action_tile "g" "(set_g)")
+    (action_tile "accept" "(do_accept)")
+    (action_tile "cancel" "(do_cancel)")
+    (mode_tile "n1" 2)
+    (start_dialog)
+    (unload_dialog dcl_id)
+  ) ;of defun SPLICE_DIALOG
+
+  ;;
+  ;; FUNCTION : SET_N1 (n1ˆt ·³b)
+  ;;
+  (defun SET_N1 (/ in value)              ;n1 edit_boxµA ·³b·¡ —i´áµÖ·i ˜
+    (setq in (get_tile "n1"))
+    (setq value (atoi in))
+    (if (= value 0)
+      (progn
+        (do_error "n1" in)
+        nil
+      ) ;of THEN
+      (progn
+        (setq #N1 value)
+        (set_tile "error" "")
+        (set_tile "total1" (rtos (+ #G (* #n1 #p1) (* 2 #E1)) 2 1))
+        T
+      ) ;of ELSE
+    ) ;of IF
+   ) ;of defun
+
+  ;;
+  ;; FUNCTION : SET_P1 (p1ˆt ·³b)
+  ;;
+  (defun SET_P1(/ in value)              ;p1 edit_boxµA ·³b·¡ —i´áµÖ·i ˜
+    (setq in (get_tile "p1"))
+    (setq value (atof in))
+    (if (= value 0)
+      (progn
+        (do_error "p1" in)
+        nil
+      ) ;of THEN
+      (progn
+        (setq #P1 value)
+        (set_tile "error" "")
+        (set_tile "total1" (rtos (+ #G (* #n1 #p1) (* 2 #E1)) 2 1))
+        T
+      ) ;of ELSE
+    ) ;of IF
+   ) ;of defun
+
+  ;;
+  ;; FUNCTION : SET_E1 (e1ˆt ·³b)
+  ;;
+  (defun SET_E1(/ in value)              ;e1 edit_boxµA ·³b·¡ —i´áµÖ·i ˜
+    (setq in (get_tile "e1"))
+    (setq value (atoi in))
+    (if (= vlaue 0)
+      (progn
+        (do_error "e1" in)
+        nil
+      ) ;of THEN
+      (progn
+        (setq #E1 value)
+        (set_tile "error" "")
+        (set_tile "total1" (rtos (+ #G (* #n1 #p1) (* 2 #E1)) 2 1))
+        T
+      ) ;of ELSE
+    ) ;of IF
+   ) ;of defun
+
+  ;;
+  ;; FUNCTION : SET_N2 (n2ˆt ·³b)
+  ;;
+  (defun SET_N2(/ in value)              ;n2 edit_boxµA ·³b·¡ —i´áµÖ·i ˜
+    (setq in (get_tile "n2"))
+    (setq value (atoi in))
+    (if (= value 0)
+      (progn
+        (do_error "n2" in)
+        nil
+      ) ;of THEN
+      (progn
+        (setq #N2 value)
+        (set_tile "error" "")
+        (set_tile "total2" (rtos (+ (* #n2 #p2) (* 2 #E2)) 2 1))
+        T
+      ) ;of ELSE
+    ) ;of IF
+   ) ;of defun
+
+  ;;
+  ;; FUNCTION : SET_P2 (P2ˆt ·³b)
+  ;;
+  (defun SET_P2(/ n vlaue)              ;p2 edit_boxµA ·³b·¡ —i´áµÖ·i ˜
+    (setq in (get_tile "p2"))
+    (setq value (atof in))
+    (if (= value 0)
+      (progn
+        (do_error "p2" in)
+        nil
+      ) ;of THEN
+      (progn
+        (setq #P2 value)
+        (set_tile "error" "")
+        (set_tile "total2" (rtos (+ (* #n2 #p2) (* 2 #E2)) 2 1))
+        T
+      ) ;of ELSE
+    ) ;of IF
+   ) ;of defun
+
+  ;;
+  ;; FUNCTION : SET_E2 (e2ˆt ·³b)
+  ;;
+  (defun SET_E2(/ n value)              ;e2 edit_boxµA ·³b·¡ —i´áµÖ·i ˜
+    (setq in (get_tile "e2"))
+    (setq value (atoi in))
+    (if (= value 0)
+      (progn
+        (do_error "e2" in)
+        nil
+      ) ;of THEN
+      (progn
+        (setq #E2 value)
+        (set_tile "error" "")
+        (set_tile "total2" (rtos (+ (* #n2 #p2) (* 2 #E2)) 2 1))
+        T
+      ) ;of ELSE
+    ) ;of IF
+   ) ;of defun
+
+  ;;
+  ;; FUNCTION : SET_G (gˆt ·³b)
+  ;;
+  (defun SET_G(/ n value)              ;g  edit_boxµA ·³b·¡ —i´áµÖ·i ˜
+    (setq in (get_tile "g"))
+    (setq value (atoi in))
+    (if (= value 0)
+      (progn
+        (do_error "g" in)
+        nil
+      ) ;of THEN
+      (progn
+        (setq #G value)
+        (set_tile "error" "")
+        (set_tile "total1" (rtos (+ #G (* #n1 #p1) (* 2 #E1)) 2 1))
+        T
+      ) ;of ELSE
+    ) ;of IF
+   ) ;of defun
+
+  ;;;
+  ;;; ok¤áËe·i ’œö·i ˜
+  ;;;
+  (defun do_accept()           ;dialog boxŸi {‹¡ ¸åµA ¡¡—e ·³b •A·¡Èa ÑÂ·¥
+    (if (and (set_n1) (set_p1) (set_e1) (set_n2) (set_p2) (set_e2))
+      (done_dialog)
+    ) ;of IF
+  ) ;of defun
+
+
+  ;;;
+  ;;; ¸i¡µ–E ˆt·¡ ·³b–V·i ˜
+  ;;;
+  (defun do_error(tile value)
+    (set_tile "error" "Invalid input")            ;error massageÀwµA µAœáÎa¯¡
+
+    (cond
+      ((or (= tile "n1") (= tile "n2"))
+        (progn
+          (set_tile  tile value)
+          (mode_tile tile 2)
+        )
+      )
+      ((or (= tile "p1") (= tile "e1") (= tile "p2") (= tile "e2") (= tile "g"))
+        (progn
+          (set_tile tile value)
+          (mode_tile tile 2)
+        )
+      )
+    ) ;of COND
+  )
+
+
+  ;;;
+  ;;; Cancel ¤áËe·i ’‰œö·i ‰w¶
+  ;;;
+  (defun do_cancel()
+    (done_dialog)
+    (exit)
+  )
+
+
+  ;;;
+  ;;; splice‹aŸ¡‹¡
+  ;;;
+  (defun draw_splice ( ipnt ang num1 pitch1 end1 num2 pitch2 end2 gap /
+                     ipnt     ang     num1    pitch1
+                     end1     num2    pitch2  end2    gap
+  )
+
+    (setq tot1 (+ (/ gap 2.0) (* num1 pitch1) end1)  ;splice Ìe ¸åÁA ‹©·¡ ŠÐq
+          tot2 (+ (* num2 pitch2) (* end2 2.0))
+    )
+
+    (setq count_lr 0)                                ;´·½¢ ”Ã· Š¹¡¢‰ flag
+
+    (repeat 2                                           ;¶E½¢ µ¡Ÿe½¢ –¤å ‹aŸ±
+
+      (setq ang90 (+ ang (* pi 0.5) (* count_lr -1 pi)))   ;¶E½¢,µ¡Ÿe½¢ ˆb ‰¬e
+
+      (setq pur (polar ipnt ang90 tot1)                    ;spliceÌe
+            plr (polar pur  ang   tot2)
+            pll (polar  ipnt ang   tot2)
+      )
+      (command "LINE" ipnt pur plr pll "")            ;spliceÌe ‹aŸ¡‹¡
+
+      (setq oldc (getvar "CECOLOR"))                  ;Ñe¸¬‚ ”Ï¡
+      (setvar "CECOLOR" "GREEN")                      ;‘¢¬‚·a¡ setting
+
+      (setq count1 0)                                 ;bolt¬å ‹aŸ¡‹¡
+      (repeat (1+ num1)                                 ;®»¢¬å
+        (setq bolt_pnt (polar (polar ipnt ang90 (+ (* gap 0.5) (* count1 pitch1)))
+                              ang end2)
+        )
+        (command "LINE" bolt_pnt (polar bolt_pnt ang (* num2 pitch2)) "")
+        (setq count1 (1+ count1))
+      ) ;of repeat
+
+      (setq count2 0)
+      (repeat (1+ num2)                                 ;®Íw¬å
+        (setq bolt_pnt (polar (polar ipnt ang (+ end2 (* count2 pitch2)))
+                              ang90 (* 0.5 gap))
+        )
+        (command "LINE" bolt_pnt (polar bolt_pnt ang90 (* num1 pitch1)) "")
+        (setq count2 (1+ count2))
+      ) ;of repeat
+
+      (setvar "CECOLOR" oldc)                           ;¬‚Œi¥¢Šá
+
+
+      (setq count1 0)                                ;; ¥©ËaŠ ÷ ‹aŸ¡‹¡
+
+      (repeat (+ num1 1)
+        (setq bolt_pnt (polar (polar ipnt ang90 (+ (* gap 0.5) (* count1 pitch1)))
+                        ang end2)
+        )
+        (setq count2 0)
+        (repeat (+ num2 1)
+          (command "CIRCLE"                               ;¶¥‹aŸ¡‹¡
+                   (polar bolt_pnt ang (* count2 pitch2))   ;¶¥ º—¯±
+                   "11"                                     ;¶¥ ¤e»¡Ÿq
+          )
+          (setq count2 (1+ count2))
+        ) ;of repeat                                 ;®»¢·a¡ ¤e¥¢
+        (setq count1 (1+ count1))
+      ) ;of repeat                                   ;®Íw·a¡ ¤e¥¢
+      (setq count_lr (1+ count_lr))
+    ) ;of repeat 2                                   ;¶E½¢, µ¡Ÿe½¢ ¤e¥¢
+  ) ;of defun function draw_splice
+
+
+  ;;
+  ;; MAIN ROUTINE
+  ;;
+
+  (setq oer *error* *error* seterr)
+
+  (push-env)                                          ;ÑÅ‰w¥e® ”Ï¡
+
+  (graphscr)
+  (setq ipnt (getpoint "\nPick first point: "))       ;Àõ¸ñ ·³b
+  (setq 2pnt (getpoint ipnt "\npick second point: ")) ;–‰¼¸ñ ·³b
+
+  (setq ang (angle ipnt 2pnt)                         ;–¸ñ· ˆb ŠÐq
+        #DST (distance ipnt 2pnt)                     ;–¸ñ· ˆáŸ¡ ŠÐq
+  )
+
+  (splice_dialog )                                    ;dialog¡ ·³b¤h·q
+
+  (setq ipnt (polar (mid-point ipnt 2pnt) (+ ang pi)  ;splice¯¡¸b¸ñ ŠÐq
+                    (* 0.5 (+ (* #N2 #P2) (* 2 #E2))))
+
+  )
+
+  (draw_splice IPNT ANG #N1 #P1 #E1 #N2 #P2 #E2 #G)   ;splice‹aŸ¡‹¡ Ðq® call
+
+  (pop-env)                                           ;ÑÅ‰w¥e® ¥¢Šá
+
+  (setq *error* oer seterr nil)
+
+  (princ)
+
+) ;of defun
+
+
+

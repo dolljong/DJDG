@@ -1,0 +1,198 @@
+;************************************    
+; Program : RCD    
+;           RCD pile drawing    
+;           Suk-Jong Yi    
+;           1995. 3. 19    
+;************************************    
+    
+(defun C:RCD(/                                              ;»¡µb¥e® ¸÷·    
+ds oldclt oldclr s-pnt pd rdo pl tang ang tdsto e-pnt    
+sl-pnt0 sr-pnt0 sl-pnt sr-pnt el-pnt er-pnt    
+)    
+    
+  (setq ulbulh 100                              ;¶‰Ê—¦‰Ê—‘¼·¡    
+        ulbull 300)                             ;¶‰Ê—¦‰Ê—‹©·¡    
+    
+  (defun SETERR(s)    
+    (if (/= s "Function cancelled")    
+        (princ (strcat "\nError: " s))    
+    ); of If    
+    (setq *error* oer seterr nil)    
+    (princ)    
+  ); of SETERR    
+    
+  (setq oer *error* *error* seterr)    
+    
+  (push-env)                                                  ;ÑÅ‰w¥e® ”Ï¡    
+    
+  (setq ds (getvar "DIMSCALE"))    
+  (setq oldclt (getvar "CELTYPE"))                            ;Ñe¸ œa·¥Èa·³ ”Ï¡    
+  (setq oldclr (getvar "CECOLOR"))                            ;Ñe¸ Äiœa ”Ï¡    
+    
+  (setq s-pnt (getpoint "\nPick start point: "))              ;¯¡¸b¸ñ ·³b    
+  (setq pd (getdist "\nPile diameter (mm): "))                ;Ìa·© »¡Ÿq ·³b    
+  (setq rdo (/ pd 2.0))                                       ;Ìa·© ¤e»¡Ÿq ·³b    
+  (setq pl (getdist s-pnt "\nPile length (m): "))             ;Ìa·© ‹©·¡ ·³b    
+  (setq pl (* pl 1000.0))                                     ;mm”e¶á¡ ÑÅ¬e    
+  (initget "Tilt Angle")    
+  (setq tang (getreal "\nAngle/<1:?>: "))       ;1:?¡ ·³bÐaa¡e "T"Ÿi ·³b    
+  (if (= tang "Angle")    
+    (progn    
+      (setq tang (getreal "\nAngle (Degree): "))      ;ˆb•¡ ·³b    
+      (setq ang (+ (dtor tang) (* pi (/ 3.0 2.0))))   ;radian·a¡ Ã¡ÑÅ    
+      (setq pl  (/ pl (cos tang)))                    ;‰w¬aÌa·©‹©·¡    
+    ) ;of progn    
+    (if (or (= tang 0) (= tang nil))    
+      (setq ang (* pi (/ 3.0 2.0)))                          ;radian·a¡ Ã¡ÑÅ    
+      (setq ang (+ (* pi (/ 3.0 2.0)) (atan (/ 1.0 tang)))   ;‹¡¶‰‹¡ˆt·i ˆb•¡¡ ÑÅ¬e    
+            pl  (/ pl (cos (atan (/ 1.0 tang)))))            ;‰w¬aÌa·©‹©·¡    
+    ) ;of IF    
+  ) ;of if    
+    
+  (setq tdsto (abs (/ rdo (sin ang))))        ;Ìa·©‰w¬aµA ˜aŸe Ìa·© ¤e‰w· ‹©·¡    
+    
+  (setq e-pnt (polar s-pnt ang pl))                   ;Ìa·© º—¯± {¸ñ    
+    
+  (setq sl-pnt0 (polar s-pnt (- ang (/ pi 2.0)) rdo)) ;Ìa·©· ¶AÃb ¹ÁÃb(ˆa¬w)¯¡¸ñ    
+  (setq sr-pnt0 (polar s-pnt (+ ang (/ pi 2.0)) rdo)) ;Ìa·©· ¶AÃb ¶Ãb(ˆa¬w)¯¡¸ñ    
+    
+  (setq sl-pnt (list (- (car s-pnt) tdsto) (cadr s-pnt) 0.0))    ;¹Á¶AÃb ¯¡¸ñ    
+  (setq sr-pnt (list (+ (car s-pnt) tdsto) (cadr s-pnt) 0.0))    ;¶¶AÃb ¯¡¸ñ    
+    
+  (setq el-pnt (polar sl-pnt0 ang pl))                   ;Ìa·© ¹Á¶AÃb {¸ñ    
+  (setq er-pnt (polar sr-pnt0 ang pl))                   ;Ìa·© ¶¶AÃb {¸ñ    
+    
+    
+  (setvar "CELTYPE" "BYLAYER")            ;œa·¥Èa·³·i ¯©¬å·a¡    
+;  (command "LINE" sl-pnt el-pnt "")       ;¶E½¢ ¤aŒ{¬å‰Á    
+;  (command "LINE" sr-pnt er-pnt "")       ;µ¡Ÿe½¢ ¤aŒ{¬å ‹aŸ¡‹¡    
+;  (command "LINE" el-pnt er-pnt "")       ;{”e ‹aŸ¡‹¡    
+    
+  ;¶‰Ê—¦‰Ê— ¬å ‹aŸ¡‹¡    
+  (pado el-pnt sl-pnt ulbulh ulbull)            ;¶‰Ê—¦‰Ê— ‹aŸ¡‹¡(¶E½¢)    
+  (pado sr-pnt er-pnt ulbulh ulbull)            ;¶‰Ê—¦‰Ê— ‹aŸ¡‹¡(µ¡Ÿe½¢)    
+  (pado er-pnt el-pnt ulbulh ulbull)            ;¶‰Ê—¦‰Ê— ‹aŸ¡‹¡(¤a”b)    
+    
+  (setvar "CELTYPE" "CENTER")             ;œa·¥ Èa·³·i ·©¸ñ­á¬å·a¡    
+  (setvar "CECOLOR" "RED")                ;¨iˆe¬‚·a¡ ¤aŽ¡¬á    
+  (command "LINE" s-pnt e-pnt "")         ;º—¯±¬å ‹aŸ¡‹¡    
+    
+  (setvar "CECOLOR" "GREEN")              ;¬‚Œi·e Á¡¢¬‚    
+  (setvar "CELTYPE" "BYLAYER")            ;œa·¥Èa·³·e ¯©¬å    
+;  (hround s-pnt e-pnt sl-pnt el-pnt)      ;¶E½¢ œa¶…—· ‹aŸ¡‹¡    
+;  (hround s-pnt e-pnt sr-pnt er-pnt)      ;µ¡Ÿe½¢ œa¶…—· ‹aŸ¡‹¡    
+    
+  (setvar "CECOLOR" oldclr)               ;¶¥œ¬‚Œi¡ ¥¢Šá¯¡Ç¡‹¡    
+  (setvar "CELTYPE" oldclt)               ;¶¥œ œa·¥Èa·³·a¡ ¥¢Šá¯¡Ç¡‹¡    
+    
+  (pop-env)                               ;”Ï¡¯¡Åa–… ÑÅ‰w¥e® ¥¢Šá    
+;  (setq *error* oer seterr nil)    
+  (princ)    
+) ;of defun    
+    
+    
+;**************************************    
+; Function : HROUND    
+;            Half ROUNDing    
+;            Suk-Jong Yi    
+;            1995. 3. 16    
+;**************************************    
+    
+(defun HROUND(p1s p1e p2s p2e /       ;¤e œa¶…—··i Ðº“e Function    
+sdst edst lpnts lpnte ds p1s p1e      ;Argument“e –¬å· ¯¡¸b¸ñ‰Á {¸ñ    
+oldclr    
+)    
+    
+(setq ds (getvar "DIMSCALE"))         ;DIMSCALE·i ´i´a…”a.    
+    
+(setq ssdst (distance p1s p2s))     ;Àõœa·¥· ¯¡¸b¸ñµA¬á –¼œa·¥· ¯¡¸b¸ñˆáŸ¡    
+(setq sedst (distance p1s p2e))     ;Àõœa·¥· ¯¡¸b¸ñµA¬á –¼œa·¥· {¸ñˆáŸ¡    
+(if (< sedst ssdst)                 ;¶á· – ˆáŸ¡º— ˆaŒa¶…½¢·¡ ¯¡¸b¸ñ·¡ –E”a    
+  (progn    
+    (setq tmp p2s)    
+    (setq p2s p2e)    
+    (setq p2e tmp)    
+  ) ;of progn    
+) ; of if    
+    
+(setq sdst (distance p1s p2s))    ;Àõ¼œa·¥ ¯¡¸b¸ñµA¬á –‰¼œa·¥ ¯¡¸b¸ñŒa»¡ ˆáŸ¡    
+(setq edst (distance p1e p2e))    ;Àõ¼œa·¥ {¸ñµA¬á –‰¼œa·¥ {¸ñŒa»¡ ˆáŸ¡    
+    
+             ;– ¬åˆe· ˆáŸ¡ˆa 2£¡Ÿ¡·¡¬w ·©˜ e – ¬å· º—ˆeµA”a ¬å·i ‹aŸ¥”a    
+(setq oldclr (getvar "CECOLOR"))    
+(setvar "CECOLOR" "GREEN")    
+(while (or (> sdst (* ds 1.0)) (> edst (* ds 1.0)))    
+  (setq lpnts (list (/ (+ (car p1s) (car p2s)) 2.0)      ;– ¯¡¸b¸ñ· º—ˆe¸ñ X    
+                    (/ (+ (cadr p1s) (cadr p2s)) 2.0)))  ;                   Y    
+  (setq lpnte (list (/ (+ (car p1e) (car p2e)) 2.0)      ;– {¸ñ· º—ˆe¸ñ   X    
+                    (/ (+ (cadr p1e) (cadr p2e)) 2.0)))  ;                   Y    
+  (command "LINE" lpnts lpnte "")     ; º—ˆe¬å·i ‹aŸ¥”a    
+  (setq p1s lpnts)             ;º—ˆe¬å· ¯¡¸b¸ñ·i Àõ¼¬å· ¯¡¸b¸ñ·a¡ ¤aŽ…”a    
+  (setq p1e lpnte)             ;º—ˆe¬å· {¸ñ·i Àõ¼¬å· {¸ñ·a¡ ¤aŽ…”a    
+  (setq sdst (distance lpnts p2s))  ;– ¯¡¸b¸ñˆe· ˆáŸ¡Ÿi ŠÐe”a    
+  (setq edst (distance lpnte p2e))  ;– {¸ñˆe· ˆáŸ¡Ÿi ŠÐe”a    
+) ;of while    
+(setvar "CECOLOR" oldclr)    
+) ;of defun HROUND    
+    
+;***************************************    
+; Function : PADO    
+;            ¢‰‰i¢“‹aaº‹¡    
+;            ·¡¬â¹·    
+;            Yi Suk Jong    
+;***************************************    
+; ñ´áµ¡“e ˆt    
+;  p1,p2      :  ¯¡¸b¸ñ {¸ñ    
+;  h, l       : Ìa•¡ ‘¼·¡, ‹©·¡, ¤e»¡Ÿq    
+;***************************************    
+;    
+    
+(defun pado(p1 p2 h l    
+/    
+ )    
+ (setq leng (distance p1 p2))                   ;¯¡¸b¸ñµA¬á {¸ñŒa»¡ ˆáŸ¡    
+ (setq ang (angle p1 p2))                       ;¯¡¸b¸ñµA¬á {¸ñŒa»¡ ˆb•¡    
+ (setq n (fix (/ leng l)))                      ;Ìa•¡ ˆ•®    
+ (setq newl (/ leng n))                         ;ÂA¹· Ìa•¡· ‹©·¡    
+ (setq ang_p90 (+ ang (* pi 0.5)))               ;ˆb•¡+90•¡    
+    
+ ;Àõ¤å¼ Ìa•¡ ‹aŸ¡‹¡ £¹ ¸÷¥¡ ´è´á‹¡    
+ (setq pnt1 (polar (polar p1 ang (* newl 0.5)) ang_p90 h)    
+       pnt2 (polar p1 ang newl)    
+       pnt3 (polar (polar p1 ang (* newl 1.5)) ang_p90 h))    
+    
+    
+; (command "ARC" pnt1 pnt2 pnt3)    
+; (setq r (cdr (assoc 40 (entget (entlast)))))    ;Ñ¡· ¤e»¡Ÿq ŠÐa‹¡    
+ (setq alpha (atan (/ (* 0.5 l) h))    
+       r (* (sin (- pi (* 2 alpha)))              ;Ñ¡· ¤e»¡Ÿq ŠÐa‹¡    
+            (sqrt (+ (* h h) (* l l 0.25)))))    
+    
+(command "PLINE" p1 "A" "R" r pnt1)    
+    
+ ;Àõ ¤eÑ¡ ‹aŸ¡‹¡    
+; (command "ARC" p1 "e" pnt1 "r" r)    
+    
+ (setq count 1)       ;–¤å¼ Ìa•¡¦Èá    
+ (repeat (- n 1)    
+   (setq pnt1 (polar (polar p1 ang (* newl (- count 0.5))) ang_p90 h)    
+         pnt2 (polar p1 ang (* newl count ))    
+         pnt3 (polar (polar p1 ang (* newl (+ count 0.5))) ang_p90 h))    
+    
+;   (command "ARC" pnt1 pnt2 pnt3)    
+   (command "s" pnt2 pnt3)    
+    
+   (setq count (1+ count))                      ;”a·q Ìa•¡¡    
+    
+ );repeat    
+    
+ ; a»¡ b ¤eÑ¡ ‹aŸ¡‹¡    
+; (command "ARC" pnt3 "e" p2 "r" r)    
+ (command "r" r p2 "")    
+    
+    
+);defun    
+    
+;(defun c:pado()    
+;  (pado (getpoint "p1") (getpoint "p2") (getdist "d1" ) (getdist "d2"))    
+;);defun    

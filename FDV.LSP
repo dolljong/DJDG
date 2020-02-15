@@ -1,0 +1,79 @@
+(defun C:vtest()
+  (setq pp (f_dv (getpoint) 1000 1 -1 nil))
+) ;of defun
+
+
+
+
+;*********************************
+; Function : F_DV
+;           Fuction Dimension Vertical
+;           Jong-Suk Yi
+;           96/7/1
+;*********************************
+
+(defun F_DV(SP DST N LR TXT1
+;/ th ds sp dsel sent pnt1 pnt2 ppnt
+;  next ep dp dtx sgn fst dx dxy dy
+;  txt txt1 divl divn txtlen dtxt1 dtxt2
+;  dtxt1p dtxt2p
+)
+
+(setq th (getvar "DIMTXT")                          ;textÇa‹¡ = dimtxt
+      dim_gap 10.0)                                 ;Ã¡®¬å ˆe‰b
+(setq ds (getvar "DIMSCALE"))                       ;scale factor
+
+(if (> lr 0)                                        ;¶E½¢/µ¡Ÿe½¢
+  (setq sgn 1)
+  (setq sgn -1)
+) ;of if
+
+  (setq dx (* ds (+ 20 (* dim_gap (- (abs lr) 1)))))
+
+  (setq next (* dst n))                                 ;{¸ñŒa»¡ ˆáŸ¡
+
+  (setq ep (list (car sp) (+ (cadr sp) next)))          ;®¸÷–E {¸ñ
+
+  (setq dxy (list (+ (car ep) (* dx sgn)) (car ep) 0.0))  ;Ã¡®¬å·¡ ‘½·© ¶áÃ¡
+
+  (setq dy (distance sp ep))                          ;– ¸ñ· ˆáŸ¡
+
+  (if (< dy 1000.0)
+    (setq txt (rtos dy 2 0))                          ;1000£¡ e·© ˜
+    (setq txt (rtos (* dy 0.001) 2 3))                ;1000·¡¬w·© ˜
+  ) ;of if(dy < 1000)
+
+  (if (> n 1)
+    (progn
+      (setq divl dst)                                   ;a’“e ‹©·¡ ·³b
+      (setq divn (rtos n 2 0))                          ;a’… ˆ•®‰¬e
+      (if (< divl 1000.)
+        (setq divl (rtos divl 2 0))                   ;a’“e ‹©·¡ˆa 1000£¡ e¯¡
+        (setq divl (rtos (* divl 0.001) 2 3))) ;of if           ;a’“e ‹©·¡ˆa 1000·¡¬w¯¡
+      (setq txtlen (* (+ (strlen txt) (strlen divn) (strlen divl) 2) th ds
+                   (cdr (assoc 41 (tblsearch "STYLE" (getvar "TEXTSTYLE"))))))
+      (if (>= txtlen dy)
+        (progn                                  ;textˆa ¥¡¹¡¬å µA ´e—i´áˆa¡e
+          (setq dtxt1 (strcat divn "@" divl))   ;–º‰¡ a’‘
+          (setq dtxt2 (strcat "=" txt))
+          (setq dtxt1p (mapcar '+ (mid-point sp ep)
+                                  (list (- (* dx sgn) (* ds th)) 0.0 0.0)))
+          (setq dtxt2p (mapcar '+ (mid-point sp ep)
+                                  (list (+ (* dx sgn) (* ds th)) 0.0 0.0)))
+          (command "TEXT" "M" dtxt1p (* th ds) "90" dtxt1)
+          (command "TEXT" "M" dtxt2p (* th ds) "90" dtxt2)
+          (command "DIM1" "VER" sp ep dxy " ")               ;DIM¡ww Ÿ±
+        ) ;of progn THEN
+        (progn                                  ;textˆa ¥¡¹¡¬å µA —i´áˆa¡e
+          (setq dtxt1 (strcat divn "@" divl "=" txt))
+          (command "DIM1" "VER" sp ep dxy dtxt1)               ;DIM¡ww Ÿ±
+        ) ;of progn ELSE
+      ) ;of IF
+    ) ;of progn THEN
+    (progn
+      (if (= txt1 nil) (setq txt1 txt))                    ;Ÿ¡Èå·³b¯¡ µ• textŸi ³q
+      (command "DIM1" "VER" sp ep dxy txt1)               ;DIM¡ww Ÿ±
+    ) ;of progn ELSE
+  ) ;of if
+
+) ;defun

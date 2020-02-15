@@ -1,0 +1,175 @@
+;**********************************************
+; Program : DDSCL
+;           Dynamic Dialog box SCaLe setting
+;           Suk-Jong Yi
+;           1995. 3. 19,3.28, 7/21
+;**********************************************
+;•¡¡e Á¡‹¡ÑÁ ¸b´ó
+;**********************************************
+
+(defun C:DDSCL(/
+               ds   lmin
+)
+
+  ;;;
+  ;;;¸w µAœážË¥ ¸÷·
+  ;;;
+  (defun SETERR(s)
+  ;If an error (CTRL-C) occurs when this command is active.
+    (if (/= s "Function cancelled")
+      (if (= s "quit / exit abort")
+        (princ "*cancel*")
+        (princ (strcat "\nError " s))
+      ) ;of if
+    ); of If
+  ;Restore previous error handler
+    (setq *error* oer seterr nil)
+    (princ)
+  ); of SETERR
+
+  (setq oer *error* *error* seterr)                 ;µAœáÐ…—iœá »¡¸÷
+
+  (push-env)                                        ;ÑÅ‰w¥e® ”Ï¡
+  (setq #BDR "border0")                             ;¸åµb¥e® Á¡‹¡ÑÁ
+  (setq #GRD "0")
+
+  (scl-dialog)                                      ;Dialog Box ¯©Ð—
+
+  (setq ds (list_scl #SCLF))                              ;popup·³b·i scaleˆt·a¡
+
+  (setq lmin (list (* 790 ds) (* 565 ds)))    ;•¡¡e Ðe‰ˆt»¡¸÷
+  (command "LIMITS" "0,0" lmin)
+  (command "ZOOM" "A")                        ;zoom all
+  (setvar "LTSCALE" (* ds 10.0))              ;ltscale¹¡¸÷
+
+  (setvar "DIMSCALE" ds)                        ;dimscale ¹¡¸÷
+  (setvar "TEXTSIZE" (* 2.5 ds))                ;textÇa‹¡ 2.5mm
+
+  (if (= #grd "1") (command "GRID" "1000"))         ;#GRDˆa "1"·¡¡e Grid ON
+  (if (or (= #BDR "border0") (= #BDR "border"))     ;•¡‰Â Xref
+    (command "XREF" "" (strcat (prefix) "Blocks/" #BDR) "0,0" ds "" "")
+  ) ;of IF
+
+
+;  (setq *error* oer seterr nil)         ;µAœáÐ…—iœáŸi ·¡¸å· ˆõ·a¡ ”a¯¡ »¡¸÷
+
+  (princ)
+
+) ;of defun DDSCL
+
+;;
+;; dialog boxŸi ·¡¶wÐe ·³b
+;;
+(defun SCL-DIALOG(/
+                  dcl_id
+)
+
+  (setq dcl_id (load_dialog "DJDG"))                 ;ddscl.dcl load
+  (if (not (new_dialog "scl" dcl_id)) (exit))         ;ddscl.dcl ´e· scl»¡¸÷
+
+  (set_tile "scl_f" "6") (setq #SCLF "6")
+;  (setq #USERSCL "100")
+
+  (action_tile "scl_f" "(set-sclf)")                  ;scale facter list box
+  (action_tile "user_scl" "(set-user)")               ;user ·³b box
+  (action_tile "border0" "(setq #BDR \"border0\")")   ;border0 ¬åÈ‚ radio_btn
+  (action_tile "border1" "(setq #BDR \"border\")")    ;border0 ¬åÈ‚ radio_btn
+  (action_tile "no_border" "(setq #BDR \"nobdr\")")   ;border´ô·q   radio_btn
+  (action_tile "grd" "(set-grd)")                     ;grid ON/OFF toggle
+;  (action_tile "accept" "(do-accept)")                ;OK button
+  (action_tile "accept" "(done_dialog)")                ;OK button
+  (action_tile "cancel" "(do-cancel)")                ;CALCEL button
+  (start_dialog)
+  (unload_dialog dcl_id)
+  (princ)
+) ;of defun SCL-DIALOG
+
+;;
+;; POPUP LISTµA ·³b·¡ —i´áµÖ·i ‰w¶
+;;
+(defun set-sclf(/ in)
+  (setq in (get_tile "scl_f"))
+  (setq #SCLF in)
+  (if (= in "12")
+    (mode_tile "user_scl" 2)
+    (set_tile "user_scl" (itoa (list_scl #SCLF)))
+  ) ;of IF
+) ;of defun
+
+;;
+;; popup_list ˆt·i scale ˆt·a¡..
+;;
+(defun list_scl(lst / lst)
+  (cond
+    ((= lst "0") 10)
+    ((= lst "1") 20)
+    ((= lst "2") 25)
+    ((= lst "3") 30)
+    ((= lst "4") 40)
+    ((= lst "5") 50)
+    ((= lst "6") 100)
+    ((= lst "7") 200)
+    ((= lst "8") 250)
+    ((= lst "9") 300)
+    ((= lst "10") 400)
+    ((= lst "11") 500)
+    ((= lst "12") (atof #USERSCL))
+    (T nil)
+  ) ;of COND
+) ;of defun LIST_SCL
+
+;;
+;; User scale factor
+;;
+(defun set-user( / in )
+  (set_tile "scl_f" "12")
+  (setq #SCLF "12")
+  (setq in (get_tile "user_scl"))
+;  (if (<= (atoi in) 0)
+  (if (<= (atof in) 0)
+    (progn
+      (do-error)
+      (mode_tile "user_scl" 2)
+      nil
+    ) ;of THEN
+    (progn
+      (setq #USERSCL in)
+      (set_tile "error" "")
+      T
+    ) ;of ELSE
+  ) ;of IF
+) ;of defun SET-USER
+
+
+
+;;
+;;gridµ³­e·i ¬åÈ‚Ð–·i ‰w¶
+;;
+(defun set-grd( / in )
+  (mode_tile "grd" 2)
+  (setq in (get_tile "grd"))
+  (setq #GRD in)
+) ;of defun SET-GRD
+
+;;
+;;okŸi ¬åÈ‚Ð–·i ‰w¶
+;;
+(defun do-accept()
+  (if (set-sclf) (done_dialog))
+) ;of defun DO-ACCEPT
+
+;;
+;;error ¤i¬—¯¡ ®Ð—–A“e Ðq® (call back Ðq® ´a“±)
+;;
+(defun do-error()
+  (set_tile "error" "Invalid SCALE factor.")
+  (mode_tile "scl_f" 2)
+) ;of DO-ERROR
+
+;;
+;;cancel·i ¬åÈ‚Ð–·i ‰w¶
+;;
+(defun do-cancel()
+  (done_dialog)
+  (exit)
+) ;of DO-CALCEL

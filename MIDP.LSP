@@ -1,0 +1,8 @@
+(defun c:midp(/ p1 p2 rad dist)
+(setq p1 (getpoint "Pick first point: "))(terpri)
+(setq p2 (getpoint p1 "Pick second point: "))(terpri)
+(setq rad (angle p1 p2))
+(setq dist (distance p1 p2))
+(setq dist2 (/ dist 2))
+(setq mp (polar p1 rad dist2))
+)

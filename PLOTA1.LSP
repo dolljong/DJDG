@@ -1,0 +1,329 @@
+;****************************************************************************
+; Program : PLOTA1
+;           PLOTA1
+;           By Suk-Jong Yi
+;           1995/11/3
+;****************************************************************************
+; •¡¡eµA ·¶“e ¡¡—e BorderŸi Â‰b (HP GL/2¶w)
+; Device  : ¡wwŸ¡‹¡ ¸åµA £¡Ÿ¡ ¬åÈ‚–A´á·¶´á´¡ Ðq
+; Scale   : DIMSCALE¥e®ˆt·i ¸a•··a¡ ·¥¯¢Ðe”a.
+; plt·¡Ÿq : Borderˆa Ðeˆ·¥ ‰w¶ - DWG name‰Á ˆ{‰A Â‰b
+;           Borderˆa –ˆ ·¡¬w·¥ ‰w¶ - DWGÌa·© ·¡Ÿq·  a»¡ b –¸aŸi ¤åÑ¡¡
+;                                       ¤aŽ¡¬á Â‰b
+;****************************************************************************
+
+(defun C:PLOTA1( /
+                    ds    dwgn    f_list   ss_lst   ss_num    index
+                    pltn  pltn1   bdr_ent  ipnt     i_scale   up_left
+                                                              low_right
+)
+
+  (setq bdr_B 800                                   ;border· Í¢
+        bdr_H 570                                   ;border· ‘¼·¡
+        bn    "BORDER*"                             ;§iœâ ·¡Ÿq
+        xg    -5                                    ;x gap
+        yg    -5)                                   ;y gap
+
+;*** Ìa·© Ÿ¡¯aËa ·ª‹¡
+  (setq opf (open "PLOTA1.LST" "r"))                          ;file open
+  (setq dwglst nil)
+  (if opf
+    (progn
+      (setq count 1)
+      (while (setq dwgn (read-line opf))
+        (setq dwglst (append dwglst (list dwgn)))
+        (setq count (1+ count))
+      ) ;of while
+      (close opf)
+    ) ;of progn
+  ) ;of IF
+
+  (princ "PLT LIST: ") (princ dwglst)
+
+  (setq dwgnum (length dwglst))
+  (setq opf (open "PLOTA1.LST" "w"))
+  (setq count 1)
+  (repeat (1- dwgnum)
+    (write-line (nth count dwglst) opf)
+    (setq count (1+ count))
+  ) ;of repeat
+  (close opf)
+
+  (princ dwglst)
+
+  (setq ds (getvar "DIMSCALE"))                     ;scale ˆtŠÐq
+
+  (setq dwgn (getvar "DWGNAME"))
+  (setq dwgnl (strlen dwgn))                        ;Ìa·© ·¡Ÿq· ‹©·¡
+  (setq dwgnext (car dwglst))                       ;”a·qÌa·©
+  (setq f_list (list (cons 0 "INSERT") (cons 2 bn)))  ;filter list
+  (setq ss_lst (ssget "X" f_list))                          ;entity ¬åÈ‚
+
+
+
+  (if (/= ss_lst nil)                                       ;borderˆa ·¶·i ˜ e
+    (progn
+      ;---------- borderŸi x,y¤wÐ··a¡ sort
+      (setq ssn_lst (sort_xy ss_lst))
+      (setq ss_num (sslength ss_lst))                   ;¬åÈ‚–E entityˆ•®
+      (if (> ss_num 9)                                  ;borderˆa 10ˆˆa ñ·i ‰w¶
+        (if (> dwgnl 6)                                 ;Ìa·©·¡Ÿq·¡ 6¸aˆa ñ·i ‰w¶
+          (setq pltn1 (substr dwgn 1 6))
+          (setq pltn1 dwgn)
+        ) ;of if
+        (if (> dwgnl 7)                                   ;Ìa·©·¡Ÿq·¡ 7¸aˆa ñ·i ‰w¶
+          (setq pltn1 (substr dwgn 1 7))
+          (setq pltn1 dwgn)
+        ) ;of if
+      ) ;of IF
+
+      (setq index 0)
+      (repeat ss_num                        ;¬åÈ‚–E border ˆ•® eÇq ¤e¥¢
+;        (princ "\nDWG NUMBER: ") (princ index)
+        (if (= index 0)
+          (setq pltn dwgn)
+          (if (and (<= index 9) (> ss_num 9))
+            (setq pltn (strcat pltn1 "0" (itoa index)))
+            (setq pltn (strcat pltn1 (itoa index)))
+          ) ;of IF
+        ) ;of IF
+        (setq bdr_ent (entget (nth index ssn_lst)))     ;border entity¸÷¥¡
+;        (setq bdr_ent (entget (ssname ss_lst index)))   ;border entity¸÷¥¡
+        (setq ipnt (cdr (assoc 10 bdr_ent)))            ;border· insert point
+        (setq i_scale (cdr (assoc 41 bdr_ent)))         ;border· scale factor
+        (setq low_left (list (+ (car ipnt) (* xg i_scale))        ;border· ¹ÁÃb ´aœ
+                             (+ (cadr ipnt) (* yg i_scale))))
+        (setq up_right (list (+ (car ipnt) (* bdr_B i_scale))    ;border· ¶Ãb ¶á
+                             (+ (cadr ipnt) (* bdr_H i_scale))))
+    (setvar "CMDDIA" 0)                                     ;command echo OFF
+    (setq pltn0 (strcat pltn ".plt"))
+    (if (findfile pltn0)                                    ; ˆ{·e ·¡Ÿq· pltÌa·©·¡ ¹¥¸Ða¡e
+      (command "DEL" pltn0)                                 ;‹¡¹¥ pltÌa·© »¡¶‹¡
+    ) ;of if
+        (if (= index 0)
+          (progn
+            (princ "\nPLT NUM: ") (princ index) (princ "\n")
+            (setq pnts (strcat (rtos (car low_left) 2 3)
+                           "," (rtos (cadr low_left) 2 3)
+                           " " (rtos (car up_right) 2 3)
+                           "," (rtos (cadr up_right) 2 3)))
+            (setq scl (strcat "1=" (rtos ds 2 3)))
+            (setq scrf (strcat dwgn ".scr"))
+            (setq scr (open scrf "w"))
+            (write-line "PLOT W" scr)
+            (write-line pnts scr)
+            (write-line "Y" scr)
+            (write-line "N" scr)
+            (write-line " " scr)
+            (write-line " " scr)
+            (write-line " " scr)
+            (write-line " " scr)
+            (write-line scl scr)
+            (write-line pltn scr)
+             (princ "\nINDEX = 0")
+          ) ;of THEN
+          (progn
+            (setq pnts (strcat (rtos (car low_left) 2 3)
+                           "," (rtos (cadr low_left) 2 3)
+                           " " (rtos (car up_right) 2 3)
+                           "," (rtos (cadr up_right) 2 3)))
+            (setq pltxt (strcat "PLOT W " pnts " N " pltn))       ;change anything
+            (write-line pltxt scr)
+          ) ;of ELSE
+        ) ;of IF
+        (setvar "CMDDIA" 1)                                     ;command echo ON
+    ;    (princ pltn) (princ " is Plotted") (terpri)
+        (setq index (1+ index))                                 ;”a·q border¡
+      ) ;of repeat
+
+      (if (> dwgnum 0)
+        (write-line (strcat "OPEN " dwgnext " PLOTA1") scr)
+      ) ;of IF
+      (close scr)
+      (command "SCRIPT" scrf)                                   ;script file¬åÈ‚
+    ) ;of THEN
+    (progn                                                      ;borderˆa ´ô·i ˜
+      (princ "\nBORDER NOT FOUND")
+      (setq scrf (strcat dwgn ".scr"))
+      (setq scr (open scrf "w"))
+      (write-line (strcat "OPEN " dwgnext " PLOTA1") scr)
+      (close scr)
+      (command "SCRIPT" scrf)
+    ) ;of ELSE
+  ) ;of if
+;  (POP-ENV)                                                 ;ÑÅ‰w¥e® ¥¢Šá
+  (princ)
+) ;of defun
+
+;----------------------------------------------------------------
+; function SORT_XY
+;          Yi Suk Jong
+;          97/7/24
+;----------------------------------------------------------------
+; º´á»¥ entity listŸi x,y¹ÁÎaŸi ·¡¶wÐaµa sortÐe”a.
+; sort¤w¤ó·e
+;     1. yˆt·¡ §¡¯uÐe ˆõ¡Ÿ¡ Ð—·i  e—e”a
+;     2. ˆbÐ——i·e xˆt·a¡ sortÐe”a.
+; ñ´áµ¡“e ˆt
+;      entity list
+; ñ´áˆa“e ˆt
+;      sort–E entity list
+;----------------------------------------------------------------
+(defun SORT_XY(ss_lst
+/ ss_lst  ss_num  ssn_lst  row_col  row  cy  cn  y  ygap  ytol
+  count1  rown    coln
+)
+  (setq ss_num (sslength ss_lst))              ;listˆ•®
+
+  ;------- borderµEË¡Ë¡¡w list e—i‹¡
+  (setq ssn_lst nil)
+  (setq count 0)
+  (repeat ss_num
+    (setq ssn_lst (append ssn_lst (list (ssname ss_lst count))))
+    (setq count (1+ count))
+  ) ;of repeat
+
+   ;------- insert yˆt·a¡ ¸÷i
+  (setq ssn_lst (reverse (sort_ent ssn_lst 10 2)))  ;µ¡ŸqÀa®…-->Ÿ±Àa®…·a¡ ¥e‰w
+
+  ;------- Ð—‰Á µi¡ a’‹¡
+  (setq row_col nil)                                            ;Ð—ilist §¡¶‹¡
+  (setq row nil)                                                ;Ð— list§¡¶‹¡
+  (setq count 0)
+  (setq cy (nth 2 (assoc 10 (entget (nth count ssn_lst)))))     ;Ñe¸ yˆt
+  (setq cn 0)                                                   ;Ñe¸ ¤åÑ¡
+  (setq count 1)                                                ;Àõ¤å¼ ¶a­¡¦Èá
+  (repeat (1- ss_num)
+    (setq y (nth 2 (assoc 10 (entget (nth count ssn_lst)))))    ;Ñe¸ yˆt
+    (setq ygap (abs (- cy y)))                                  ;yˆtÀa
+    (if (> ygap ytol)                        ;yˆtÀaˆa border‘¼·¡Ÿi ñ·i˜
+      (progn
+        (setq count1 cn)
+        (repeat (- count cn)                 ;rowÑw¬÷
+          (setq row (append row (list (nth count1 ssn_lst))))
+          (setq count1 (1+ count1))
+        ) ;of repeat
+        (setq row_col (append row_col (list row)))          ;rowŸi Ð—iµA Âˆa
+        (setq cn count)
+        (setq cy y)
+        (setq row nil)
+      ) ;of progn
+    ) ;of if
+    (setq count (1+ count))                                     ;”a·q ¶a­¡¡
+  ) ;of repeat
+  (setq count1 cn)                                              ; a»¡ b rowÀáŸ¡
+  (repeat (- ss_num cn)
+    (setq row (append row (list (nth count1 ssn_lst))))
+    (setq count1 (1+ count1))
+  ) ;of repeat
+  (setq row_col (append row_col (list row)))
+
+  ; ------------- row¥i¡ a’´á¹a ·¶“e listŸi Ðeˆ· list¡ É·Ðs
+  (setq ssn_lst nil)
+  (setq rown (length row_col))                          ;row®
+  (setq count 0)                                        ;Àõ¤å row¦Èá
+  (repeat rown
+    (setq row (sort_ent (nth count row_col) 10 1))      ;x¹ÁÎa¡ sort
+    (setq coln (length row))                            ;Ñe¸ row· column®
+    (setq count1 0)                                     ;Àõ¤å¼ column¦Èá
+    (repeat coln
+      (setq ssn_lst (append ssn_lst (list (nth count1 row))))  ;entity·¡Ÿq listµA Âˆa
+      (setq count1 (1+ count1))
+    ) ;of repeat
+    (setq count (1+ count))
+  ) ;of repeat
+  (setq ssn_lst ssn_lst)
+) ;of defun
+
+;******************************************************
+; Function : SORT_ENT
+;           SORT ENT
+;           Yi Suk-Jong
+;           1996/2/23
+;******************************************************
+; SSGET listŸi sortÐº…”a.
+; ñ´áµ¡“e ˆt
+;     ALIST : SORT–A´á´¡Ði SSGET LIST
+;       ASS : ‹¡º…·¡ –A“e sub list (µ:insert point --> 10)
+         TH : sub list· ¡y¤å¼ atom·i ‹¡º…·a¡ ¸÷iÐi ˆõ·¥ˆaŸi ´iaº…”a.
+; ñ‰a»¡“e ˆt
+;             SORT–E LIST
+;******************************************************
+
+(defun SORT_ENT(alist ass th
+/       alist       nl       rlist       slist        count      min
+        min_th      count1   c_list      c_val        ass        th
+)
+
+  (setq nl (length alist))                  ;list· ˆ•®
+
+  (setq slist nil)                          ;§¥ sort–E list e—q
+  (setq rlist alist)                        ;ÂA”ˆt·i Â‚Â‰Ðe a á»¡ list
+
+  (setq count nl)                           ;list ˆ•®¦Èá Ðeˆ³¢ ¨¡e¬á ¤e¥¢
+
+  (repeat nl                                        ;listˆ•® eÇq
+    (setq min (nth th (assoc ass (entget (nth 0 rlist)))))             ;Àõ¤å¼ listŸi ¸b·e ˆt·a¡
+    (setq min_th 0)                                 ;ÂA­¡ˆt· ¶áÃ¡Ÿi Àá·q·a¡
+    (setq count1 1)                                 ;–¤å¼ list¦Èá
+    (repeat (1- count)
+      (setq c_list (nth count1 rlist))                          ;Ñe¸ list
+      (setq c_val (nth th (assoc ass (entget (nth count1 rlist)))))    ;Ñe¸ ˆt
+      (if (< c_val min)                            ;Ñe¸ ˆt·¡ min¥¡”a ¸b·i˜
+        (progn
+          (setq min_th count1)                      ;ÂA­¡ˆt¶áÃ¡Ÿi Ñe¸ ¶áÃ¡¡
+          (setq min c_val)                          ;ÂA­¡ˆt·i Ñe¸ ˆt·a¡
+        ) ;of progn
+      ) ;of if
+      (setq count1 (1+ count1))                     ;”a·q list¡
+    ) ;of repeat
+    (setq slist (append slist (list (nth min_th rlist)))) ;ÂA­¡ˆt·i sort–E listµA Âˆa
+    (setq rlist (del_atom rlist min_th))            ;q·elistµA¬á ÂA­¡ list ¹Aˆá
+    (setq count (1- count))                         ;Ðeˆ º‰µa¬á
+  ) ;of repeat
+;-------------- test¶w source ---------------------------------------------
+;  (setq count 0)
+;  (repeat nl
+;    (princ (nth th (assoc ass (entget (nth count slist))))) (princ "\n")
+;    (setq count (1+ count))
+;  ) ;of repeat
+;--------------------------------------------------------------------------
+  (setq slist slist)
+) ;of defun
+
+
+;************************************************
+; Function : DEL_ATOM
+;           DELete ATOM
+;           Yi Suk-Jong
+;           1996/2/23
+;************************************************
+; listµA¬á Ëb¸÷ atom·i »¡¶…”a
+; ñ´áµ¡“e ˆt
+;             b_list : Â‚Â‰¸å list
+;               anth : Â‚Â‰–A´¡Ði atom· ¶áÃ¡
+; ñ‰aˆa“e ˆt
+;                    : Â‚Â‰Ò list
+;************************************************
+
+(defun DEL_ATOM(b_list anth
+/       b_list      mlist       a_list      count   ;»¡µb¥e®
+)
+
+  (setq nlist (length b_list))                      ;list· ˆ•®
+
+  (setq a_list nil)                                 ;§¥ list¬—¬÷
+  (setq count 0)                                    ;Àõ¤å¼ list¦Èá
+
+  (repeat nlist                                     ;listˆ•® eÇq ¤e¥¢
+    (if (/= count anth)                             ;»¡¸÷–E atom·¡ ´a“¥‰w¶ e
+      (setq a_list (append a_list (list (nth count b_list))))   ;listµA”a Âˆa
+    ) ;of if
+    (setq count (1+ count))
+  ) ;of repeat
+
+  (setq a_list a_list)
+
+) ;of defun
+
+

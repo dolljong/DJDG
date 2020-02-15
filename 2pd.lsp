@@ -1,0 +1,77 @@
+;************************************
+; Program : 2PD
+;           2 Point Distance
+;           By Suk-Jong Yi
+;           1995/5/23
+;************************************
+; –¸ñ ¬a·¡· ˆáŸ¡Ÿi •¡¡eµA Îa¯¡Ðº‘
+;************************************
+
+(defun C:2PD(/
+              th    ta    pref    pnt1   pnt2    txt    tpnt
+)
+
+  (defun SETERR(s)
+    (if (/= s "Function cancelled")
+        (princ (strcat "\nError: " s))
+    ); of If
+    (setq *error* oer seterr nil)
+    (princ)
+  ); of SETERR
+  (setq oer *error* *error* seterr)
+
+  (setvar "CMDECHO" 0)
+;  (setq th (getvar "TEXTSIZE"))
+  (setq th (getvar "DIMTXT"))                 ;text· Ça‹¡“e Ã¡®· Ça‹¡¡
+  (setq pref (getstring "\nPrefix: "))        ; áŸ¡‹i ·³b
+
+  (while (setq pnt1 (getpoint "\nPick first point: "))  ;Àõ¸ñ ·³b
+    (setq pnt2 (getpoint pnt1 "\nPick second point: "))      ;—i¼¸ñ ·³b
+
+    (setq ang (angle pnt1 pnt2))                        ;–¸ñ·¡ ·¡ž“e ˆb
+
+    (setq wh4 (which4 ang))                             ;¡y¬a¦…¡eµA ·¶“eˆa?
+
+    (cond                                               ;1~4¬a¦…¡eµA ·¶·i ˜
+       ((= wh4 1)
+         (setq ta ang)
+       )
+       ((= wh4 2)
+         (setq ta (- ang pi))
+       )
+       ((= wh4 3)
+         (setq ta (- ang pi))
+       )
+       ((= wh4 4)
+         (setq ta (- ang (* 2 pi)))
+       )
+    );of cond
+
+    (setq dst (distance pnt1 pnt2))                    ;–¸ñ· ˆáŸ¡ ŠÐa‹¡
+    (if (< dst 1000.0)
+      (setq txt (rtos dst 2 (getvar 0)))                          ;1000£¡ e·© ˜
+      (setq txt (rtos (* dst 0.001) 2 (getvar "LUPREC")))                ;1000·¡¬w·© ˜
+    ) ;of if(dst < 1000)
+
+    (if (/= pref nil)
+      (setq txt1 (strcat pref txt))                     ;‹i áŸ¡ ¦›·¡‹¡
+      (setq txt1 txt)                                   ;‹i áŸ¡ ´ô·i ˜
+    ) ;of if
+
+    (princ "\nTEXT: ") (princ txt1)                      ;Ñe¸ ÉB¯aËa ¥¡µaº‹¡
+
+    (initget "Prefix")
+    (setq tpnt (getpoint "\nChange [P]refix/<Pick point>: "))       ;¬s·³¸ñ ·³b ¤h·q
+    (if (= tpnt "Prefix")                               ;‹i áŸ¡ ¤aŽ‰¡ ¯¼·i ˜
+      (progn
+        (setq pref (getstring "\nNew Prefix: "))            ; áŸ¡‹i ·³b
+        (setq txt1 (strcat pref txt))                       ;‹i áŸ¡ ”áÐa‹¡
+        (princ "\nTEXT: ") (princ txt1)                     ;Ñe¸ ÉB¯aËa ¥¡µaº‹¡
+        (setq tpnt (getpoint "\nPick point: "))             ;¬s·³¸ñ ·³b ¤h‹¡
+      ) ;of progn
+    ) ;of if
+
+    (command "TEXT" "C" tpnt th (rtod ta) txt1)                 ;ÉB¯aËa ³q
+  ) ;of while
+  (setq *error* oer seterr nil)
+) ;of defun

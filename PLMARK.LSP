@@ -1,0 +1,46 @@
+;*************************************
+; Program : PLMARK
+;           PLate MARKing
+;           Suk-Jong Yi
+;           1995. 3. 19
+;*************************************
+
+(defun C:PLMARK(/
+)
+
+  (defun SETERR(s)
+    (if (/= s "Function cancelled")
+        (princ (strcat "\nError: " s))
+    ); of If
+    (setq *error* oer seterr nil)
+    (princ)
+  ); of SETERR
+  (setq oer *error* *error* seterr)
+
+(push-env)                    ;ÑÅ‰w¥e®ˆt ”Ï¡
+
+(setq oldclr (getvar "CECOLOR"))
+
+(setq ds (getvar "DIMSCALE")  ;dimension ¯aÅA·© ˆt ŠÐq
+      th (getvar "DIMTXT"))   ;textÇa‹¡“e dimtxt
+
+(setq mp (getpoint "\nPick middle point: "))   ;text· º—ˆe¸ñ ·³b
+(setq ang (getangle mp "\nEnter angle: "))   ;{¸ñ ·³b
+(setq txt (getstring T "\nEnter text: "))      ;text ·³b
+(setq txtl (* th (strlen txt) ds))            ;ÉB¯aËa·¡ ‹©·¡ ŠÐq
+(setq pnt1 (polar mp (+ ang pi) (+ (/ txtl 2.0) (* ds th)))) ; aÇa-1 ¬s·³¸ñ
+(setq pnt2 (polar mp    ang     (+ (/ txtl 2.0) (* ds th)))) ; aÇa-2 ¬s·³¸ñ
+
+(setvar "CECOLOR" "GREEN")
+(command "INSERT" (strcat (prefix) "blocks/plmark") pnt1 ds "" (rtod ang))
+                                                                ; aÇa-1 ¬s·³
+(command "INSERT" (strcat (prefix) "blocks/plmark") pnt2
+                   (* ds -1) "" (rtod ang))                     ; aÇa-2 ¬s·³
+
+(setvar "CECOLOR" oldclr)
+(command "TEXT" "j" "M" mp (* ds th) (rtod ang) txt)               ;ÉB¯aËa ³a‹¡
+
+(pop-env)                                      ;”Ï¡ ÑÅ‰w¥e® ¥¢Šá
+  (setq *error* oer seterr nil)
+(princ)
+) ;of defun

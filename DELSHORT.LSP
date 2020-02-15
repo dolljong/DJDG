@@ -1,0 +1,67 @@
+;****************************************
+;*    DELSHORT
+;*              Delete Short lines
+;*              By Suk-Jong Yi
+;*              1999. 5. 19
+;****************************************
+
+(defun C:DELSHORT()
+  (defun SETERR(s)                      ;¸wµAœážË¥ ¸÷·
+    (if (/= s "Function cancelled")
+        (princ (strcat "\nError: " s))
+    ); of If
+    (setq *error* oer seterr nil)
+    (princ)
+  ); of SETERR
+
+;  (setq oer *error* *error* seterr)         ;¸wµAœážË¥ ˆa•·
+
+   (initget "All Select")
+   (setq ans (getkword "\nAll/<Select>: "))
+
+   (cond
+       ((or (= ans nil) (= ans "Select"))           ;select¬åÈ‚¯¡
+           (princ "\nSelect Lines: ")
+           (setq ss1 (ssget))
+       ) ;of ans=nil
+       ((= ans "All")
+           (setq ss1 (ssget "X" '((0 . "LINE"))))   ; ¡¡—e lines¬åÈ‚
+       ) ;of ans=All
+   ); of cond
+
+   (setq num (sslength ss1))                    ;¬åÈ‚–E line· ˆ•®
+
+   (princ num)
+   (princ " Line found")
+
+   (setq len (getdist "\nEnter Length: "))
+
+   (setq index 0)
+   (setq dnum 0)                                ;»¡¶…ˆ•®
+   (repeat num                                  ;¬åÈ‚–E entityˆ•® eÇq ¤e¥¢
+     (setq entl (entget (ssname ss1 index)))
+     (setq ass (cdr (assoc 0 entl)))
+     (if (= ass "LINE")
+       (progn
+         (setq ass10 (cdr (assoc 10 entl))            ;¯¡¸b¸ñ¹ÁÎa
+               ass11 (cdr (assoc 11 entl))            ;{¸ñ ¹ÁÎa
+               l (distance ass11 ass10))        ;line‹©·¡
+         (if (< l len)
+           (progn
+             (entdel (ssname ss1 index))           ;line»¡¶‹¡
+             (setq dnum (1+ dnum))                 ;»¡¶… ˆ•® Âˆa
+           );progn
+         );if
+       );progn
+     );if
+     (setq index (1+ index))                        ;”a·q line·a¡
+   ) ;of repeat
+
+   (princ dnum)
+   (princ " Line Deleted")
+
+  (setq *error* oer seterr nil)
+
+   (princ)
+) ;of defun
+

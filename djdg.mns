@@ -1,0 +1,500 @@
+//
+//      AutoCAD menu file - C:\Program Files\AutoCAD 2002\Support\djdg.mnc
+//
+
+***MENUGROUP=DJDG
+
+***POP1
+               [DJDG]
+               [Initialize DWG   ]^C^C^P(load (strcat (prefix) "djdg/ddscl")) ^P^C^CddSCL 
+               [--]
+               [종평면도    ]$I=djdg.layout $I=djdg.*                
+               [일반도      ]$I=djdg.general1 $I=djdg.* 
+               [Structure        ]$I=djdg.structure $I=djdg.* 
+               [Rebar Work     ]$I=djdg.rebarw1 $I=djdg.* 
+               [Steel Work       ]$I=djdg.Steelw $I=djdg.* 
+	       [PSC Work         ]$I=djdg.pscw $I=djdg.*	
+               [Dimensions       ]$I=djdg.dim $I=djdg.* 
+               [Calculation       ]$I=djdg.calc $I=djdg.*                
+               [--]
+               [Modify           ]$I=djdg.modi $I=djdg.* 
+               [--]
+               [Utility          ]$I=djdg.util_icon $I=djdg.* 
+               [--]
+               [->Inquiry]
+                 [L of ARC]^C^CLARC 
+                 [<-P on ARC]'PARC 
+               [--]
+               [Design DATA]browser http://user.chollian.net/~dolljong/designdata/designdata.htm 
+               [--]
+               [Help]^C^C^P(startapp "hh" (strcat (prefix) "djdg/djdg.chm")) ^P
+               [About DJDG..]^C^Cbrowser http://user.chollian.net/~dolljong 
+
+***TOOLBARS
+**TB_DJDG_GEN
+**TB_다정다감_일반도_____HTTP://USER.CHOLLIAN.NET/~DOLLJONG
+ID_Toolbar1    [_Toolbar("다정다감 일반도     http://user.chollian.net/~dolljong", _Floating, _Hide, 251, 126, 3)]
+ID_ObjectCreation [_Button("SPILE1", "spile1", "ICON_32_OBJCRE")]SPILE1 
+ID_Linetype_0  [_Button("SPILE2", "SPILE2", "ICON_32_LINETY")]SPILE2 
+ID_MultilineStyle [_Button("RCD", "RCD", "ICON_32_MSTYLE")]RCD 
+ID_Properties  [_Button("ROUND", "ROUND", "ICON_32_MODIFY")]ROUND 
+ID_Define_Attribute_1 [_Button("SARW", "SARW", "ICON_24_ATTDEF")]SARW 
+ID_            [_Button("ELM", "ELM", "ICON_32_BLANK")]ELM 
+ID__0          [_Button("THUN", "THUN", "ICON_32_BLANK")]THUN 
+ID__1          [_Button("TRI", "TRI", "ICON_32_BLANK")]TRI 
+ID__2          [_Button("PLMARK", "PLMARK", "ICON_32_BLANK")]PLMARK 
+ID__3          [_Button("SLOP", "SLOP", "ICON_32_BLANK")]SLOP 
+ID__4          [_Button("GRNDMRK", "GRNDMRK", "ICON_32_BLANK")]GRNDMRK 
+ID__5          [_Button("WATERM", "WATERM", "ICON_32_BLANK")]WATERM 
+ID__6          [_Button("SLOPL", "SLOPL", "ICON_32_BLANK")]SLOPL 
+ID__7          [_Button("RTEXT", "RTEXT", "ICON_32_BLANK")]RTEXT 
+ID__9          [_Button("WAVE", "WAVE", "ICON_32_BLANK")]WAVE 
+ID__4          [_Button("cutpipe", "cutpipe", "ICON_16_BLANK")]cutpipe 
+ID__5          [_Button("cutpipe1", "cutpipe1", "ICON_16_BLANK")]cutpipe1 
+ID__10         [_Button("MLEAD", "MLEAD", "ICON_32_BLANK")]MLEAD 
+ID__11         [_Button("SHOE", "SHOE", "ICON_32_BLANK")]SHOE 
+ID__12         [_Button("LEAD", "LEAD", "ICON_32_BLANK")]LEAD 
+ID__0          [_Button("mtlead", "mtlead", "ICON_16_BLANK")]mtlead 
+ID__13         [_Button("DIRMRK", "DIRMRK", "ICON_32_BLANK")]DIRMRK 
+ID__14         [_Button("BOR", "BOR", "ICON_32_BLANK")]BOR 
+ID__15         [_Button("ALL-ULTALL", "ALL-ULT", "ICON_32_BLANK")]ALL-ULT 
+ID__93         [_Button("lslop", "lslop", "ICON_24_BLANK")]lslop 
+ID__8          [_Button("BRSE", "BRSE", "ICON_24_BLANK")]brse 
+ID__94         [_Button("WFLOW", "WFLOW", "ICON_24_BLANK")]wflow 
+ID__9          [_Button("NORTH", "NORTH", "ICON_24_BLANK")]north 
+ID__7          [_Button("Boring Mark", "Boring", "ICON_24_BLANK")]boring 
+ID__6          [_Button("Concrete", "Conc", "ICON_24_BLANK")]conc 
+ID__96         [_Button("SUNGTO", "SUNGTO", "ICON_24_BLANK")]sungto 
+ID__97         [_Button("RNORI", "RNORI", "ICON_24_BLANK")]rnori 
+ID__98         [_Button("PNORI", "PNORI", "ICON_24_BLANK")]pnori 
+ID__8          [_Button("noripf", "noripf", "ICON_16_BLANK")]^C^Cnoripf 
+ID__15         [_Button("NOTEBOX", "NOTEBOX", "ICON_24_BLANK")]^C^CNOTEBOX 
+ID__17         [_Button("jump", "jump", "ICON_24_BLANK")]^C^Cjump 
+ID__6          [_Button("lanemark", "lanemark", "ICON_16_BLANK")]lanemark 
+ID__15         [_Button("pole", "pole", "ICON_16_BLANK")]pole 
+
+**다정다감_구조물
+**TB_다정다감_구조물_____HTTP://USER.CHOLLIAN.NET/~DOLLJONG
+ID___________________1 [_Toolbar("다정다감 구조물     http://user.chollian.net/~dolljong", _Floating, _Hide, 516, 325, 2)]
+ID__89         [_Button("PSCBEAM", "pscbeam", "ICON_24_BLANK")]pscbeam 
+ID__90         [_Button("PIER", "pier", "ICON_24_BLANK")]pier 
+ID__91         [_Button("steel PILES", "spiles", "ICON_24_BLANK")]spiles 
+ID__92         [_Button("Draw Abut", "abut", "ICON_24_BLANK")]abut 
+ID__4          [_Button("Barrier", "brr", "ICON_24_BLANK")]brr 
+ID__brr1       [_Button("brr1", "brr1", "ICON_16_BLANK")]^C^Cbrr1 
+ID__13         [_Button("RWALL", "ddrwall", "ICON_24_BLANK")]ddrwall 
+ID__5          [_Button("Jung Bun Daejung", "jung", "ICON_24_BLANK")]jung 
+ID__95         [_Button("JUNG1", "jung1", "ICON_24_BLANK")]jung1 
+ID__jung2      [_Button("jung2", "jung2", "ICON_16_BLANK")]^C^Cjung2 
+ID__11         [_Button("Bracket", "bracket", "ICON_24_BLANK")]bracket 
+ID__12         [_Button("BASEC", "basec", "ICON_24_BLANK")]basec 
+ID__9          [_Button("aslab", "aslab", "ICON_16_BLANK")]^C^Caslab 
+ID__14         [_Button("aslab1", "aslab1", "ICON_16_BLANK")]aslab1 
+
+**TB_DJDG_BAR
+**TB_다정다감_배근도_____HTTP://USER.CHOLLIAN.NET/~DOLLJONG
+ID_toolbar2    [_Toolbar("다정다감 배근도     http://user.chollian.net/~dolljong", _Floating, _Show, 251, 225, 3)]
+ID__16         [_Button("BM1", "BM1", "ICON_32_BLANK")]BM1 
+ID__17         [_Button("BM2", "BM2", "ICON_32_BLANK")]BM2 
+ID__18         [_Button("BM3", "BM3", "ICON_32_BLANK")]BM3 
+ID__19         [_Button("BM4", "BM4", "ICON_32_BLANK")]BM4 
+ID__20         [_Button("BM5", "BM5", "ICON_32_BLANK")]BM5 
+ID__21         [_Button("BM6", "BM6", "ICON_32_BLANK")]BM6 
+ID__22         [_Button("B1", "B1", "ICON_32_BLANK")]B1 
+ID__23         [_Button("B3", "B3", "ICON_32_BLANK")]B3 
+ID__24         [_Button("BM4", "B4", "ICON_32_BLANK")]B4 
+ID__25         [_Button("B5", "B5", "ICON_32_BLANK")]B5 
+ID__26         [_Button("B6", "B6", "ICON_32_BLANK")]B6 
+ID__13         [_Button("cb", "cb", "ICON_16_BLANK")]cb 
+ID__27         [_Button("JEON", "JEON", "ICON_32_BLANK")]JEON 
+ID__28         [_Button("BAE", "BAE", "ICON_32_BLANK")]BAE 
+ID__29         [_Button("NAE", "NAE", "ICON_32_BLANK")]NAE 
+ID__30         [_Button("WUE", "WUE", "ICON_32_BLANK")]WUE 
+ID__31         [_Button("SANG", "SANG", "ICON_32_BLANK")]SANG 
+ID__32         [_Button("HA", "HA", "ICON_32_BLANK")]HA 
+ID__33         [_Button("RBRP", "RBRP", "ICON_32_BLANK")]RBRP 
+ID__34         [_Button("RBRF", "RBRF", "ICON_32_BLANK")]RBRF 
+ID__35         [_Button("STRP1", "STRP1", "ICON_32_BLANK")]STRP1 
+ID__36         [_Button("STRP2", "STRP2", "ICON_32_BLANK")]STRP2 
+ID__37         [_Button("RBAR", "RBAR", "ICON_32_BLANK")]RBAR 
+ID__38         [_Button("HOOK", "HOOK", "ICON_32_BLANK")]HOOK 
+ID__39         [_Button("HBLIST", "HBLIST", "ICON_32_BLANK")]HBLIST 
+ID__40         [_Button("BAR", "BAR", "ICON_32_BLANK")]BAR 
+ID__41         [_Button("SB", "SB", "ICON_32_BLANK")]SB 
+ID__42         [_Button("SBLOCK", "SBLOCK", "ICON_32_BLANK")]SBLOCK 
+ID__0          [_Button("Array distance", "ARD", "ICON_24_BLANK")]ARD 
+ID_3D_Polar_Array_0 [_Button("Array distance", "ARSLOP", "ICON_24_ARR3DP")]ARSLOP 
+ID_UserButton_2 [_Button("RCORNER", "RCORNER", "ICON_16_BLANK")]rcorner 
+
+
+**DJDG-MODIFY
+**TB_다정다감_고치기_____HTTP://USER.CHOLLIAN.NET/~DOLLJONG
+               [_Toolbar("다정다감 고치기     http://user.chollian.net/~dolljong", _Floating, _Hide, 576, 126, 3)]
+ID__43         [_Button("MEASA", "measa", "ICON_32_BLANK")]measa 
+ID__8          [_Button("DIVA", "diva", "ICON_32_BLANK")]diva 
+ID__44         [_Button("MEASL", "measl", "ICON_32_BLANK")]measl 
+ID__45         [_Button("DIVL", "divl", "ICON_32_BLANK")]divl 
+ID__46         [_Button("CTH", "CTH", "ICON_32_BLANK")]CTH 
+ID__47         [_Button("TAV", "tav", "ICON_32_BLANK")]tav 
+ID__48         [_Button("TAH", "tah", "ICON_32_BLANK")]tah 
+ID__52         [_Button("BDASH", "bdash", "ICON_32_BLANK")]bdash 
+ID__100        [_Button("tbreak", "tbreak", "ICON_24_BLANK")]tbreak 
+ID__101        [_Button("TXTGAP", "TXTGAP", "ICON_24_BLANK")]TXTGAP 
+ID__49         [_Button("MCHT", "mcht", "ICON_32_BLANK")]mcht 
+ID__50         [_Button("DDMCHT", "ddmcht", "ICON_32_BLANK")]ddmcht 
+ID__51         [_Button("LINEXT", "linext", "ICON_32_BLANK")]linext 
+ID__53         [_Button("TXTR", "txtr", "ICON_32_BLANK")]txtr 
+ID__54         [_Button("FFP", "ffp", "ICON_32_BLANK")]ffp 
+ID__55         [_Button("ARP", "arp", "ICON_32_BLANK")]arp 
+ID__56         [_Button("BP", "bp", "ICON_32_BLANK")]bp 
+ID__1          [_Button("CRC", "CRC", "ICON_24_BLANK")]crc 
+ID__2          [_Button("CDD", "cdd", "ICON_24_BLANK")]cdd 
+ID__14         [_Button("CTXT", "CTXT", "ICON_24_BLANK")]^C^Cctxt 
+ID__16         [_Button("Veiw Special Fonts", "djdgfonts", "ICON_24_BLANK")]vslide djdg(fonts) 
+ID__102        [_Button("rref", "rref", "ICON_24_BLANK")]^C^Crref 
+ID__103        [_Button("addtext", "addtext", "ICON_24_BLANK")]^C^Caddtext 
+ID_Match_Properties_0 [_Button("delshort", "delshort", "ICON_24_MATCH")]^C^Cdelshort 
+ID__18         [_Button("Mtxt", "mtxt", "ICON_16_BLANK")]^C^Cmtxt 
+
+**DJDG-DIM
+**TB_다정다감_치수선_____HTTP://USER.CHOLLIAN.NET/~DOLLJONG
+               [_Toolbar("다정다감 치수선     http://user.chollian.net/~dolljong", _Floating, _Hide, 359, 325, 2)]
+ID__57         [_Button("dh", "dh", "ICON_32_BLANK")]dh 
+ID__58         [_Button("DV", "dv", "ICON_32_BLANK")]dv 
+ID__59         [_Button("DA", "da", "ICON_32_BLANK")]da 
+ID__60         [_Button("DO", "do", "ICON_32_BLANK")]do 
+ID__61         [_Button("DC", "dc", "ICON_32_BLANK")]dc 
+ID__62         [_Button("NT", "nt", "ICON_32_BLANK")]nt 
+ID__63         [_Button("DUD", "dud", "ICON_32_BLANK")]dud 
+ID_Dimension_Update_0 [_Button("CDS", "cds", "ICON_24_DIMUPD")]cds 
+ID__10         [_Button("OB", "ob", "ICON_24_BLANK")]ob 
+ID__7          [_Button("dss", "dss", "ICON_16_BLANK")]dss 
+ID__10         [_Button("RMARK1", "rmark1", "ICON_16_BLANK")]^C^Crmark1 
+ID__11         [_Button("dsk", "dsk", "ICON_16_BLANK")]^C^Cdsk 
+
+**다정다감_UTILITY
+**TB_다정다감_UTILITY_____HTTP://USER.CHOLLIAN.NET/~DOLLJONG
+ID____________Utility_0 [_Toolbar("다정다감 Utility     http://user.chollian.net/~dolljong", _Floating, _Hide, 149, 98, 1)]
+ID__65         [_Button("Text Marking", "tm", "ICON_24_BLANK")]tm 
+ID__64         [_Button("BCD", "BCN", "ICON_24_BLANK")]bcn 
+ID__66         [_Button("CALT", "calt", "ICON_24_BLANK")]calt 
+ID__67         [_Button("qtable", "qtable", "ICON_24_BLANK")]qtable 
+ID_UserButton_0 [_Button("coord", "coord", "ICON_16_BLANK")]coord 
+ID__68         [_Button("Coord2", "coord2", "ICON_24_BLANK")]coord2 
+ID_UserButton_1 [_Button("coord3", "coord3", "ICON_16_BLANK")]coord3 
+ID__3          [_Button("Numcoor", "numcoor", "ICON_24_BLANK")]numcoor 
+ID__69         [_Button("2PD", "2PD", "ICON_24_BLANK")]2pd 
+ID__70         [_Button("wlen", "wlen", "ICON_24_BLANK")]wlen 
+ID__71         [_Button("Auto Plot", "aplot", "ICON_24_BLANK")]aplot 
+ID__20         [_Button("setallplot", "setallplot", "ICON_16_BLANK")]^C^C^P(command "vbarun" (strcat (prefix) "djdg/djdg.dvb!setallplot.setallplot")) ^P
+ID__72         [_Button("All Plot", "allplot", "ICON_24_BLANK")]allplot 
+ID__73         [_Button("read x,xypline coord and Draw Pline", "xypline", "ICON_24_BLANK")]xypline 
+ID__74         [_Button("Draw Table", "table", "ICON_24_BLANK")]table 
+ID__75         [_Button("EARTH", "earth", "ICON_24_BLANK")]earth 
+ID__76         [_Button("Camber", "camber", "ICON_24_BLANK")]camber 
+ID__77         [_Button("Break Cross", "bcross", "ICON_24_BLANK")]bcross 
+ID__78         [_Button("Make Border", "mkbdr", "ICON_24_BLANK")]mkbdr 
+ID__79         [_Button("plot border", "plotbdr", "ICON_24_BLANK")]plotbdr 
+ID__80         [_Button("Write DWG Namewdwgn", "wdwgn", "ICON_24_BLANK")]wdwgn 
+ID__99         [_Button("bmd", "bmd", "ICON_24_BLANK")]bmd 
+ID__18         [_Button("wbname", "wbname", "ICON_24_BLANK")]^C^Cwbname 
+ID__19         [_Button("shatch", "shatch", "ICON_24_BLANK")]^C^Cshatch 
+ID__20         [_Button("solidbk", "solidbk", "ICON_24_BLANK")]^C^Csolidbk 
+ID__21         [_Button("txtfil", "txtfil", "ICON_24_BLANK")]^C^Ctxtfil 
+ID__1          [_Button("gsection", "gsection", "ICON_16_BLANK")]gsection 
+ID__3          [_Button("para", "para", "ICON_16_BLANK")]para 
+ID__2          [_Button("db24", "db24", "ICON_16_BLANK")]db24 
+ID__12         [_Button("s2kcomp", "s2kcomp", "ICON_16_BLANK")]s2kcomp 
+ID__104        [_Button("ceh", "ceh", "ICON_16_BLANK")]ceh 
+ID__16         [_Button("ImportPLT", "importplt", "ICON_16_BLANK")]^C^C^P(command "vbarun" (strcat (prefix) "djdg/djdg.dvb!importplt.importplt")) ^P
+ID__17         [_Button("Sprop", "sprop", "ICON_16_BLANK")]^C^C^P(command "vbarun" (strcat (prefix) "djdg/djdg.dvb!sectionprop.sprop")) ^P
+ID__19         [_Button("ploteps", "ploteps", "ICON_16_BLANK")]^C^Cploteps 
+ID__105        [_Button("dwgrtxt", "dwgrtxt", "ICON_16_BLANK")]^C^Cdwgrtxt 
+
+**다정다감_강재도
+**TB_다정다감_강재도_____HTTP://USER.CHOLLIAN.NET/~DOLLJONG
+ID___________________0 [_Toolbar("다정다감 강재도     http://user.chollian.net/~dolljong", _Floating, _Hide, 251, 325, 2)]
+ID__81         [_Button("Splice", "splice", "ICON_24_BLANK")]splice 
+ID__82         [_Button("Trimb1", "trimb1", "ICON_24_BLANK")]trimb1 
+ID__83         [_Button("Trmb2", "trimb2", "ICON_24_BLANK")]trimb2 
+ID__84         [_Button("trimb3", "trimb3", "ICON_24_BLANK")]trimb3 
+ID__85         [_Button("Offset 2 side", "ff2", "ICON_24_BLANK")]ff2 
+ID__86         [_Button("Thickness Change", "tc15", "ICON_24_BLANK")]tc15 
+ID__87         [_Button("WELD", "weld", "ICON_24_BLANK")]weld 
+ID__88         [_Button("GUSSET", "gusset", "ICON_24_BLANK")]gusset 
+
+
+
+***IMAGE
+**LAYOUT
+[종평면도]
+[DJDG(dirmrk,DIRMRK-Dir. Mark       )]dirmrk 
+[DJDG(bor,BOR-Boring                )]bor 
+[DJDG(brse,교량시종점                )]brse 
+[DJDG(wflow,물흐름표시               )]wflow 
+[DJDG(north,방위표시                 )]north 
+[DJDG(boring,시추위치표시            )]boring 
+[DJDG(sungto,성토표시                )]sungto 
+[DJDG(RNORI,회전노리                 )]rnori 
+[DJDG(PNORI,평면노리                 )]pnori 
+[DJDG(NORIPF,노리측면도                 )]noripf 
+[DJDG(jump,교대점검계단-평면         )]jump 
+[DJDG(pole,pole                 )]pole 
+
+
+
+**GENERAL1
+[General Works ]
+[DJDG(SPILE1,SPILE-Steel Pile 1     )]spile1 
+[DJDG(SPILE2,SPILE-Steel Pile 2     )]spile2 
+[DJDG(RCD,RCD-RCD Pile              )]rcd 
+[DJDG(ROUND,ROUND-Rounding          )]round 
+[DJDG(SARW,SARW-Section mark        )]sarw 
+[DJDG(ELM,ELM-Elevation mark        )]elm 
+[DJDG(MELM,MELM-Multi ELM           )]melm 
+[DJDG(PEL,PEL-Pick Elevation        )]pel 
+[DJDG(THUN,THUN-Thunder mark        )]thun 
+[DJDG(TRI,TRI-Tilt mark             )]tri 
+[DJDG(PLMARK,PLMARK-Plate mark      )]plmark 
+[DJDG(SLOP,SLOP-Slop mark           )]slop 
+[DJDG(WATERM,WATERM-Water mark      )]waterm 
+[DJDG(GRNDMRK,GRNDMRK-Ground mark   )]grndmrk 
+[DJDG(SLOPL,SLOPL-Slop lines        )]slopl 
+[DJDG(RTEXT,RTEXT-Rounded text      )]rtext 
+[DJDG(WAVE,WAVE-Wave cut            )]wave 
+[DJDG(cutpipe,pipe모양으로 절단     )]cutpipe 
+[DJDG(pipecut1,물결모양으로 생략    )]cutpipe1 
+[DJDG(mlead,MLEAD-Multi Leader-1      )]mlead 
+[DJDG(shoe,SHOE-shoe marking        )]shoe 
+[DJDG(lead,LEAD-Leader              )]lead 
+[DJDG(leadc,LEAD-Circle              )]leadc 
+[DJDG(lead2,LEAD2              )]lead2
+[DJDG(alead,aLEAD              )]alead
+[DJDG(mtlead,MTLEAD-Multi Leader-2      )]mtlead 
+[DJDG(arwh,ARWH                     )]arwh 
+[DJDG(all-ult,허용/강도              )]all-ult 
+[DJDG(lslop,경사라인+slop표시        )]lslop 
+[DJDG(conc,콘크리트표시              )]conc 
+[DJDG(NOTEBOX,노트Box                )]notebox 
+[DJDG(lanemark,차선 표시                 )]lanemark 
+
+**STRUCTURE
+[Structure ]
+[DJDG(pscbeam,PSCBEAM-P.S.C BEAM    )]pscbeam 
+[DJDG(pier,PIER-PIER SIDE           )]pier 
+[DJDG(spiles,SPILES-Steel Piles     )]spiles 
+[DJDG(piles,PILES     )]piles 
+[DJDG(abut,ABUT-Abutment            )]abut 
+[DJDG(ddrwall,역T형 옹벽            )]ddrwall 
+[DJDG(brr,방호벽 H=1.080            )]brr 
+[DJDG(brr1,방호벽 H=1.350           )]brr1 
+[DJDG(jung,중분대                   )]jung 
+[DJDG(jung1,개선중분대 H=890       )]jung1 
+[DJDG(jung2,개선중분대 H=1.350     )]jung2 
+[DJDG(bracket,브라켓                )]bracket 
+[DJDG(basec,베이스콘크리트          )]basec 
+[DJDG(aslab,접속슬래브 콘크리트포장용)]aslab 
+[DJDG(aslab1,접속슬래브 ASCON포장용)]aslab1 
+[DJDG(bearing,Bearing)]bearing
+[DJDG(sheet,sheet-쉬트파일그리기)]sheet
+
+**REBARW1
+[Rebar works]
+[DJDG(BM1,BM1-Rebar mark1           )]bm1 
+[DJDG(BM2,BM2-Rebar mark2           )]bm2 
+[DJDG(BM3,BM3-Rebar mark3           )]bm3 
+[DJDG(BM4,BM4-Rebar mark4           )]bm4 
+[DJDG(BM5,BM5-Rebar mark5           )]bm5 
+[DJDG(BM6,BM6-Rebar mark6           )]bm6 
+[DJDG(B1,B1-Rebar mark1-DoGong      )]b1 
+[DJDG(B3,B3-Rebar mark3-DoGong      )]b3 
+[DJDG(B4,B4-Rebar mark4-DoGong      )]b4 
+[DJDG(B5,B5-Rebar mark5-DoGong      )]b5 
+[DJDG(B6,B6-Rebar mark6-DoGong      )]b6 
+[DJDG(cb,CB Change Bar marking      )]cb 
+[DJDG(jeon,JEON MYEON               )]jeon 
+[DJDG(bae,BAE MYEON                 )]bae 
+[DJDG(sang,SANG MYEON               )]sang 
+[DJDG(ha,HA MYEON                   )]ha 
+[DJDG(wue,WUE MYEON                 )]wue 
+[DJDG(nae,NAE MYEON                 )]nae 
+[DJDG(RBRP,RBRP-Rounded Rebar P     )]rbrp 
+[DJDG(RBRf,RBRF-Rounded Rebar F     )]rbrf 
+[DJDG(strp1,Stirrup-1               )]strp1 
+[DJDG(strp2,Stirrup-2               )]strp2 
+[DJDG(hblist,BLIST-Bar list          )]hblist 
+[DJDG(rbar,RBAR-Round BAR           )]rbar 
+[DJDG(hook,HOOK                     )]hook 
+[DJDG(bar,BAR                       )]bar 
+[DJDG(alignbar,Align bar detail                       )]alignbar 
+[DJDG(sb,Split Bar                  )]sb 
+[DJDG(sblock,Shoe Block             )]sblock 
+[DJDG(ard,Array Distance            )]ard 
+[DJDG(arslop,경사면 array           )]arslop 
+[DJDG(rcorner,Rebar for corner           )]rcorner 
+[DJDG(lap,LAP splice           )]lap 
+[DJDG(mlap,MLAP splice           )]mlap 
+[DJDG(tbar,Tie Bars           )]tbar
+[DJDG(trim2,Trim2           )]trim2
+[DJDG(drebar,drebar           )]drebar
+[DJDG(cpdim,CPDIM           )]cpdim
+[DJDG(fcorner,fcorner           )]fcorner
+[DJDG(d2l,D2L           )]d2l
+
+**STEELW
+[Steel works ]
+[DJDG(ddsplice,SPLICE-Splice        )]splice 
+[DJDG(trimb1,TRIMB1-Trim 1          )]trimb1 
+[DJDG(trimb2,TRIMB2-Trim 2          )]trimb2 
+[DJDG(trimb3,TRIMB3-Trim 3          )]trimb3 
+[DJDG(ff2,FF2-Offset 2              )]ff2 
+[DJDG(TC15,tc15-Thickness Change    )]tc15 
+[DJDG(weld,Weld mark                )]weld 
+[DJDG(gusset,Gusset plate           )]gusset 
+[DJDG(scallop,Scallop           )]scallop
+[DJDG(rib,Rib           )]rib
+[DJDG(HSTIFF,HSTIFF           )]hstiff
+[DJDG(stud,STUD           )]stud
+[DJDG(MHOLE,MHOLE           )]mhole
+[DJDG(TRUSS,TRUSS		)]truss
+
+**PSCW
+[PSC Work ]
+[DJDG(anch1,Anchorage line)]anch1
+[DJDG(ahole,Anchorage hole)]ahole
+[DJDG(fanch,FANCH          ]fanch
+[DJDG(tdpf,TDPF            ]tdpf
+
+
+**DIM
+[Dimensions ]
+[DJDG(DH,DH-DIM Horizon             )]DH 
+[DJDG(DV,DV-DIM Vertical            )]DV 
+[DJDG(DO,DO-DIM Oblique             )]do 
+[DJDG(DA,DA-DIM Align               )]DA 
+[DJDG(DC,DC-DIM Circle              )]DC 
+[DJDG(DIMA,dima             )]dima
+[DJDG(LDIM,LDIM             )]ldim
+[DJDG(NT,NT-New Text                )]Nt 
+[DJDG(dud,DOWN                      )]DUD 
+[DJDG(cds,CDS                       )]CDS 
+[DJDG(ob,OB                         )]OB 
+[DJDG(dss,DSS-치수선합              )]DSS 
+[DJDG(rmark1,Rmark-1                )]rmark1 
+[DJDG(dsk,Skew 치수표기             )]dsk 
+[DJDG(edim,EDim             )]edim 
+
+**CALC
+[Calulation ]
+[DJDG(MODELM,MODELM             )]MODELM 
+[DJDG(LDD,LDD                   )]LDD 
+
+
+**MODI
+[Modify ]
+[DJDG(measure,MEASA-Measure ARC         )]measa 
+[DJDG(divide,DIVA-Divide ARC            )]diva 
+[DJDG(measl,DIVL-Divide LINE            )]measl 
+[DJDG(divl,DIVL-Divide LINE             )]divl 
+[DJDG(cth,CTH-Change Text height        )]cth 
+[DJDG(tav,TAV-Text arrange Vertical     )]tav 
+[DJDG(tah,TAH-Text arrange Horizontal   )]tah 
+[DJDG(txtgap,Text Gap                   )]txtgap 
+[DJDG(tbreak,Text Break                 )]tbreak 
+[DJDG(mcht,Multi CHange Text            )]mcht 
+[DJDG(ddmcht,DD Multi CHange Text       )]ddmcht 
+[DJDG(linext,LINEXT-Line Extend         )]linext 
+[DJDG(bdash,BDASH-Between DASH          )]bdash 
+[DJDG(txtr,TXTR-Text Rotate             )]txtr 
+[DJDG(ffp,FFP-Continuous Offset         )]ffp 
+[DJDG(arp,ARP-Array on ARC              )]arp 
+[DJDG(bp,BP-Break POINT                 )]bb 
+[DJDG(crc,Change Radius of Circle       )]crc 
+[DJDG(cdd,Change dia of donut           )]cdd 
+[DJDG(ctxt,Copy text                    )]ctxt 
+[DJDG(djdgfont,View DJDG Special font   )]vslide djdg(fonts) 
+[DJDG(rref,Rotate reference             )]rref 
+[DJDG(addtext,Add text                  )]addtext 
+[DJDG(delshort,Delete short             )]delshort 
+[DJDG(mtxt,Modify text             )]mtxt 
+[DJDG(trims,Trim side             )]trims 
+[DJDG(pfix,PFIX             )]pfix 
+
+**UTIL_ICON
+[Utility ]
+[DJDG(tm,TM-Text Marking                )]tm 
+[DJDG(bcn,Box circle Number             )]bcn 
+[DJDG(calt,CALT-Calculator              )]calt 
+[DJDG(qt,QTABLE-Qpro Table insert       )]qtable 
+[DJDG(coord,COORD-Coordinate            )]coord 
+[DJDG(coord2,COORD2-Coordinate            )]coord2 
+[DJDG(coord3,COORD3-Coordinate survey           )]coord3 
+[DJDG(numcoor,NUMCOOR-Coordinate List   )]numcoor 
+[DJDG(2pd,2PD-2-Point Distance          )]2pd 
+[DJDG(wdst,WLEN-Line Length             )]wlen 
+[DJDG(aplot,APLOT-Auto PLOT             )]aplot 
+[DJDG(setallplot,Setting of Allplot     )]setallplot 
+[DJDG(allplot,ALLPLOT-ALL PLOT          )]allplot 
+[DJDG(allplotb,ALLPLOTB          )]allplotb 
+[DJDG(allplotn,ALLPLOTN          )]allplotn 
+[DJDG(rdl,RDL-Read XY Draw Line         )]xypline 
+[DJDG(chbdr,CHBDR-Change BORDER         )]chbdr 
+[DJDG(table,TABLE-draw TABLE            )]table 
+[DJDG(earth,EARTH-EARTH                 )]earth 
+[DJDG(camber,CAMBER-Camberr             )]camber 
+[DJDG(bcross,Break Cross                )]bcross 
+[DJDG(mkbdr,Make Border                 )]mkbdr 
+[DJDG(plotbdr,Plot Border               )]plotbdr 
+[DJDG(wdwgn,Write DWG name              )]wdwgn 
+[DJDG(bmd,Draw BMD                      )]bmd 
+[DJDG(wbname,Wblock name by text        )]wbname 
+[DJDG(shatch,SOLID HATCH                )]shatch 
+[DJDG(solidbk,SOLID to BACK             )]solidbk 
+[DJDG(txtfil,Fill TEXT                  )]txtfil 
+[DJDG(gsection,Make G-SECTION data      )]gsection 
+[DJDG(para,Draw Parabola                )]para 
+[DJDG(s2kcomp,SAP2000 하중조합/비교     )]s2kcomp 
+[DJDG(ceh,Copy to Hatch Layer           )]ceh 
+[DJDG(ploteps,Plot EPS                  )]ploteps 
+
+
+***HELPSTRINGS
+ID__16         [Import PLT(Golden solfware format)]
+ID_ZOOM_WINDOW_0 [Zooms to display an area specified by a rectangular window:  ZOOM W]
+ID__17         [Get Section property]
+ID__104        [Change entity hatch layer]
+ID__0          [Multi Leader]
+ID__18         [Text숫자 일괄수정]
+ID__105        [Add Rtext]
+ID__1          [make gsectin data]
+ID_OPEN_0      [Opens an existing drawing file:  OPEN]
+ID__19         [Plot EPS file]
+ID__2          [make db-24 input file for 3D]
+ID__3          [Draw parabola]
+ID__4          [방호벽(도공) h=1.0m]
+ID__5          [Cut pipe (No 3D)]
+ID__JUNG2      [중앙분리대 H=1.27m]
+ID__6          [Draw lane mark]
+ID__95         [중앙분리대 H=810]
+ID__7          [Summation Dimensions]
+ID__20         [set allplot]
+ID__8          [Nori profile]
+ID__9          [Approach Slab]
+ID__10         [draw radious mark type-1]
+ID_ZOOM_PREVIOUS_0 [Zooms to display the previous view:  ZOOM P]
+ID_USERBUTTON_0 [coord]
+ID_MULTILINESTYLE [RCD PILE그리기]
+ID__11         [dimension text for skew]
+ID_USERBUTTON_1 [coord for survey ]
+ID__12         [SAP2000 Combination & Compare]
+ID_USERBUTTON_2 [Rebar for Corner]
+ID__13         [Change Bar marking-type]
+ID__14         [Approach slab for Ascon pavement]
+ID__BRR1       [방호벽(도공) h=1.0m]
+ID_ZOOM_EXTENTS_0 [Zooms to display the drawing extents:  ZOOM E]
+ID__15         [Draw pole]
+
+//
+//      End of AutoCAD menu file - C:\Program Files\AutoCAD 2002\Support\djdg.mnc
+//
+

@@ -1,0 +1,64 @@
+;*******************************************
+; Program : OBLique
+;           dimension Oblique
+;           Jong-Suk Yi
+;           97/7/30
+;*******************************************
+; Vertical DIM·i OBLIQUE¯¡Åaº…”a.
+; ¹A´¢¹¡ˆå - ®»¢ DIMµA e Ð”w–E”a.
+;          - OBLIQUEˆb·e 30•¡¡ ¸÷Ð¹a ·¶”a.
+;*******************************************
+
+(defun C:OB(/
+entdim  ents    sp      ep      ang     selpnt  lent    sp      ep
+ang     deg     dxy     dy      ep
+)
+
+  (defun SETERR(s)                                  ;¸wµAœážË¥ ¸÷·
+    (if (/= s "Function cancelled")
+        (princ (strcat "\nError: " s))
+    ); of If
+    (setq *error* oer seterr nil)
+    (princ)
+  ); of SETERR
+
+  (setq oer *error* *error* seterr)                 ;¸wµAœážË¥ ˆa•·
+
+  (push-env)                                        ;ÑÅ‰w¥e® ”Ï¡
+
+  (princ "\nSelect Dimension: ")                    ;dimension ¬åÈ‚
+  (setq entdim (ssget '((0 . "DIMENSION"))))
+
+  (initget "2p")
+  (setq ents (entsel "\nSelect line/2p: "))         ;œa·¥ ™¡“e –¸ñ ¬åÈ‚
+
+  (if (= ents "2p")
+    (progn
+      (setq sp (getpoint "\nPick start point: "))   ;¯¡¸b¸ñ ·³b
+      (setq ep (getpoint "\nPick end point: "))     ;{¸ñ ·³b
+      (setq ang (angle sp ep))                      ;ˆb•¡ ‰¬e
+    ) ;of progn
+    (progn
+      (setq selpnt (car (cdr ents)))                ;œa·¥¬åÈ‚¸ñ
+      (setq lent (entget (car ents)))               ;line element¸÷¥¡
+      (setq sp (cdr (assoc 10 lent)))               ;¯¡¸b¸ñ ·³b
+      (setq ep (cdr (assoc 11 lent)))               ;{¸ñ ·³b
+      (if (< (distance sp selpnt) (distance ep selpnt))
+        (setq ang (angle ep sp))                    ;¬åÈ‚¸ñ·¡ ¯¡¸b¸ñ‰Á ˆaŒa¶¡e ˆb·e {¸ñ~¯¡¸b¸ñ
+        (setq ang (angle sp ep))                    ;   "     {¸ñ        "          ¯¡¸b¸ñ~{¸ñ
+      ) ;of if
+    ) ;of progn
+  ) ;of if
+
+  (setq deg (rtod ang))             ;radian·i degree¡
+
+  (COMMAND "DIM1" "OBLIQUE"         ;oblique¡ww
+           entdim ""                ;dimensio¬åÈ‚
+           deg)                     ;ˆb•¡·³b
+
+  (pop-env)                                         ;ÑÅ‰w¥e® ¥¢Šá
+
+  (setq *error* oer seterr nil)                     ;¸¸wµAœážË¥ ¥¢Šá
+
+  (prin1)
+) ;defun

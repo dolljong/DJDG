@@ -1,0 +1,105 @@
+;***************************************************************
+; Program : CHCLR
+;           CHange CoLoR
+;           Yi Suk-Jong
+;           1995/2/22
+;***************************************************************
+; •¡¡e· Ëb¸÷¬‚·i ”aŸe ¬‚·a¡ ¤aŽ´áº…”a.
+;***************************************************************
+
+(defun C:CHCLR(
+/               fn      opf     llist       ch      lnum        oclr
+                lcount  f_list  ss
+)
+
+  (defun SETERR(s)
+    (if (/= s "Function cancelled")
+        (princ (strcat "\nError: " s))
+    ); of If
+    (setq *error* oer seterr nil)
+    (princ)
+  ); of SETERR
+
+  (setq oer *error* *error* seterr)                         ;µAœážË¥ ˆa•·
+
+    (setq fn (getfiled "INPUT DATA" "" "DAT" 0))            ;file name·³b
+    (setq opf (open fn "r"))                                ;file open
+
+    (setq llist nil)                                        ;§¥ node-list  e—q
+
+;*** data file¡¦Èá DATA·³b
+
+    (if opf                                                 ;file·¡ ·¶“e ‰w¶
+      (progn
+         (while (setq ch (read-line opf))                   ;Ðeº‰·i ·ª“e”a
+            (setq llist (append llist (list (strloc ch))))  ;Line listµA Âˆa
+         ) ;of while
+      ) ;of progn
+      (princ "\nFile not found")                            ;file·¡ ´ô“e ‰w¶
+    ) ;of if
+    (close opf)                                             ;file close
+
+
+    (setq lnum (length llist))                              ;·³b line· ˆ•®
+
+    (setq lcount 0)                                         ;Àõ¤å¼ line¦Èá
+
+    (repeat lnum                                            ;lineˆ•® eÇq ¤e¥¢
+      (setq oclr (atoi (nth 0 (nth lcount llist)))          ;¤aŽ‹¡¸å¬‚
+            nclr (nth 1 (nth lcount llist)))                ;¤aŽ…Ò¬‚
+      (setq f_list (list (cons 62 oclr)))   ;filter list
+      (setq ss (ssget "X" f_list))                          ;entity¬åÈ‚
+      (if (= ss nil)
+        (princ "\nNot found!")                              ;entity ´ô·i ˜
+        (command "CHPROP" ss "" "C" nclr "")                ;entity ·¶·i ˜
+      ) ;of if
+      (setq lcount (1+ lcount))                             ;”a·q line·a¡
+    ) ;of repeat
+
+  (setq *error* oer seterr nil)
+  (princ)
+) ;of defun
+
+
+;*******************************************************************
+;     Function : STRLOC
+;                get STRing LOCation
+;                Jong-Suk Yi
+;                1995. 2. 8
+;******************************************************************
+; ·¡ Ðq®“e ,¡ ¦‰Ÿ¡–E dataŸi a’´á Ðeˆ· listµA ¢ƒ´áº…”a.
+; ·¡˜ Ñw¥eÑÅ ´ô·¡ ¡¡—e data“e ¢…¸aµi¡ return–E”a.
+;******************************************************************
+(defun STRLOC(arg1
+/             srt    strl    count    num    strt    nchr    subs
+              lst    rslt
+)
+;(setq oer *error* *error* seterr)   ;Store AutoLISP error routine
+   (setq str arg1)                              ;ñ´áµ¥ ¢…¸aµi
+   (setq strl (strlen arg1))                    ;ñ´áµ¥ ¢…¸aµi· ‹©·¡
+   (setq count 1)
+   (setq num 1)
+   (setq strt 1)                                ;ÂÂ‰¯¡¸b ¶áÃ¡
+   (setq nchr 1)                                ;ÂÂ‰¢…¸a ˆ•®
+   (repeat (+ strl 1)
+      (setq subs (substr str count 1))          ;¢…¸a Ðeˆ
+      (if (or (= subs ",") (= subs ""))         ;Ñe¸ ¢…¸aˆa ,·¡ˆáa {·©˜
+         (progn
+            (setq lst (substr str strt (- nchr 1)))    ;¯¡¸b¶áÃ¡¦Èá
+            (if (= rslt nil)
+               (setq rslt (list lst))                  ;•©Ÿ±ˆt·¡ §¡´ö·i˜
+               (setq rslt (append rslt (list lst)))    ;•©Ÿ±ˆtµA”a Âˆa
+            ) ;of if
+            (setq nchr 0)                       ;ÂÂ‰ˆ•® ”a¯¡ 0·a¡
+            (setq strt (1+ count))              ;”a·q ÂÂ‰¯¡¸b·i ”a·q¢…¸a¡
+         ) ;of progn
+         nil
+      ) ;of if
+      (setq count (1+ count))                   ;”a·q ¢…¸a¡
+      (setq num (1+ num))                       ;
+      (setq nchr (1+ nchr))                     ;¢…¸a ˆ•® Ðeˆ »wˆa
+   ) ;of repeat
+   (setq arg1 rslt)                             ;•©Ÿ±ˆt •©Ÿ±
+;(setq *error* oer seterr nil)                  ; Restore previous error handler
+) ;of defun STRLOC
+

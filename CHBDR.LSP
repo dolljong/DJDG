@@ -1,0 +1,54 @@
+;*******************************************
+; Program : CHBDR
+;           CHange BorDeR
+;           By Suk-Jong Yi
+;           1995/7/21
+;*******************************************
+; •¡ˆb·i ¤aŽ¡º…”a ( Border0 <--> Border )
+;*******************************************
+
+(defun C:CHBDR( /
+                ent_lst     ssnum       index       ent         blk_name
+                new_name    ipnt        x_scl       insert_type
+)
+
+  (setq ent_lst (ssget))                        ;entity¬åÈ‚
+  (setq ssnum (sslength ent_lst))               ;¬åÈ‚–E entity ˆ•®
+
+  (setq index 0)
+  (repeat ssnum                                 ;¬åÈ‚–E entityˆ•® eÇq ¤e¥¢
+    (setq ent (entget (ssname ent_lst index)))  ;entity ¸÷¥¡
+    (if (= (cdr (assoc 0 ent)) "INSERT")        ;entityˆa §iœâ·¥‰w¶
+      (progn
+        (setq blk_name (cdr (assoc 2 ent)))     ;§iœâ·¡Ÿq
+        (setq insert_type (cdr (assoc 70 (tblsearch "BLOCK" blk_name)))) ;insert type(insert/xref)
+        (cond
+          ((= blk_name "BORDER")                                ;border·¥‰w¶
+            (setq new_name (strcat (prefix) "blocks/border0"))  ;¬¡¶… ·¡Ÿq·i border0¡
+            (setq ipnt (cdr (assoc 10 ent)))                    ;insert point
+            (setq x_scl (cdr (assoc 41 ent)))                   ;scale factor
+            (command "ERASE" (ssname ent_lst index) "")         ;¶¥œ border»¡¶‹¡
+            (if (or (= insert_type 4) (= insert_type 100))      ;insert/xrefÑw¯¢µA ˜aœa
+              (command "XREF" "" new_name ipnt x_scl "" "")       ;xref ¡ww®Ð—
+              (command "INSERT" new_name ipnt x_scl "" "")        ;insert¡ww®Ð—
+            ) ;of IF
+          )
+          ((= blk_name "BORDER0")                               ;border0·¥ ‰w¶
+            (setq new_name (strcat (prefix) "blocks/border"))   ;¬¡¶… ·¡Ÿq·i border¡
+            (setq ipnt (cdr (assoc 10 ent)))                    ;insert point
+            (setq x_scl (cdr (assoc 41 ent)))                   ;scale factor
+            (command "ERASE" (ssname ent_lst index) "")         ;¶¥œ border»¡¶‹¡
+            (if (or (= insert_type 4) (= insert_type 100))      ;insert/xrefÑw¯¢µA ˜aœa
+              (command "XREF" "" new_name ipnt x_scl "" "")       ;xref ¡ww ®Ð—
+              (command "INSERT" new_name ipnt x_scl "" "")        ;insert ¡ww ®Ð—
+            ) ;of IF
+          )
+        ) ;of COND
+      ) ;of THEN
+    ) ;of IF
+    (setq index (1+ index))                                     ;”a·q µEË¡Ë¡¡
+  ) ;of REPEAT
+
+  (princ)
+) ;of defun CHBDR
+

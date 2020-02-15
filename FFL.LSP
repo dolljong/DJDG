@@ -1,0 +1,53 @@
+;***************************************
+; Program : FFL
+;           oFFset to current Layer
+;           By Suk-Jong Yi
+;           95/5/26
+;***************************************
+
+; ¥¡É· ˆw¸•¡¡e·i ‹aŸ©˜ center¬å·i ‹aa‘½‰¡ ´·½¢·a¡ offset¯¡Ç¥”a.
+; Ða»¡ e aº—µA center¬å·i »¡¶“e ˆõ•¡  e eÃ¡ ´g·e ¸b´ó·¡”a.
+; ·¡ Ïa¡‹aœ‘·e entityŸi offset¯¡Ç¡–A Ñe¸· layer¡ offset¯¡Ç¥”a.
+; »b center line·i ¶áÐe layerµÁ Š¹¡¢‰·i ¶áÐe layerŸi  e—eÒ
+; center line layerµA center line—i·i ‹aŸ¡‰¡ Current layerŸi Š¹¡¢‰
+; layer¡ ¤aŽ‰¡ offset·i Ðe”a. aº—µA Â‰bÐi ˜ center line layer“e
+; offset ¯¡Ç¥ÒµA printÐe”a.
+; ¡¡—e option·e ¶¥œ offset¡ww‰Á ˆ{”a.
+
+(defun C:FFL(/
+ffdst ans ffpnt ent oldl newl                          ;»¡µb¥e® ¸÷·
+)
+  (defun SETERR(s)
+    (if (/= s "Function cancelled")
+        (princ (strcat "\nError: " s))
+    ); of If
+    (setq *error* oer seterr nil)
+    (princ)
+  ); of SETERR
+  (setq oer *error* *error* seterr)
+(if (< (setq ffdst (getvar "OFFSETDIST")) 0)           ;ÑÅ‰w¥e®ˆt ŠÐq
+ (progn                                   ;ÑÅ‰w¥e® OFFSETDISTˆa ·q®·© ‰w¶
+   (initget "Trough")
+   (setq ans (getreal "\nOffset distance or Throgh <Trough>: "))
+   (if (= ans nil) (setq ans "T"))
+ ) ;of progn
+ (progn                                   ;ÑÅ‰w¥e® OFFSETDISTˆa ´·®·© ‰w¶
+   (princ "\nOffset distance or Through <")
+   (princ ffdst)
+   (initget "Through")
+   (setq ans (getreal ">: "))
+   (if (= ans nil) (setq ans ffdst))
+ ) ;of progn
+) ;of if
+(while (setq ents (entsel "\nSelect object: "))        ;offset ¤e¥¢
+  (setq ffpnt (getpoint "\nPick side: "))
+  (command "OFFSET" ans ents ffpnt "")                 ;offset ¯©Ð—
+  (setq ent (entget (entlast)))
+  (setq oldl (assoc 8 ent))
+  (setq newl (cons 8 (getvar "CLAYER")))    ; offset–E entity· layerŸi-
+  (setq ent (subst newl oldl ent))          ; Ñe¸ layer¡ ¥e‰w
+  (entmod ent)
+) ;of while
+  (setq *error* oer seterr nil)
+(princ)
+);of defun

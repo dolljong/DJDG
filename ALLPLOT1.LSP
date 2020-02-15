@@ -1,0 +1,136 @@
+;****************************************************************************
+; Program : ALLPLOT
+;           ALL PLOT
+;           By Suk-Jong Yi
+;           96/6/27
+;****************************************************************************
+; •¡¡eµA ·¶“e ¡¡—e BorderŸi Â‰b (A1¶w)
+; Device  : ¡wwŸ¡‹¡ ¸åµA £¡Ÿ¡ ¬åÈ‚
+; Scale   : Fit / Factor –ˆa»¡ µ³­e
+;           (FactorŸi ¬åÈ‚Ð–·i ˜ DIMSCALE ¥e®¸a•··¥¯¢)
+; plt·¡Ÿq : Borderˆa Ðeˆ·¥ ‰w¶ - DWG name‰Á ˆ{‰A
+;           Borderˆa –ˆ ·¡¬w·¥ ‰w¶ - DWGÌa·© ·¡Ÿq·  a»¡ b –¸aŸi ¤åÑ¡¡
+;****************************************************************************
+
+(defun C:ALLPLOT1( /
+                    ds    dwgn    f_list   ss_lst   ss_num    index
+                    pltn  pltn1   bdr_ent  ipnt     i_scale   up_left
+                                                              low_right
+)
+
+  (setq bdr_B 800                                   ;border· Í¢
+        bdr_H 570                                   ;border· ‘¼·¡
+        bn    "BORDER*"                             ;§iœâ ·¡Ÿq
+        xg    -5                                    ;x gap
+        yg    -5)                                   ;y gap
+
+  (setq ds (getvar "DIMSCALE"))                     ;scale ˆtŠÐq
+
+  (setq dwgn (dwg_name))                            ;file·¡Ÿq ·¥¯¢
+  (setq dwgnl (strlen dwgn))
+  (setq f_list (list (cons 0 "INSERT") (cons 2 bn)))  ;filter list
+  (setq ss_lst (ssget "X" f_list))                          ;entity ¬åÈ‚
+  (setq ss_num (sslength ss_lst))                   ;¬åÈ‚–E entityˆ•®
+
+  (if (> ss_num 9)                                  ;borderˆa 10ˆˆa ñ·i ‰w¶
+    (if (> dwgnl 6)                                 ;Ìa·©·¡Ÿq·¡ 6¸aˆa ñ·i ‰w¶
+      (setq pltn1 (substr dwgn 1 6))
+      (setq pltn1 dwgn)
+    ) ;of if
+    (if (> dwgnl 7)                                 ;Ìa·©·¡Ÿq·¡ 7¸aˆa ñ·i ‰w¶
+      (setq pltn1 (substr dwgn 1 7))
+      (setq pltn1 dwgn)
+    ) ;of if
+  ) ;of IF
+
+  (setq index 0)
+  (repeat ss_num                                    ;¬åÈ‚–E border ˆ•® eÇq ¤e¥¢
+    (princ "\nDWG NUMBER: ") (princ index)
+    (if (= index 0)
+      (setq pltn dwgn)                              ;Àõ¤å¼ border·¥ ‰w¶
+      (if (and (<= index 9) (> ss_num 9))
+        (setq pltn (strcat pltn1 "0" (itoa index))) ;µiˆ·¡¬w· ¥¡”áº— 1~9·©˜ 0·i ¬s·³
+        (setq pltn (strcat pltn1 (itoa index)))     ;
+      ) ;of IF
+    ) ;of IF
+    (setq bdr_ent (entget (ssname ss_lst index)))   ;border entity¸÷¥¡
+    (setq ipnt (cdr (assoc 10 bdr_ent)))            ;border· insert point
+    (setq i_scale (cdr (assoc 41 bdr_ent)))         ;border· scale factor
+    (setq low_left (list (+ (car ipnt) (* xg i_scale))        ;border· ¹ÁÃb ´aœ
+                         (+ (cadr ipnt) (* yg i_scale))))
+    (setq up_right (list (+ (car ipnt) (* bdr_B i_scale))    ;border· ¶Ãb ¶á
+                         (+ (cadr ipnt) (* bdr_H i_scale))))
+    (setvar "CMDDIA" 0)                                     ;command echo OFF
+    (setq pltn0 (strcat pltn ".plt"))
+    (if (findfile pltn0)                                    ; ˆ{·e ·¡Ÿq· pltÌa·©·¡ ¹¥¸Ða¡e
+      (command "DEL" pltn0)                                 ;‹¡¹¥ pltÌa·© »¡¶‹¡
+    ) ;of if
+    (if (= index 0)
+      (progn
+        (princ "\nPLT NUM: ") (princ index) (princ "\n")
+        (setq pnts (strcat (rtos (car low_left) 2 3)
+                       "," (rtos (cadr low_left) 2 3)
+                       " " (rtos (car up_right) 2 3)
+                       "," (rtos (cadr up_right) 2 3)))
+        (setq scl (strcat "1=" (rtos ds 2 3)))
+        (setq scr (open "a1.scr" "w"))
+        (write-line "PLOT W" scr)
+        (write-line pnts scr)
+        (write-line "Y" scr)
+        (write-line "N" scr)
+        (write-line " " scr)
+        (write-line " " scr)
+        (write-line " " scr)
+        (write-line " " scr)
+        (write-line scl scr)
+        (write-line pltn scr)
+         (princ "\nINDEX = 0")
+      ) ;of THEN
+      (progn
+        (setq pnts (strcat (rtos (car low_left) 2 3)
+                       "," (rtos (cadr low_left) 2 3)
+                       " " (rtos (car up_right) 2 3)
+                       "," (rtos (cadr up_right) 2 3)))
+        (setq pltxt (strcat "PLOT W " pnts " N " pltn))       ;change anything
+        (write-line pltxt scr)
+      ) ;of ELSE
+    ) ;of IF
+    (setvar "CMDDIA" 1)                                     ;command echo ON
+;    (princ pltn) (princ " is Plotted") (terpri)
+    (setq index (1+ index))                                 ;”a·q border¡
+  ) ;of repeat
+
+  (close scr)
+
+  (command "SCRIPT" "A1")
+;  (POP-ENV)                                                 ;ÑÅ‰w¥e® ¥¢Šá
+  (princ)
+) ;of defun
+
+
+;*********************************
+; function DWG_NAME
+;          DraWinG NAME
+;          Yi Suk-Jong
+;          96/6/27
+;*********************************
+
+(defun DWG_NAME(/ dn ls count ch )
+
+  (setq dn (getvar "DWGNAME"))                          ;Ìa·©·¡Ÿq ·¥¯¢
+  (setq ls (strlen dn))                                 ;string ‹©·¡
+  (setq count ls)                                  ; a»¡ b string¦Èá
+  (while (and (/= (setq ch (substr dn count 1)) "\\")
+              (> count 1))
+    (setq count (1- count))
+  ) ;of while
+  (if (= ch "\\")
+    (substr dn (1+ count) (- ls count))
+    (substr dn count (- ls (1- count)))
+;    (princ (substr dn (1+ count) (- ls count)))
+;    (princ (substr dn count (- ls (1- count))))
+  ) ;of if
+
+) ;of defun
+
+

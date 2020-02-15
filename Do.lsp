@@ -1,0 +1,183 @@
+;*******************************************    
+; Program : DO    
+;           Dimension Oblique    
+;           Jong-Suk Yi    
+;           96/4/16    
+;*******************************************    
+; Vertical DIM·i OBLIQUE¯¡Åaº…”a.    
+; ¹A´¢¹¡ˆå - ®»¢ DIMµA e Ð”w–E”a.    
+;          - OBLIQUEˆb·e 30•¡¡ ¸÷Ð¹a ·¶”a.    
+;*******************************************    
+    
+(defun C:DO(/    
+divl    divn    dp      ds      dsel    dtx     dtxt1   dtxt1p  dtxt2    
+dtxt2p  dx      dxy     dy      ep      fst     lstdim  next    pnt1    
+pnt2    ppnt    sent    sgn     sp      th      txt     txt1    txtlen    
+)    
+    
+  (defun SETERR(s)    
+    (if (/= s "Function cancelled")    
+        (princ (strcat "\nError: " s))    
+    ); of If    
+    (setq *error* oer seterr nil)    
+    (princ)    
+  ); of SETERR    
+  (setq oer *error* *error* seterr)    
+    
+  (setq th (getvar "DIMTXT")                          ;textÇa‹¡ = dimtxt    
+        dim_gap (getvar "DIMDLI"))                                 ;Ã¡®¬å ˆe‰b    
+  (setq ds (getvar "DIMSCALE"))                       ;scale factor    
+    
+  (setvar "BLIPMODE" 0)    
+  (setvar "CMDECHO" 0)    
+      
+;  (push-env)                                          ;ÑÅ‰w¥e®ˆt ”Ï¡    
+    
+  (initget "Object")    
+  (setq sp (getpoint "\nPick first point/Object: "))  ;‹¡¹¥ Ã¡®¬å Àq¹¡=Object    
+  (if (= sp "Object")    
+    (progn    
+      (setq dsel (entsel "\nSelect Dimension Entity: "))   ;‹¡¹¥ Ã¡®¬å ¬åÈ‚    
+      (setq sent (entget (car dsel)))                      ;Ã¡®¬å entity    
+      (setq pnt1 (cdr (assoc 13 sent)))                    ;¥¡¹¡¬å ¯¡¸b¸ñ    
+      (setq pnt2 (cdr (assoc 14 sent)))                    ;¥¡¹¡¬å {¸ñ    
+      (setq ppnt (cadr dsel))                              ;¬åÈ‚¯¡ pick point    
+      (if (> (distance ppnt pnt1) (distance ppnt pnt2))    ;pick pointµA ˆaŒa¶…    
+        (setq sp pnt2) (setq sp pnt1))                     ;½¢ ¸ñ·i sp¡    
+    ) ;of progn THEN    
+  ) ;of IF(sp=Object)    
+    
+  (setq dp (getpoint "\nPick Dimension side: "))          ;Ã¡®¬å·¡ ¶áÃ¡Ði ¤wÐ·    
+    
+  (setq dtx (- (car dp) (car sp)))    
+  (setq sgn (/ dtx (abs dtx)))                            ;¶E½¢ µ¡Ÿe½¢ ¦Ñ¡    
+    
+  (setq fst (getint "\nDimension line LEVEL <1>: "))      ;Ã¡®¬å level·³b    
+  (if (= fst nil) (setq fst 1))    
+  (setq dx (* ds (+ 15 (* dim_gap (- fst 1)))))           ;¿¢·e¸ñ‰Á Ã¡®¬å·ˆáŸ¡    
+    
+  (setq next (getdist sp "\nDistance or RETURN to Pick point: ")) ;{¸ñŒa»¡ ˆáŸ¡    
+  (cond                                                ;¸ñ·i ·³bÐaa¡e Ÿ¡Èå·³b    
+    ((= next nil)    
+      (setq ep (getpoint "\nPick point: "))               ;{¸ñ·i ·³b    
+      (setq ep (list (car sp) (cadr ep)))                 ;®¸÷–E {¸ñ    
+    ) ;cond(next=nil)    
+    ((numberp next)                                       ;dxˆa ®•¸a·¥ ‰w¶    
+      (setq ep (list (car sp) (+ (cadr sp) next)))        ;ep ¶áÃ¡‰¬e    
+    ) ;cond(next=number)    
+  ) ;of cond    
+    
+    
+  (while (/= ep nil)                                  ;epˆa nil·¡ ´a“¥•·´e ¤e¥¢    
+    
+    (setq dxy (list (+ (car ep) (* dx sgn)) (car ep) 0.0))  ;Ã¡®¬å·¡ ‘½·© ¶áÃ¡    
+    
+    (setq dy (distance sp ep))                          ;– ¸ñ· ˆáŸ¡    
+    (if (< dy 1000.0)    
+      (setq txt (rtos dy 2 0))                          ;1000£¡ e·© ˜    
+;      (setq txt (rtos (* dy 0.001) 2 3))                ;1000·¡¬w·© ˜    
+      (setq txt (rtos_dimdsep (* dy 0.001) 3))                ;1000·¡·©      
+    ) ;of if(dy < 1000)    
+    
+    (princ "\nDimension text <")                        ;Dimension textÎa¯¡    
+    (princ txt)    
+    (setq txt1 (getstring T ">: "))                     ;¬¡¶… dimension text·³b    
+    (if (= (substr txt1 1 1) "@")    
+      (progn    
+;        (setq divl (getint "\nDivision length: "))      ;a’“e ‹©·¡ ·³b    
+        (setq divl (atof (substr txt1 2 (1- (strlen txt1)))))    
+        (setq divn (rtos (/ dy divl) 2 0))              ;a’… ˆ•®‰¬e    
+        (if (< divl 1000.)    
+          (setq divl (rtos divl 2 0))                   ;a’“e ‹©·¡ˆa 1000£¡ e¯¡    
+;          (setq divl (rtos (* divl 0.001) 2 3))) ;of if  a’“e ‹©·¡ˆa 1000·¡¬w¯¡    
+          (setq divl (rtos_dimdsep (* divl 0.001) 3))) ;of if  a’“e ‹©·¡ˆa 1000·¡¬w    
+	  (setq txtlen (* (+ (strlen txt) (strlen divn) (strlen divl) 2) th ds    
+                     (cdr (assoc 41 (tblsearch "STYLE" (getvar "TEXTSTYLE"))))))    
+        (if (>= txtlen dy)    
+          (progn                                  ;textˆa ¥¡¹¡¬å µA ´e—i´áˆa¡e    
+            (setq dtxt1 (strcat divn "@" divl))   ;–º‰¡ a’‘    
+            (setq dtxt2 (strcat "=" txt))    
+            (setq dtxt1p (mapcar '+ (mid-point sp ep)    
+                                    (list (- (* dx sgn) (* ds th))  ;x¶áÃ¡    
+                                          (* dx (/ (sin (/ pi 6)) (cos (/ pi 6))))    
+                                          0.0)))                     ;z¶áÃ¡    
+            (setq dtxt2p (mapcar '+ (mid-point sp ep)    
+                                    (list (+ (* dx sgn) (* ds th))  ;x¶áÃ¡    
+                                          (* dx (/ (sin (/ pi 6)) (cos (/ pi 6))))    
+                                          0.0)))                     ;z¶áÃ¡    
+            (setq oldosmode (getvar "OSMODE")) (setvar "OSMODE" 0)    
+	    (command "TEXT" "M" dtxt1p (* th ds) "90" dtxt1)    
+            (command "TEXT" "M" dtxt2p (* th ds) "90" dtxt2)    
+            (command "DIM1" "VER" sp ep dxy " ")              ;DIM¡ww Ÿ±    
+            (setvar "OSMODE" oldosmode)    
+	  ) ;of progn THEN    
+          (progn                                  ;textˆa ¥¡¹¡¬å µA —i´áˆa¡e    
+            (setq dtxt1 (strcat divn "@" divl "=" txt))    
+            (setq oldosmode (getvar "OSMODE")) (setvar "OSMODE" 0)    
+	    (command "DIM1" "VER" sp ep dxy dtxt1)            ;DIM¡ww Ÿ±    
+            (setvar "OSMODE" oldosmode)    
+	  ) ;of progn ELSE    
+        ) ;of IF    
+      ) ;of progn THEN    
+      (progn    
+        (if (= txt1 "") (setq txt1 txt))                      ;Ÿ¡Èå·³b¯¡ µ• textŸi ³q    
+        (setq oldosmode (getvar "OSMODE")) (setvar "OSMODE" 0)    
+	(command "DIM1" "VER" sp ep dxy txt1)             ;DIM¡ww Ÿ±    
+        (setvar "OSMODE" oldosmode)    
+      ) ;of progn ELSE    
+    ) ;of if(txt1=@)    
+    
+    (setq lstdim (entlast))                               ;¤w‹q  e—i´á»¥ dim¬åÈ‚    
+    (setq oldexo (getvar "DIMEXO"))    
+    (setvar "DIMEXO" 3)    
+    (command "DIM1" "OBL" lstdim "" (* sgn 30))           ;30•¡ eÇq •©aº‘    
+    (command "DIM1" "UPDATE" lstdim "")    
+    (setvar "DIMEXO" oldexo)    
+    
+    (setq sp ep)                    ;{¸ñ·i Àõ¸ñ·a¡    
+    (initget "eXit Undo")    
+    (setq next (getdist "\nDistance or RETURN to Pick point/eXit: ")) ;{¸ñŒa»¡ ˆáŸ¡    
+    (cond                                               ;¸ñ·i ·³bÐaa¡e Ÿ¡Èå·³b    
+      ((= next nil)    
+        (setq ep (getpoint "\nPick point: "))                 ;{¸ñ·i ·³b    
+        (setq ep (list (car sp) (cadr ep)))                   ;®¸÷–E {¸ñ    
+      ) ;cond(next=nil)    
+      ((= next "eXit")                                        ;eXit·³b¯¡ ep=nil    
+        (setq ep nil)    
+      ) ;cond(next="eXit")    
+      ((numberp next)                                         ;dxˆa ®•¸a·¥ ‰w¶    
+        (setq ep (list (car sp) (+ (cadr ep) next)))          ;ep ¶áÃ¡‰¬e    
+      ) ;cond(next=number)    
+    ) ;of cond    
+    
+  ) ;of while    
+    
+  ;(pop-env)    
+  (setq *error* oer seterr nil)    
+  (prin1)    
+) ;defun    
+    
+    
+;-------------------------------------------------------    
+; function : rtos_dimdsep    
+;            rtos (change . to dimdsep)    
+;            Yi suk jong    
+;            00/5/10    
+;-------------------------------------------------------    
+; argument    
+;       real : real to be converted    
+;  precision : decimail precision    
+;-------------------------------------------------------    
+(defun rtos_dimdsep(real precision / real precision txt txtlen count)      
+  (setq txt (rtos real 2 precision)    
+	txtlen (strlen txt)    
+	count 1)      
+      
+  (while (and (/= (substr txt count 1) ".") (<= count (1+ txtlen)))    
+    (setq count (1+ count))    
+  );while    
+  (if (> count txtlen)    
+    txt    
+    (strcat (substr txt 1 (1- count)) (getvar "DIMDSEP") (substr txt (1+ count) (- txtlen count)))    
+  )    
+);defun        

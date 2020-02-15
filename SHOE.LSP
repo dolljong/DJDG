@@ -1,0 +1,66 @@
+;**************************************
+; Program : SHOE
+;           SHOE marking
+;           Suk-Jong Yi
+;           96/5/28
+;**************************************
+; ¯A¹ÁÎa•¡· ¯A aÇ·
+;**************************************
+
+(defun C:SHOE(/)
+
+  (defun SETERR(s)
+    (if (/= s "Function cancelled")
+        (princ (strcat "\nError: " s))
+    ); of If
+    (setq *error* oer seterr nil)
+    (princ)
+  ); of SETERR
+  (setq oer *error* *error* seterr)
+
+  (push-env)                                                    ;ÑÅ‰w¥e®”Ï¡
+
+  (setq ds (getvar "DIMSCALE"))                                 ;¯aÅA·©ˆt
+
+;  (setvar "cmdecho" 1)
+
+  (setq ent (entget (car (entsel "\nSelect Chain: "))))         ;ÁA·¥¬åÈ‚
+  (setq pnt (getpoint "\nPick shoe insert point: "))            ;¬s·³¸ñ
+  (initget "Fix Longi- Trans- 2-dir")
+  (setq tp (getkword "\nMOVE Fix/Longi-/Trans-/2-dir: "))
+
+  (setq enty (cdr (assoc 0 ent)))                               ;µEË¡Ë¡ ¹·ŸA
+
+  (cond
+    ((= enty "LINE")
+      (setq ang (angle (cdr (assoc 10 ent)) (cdr (assoc 11 ent)))) ;chain· ˆb
+    ) ;of LINE
+    ((or (= enty "CIRCLE") (= enty "ARC"))
+      (setq ang (+ (/ pi 2) (angle (cdr (assoc 10 ent)) pnt)))           ;chain· ˆb
+    ) ;of CIRCLE
+  ) ;of cond
+
+  (cond
+    ((= tp "Fix")
+      (command "INSERT" (strcat (prefix) "blocks/shoemf")
+                        pnt ds "" "0")                              ;‰¡¸÷¯A
+    ) ;of 0
+    ((= tp "Longi-")
+      (command "INSERT" (strcat (prefix) "blocks/shoem1")          ;ŠaÂ‚¤wÐ· ˆa•·
+                        pnt ds "" (rtod ang))
+    ) ;of Longi-
+    ((= tp "Trans-")
+      (command "INSERT" (strcat (prefix) "blocks/shoem1")          ;ŠaÂ‚»¢ˆb¤wÐ· ˆa•·
+                        pnt ds "" (+ (rtod ang) 90))
+    ) ;of Trans-
+    ((= tp "2-dir")
+      (command "INSERT" (strcat (prefix) "blocks/shoem2")          ;´·¤wÐ· ˆa•·
+                        pnt ds "" (rtod ang))
+    ) ;of 2-dir
+  ) ;of cond
+
+  (pop-env)
+  (setq *error* oer seterr nil)
+  (princ)
+
+) ;of defun

@@ -1,0 +1,67 @@
+;**********************************
+;*  DIVIDE
+;*       Divide Arc
+;*            Suk-Jong Yi
+;*            1995. 2. 2.,3. 22
+;**********************************
+
+(defun C:DIVA(/
+            ent     cen     r       spnt    epnt    sang    eang    ;»¡µb¥e® ¸÷·
+            dvnum   dtang   count   ang     dpnt
+)
+
+  (defun SETERR(s)
+    (if (/= s "Function cancelled")
+        (princ (strcat "\nError: " s))
+    ); of If
+    (setq *error* oer seterr nil)
+    (princ)
+  ); of SETERR
+  (setq oer *error* *error* seterr)
+;*** Select entity
+(setq ent (entget (car (entsel "\nSelect Arc or Circle"))))
+
+;*** Get center & radius
+(setq cen (cdr (assoc 10 ent)))
+(setq r (cdr (assoc 40 ent)))
+
+;*** Get start point & end point
+(setq spnt (getpoint "\nPick start point: "))
+(setq epnt (getpoint "\nPick end point: "))
+(setq dpnt (getpoint spnt "\nPick Direction Pint: "))
+
+;*** Get start angle & end angle
+(setq sang (angle cen spnt))
+(setq eang (angle cen epnt))
+(setq dpang (angle cen dpnt))   ;¤wÐ· Í¡·¥Ëa· ˆb
+
+;*** Get divide number
+(setq dvnum (getint "\nNumber of divide: "))
+
+(setq pang (+ (- (* 2 pi) sang) eang)) ;¯¡¸b¸ñ~{¸ñ· ´·· ¤wÐ·ˆb
+(if (> pang (* 2.0 pi)) (setq pang (- pang (* 2.0 pi))))
+(setq nang (- pang (* 2 pi)))             ;¯¡¸b¸ñ~{¸ñ· ·q· ¤wÐ·ˆb
+(setq sdsgn (/ (abs (dang sang dpang)) (dang sang dpang))) ;¤wÐ··i ŠÐq
+
+(cond
+  ((> sdsgn 0.0) (setq deltaa pang))
+  ((< sdsgn 0.0) (setq deltaa nang))
+)
+
+;*** Calc delta ang ;¯¡¸b¸ñ‰Á {¸ñ· ˆb Àa·¡Ÿi a’‰ ®¡ a’‘
+(setq dtang (/ deltaa dvnum))
+
+;*** Repeat divide while count<=dvnum-1
+(setq count 1)
+(while (< count dvnum)
+   (progn
+      (setq ang (+ sang (* count dtang)))
+      (setq dpnt (polar cen ang r))
+      (command "point" dpnt)
+      (setq count (+ count 1))
+   ) ;of progn
+   nil
+) ;of while
+  (setq *error* oer seterr nil)
+) ;of defun
+

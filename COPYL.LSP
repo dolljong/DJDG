@@ -1,0 +1,37 @@
+;****************************************
+; Program : COPYL
+;           COPY to current Layer
+;           By Suk-Jong Yi
+;           1995/5/27
+;****************************************
+
+;”aŸe A·¡´áµA ·¶“e µEË¡Ë¡Ÿi Ñe¸· A·¡´á¡ copyÐe”a.
+
+(defun C:COPYL(/                    ;»¡µb¥e® ¸÷·
+clayer ents nent bpnt dpnt
+count cent lent oldl newl
+)
+
+(push-env)                          ;ÑÅ‰w¥e® ”Ï¡
+
+(setq clayer (getvar "CLAYER"))     ;Ñe¸ A·¡´á ´i´a‘
+(setq ents (ssget))                 ;ÄaÏ¡Ði µEË¡Ë¡ ¬åÈ‚
+(setq nent (sslength ents))         ;¬åÈ‚–E µEË¡Ë¡ ˆ•®
+(setq bpnt (getpoint "\nBase point or displacement: "))        ;¥A·¡¯aÍ¡·¥Ëa
+(setq dpnt (getpoint bpnt "\nSecond point of displacement: ")) ;–‰¼Í¡·¥Ëa
+(setq count 0)                                                 ; coun=0
+(repeat nent                                               ;µEË¡Ë¡ˆ•® eÇq ¤e¥¢
+  (setq cent (ssname ents count))             ;ÄaÏ¡–I µEË¡Ë¡
+  (command "COPY" cent "" bpnt dpnt)          ;ÄaÏ¡¡ww ¯©Ð—
+  (setq lent (entget (entlast)))              ;¤w‹q ÄaÏ¡–E µEË¡Ë¡
+  (setq oldl (assoc 8 lent))                  ;¤w‹qÄaÏ¡–E µEË¡Ë¡· layer
+  (setq newl (cons 8 clayer))                 ;oldlayerŸi ”ÁAÐi layer
+  (setq lent (subst newl oldl lent))          ;µ•A·¡´áŸi Ñe A·¡´á¡ ”ÁA
+  (entmod lent)                             ;”ÁA–E µEË¡Ë¡ ¸÷¥¡¡ ˆ—¯¥
+  (setq count (+ count 1))                  ;”a·q µEË¡Ë¡¡
+) ;of repeat                                ;µEË¡Ë¡· ˆ•® eÇq ¤e¥¢
+
+(pop-env)                           ;ÑÅ‰w¥e® ¥¢Šá
+
+) ;of defun
+

@@ -1,0 +1,71 @@
+;*********************************************
+; Program : JEON
+;           JEON myeon
+;           Suk-Jong Yi
+;           96/5/20
+;*********************************************
+; ¤‹e•¡µA¬á box ´eµA ¸å¡e·¡œa‰¡ Îa¯¡Ðº…”a.
+;*********************************************
+
+(defun C:JEON(/)
+
+  (defun SETERR(s)
+    (if (/= s "Function cancelled")
+        (princ (strcat "\nError: " s))
+    ); of If
+    (setq *error* oer seterr nil)
+    (princ)
+  ); of SETERR
+  (setq oer *error* *error* seterr)
+
+  (push-env)                                                ;ÑÅ‰w¥e® ¸á¸w
+
+  (setq B 12
+        H  4)
+
+  (setq ds 50)                                               ;¯aÅA·© ˆt
+
+  (princ "\nPick insert point: ")
+
+  (command "INSERT" (strcat (prefix) "blocks/jeon") pause 1 1 "0")
+
+  (setq  ipnt (cdr (assoc 10 (entget (entlast))))) ;¬s·³–E §iœâ· insert point
+
+  (setq p1 (list (- (car ipnt) (* ds B))
+                 (+ (cadr ipnt) (* ds H)) 0.0))             ;¶E½¢ ¬w”e
+  (setq p2 (list (+ (car ipnt) (* ds B))
+                 (- (cadr ipnt) (* ds H)) 0.0))             ;µ¡Ÿe½¢ Ða”e
+  (setq p3 (list (- (car ipnt) (* ds B))
+                 (- (cadr ipnt) (* ds H)) 0.0))             ;¶E½¢ Ða”e
+  (setq p4 (list (+ (car ipnt) (* ds B))
+                 (+ (cadr ipnt) (* ds H)) 0.0))             ;µ¡Ÿe½¢ ¬w”e
+
+  (setq p11 (list (- (car ipnt) (* ds B) -1)
+                  (+ (cadr ipnt) (* ds H) -1) 0.0))         ;trim point ¶E½¢¬w”e
+  (setq p22 (list (+ (car ipnt) (* ds B) -1)
+                  (- (cadr ipnt) (* ds H) -1) 0.0))         ;trim point µ¡Ÿe½¢Ða”e
+  (setq p33 (list (- (car ipnt) (* ds B) -1)
+                  (- (cadr ipnt) (* ds H) -1) 0.0))         ;trim point ¶E½¢Ða”e
+  (setq p44 (list (+ (car ipnt) (* ds B) -1)
+                  (+ (cadr ipnt) (* ds H) -1) 0.0))         ;trim point µ¡Ÿe½¢¬w”e
+
+  (setq oldc (getvar "CECOLOR"))                            ;Á¡¢¬‚·a¡
+  (setvar "CECOLOR" "GREEN")
+  (command "PLINE" p1 "W" "0.0" "0.0" p4 p2 p3 "C")         ;¬aˆbÑw ‹aŸ¡‹¡
+  (setvar "CECOLOR" oldc)                                   ;¶¥œ¬‚·a¡
+
+  (setq lstent (entlast))                                   ;¬aˆbÑw ¬åÈ‚
+
+  (command "TRIM" lstent "" "f" p11 p44 ""
+                            "f" p44 P22 ""
+                            "f" p22 P33 ""
+                            "f" p33 p11 "" "")        ;¸iœa‹¡
+
+  (command "ERASE" "WP" p11 p44 p22 p33 "" lstent "")              ;¬aˆbÑw ´e »¡¶‹¡
+  (command "REDRAW")
+
+  (pop-env)                                                 ;ÑÅ‰w¥e® ¥¢Šá
+  (setq *error* oer seterr nil)
+  (princ)
+
+) ;of defun

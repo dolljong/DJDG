@@ -1,0 +1,81 @@
+;*****************************************
+; Program : DC
+;           Dimension Circle
+;           By Jong-Suk Yi
+;           1995/5/2
+;****************************************
+
+(defun C:DC(/
+;ds elst cen rc sp sang ep eang seang
+;cl txt dlst dcen rd dsp sep sgnpnt
+;sgnr sgn dlevel mang dpnt wh4 tsgn
+;tang txtpnt txtxy ltxt
+)
+
+  (push-env)                                                ;ÑÅ‰w¥e® ”Ï¡
+
+  (setq dim_gap 10.0                            ;Ã¡®¬å·¡ Š¹¡¢‰µA¬á ˜é´á»¥ ˆáŸ¡
+        ds (getvar "DIMSCALE")
+        th (getvar "DIMTXT"))
+
+  ;(setvar "cmdecho" 1)
+
+  (setq elst (entget (car (entsel "Select Arc or Circle: "))))  ;‹©·¡· ‹¡º…Ñ¡
+  (setq cen (cdr (assoc 10 elst))                               ;º—¯±
+        rc  (cdr (assoc 40 elst)))                              ;¤e»¡Ÿq
+  (setq sp (getpoint "Pick start point: "))                     ;¯¡¸b¸ñ·³b
+  (setq sang (angle cen sp))
+  (setq ep (getpoint "Pick end point: "))
+  (setq eang (angle cen ep))
+  (setq seang (abs (dang sang eang)))
+
+  (princ (dang sang eang))
+  (setq cl (/ (* 2 pi rc seang) (* 2 pi)))                    ;Arc· ‹©·¡
+  (if (> cl 1000.0)
+    (setq txt (rtos (* cl 0.001) 2 3))
+    (setq txt (rtos cl 2 0))
+  ) ;of if
+
+  (setq dlst (entget (car (entsel "Select baseline circle: ")))) ;Ã¡®¬å ‹¡º… Arc
+  (setq dcen (cdr (assoc 10 dlst))                    ;Ã¡®¬å ‹¡º… Arc· º—¯±
+        rd   (cdr (assoc 40 dlst)))                   ;Ã¡®¬å ‹¡º… Arc· ¤e»¡Ÿq
+  (setq dsp (polar cen sang rd)                       ;Ã¡®¥¡¹¡¬å ¯¡¸b¸ñ
+        dep (polar cen eang rd))                      ;Ã¡®¥¡¹¡¬å {¸ñ
+
+  (setq sgnpnt (getpoint "\nPick Side: "))            ;Ã¡®¬å· ¶áÃ¡ (¶á,´aœ?)
+  (setq sgnr (distance cen sgnpnt))                   ;Ã¡®¬å ¶áÃ¡ ¦Ñ¡
+  (if (> sgnr rd)
+    (setq sgn 1)
+    (setq sgn -1)
+  ) ;of if
+
+  ; Ã¡®¬å· ¶áÃ¡
+  (setq dlevel (getint "\nDim Line level <1>: "))
+  (if (= dlevel nil) (setq dlevel 1))
+  (setq mang (/ (+ sang eang) 2.0))                   ;¯¡¸bˆb‰Á {ˆb· º—ˆeˆb
+  ;(setq mang (- sang (/ (dang sang eang) 2.0)))                   ;¯¡¸bˆb‰Á {ˆb· º—ˆeˆb
+  (setq dpnt (polar cen mang (+ rd (* 20 ds sgn) (* (- dlevel 1) dim_gap ds sgn))))
+                                                      ;Dimension line· ¶áÃ¡
+
+  (setq wh4 (which4 mang))
+  ;(setq wh4 (which4 (angle dsp dep)))
+  (if (or (= wh4 1) (= wh4 2))
+      (setq tsgn 1)
+      (setq tsgn -1)
+  ) ;of if
+  (setq tang (rtod (+ mang (* (/ PI 2.0) tsgn -1))))
+  (setq txtpnt (polar dpnt mang (* th ds tsgn)))      ;text¶áÃ¡ (X,Y,Z)
+  (setq txtxy (list (car txtpnt) (cadr txtpnt)))      ;text¶áÃ¡ (X,Y)
+  (princ "\nText=<")
+  (princ txt)
+  (setq ltxt (getstring ">: "))
+  (if (= ltxt "")
+    (setq ltxt txt)
+  ) ;of if
+
+  (command "DIM1" "ANG" "" cen dsp dep "A" tang "T" ltxt dpnt txtxy)
+
+  (pop-env)
+  (princ)
+
+) ;of defun

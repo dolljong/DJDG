@@ -1,0 +1,174 @@
+;*******************************************
+; Program : CALT
+;           CALculate and text to drawing
+;           By Suk-Jong Yi
+;           1995/6/22
+;*******************************************
+;¬aÃ¢µe¬e·i Ða‰¡ ‹a ‰i‰ÁŸi •¡¡eµA Îa¯¡
+;*******************************************
+
+(defun C:CALT(/
+                ssent   ds      ents    nent    count   sum     scount
+                txt     ans     lp      nlp     tpnt    numtxt  th
+                nssent
+)
+
+  (defun SETERR(s)
+    (if (/= s "Function cancelled")
+        (princ (strcat "\nError: " s))
+    ); of If
+    (setq *error* oer seterr nil)
+    (princ)
+  ); of SETERR
+  (setq oer *error* *error* seterr)
+
+  (push-env)                                ;ÑÅ‰w¥e® ”Ï¡
+  (setq ds (getvar "DIMSCALE"))             ;scale factorŠÐq
+  (setq th (getvar "DIMTXT"))
+
+  (setq total 0)
+
+  (initget 1 "Sum")
+  (setq oper (entsel "\nSummation/<Select text>: ")) ;®•¸a text·³b
+
+  (while (= oper nil)
+    (princ "\Select entity or Sum")
+    (initget 1 "Sum")
+    (setq oper (entsel "\nSummation/<Select text>: ")) ;®•¸a text·³b
+  ) ;of while
+
+  (if (/= oper "Sum")
+    (progn
+      (setq total (atof (cdr (assoc 1 (entget (car oper))))))
+      (princ "\nTotal = ") (princ total)
+      (initget 1 "Sum + - * / Exit Insert")
+      (setq oper (getkword "\nSum / + / - / * / / /Insert/Exit:"))
+    ) ;of THEN
+  ) ;of IF
+
+  (while (or (= oper "Sum") (= oper "+") (= oper "-") (= oper "*") (= oper "/"))
+    (cond
+      ((= oper "Sum")
+        (princ "\nSelect text: ")
+        (setq ents (ssget))                       ;entity ·³b
+        (setq nent (sslength ents))               ;entity ˆ•®
+
+        (setq count 0)                            ;¤e¥¢¡ww ¥e® Á¡‹¡ÑÁ
+        (setq sum 0)
+        (setq scount 0)
+
+        (repeat nent                              ;entityˆ•®  eÇq ¤e¥¢
+          (setq ent (entget (ssname ents count))) ;entity ¸÷¥¡
+          (if (= (cdr (assoc 0 ent)) "TEXT")      ;entityˆa text·¥ ‰w¶
+            (progn
+              (setq txt (cdr (assoc 1 ent)))      ;text· ¶w
+              (if (is-num txt)                    ;text· ¶w·¡ ®•¸aœa¡e
+                (progn                            ;entity¸÷¥¡ selection setµA Âˆa
+                  (if (= scount 0) (setq ssent (ssadd (ssname ents count)))
+                                   (setq ssent (ssadd (ssname ents count) ssent))
+                  ) ;of if
+                  (redraw (ssname ents count) 3)  ;textˆw¹¡
+                  (setq sum (+ sum (atof txt)))   ;text· Ðs ŠÐq
+                  (setq scount (1+ scount))       ;®•¸a·¥ text· ˆ•®
+                ) ;of progn
+              ) ;of if txt is number
+            ) ;of progn
+          ) ;of if entity=text
+          (setq count (1+ count))                 ;”a·q entity¡
+        ) ;of repeat
+
+        (setq nssent (sslength ssent))
+        (setq count 0)
+        (repeat nssent
+          (redraw (ssname ssent count) 4)                 ;ˆw¹¡–E entityŸi ¸÷¬w·a¡
+          (setq count (1+ count))
+        ) ;of repeat
+
+        (princ "\n") (princ scount) (princ " Founded")    ;¡yˆ· textˆa ¬åÈ‚–V“eˆaŸi Â‰b
+        (princ "\nSumation: ") (princ sum)                ;Á·‰Ÿi Â‰b
+        (setq total (+ total sum))
+      ) ;of cond(= oper "Sum")
+
+      ((or (= oper "+") (= oper "-") (= oper "*") (= oper "/"))
+        (initget "Num")
+        (setq txt_ent (entsel "\nNumber/<Select number text>: "))
+        (if (= txt_ent "Num")
+          (cond
+            ((= oper "+") (setq total (+ total (getreal "\nNumber: "))))
+            ((= oper "-") (setq total (- total (getreal "\nNumber: "))))
+            ((= oper "*") (setq total (* total (getreal "\nNumber: "))))
+            ((= oper "/") (setq total (/ total (getreal "\nNumber: "))))
+          ) ;of THEN
+          (progn
+            (setq txt_ent (entget (car txt_ent)))
+            (if (= txt_ent nil)
+              (setq txt_str nil)
+              (setq txt_str (cdr (assoc 1 txt_ent)))
+            ) ;of IF
+            (while (or (= (is-num txt_str) nil)  (= txt_str nil))
+              (princ "\nEntity is Not NUMBER")
+              (while (= (setq txt_ent (entsel "\nSelect number text: ")) nil))
+              (if (= txt_ent nil)
+                (setq txt_str nil)
+                (setq txt_str (cdr (assoc 1 txt_ent)))
+              ) ;of IF
+            ) ;of WHILE
+            (cond
+              ((= oper "+") (setq total (+ total (atof txt_str))))
+              ((= oper "-") (setq total (- total (atof txt_str))))
+              ((= oper "*") (setq total (* total (atof txt_str))))
+              ((= oper "/") (setq total (/ total (atof txt_str))))
+            ) ;of COND
+          ) ;of ELSE
+        ) ;of IF(= txt_ent "Num")
+      ) ;of cond(or (= oper "+") (= oper "-") (= oper "*") (= oper "/"))
+
+    ) ;of COND
+
+    (princ "\nTotal = ") (princ total)
+    (initget 1 "Sum + - * / Exit Insert")
+    (setq oper (getkword "\nSum / + / - / * / / /Insert/Exit:"))
+
+  ) ;of WHILE
+
+  (if (= oper "Insert")
+    (progn
+      (setq lp (getvar "LUPREC"))
+      (princ "\nNumber of digits to right of decimal point (0 to 8): <")
+      (princ lp)                                    ;­¡®•¸ñ ·¡Ða ¸aŸµ® ¢‰·q
+      (princ ">: ")
+      (setq nlp (getint))
+      (if (= nlp nil) (setq nlp lp))                ;return·³b¯¡ µ• ¸aŸµ®¡
+      (setq tpnt (getpoint "\nPick insert point: "))  ;¬s·³¸ñ ·³b
+      (setq numtxt (rtos total 2 nlp))                  ;®•¸aŸi string·a¡
+      (command "TEXT" "R" tpnt (* th ds) "0" numtxt)         ;text ¡ww®Ð—
+    ) ;of THEN
+  ) ;of if
+
+  (pop-env)
+  (setq *error* oer seterr nil)
+  (princ)
+) ;of defun
+
+;************************************
+; Function : IS-NUM
+;            IS NUMber ?
+;            By Suk-Jong Yi
+;            1995/6/1
+;************************************
+; ¢…¸aµi·¡ ®•¸a·¥ˆa?Ÿi Ìe”eÐº…”a.
+
+(defun IS-NUM(str
+/ str strl count ch )
+
+  (setq strl (strlen str))
+  (setq count 1)
+  (while (or (and (>= (setq ch (ascii (substr str count 1))) 48)
+                  (<= ch 57))
+             (= ch 44) (= ch 46))
+    (setq count (+ count 1))
+  ) ;of while
+
+  (if (= count (+ strl 1)) strl NIL)
+
+) ;of defun

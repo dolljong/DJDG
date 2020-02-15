@@ -1,0 +1,52 @@
+;****************************************************************
+; Program : WDWGN
+;           Write DWG Name
+;           Yi Suk Jong
+;           97/1/13
+;****************************************************************
+;•¡¡e¡w·i •¡¡eµA”a °áº‘
+;****************************************************************
+
+(defun C:WDWGN(/ th ds th fn p)
+
+  (setq th 2.0)                             ; text‘¼·¡
+
+  (setq ds (getvar "DIMSCALE"))             ;¯aÅA·©ˆt
+  (setq th (* th ds))
+;  (setq fn (strcat (dwg_name) ".DWG"))     ;file·¡Ÿq
+  (setq fn (dwg_name))                      ;file·¡Ÿq
+  (setq fn (substr fn 1 (- (strlen fn) 4)))
+  (setq p (getpoint "\nPick Insert point: ")) ;¬s·³¸ñ
+  (command "TEXT" p th "0" fn)              ;file·¡Ÿq ‹¡·³
+
+  (princ)
+
+) ;of defun
+
+
+;****************************************************************
+; function DWG_NAME
+;          DraWinG NAME
+;          Yi Suk-Jong
+;          96/6/27
+;****************************************************************
+; open ¡ww·a¡ Ìa·©·i ¦‰œáµ© ‰w¶ DWGNAME·¡ full path¡w·¡ –A£a¡
+; full path¡wº— Ìa·©¡w ¦¦…·i ÂÂ‰Ð‘
+;****************************************************************
+(defun DWG_NAME(/ dn ls count ch )
+
+  (setq dn (getvar "DWGNAME"))                          ;Ìa·©·¡Ÿq ·¥¯¢
+  (setq ls (strlen dn))                                 ;string ‹©·¡
+  (setq count ls)                                  ; a»¡ b string¦Èá
+  (while (and (/= (setq ch (substr dn count 1)) "\\")
+              (> count 1))
+    (setq count (1- count))
+  ) ;of while
+  (if (= ch "\\")
+    (substr dn (1+ count) (- ls count))
+    (substr dn count (- ls (1- count)))
+  ) ;of if
+
+) ;of defun
+
+
