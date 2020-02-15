@@ -5,13 +5,13 @@
 ;           1995. 3. 19    
 ;************************************    
     
-(defun C:RCD(/                                              ;»¡µb¥e® ¸÷·    
+(defun C:RCD(/                                              ;ì§€ì—­ë³€ìˆ˜ ì •ì˜    
 ds oldclt oldclr s-pnt pd rdo pl tang ang tdsto e-pnt    
 sl-pnt0 sr-pnt0 sl-pnt sr-pnt el-pnt er-pnt    
 )    
     
-  (setq ulbulh 100                              ;¶‰Ê—¦‰Ê—‘¼·¡    
-        ulbull 300)                             ;¶‰Ê—¦‰Ê—‹©·¡    
+  (setq ulbulh 100                              ;ìš¸í‰ë¶ˆí‰ë†’ì´    
+        ulbull 300)                             ;ìš¸í‰ë¶ˆí‰ê¸¸ì´    
     
   (defun SETERR(s)    
     (if (/= s "Function cancelled")    
@@ -23,69 +23,69 @@ sl-pnt0 sr-pnt0 sl-pnt sr-pnt el-pnt er-pnt
     
   (setq oer *error* *error* seterr)    
     
-  (push-env)                                                  ;ÑÅ‰w¥e® ”Ï¡    
+  (push-env)                                                  ;í™˜ê²½ë³€ìˆ˜ ëŒ€í”¼    
     
   (setq ds (getvar "DIMSCALE"))    
-  (setq oldclt (getvar "CELTYPE"))                            ;Ñe¸ œa·¥Èa·³ ”Ï¡    
-  (setq oldclr (getvar "CECOLOR"))                            ;Ñe¸ Äiœa ”Ï¡    
+  (setq oldclt (getvar "CELTYPE"))                            ;í˜„ì¬ ë¼ì¸íƒ€ì… ëŒ€í”¼    
+  (setq oldclr (getvar "CECOLOR"))                            ;í˜„ì¬ ì¹¼ë¼ ëŒ€í”¼    
     
-  (setq s-pnt (getpoint "\nPick start point: "))              ;¯¡¸b¸ñ ·³b    
-  (setq pd (getdist "\nPile diameter (mm): "))                ;Ìa·© »¡Ÿq ·³b    
-  (setq rdo (/ pd 2.0))                                       ;Ìa·© ¤e»¡Ÿq ·³b    
-  (setq pl (getdist s-pnt "\nPile length (m): "))             ;Ìa·© ‹©·¡ ·³b    
-  (setq pl (* pl 1000.0))                                     ;mm”e¶á¡ ÑÅ¬e    
+  (setq s-pnt (getpoint "\nPick start point: "))              ;ì‹œì‘ì  ì…ë ¥    
+  (setq pd (getdist "\nPile diameter (mm): "))                ;íŒŒì¼ ì§€ë¦„ ì…ë ¥    
+  (setq rdo (/ pd 2.0))                                       ;íŒŒì¼ ë°˜ì§€ë¦„ ì…ë ¥    
+  (setq pl (getdist s-pnt "\nPile length (m): "))             ;íŒŒì¼ ê¸¸ì´ ì…ë ¥    
+  (setq pl (* pl 1000.0))                                     ;mmë‹¨ìœ„ë¡œ í™˜ì‚°    
   (initget "Tilt Angle")    
-  (setq tang (getreal "\nAngle/<1:?>: "))       ;1:?¡ ·³bĞaa¡e "T"Ÿi ·³b    
+  (setq tang (getreal "\nAngle/<1:?>: "))       ;1:?ë¡œ ì…ë ¥í•˜ë ¤ë©´ "T"ë¥¼ ì…ë ¥    
   (if (= tang "Angle")    
     (progn    
-      (setq tang (getreal "\nAngle (Degree): "))      ;ˆb•¡ ·³b    
-      (setq ang (+ (dtor tang) (* pi (/ 3.0 2.0))))   ;radian·a¡ Ã¡ÑÅ    
-      (setq pl  (/ pl (cos tang)))                    ;‰w¬aÌa·©‹©·¡    
+      (setq tang (getreal "\nAngle (Degree): "))      ;ê°ë„ ì…ë ¥    
+      (setq ang (+ (dtor tang) (* pi (/ 3.0 2.0))))   ;radianìœ¼ë¡œ ì¹˜í™˜    
+      (setq pl  (/ pl (cos tang)))                    ;ê²½ì‚¬íŒŒì¼ê¸¸ì´    
     ) ;of progn    
     (if (or (= tang 0) (= tang nil))    
-      (setq ang (* pi (/ 3.0 2.0)))                          ;radian·a¡ Ã¡ÑÅ    
-      (setq ang (+ (* pi (/ 3.0 2.0)) (atan (/ 1.0 tang)))   ;‹¡¶‰‹¡ˆt·i ˆb•¡¡ ÑÅ¬e    
-            pl  (/ pl (cos (atan (/ 1.0 tang)))))            ;‰w¬aÌa·©‹©·¡    
+      (setq ang (* pi (/ 3.0 2.0)))                          ;radianìœ¼ë¡œ ì¹˜í™˜    
+      (setq ang (+ (* pi (/ 3.0 2.0)) (atan (/ 1.0 tang)))   ;ê¸°ìš¸ê¸°ê°’ì„ ê°ë„ë¡œ í™˜ì‚°    
+            pl  (/ pl (cos (atan (/ 1.0 tang)))))            ;ê²½ì‚¬íŒŒì¼ê¸¸ì´    
     ) ;of IF    
   ) ;of if    
     
-  (setq tdsto (abs (/ rdo (sin ang))))        ;Ìa·©‰w¬aµA ˜aŸe Ìa·© ¤e‰w· ‹©·¡    
+  (setq tdsto (abs (/ rdo (sin ang))))        ;íŒŒì¼ê²½ì‚¬ì— ë”°ë¥¸ íŒŒì¼ ë°˜ê²½ì˜ ê¸¸ì´    
     
-  (setq e-pnt (polar s-pnt ang pl))                   ;Ìa·© º—¯± {¸ñ    
+  (setq e-pnt (polar s-pnt ang pl))                   ;íŒŒì¼ ì¤‘ì‹¬ ëì     
     
-  (setq sl-pnt0 (polar s-pnt (- ang (/ pi 2.0)) rdo)) ;Ìa·©· ¶AÃb ¹ÁÃb(ˆa¬w)¯¡¸ñ    
-  (setq sr-pnt0 (polar s-pnt (+ ang (/ pi 2.0)) rdo)) ;Ìa·©· ¶AÃb ¶Ãb(ˆa¬w)¯¡¸ñ    
+  (setq sl-pnt0 (polar s-pnt (- ang (/ pi 2.0)) rdo)) ;íŒŒì¼ì˜ ì™¸ì¸¡ ì¢Œì¸¡(ê°€ìƒ)ì‹œì     
+  (setq sr-pnt0 (polar s-pnt (+ ang (/ pi 2.0)) rdo)) ;íŒŒì¼ì˜ ì™¸ì¸¡ ìš°ì¸¡(ê°€ìƒ)ì‹œì     
     
-  (setq sl-pnt (list (- (car s-pnt) tdsto) (cadr s-pnt) 0.0))    ;¹Á¶AÃb ¯¡¸ñ    
-  (setq sr-pnt (list (+ (car s-pnt) tdsto) (cadr s-pnt) 0.0))    ;¶¶AÃb ¯¡¸ñ    
+  (setq sl-pnt (list (- (car s-pnt) tdsto) (cadr s-pnt) 0.0))    ;ì¢Œì™¸ì¸¡ ì‹œì     
+  (setq sr-pnt (list (+ (car s-pnt) tdsto) (cadr s-pnt) 0.0))    ;ìš°ì™¸ì¸¡ ì‹œì     
     
-  (setq el-pnt (polar sl-pnt0 ang pl))                   ;Ìa·© ¹Á¶AÃb {¸ñ    
-  (setq er-pnt (polar sr-pnt0 ang pl))                   ;Ìa·© ¶¶AÃb {¸ñ    
+  (setq el-pnt (polar sl-pnt0 ang pl))                   ;íŒŒì¼ ì¢Œì™¸ì¸¡ ëì     
+  (setq er-pnt (polar sr-pnt0 ang pl))                   ;íŒŒì¼ ìš°ì™¸ì¸¡ ëì     
     
     
-  (setvar "CELTYPE" "BYLAYER")            ;œa·¥Èa·³·i ¯©¬å·a¡    
-;  (command "LINE" sl-pnt el-pnt "")       ;¶E½¢ ¤aŒ{¬å‰Á    
-;  (command "LINE" sr-pnt er-pnt "")       ;µ¡Ÿe½¢ ¤aŒ{¬å ‹aŸ¡‹¡    
-;  (command "LINE" el-pnt er-pnt "")       ;{”e ‹aŸ¡‹¡    
+  (setvar "CELTYPE" "BYLAYER")            ;ë¼ì¸íƒ€ì…ì„ ì‹¤ì„ ìœ¼ë¡œ    
+;  (command "LINE" sl-pnt el-pnt "")       ;ì™¼ìª½ ë°”ê¹¥ì„ ê³¼    
+;  (command "LINE" sr-pnt er-pnt "")       ;ì˜¤ë¥¸ìª½ ë°”ê¹¥ì„  ê·¸ë¦¬ê¸°    
+;  (command "LINE" el-pnt er-pnt "")       ;ëë‹¨ ê·¸ë¦¬ê¸°    
     
-  ;¶‰Ê—¦‰Ê— ¬å ‹aŸ¡‹¡    
-  (pado el-pnt sl-pnt ulbulh ulbull)            ;¶‰Ê—¦‰Ê— ‹aŸ¡‹¡(¶E½¢)    
-  (pado sr-pnt er-pnt ulbulh ulbull)            ;¶‰Ê—¦‰Ê— ‹aŸ¡‹¡(µ¡Ÿe½¢)    
-  (pado er-pnt el-pnt ulbulh ulbull)            ;¶‰Ê—¦‰Ê— ‹aŸ¡‹¡(¤a”b)    
+  ;ìš¸í‰ë¶ˆí‰ ì„  ê·¸ë¦¬ê¸°    
+  (pado el-pnt sl-pnt ulbulh ulbull)            ;ìš¸í‰ë¶ˆí‰ ê·¸ë¦¬ê¸°(ì™¼ìª½)    
+  (pado sr-pnt er-pnt ulbulh ulbull)            ;ìš¸í‰ë¶ˆí‰ ê·¸ë¦¬ê¸°(ì˜¤ë¥¸ìª½)    
+  (pado er-pnt el-pnt ulbulh ulbull)            ;ìš¸í‰ë¶ˆí‰ ê·¸ë¦¬ê¸°(ë°”ë‹¥)    
     
-  (setvar "CELTYPE" "CENTER")             ;œa·¥ Èa·³·i ·©¸ñ­á¬å·a¡    
-  (setvar "CECOLOR" "RED")                ;¨iˆe¬‚·a¡ ¤a¡¬á    
-  (command "LINE" s-pnt e-pnt "")         ;º—¯±¬å ‹aŸ¡‹¡    
+  (setvar "CELTYPE" "CENTER")             ;ë¼ì¸ íƒ€ì…ì„ ì¼ì ì‡„ì„ ìœ¼ë¡œ    
+  (setvar "CECOLOR" "RED")                ;ë¹¨ê°„ìƒ‰ìœ¼ë¡œ ë°”ê¿”ì„œ    
+  (command "LINE" s-pnt e-pnt "")         ;ì¤‘ì‹¬ì„  ê·¸ë¦¬ê¸°    
     
-  (setvar "CECOLOR" "GREEN")              ;¬‚Œi·e Á¡¢¬‚    
-  (setvar "CELTYPE" "BYLAYER")            ;œa·¥Èa·³·e ¯©¬å    
-;  (hround s-pnt e-pnt sl-pnt el-pnt)      ;¶E½¢ œa¶…—· ‹aŸ¡‹¡    
-;  (hround s-pnt e-pnt sr-pnt er-pnt)      ;µ¡Ÿe½¢ œa¶…—· ‹aŸ¡‹¡    
+  (setvar "CECOLOR" "GREEN")              ;ìƒ‰ê¹”ì€ ì´ˆë¡ìƒ‰    
+  (setvar "CELTYPE" "BYLAYER")            ;ë¼ì¸íƒ€ì…ì€ ì‹¤ì„     
+;  (hround s-pnt e-pnt sl-pnt el-pnt)      ;ì™¼ìª½ ë¼ìš´ë”© ê·¸ë¦¬ê¸°    
+;  (hround s-pnt e-pnt sr-pnt er-pnt)      ;ì˜¤ë¥¸ìª½ ë¼ìš´ë”© ê·¸ë¦¬ê¸°    
     
-  (setvar "CECOLOR" oldclr)               ;¶¥œ¬‚Œi¡ ¥¢Šá¯¡Ç¡‹¡    
-  (setvar "CELTYPE" oldclt)               ;¶¥œ œa·¥Èa·³·a¡ ¥¢Šá¯¡Ç¡‹¡    
+  (setvar "CECOLOR" oldclr)               ;ì›ë˜ìƒ‰ê¹”ë¡œ ë³µê·€ì‹œí‚¤ê¸°    
+  (setvar "CELTYPE" oldclt)               ;ì›ë˜ ë¼ì¸íƒ€ì…ìœ¼ë¡œ ë³µê·€ì‹œí‚¤ê¸°    
     
-  (pop-env)                               ;”Ï¡¯¡Åa–… ÑÅ‰w¥e® ¥¢Šá    
+  (pop-env)                               ;ëŒ€í”¼ì‹œì¼œë‘” í™˜ê²½ë³€ìˆ˜ ë³µê·€    
 ;  (setq *error* oer seterr nil)    
   (princ)    
 ) ;of defun    
@@ -98,16 +98,16 @@ sl-pnt0 sr-pnt0 sl-pnt sr-pnt el-pnt er-pnt
 ;            1995. 3. 16    
 ;**************************************    
     
-(defun HROUND(p1s p1e p2s p2e /       ;¤e œa¶…—··i Ğº“e Function    
-sdst edst lpnts lpnte ds p1s p1e      ;Argument“e –¬å· ¯¡¸b¸ñ‰Á {¸ñ    
+(defun HROUND(p1s p1e p2s p2e /       ;ë°˜ ë¼ìš´ë”©ì„ í•´ì£¼ëŠ” Function    
+sdst edst lpnts lpnte ds p1s p1e      ;ArgumentëŠ” ë‘ì„ ì˜ ì‹œì‘ì ê³¼ ëì     
 oldclr    
 )    
     
-(setq ds (getvar "DIMSCALE"))         ;DIMSCALE·i ´i´a…”a.    
+(setq ds (getvar "DIMSCALE"))         ;DIMSCALEì„ ì•Œì•„ë‚¸ë‹¤.    
     
-(setq ssdst (distance p1s p2s))     ;Àõœa·¥· ¯¡¸b¸ñµA¬á –¼œa·¥· ¯¡¸b¸ñˆáŸ¡    
-(setq sedst (distance p1s p2e))     ;Àõœa·¥· ¯¡¸b¸ñµA¬á –¼œa·¥· {¸ñˆáŸ¡    
-(if (< sedst ssdst)                 ;¶á· – ˆáŸ¡º— ˆaŒa¶…½¢·¡ ¯¡¸b¸ñ·¡ –E”a    
+(setq ssdst (distance p1s p2s))     ;ì²«ë¼ì¸ì˜ ì‹œì‘ì ì—ì„œ ë‘ì§¸ë¼ì¸ì˜ ì‹œì‘ì ê±°ë¦¬    
+(setq sedst (distance p1s p2e))     ;ì²«ë¼ì¸ì˜ ì‹œì‘ì ì—ì„œ ë‘ì§¸ë¼ì¸ì˜ ëì ê±°ë¦¬    
+(if (< sedst ssdst)                 ;ìœ„ì˜ ë‘ ê±°ë¦¬ì¤‘ ê°€ê¹Œìš´ìª½ì´ ì‹œì‘ì ì´ ëœë‹¤    
   (progn    
     (setq tmp p2s)    
     (setq p2s p2e)    
@@ -115,65 +115,65 @@ oldclr
   ) ;of progn    
 ) ; of if    
     
-(setq sdst (distance p1s p2s))    ;Àõ¼œa·¥ ¯¡¸b¸ñµA¬á –‰¼œa·¥ ¯¡¸b¸ñŒa»¡ ˆáŸ¡    
-(setq edst (distance p1e p2e))    ;Àõ¼œa·¥ {¸ñµA¬á –‰¼œa·¥ {¸ñŒa»¡ ˆáŸ¡    
+(setq sdst (distance p1s p2s))    ;ì²«ì§¸ë¼ì¸ ì‹œì‘ì ì—ì„œ ë‘˜ì§¸ë¼ì¸ ì‹œì‘ì ê¹Œì§€ ê±°ë¦¬    
+(setq edst (distance p1e p2e))    ;ì²«ì§¸ë¼ì¸ ëì ì—ì„œ ë‘˜ì§¸ë¼ì¸ ëì ê¹Œì§€ ê±°ë¦¬    
     
-             ;– ¬åˆe· ˆáŸ¡ˆa 2£¡Ÿ¡·¡¬w ·©˜ e – ¬å· º—ˆeµA”a ¬å·i ‹aŸ¥”a    
+             ;ë‘ ì„ ê°„ì˜ ê±°ë¦¬ê°€ 2ë¯¸ë¦¬ì´ìƒ ì¼ë•Œë§Œ ë‘ ì„ ì˜ ì¤‘ê°„ì—ë‹¤ ì„ ì„ ê·¸ë¦°ë‹¤    
 (setq oldclr (getvar "CECOLOR"))    
 (setvar "CECOLOR" "GREEN")    
 (while (or (> sdst (* ds 1.0)) (> edst (* ds 1.0)))    
-  (setq lpnts (list (/ (+ (car p1s) (car p2s)) 2.0)      ;– ¯¡¸b¸ñ· º—ˆe¸ñ X    
+  (setq lpnts (list (/ (+ (car p1s) (car p2s)) 2.0)      ;ë‘ ì‹œì‘ì ì˜ ì¤‘ê°„ì  X    
                     (/ (+ (cadr p1s) (cadr p2s)) 2.0)))  ;                   Y    
-  (setq lpnte (list (/ (+ (car p1e) (car p2e)) 2.0)      ;– {¸ñ· º—ˆe¸ñ   X    
+  (setq lpnte (list (/ (+ (car p1e) (car p2e)) 2.0)      ;ë‘ ëì ì˜ ì¤‘ê°„ì    X    
                     (/ (+ (cadr p1e) (cadr p2e)) 2.0)))  ;                   Y    
-  (command "LINE" lpnts lpnte "")     ; º—ˆe¬å·i ‹aŸ¥”a    
-  (setq p1s lpnts)             ;º—ˆe¬å· ¯¡¸b¸ñ·i Àõ¼¬å· ¯¡¸b¸ñ·a¡ ¤a…”a    
-  (setq p1e lpnte)             ;º—ˆe¬å· {¸ñ·i Àõ¼¬å· {¸ñ·a¡ ¤a…”a    
-  (setq sdst (distance lpnts p2s))  ;– ¯¡¸b¸ñˆe· ˆáŸ¡Ÿi ŠĞe”a    
-  (setq edst (distance lpnte p2e))  ;– {¸ñˆe· ˆáŸ¡Ÿi ŠĞe”a    
+  (command "LINE" lpnts lpnte "")     ; ì¤‘ê°„ì„ ì„ ê·¸ë¦°ë‹¤    
+  (setq p1s lpnts)             ;ì¤‘ê°„ì„ ì˜ ì‹œì‘ì ì„ ì²«ì§¸ì„ ì˜ ì‹œì‘ì ìœ¼ë¡œ ë°”ê¾¼ë‹¤    
+  (setq p1e lpnte)             ;ì¤‘ê°„ì„ ì˜ ëì ì„ ì²«ì§¸ì„ ì˜ ëì ìœ¼ë¡œ ë°”ê¾¼ë‹¤    
+  (setq sdst (distance lpnts p2s))  ;ë‘ ì‹œì‘ì ê°„ì˜ ê±°ë¦¬ë¥¼ êµ¬í•œë‹¤    
+  (setq edst (distance lpnte p2e))  ;ë‘ ëì ê°„ì˜ ê±°ë¦¬ë¥¼ êµ¬í•œë‹¤    
 ) ;of while    
 (setvar "CECOLOR" oldclr)    
 ) ;of defun HROUND    
     
 ;***************************************    
 ; Function : PADO    
-;            ¢‰‰i¢“‹aaº‹¡    
-;            ·¡¬â¹·    
+;            ë¬¼ê²°ë¬´ëŠ¬ê·¸ë ¤ì£¼ê¸°    
+;            ì´ì„ì¢…    
 ;            Yi Suk Jong    
 ;***************************************    
-; ñ´áµ¡“e ˆt    
-;  p1,p2      :  ¯¡¸b¸ñ {¸ñ    
-;  h, l       : Ìa•¡ ‘¼·¡, ‹©·¡, ¤e»¡Ÿq    
+; ë„˜ì–´ì˜¤ëŠ” ê°’    
+;  p1,p2      :  ì‹œì‘ì  ëì     
+;  h, l       : íŒŒë„ ë†’ì´, ê¸¸ì´, ë°˜ì§€ë¦„    
 ;***************************************    
 ;    
     
 (defun pado(p1 p2 h l    
 /    
  )    
- (setq leng (distance p1 p2))                   ;¯¡¸b¸ñµA¬á {¸ñŒa»¡ ˆáŸ¡    
- (setq ang (angle p1 p2))                       ;¯¡¸b¸ñµA¬á {¸ñŒa»¡ ˆb•¡    
- (setq n (fix (/ leng l)))                      ;Ìa•¡ ˆ•®    
- (setq newl (/ leng n))                         ;ÂA¹· Ìa•¡· ‹©·¡    
- (setq ang_p90 (+ ang (* pi 0.5)))               ;ˆb•¡+90•¡    
+ (setq leng (distance p1 p2))                   ;ì‹œì‘ì ì—ì„œ ëì ê¹Œì§€ ê±°ë¦¬    
+ (setq ang (angle p1 p2))                       ;ì‹œì‘ì ì—ì„œ ëì ê¹Œì§€ ê°ë„    
+ (setq n (fix (/ leng l)))                      ;íŒŒë„ ê°¯ìˆ˜    
+ (setq newl (/ leng n))                         ;ìµœì¢… íŒŒë„ì˜ ê¸¸ì´    
+ (setq ang_p90 (+ ang (* pi 0.5)))               ;ê°ë„+90ë„    
     
- ;Àõ¤å¼ Ìa•¡ ‹aŸ¡‹¡ £¹ ¸÷¥¡ ´è´á‹¡    
+ ;ì²«ë²ˆì§¸ íŒŒë„ ê·¸ë¦¬ê¸° ë° ì •ë³´ ì–»ì–´ë‚´ê¸°    
  (setq pnt1 (polar (polar p1 ang (* newl 0.5)) ang_p90 h)    
        pnt2 (polar p1 ang newl)    
        pnt3 (polar (polar p1 ang (* newl 1.5)) ang_p90 h))    
     
     
 ; (command "ARC" pnt1 pnt2 pnt3)    
-; (setq r (cdr (assoc 40 (entget (entlast)))))    ;Ñ¡· ¤e»¡Ÿq ŠĞa‹¡    
+; (setq r (cdr (assoc 40 (entget (entlast)))))    ;í˜¸ì˜ ë°˜ì§€ë¦„ êµ¬í•˜ê¸°    
  (setq alpha (atan (/ (* 0.5 l) h))    
-       r (* (sin (- pi (* 2 alpha)))              ;Ñ¡· ¤e»¡Ÿq ŠĞa‹¡    
+       r (* (sin (- pi (* 2 alpha)))              ;í˜¸ì˜ ë°˜ì§€ë¦„ êµ¬í•˜ê¸°    
             (sqrt (+ (* h h) (* l l 0.25)))))    
     
 (command "PLINE" p1 "A" "R" r pnt1)    
     
- ;Àõ ¤eÑ¡ ‹aŸ¡‹¡    
+ ;ì²« ë°˜í˜¸ ê·¸ë¦¬ê¸°    
 ; (command "ARC" p1 "e" pnt1 "r" r)    
     
- (setq count 1)       ;–¤å¼ Ìa•¡¦Èá    
+ (setq count 1)       ;ë‘ë²ˆì§¸ íŒŒë„ë¶€í„°    
  (repeat (- n 1)    
    (setq pnt1 (polar (polar p1 ang (* newl (- count 0.5))) ang_p90 h)    
          pnt2 (polar p1 ang (* newl count ))    
@@ -182,11 +182,11 @@ oldclr
 ;   (command "ARC" pnt1 pnt2 pnt3)    
    (command "s" pnt2 pnt3)    
     
-   (setq count (1+ count))                      ;”a·q Ìa•¡¡    
+   (setq count (1+ count))                      ;ë‹¤ìŒ íŒŒë„ë¡œ    
     
  );repeat    
     
- ; a»¡ b ¤eÑ¡ ‹aŸ¡‹¡    
+ ;ë§ˆì§€ë§‰ ë°˜í˜¸ ê·¸ë¦¬ê¸°    
 ; (command "ARC" pnt3 "e" p2 "r" r)    
  (command "r" r p2 "")    
     

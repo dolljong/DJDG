@@ -3,7 +3,7 @@
 ;               By  Yi Suk Jong
 ;                        95/4/14
 ;**************************************************
-;entityŸi Àé‹e· ¬‚‰Á line type·a¡ ¤a¡º…”a. (‘¡œe¬‚, bylayer)
+;entityë¥¼ ì² ê·¼ì˜ ìƒ‰ê³¼ line typeìœ¼ë¡œ ë°”ê¿”ì¤€ë‹¤. (ë…¸ë€ìƒ‰, bylayer)
 ;**************************************************
 
 (defun C:CHB(/
@@ -25,7 +25,7 @@
     (setq ent (entget e))
     (setq oldlt (assoc 6 ent))
     (setq oldc (assoc 62 ent))
-;œa·¥Èa·³¤a‹¡
+;ë¼ì¸íƒ€ì…ë°”ê¾¸ê¸°
     (if (= oldlt nil)
        (setq ent (append ent (list (cons 6 "CONTINUOUS"))))
        (progn
@@ -33,7 +33,7 @@
           (setq ent (subst newlt oldlt ent))
        ) ; progn
     ) ; if
-;¬‚Œi ¤a‹¡
+;ìƒ‰ê¹” ë°”ê¾¸ê¸°
     (if (= oldc nil)
        (setq ent (append ent (list (cons 62 2))))
        (progn

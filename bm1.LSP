@@ -4,8 +4,8 @@
 ;             By Jong-Suk Yi    
 ;             95/3/2, 96/5/7    
 ;********************************    
-; Àé‹e aÇ·º— ´aœ· ¡¡´··i  e—i´áº…”a.    
-;       Üç    
+; ì² ê·¼ë§ˆí‚¹ì¤‘ ì•„ë˜ì˜ ëª¨ì–‘ì„ ë§Œë“¤ì–´ì¤€ë‹¤.    
+;       ÃœÃ§    
 ;       |    
 ;       |    
 ;********************************************    
@@ -26,11 +26,11 @@ rc sp ep ang dst cp
   (setvar "CMDECHO" 0)    
   (setvar "BLIPMODE" 0)    
     
-  (setq ds (getvar "DIMSCALE")   ;¯aÅA·©ˆt    
-        th (getvar "DIMTXT"))    ;textÇa‹¡    
+  (setq ds (getvar "DIMSCALE")   ;ìŠ¤ì¼€ì¼ê°’    
+        th (getvar "DIMTXT"))    ;textí¬ê¸°    
     
-  (setq rc (* ds 4.5))          ; aÇ·¶¥ ¤e»¡Ÿq  
-  (setq th (* ds th))          ;text‘¼·¡    
+  (setq rc (* ds 4.5))          ;ë§ˆí‚¹ì› ë°˜ì§€ë¦„  
+  (setq th (* ds th))          ;textë†’ì´    
     
   (setq sp (getpoint "\nPick start point: "))    
   (setq ep (getpoint sp "\nPick end point: "))    
@@ -67,8 +67,8 @@ rc sp ep ang dst cp
 ;           Suk-Jong Yi
 ;           96/5/7
 ;********************************************
-; ¿ø ¾È¿¡ Ã¶±Ù¹øÈ£¸¦ ±âÀÔÇØÁØ´Ù.
-; ³Ñ¾î¿À´Â °ª
+; Â¿Ã¸ ì®‡ì°Œ ì¹¬ì‹ì¢¾íƒºìŸ ì‘ì²Ã‡Ã˜ì´ºì–¯.
+; Â³Ã‘ì®©Â¿ì±²Ã‚ ìŒ¹
 ;         TXT: TEXT
 ;        IPNT: Insert point
 ;      TXTROT: TeXT ROTation
@@ -77,7 +77,7 @@ rc sp ep ang dst cp
 (defun TXTINC(TXT IPNT TXTROT / th ds)
 
   (setq th (getvar "DIMTXT")
-	ds (getvar "DIMSCALE" ))               ;textÅ©±â=Ä¡¼öÅ©±â
+	ds (getvar "DIMSCALE" ))               ;textì½œì‘=ìº¬ì© ì½œì‘
 
   (setq txtl (strlen txt))
 

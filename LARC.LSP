@@ -6,7 +6,7 @@
 ;******************************************
 
 (defun c:LARC(/
-ent elist cen ra sp                     ;»¡µb¥e® ¸÷·
+ent elist cen ra sp                     ;ì§€ì—­ë³€ìˆ˜ ì •ì˜
 ep sang eang seang cl
 )
   (defun SETERR(s)

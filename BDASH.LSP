@@ -26,7 +26,7 @@
 
   (command "BREAK" sel "F" fpnt spnt)
 
-  (if (= (tblsearch "LTYPE" "HIDDEN") nil)         ; e·© Hidden type ґф·aЎe load
+  (if (= (tblsearch "LTYPE" "HIDDEN") nil)         ;л§Њмќј Hidden type м—†мњјл©ґ load
     (command "LINETYPE" "L" "HIDDEN" "ACAD" "")
   ) ;of if
 

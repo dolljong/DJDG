@@ -4,30 +4,30 @@
 ;           99/9/9
 ;-------------------
 (defun c:wbname()
-  (setq ss (ssget '((0 . "TEXT"))))                 ;text entity·³b
-  (setq ns (sslength ss))                           ;selection set· entityˆ•®
-;  (setq fname (strcat (getvar "dwgprefix") "/"))    ;filename·i ¤w·¡Ÿq·a¡
-  (setq fname (getvar "dwgprefix"))    ;filename·i ¤w·¡Ÿq·a¡
+  (setq ss (ssget '((0 . "TEXT"))))                 ;text entityì…ë ¥
+  (setq ns (sslength ss))                           ;selection setì˜ entityê°¯ìˆ˜
+;  (setq fname (strcat (getvar "dwgprefix") "/"))    ;filenameì„ ë°©ì´ë¦„ìœ¼ë¡œ
+  (setq fname (getvar "dwgprefix"))    ;filenameì„ ë°©ì´ë¦„ìœ¼ë¡œ
   (setq index 0)
   (repeat ns
-    (setq txt (cdr (assoc 1 (entget (ssname ss index))))) ;textˆt
+    (setq txt (cdr (assoc 1 (entget (ssname ss index))))) ;textê°’
     (if (> index 0)
-      (setq fname (strcat fname "-" txt))   ;–¤å¼ text¦Èá“e text´|µA "-"Âˆa
-      (setq fname (strcat fname txt))       ;Àõ¤å¼ text·¥ ‰w¶µE ¤w·¡ŸqµA ¦›·±
+      (setq fname (strcat fname "-" txt))   ;ë‘ë²ˆì§¸ textë¶€í„°ëŠ” textì•ì— "-"ì¶”ê°€
+      (setq fname (strcat fname txt))       ;ì²«ë²ˆì§¸ textì¸ ê²½ìš°ì—” ë°©ì´ë¦„ì— ë¶™ì„
     );if
     (setq index (1+ index))
   );repeat
 
-  (setq ipnt (getpoint "\nInsertion base point:")) ;¬s·³¸ñ ¬åÈ‚
-  (setq sse (ssget))                        ;wblockĞi entity¬åÈ‚
+  (setq ipnt (getpoint "\nInsertion base point:")) ;ì‚½ì…ì  ì„ íƒ
+  (setq sse (ssget))                        ;wblockí•  entityì„ íƒ
 
-  (setvar "FILEDIA" 0)                      ;¡ww»¥Ğ—¯¡ dialog box›a»¡ ´g•¡¢
+  (setvar "FILEDIA" 0)                      ;ëª…ë ¹ì§„í–‰ì‹œ dialog boxëœ¨ì§€ ì•Šë„ë¡
 
-  (command "WBLOCK"          ;wblock¡ww ¯©Ğ—
+  (command "WBLOCK"          ;wblockëª…ë ¹ ì‹¤í–‰
            fname             ;filename
            ""                ;block name
            ipnt              ;insert point
-           sse               ;¬åÈ‚–E entity
+           sse               ;ì„ íƒëœ entity
            "")               ;end selection
            
   (command "oops")

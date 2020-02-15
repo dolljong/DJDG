@@ -4,7 +4,7 @@
 ;           Suk-Jong Yi
 ;           96/5/28
 ;**************************************
-; ¯A¹ÁÎa•¡· ¯A aÇ·
+; ìŠˆì¢Œí‘œë„ì˜ ìŠˆë§ˆí‚¹
 ;**************************************
 
 (defun C:SHOE(/)
@@ -18,43 +18,43 @@
   ); of SETERR
   (setq oer *error* *error* seterr)
 
-  (push-env)                                                    ;ÑÅ‰w¥e®”Ï¡
+  (push-env)                                                    ;í™˜ê²½ë³€ìˆ˜ëŒ€í”¼
 
-  (setq ds (getvar "DIMSCALE"))                                 ;¯aÅA·©ˆt
+  (setq ds (getvar "DIMSCALE"))                                 ;ìŠ¤ì¼€ì¼ê°’
 
 ;  (setvar "cmdecho" 1)
 
-  (setq ent (entget (car (entsel "\nSelect Chain: "))))         ;ÁA·¥¬åÈ‚
-  (setq pnt (getpoint "\nPick shoe insert point: "))            ;¬s·³¸ñ
+  (setq ent (entget (car (entsel "\nSelect Chain: "))))         ;ì²´ì¸ì„ íƒ
+  (setq pnt (getpoint "\nPick shoe insert point: "))            ;ì‚½ì…ì 
   (initget "Fix Longi- Trans- 2-dir")
   (setq tp (getkword "\nMOVE Fix/Longi-/Trans-/2-dir: "))
 
-  (setq enty (cdr (assoc 0 ent)))                               ;µEË¡Ë¡ ¹·ŸA
+  (setq enty (cdr (assoc 0 ent)))                               ;ì—”í‹°í‹° ì¢…ë¥˜
 
   (cond
     ((= enty "LINE")
-      (setq ang (angle (cdr (assoc 10 ent)) (cdr (assoc 11 ent)))) ;chain· ˆb
+      (setq ang (angle (cdr (assoc 10 ent)) (cdr (assoc 11 ent)))) ;chainì˜ ê°
     ) ;of LINE
     ((or (= enty "CIRCLE") (= enty "ARC"))
-      (setq ang (+ (/ pi 2) (angle (cdr (assoc 10 ent)) pnt)))           ;chain· ˆb
+      (setq ang (+ (/ pi 2) (angle (cdr (assoc 10 ent)) pnt)))           ;chainì˜ ê°
     ) ;of CIRCLE
   ) ;of cond
 
   (cond
     ((= tp "Fix")
       (command "INSERT" (strcat (prefix) "blocks/shoemf")
-                        pnt ds "" "0")                              ;‰¡¸÷¯A
+                        pnt ds "" "0")                              ;ê³ ì •ìŠˆ
     ) ;of 0
     ((= tp "Longi-")
-      (command "INSERT" (strcat (prefix) "blocks/shoem1")          ;ŠaÂ‚¤wĞ· ˆa•·
+      (command "INSERT" (strcat (prefix) "blocks/shoem1")          ;êµì¶•ë°©í–¥ ê°€ë™
                         pnt ds "" (rtod ang))
     ) ;of Longi-
     ((= tp "Trans-")
-      (command "INSERT" (strcat (prefix) "blocks/shoem1")          ;ŠaÂ‚»¢ˆb¤wĞ· ˆa•·
+      (command "INSERT" (strcat (prefix) "blocks/shoem1")          ;êµì¶•ì§ê°ë°©í–¥ ê°€ë™
                         pnt ds "" (+ (rtod ang) 90))
     ) ;of Trans-
     ((= tp "2-dir")
-      (command "INSERT" (strcat (prefix) "blocks/shoem2")          ;´·¤wĞ· ˆa•·
+      (command "INSERT" (strcat (prefix) "blocks/shoem2")          ;ì–‘ë°©í–¥ ê°€ë™
                         pnt ds "" (rtod ang))
     ) ;of 2-dir
   ) ;of cond

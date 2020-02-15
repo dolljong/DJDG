@@ -7,7 +7,7 @@
 
 (defun C:NORTH(/)
 
-  (defun SETERR(s)                                  ;¸wµAœáË¥ ¸÷·
+  (defun SETERR(s)                                  ;ë‚´ì¥ì—ëŸ¬ë£¨í‹´ ì •ì˜
     (if (/= s "Function cancelled")
         (princ (strcat "\nError: " s))
     ); of If
@@ -15,21 +15,21 @@
     (princ)
   ); of SETERR
 
-  (setq oer *error* *error* seterr)                 ;¸wµAœáË¥ ˆa•·
+  (setq oer *error* *error* seterr)                 ;ë‚´ì¥ì—ëŸ¬ë£¨í‹´ ê°€ë™
 
-  (push-env)                                        ;ÑÅ‰w¥e® ”Ï¡
-  (setq ds (getvar "DIMSCALE"))                     ;¯aÅA·©ˆt
+  (push-env)                                        ;í™˜ê²½ë³€ìˆ˜ ëŒ€í”¼
+  (setq ds (getvar "DIMSCALE"))                     ;ìŠ¤ì¼€ì¼ê°’
 
-  (setq ip (getpoint "\nInsert point :"))           ;¬s·³¸ñ
-  (setq sp (getpoint ip "\nDirection: "))           ;¤wĞ··³b
-  (setq ang (angle ip sp))                          ;ˆb•¡
+  (setq ip (getpoint "\nInsert point :"))           ;ì‚½ì…ì 
+  (setq sp (getpoint ip "\nDirection: "))           ;ë°©í–¥ì…ë ¥
+  (setq ang (angle ip sp))                          ;ê°ë„
 
   (command "INSERT" (strcat (prefix) "blocks/north") ip
-                    ds ds (rtod ang))               ;block¬s·³
+                    ds ds (rtod ang))               ;blockì‚½ì…
 
-  (pop-env)                                         ;ÑÅ‰w¥e® ¥¢Šá
+  (pop-env)                                         ;í™˜ê²½ë³€ìˆ˜ ë³µê·€
 
-  (setq *error* oer seterr nil)                     ;µAœáË¥ ¥¢Šá
+  (setq *error* oer seterr nil)                     ;ì—ëŸ¬ë£¨í‹´ ë³µê·€
 
   (princ)
 

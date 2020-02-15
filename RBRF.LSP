@@ -4,7 +4,7 @@
 ;           By Suk-Jong Yi
 ;           1995/6/30
 ;***************************************
-; ‹¡–—· ºÀé‹e ¤‹e (¸÷¡e•¡)
+; ê¸°ë‘¥ì˜ ì£¼ì² ê·¼ ë°°ê·¼ (ì •ë©´ë„)
 
 (defun C:RBRF(/
 l1 l2 l1s l1e l2s l2e
@@ -19,13 +19,13 @@ ah bn mls mle oldc
   ); of SETERR
   (setq oer *error* *error* seterr)
 
-(setq l1 (entget (car (entsel "\nSelect first line: "))))     ;Àõ¤å¼ œa·¥ ·³b
-(setq l2 (entget (car (entsel "\nSelect second line: "))))    ;–¤å¼ œa·¥ ·³b
+(setq l1 (entget (car (entsel "\nSelect first line: "))))     ;ì²«ë²ˆì§¸ ë¼ì¸ ì…ë ¥
+(setq l2 (entget (car (entsel "\nSelect second line: "))))    ;ë‘ë²ˆì§¸ ë¼ì¸ ì…ë ¥
 
-(setq l1s (cdr (assoc 10 l1))                   ;Àõœa·¥· ¯¡¸b¸ñ
-      l1e (cdr (assoc 11 l1)))                  ;    "      {¸ñ
-(setq l2s (cdr (assoc 10 l2))                   ;–¤å¼œa·¥· ¯¡¸b¸ñ
-      l2e (cdr (assoc 11 l2)))                  ;    "          {¸ñ
+(setq l1s (cdr (assoc 10 l1))                   ;ì²«ë¼ì¸ì˜ ì‹œì‘ì 
+      l1e (cdr (assoc 11 l1)))                  ;    "      ëì 
+(setq l2s (cdr (assoc 10 l2))                   ;ë‘ë²ˆì§¸ë¼ì¸ì˜ ì‹œì‘ì 
+      l2e (cdr (assoc 11 l2)))                  ;    "          ëì 
 
 (initget "All Half")
 (setq ah (getkword "\nAll round/Half round <All round>: "))
@@ -59,7 +59,7 @@ ah bn mls mle oldc
 ;            By Suk-Jong Yi
 ;            1995/6/30
 ;****************************************
-; ‹¡–— ºÀé‹e ¤‹e (¤e¶¥)
+; ê¸°ë‘¥ ì£¼ì² ê·¼ ë°°ê·¼ (ë°˜ì›)
 
 (defun HALFR(l1s l1e l2s l2e bn /
 l1s l1e l2s l2e bn

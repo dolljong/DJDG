@@ -4,16 +4,16 @@
 ;           By Yi Suk-Jong
 ;           1998/3/10
 ;*************************************
-; Ã¡®¬å· scale·i ¤a´áº‘
+; ì¹˜ìˆ˜ì„ ì˜ scaleì„ ë°”ê¾¸ì–´ì¤Œ
 
 (defun C:CDS (/
                 ss_ent     ans     old_tvp     old_tad    new_tvp
 )
 
   ;;
-  ;; ¸w error routine
+  ;; ë‚´ì¥ error routine
   ;;
-  (defun SETERR(s)                                      ;¸w µAœáË¥ ¸÷·
+  (defun SETERR(s)                                      ;ë‚´ì¥ ì—ëŸ¬ë£¨í‹´ ì •ì˜
   ;If an error (CTRL-C) occurs when this command is active.
     (if (/= s "Function cancelled")
       (if (= s "quit / exit abort")
@@ -26,37 +26,37 @@
     (princ)
   ); of SETERR
 
-;  (setq oer *error* *error* seterr)         ;¸wµAœáË¥ˆa•·
+;  (setq oer *error* *error* seterr)         ;ë‚´ì¥ì—ëŸ¬ë£¨í‹´ê°€ë™
 
-  (push-env)                                ;ÑÅ‰w¥e® ”Ï¡
+  (push-env)                                ;í™˜ê²½ë³€ìˆ˜ ëŒ€í”¼
 
-  (setq ss_filter (list '(0 . "DIMENSION")))   ;filter»¡¸÷
-  (setq ss_ent (ssget ss_filter))               ;DIM entity¬åÈ‚
+  (setq ss_filter (list '(0 . "DIMENSION")))   ;filterì§€ì •
+  (setq ss_ent (ssget ss_filter))               ;DIM entityì„ íƒ
   (setq dsc (getreal "\nEnter Scale: "))
 
-;  (setq old_tvp (getvar "DIMTVP")           ; µ• DIM¥e® ”Ï¡
+;  (setq old_tvp (getvar "DIMTVP")           ; ì˜› DIMë³€ìˆ˜ ëŒ€í”¼
 ;        old_tad (getvar "DIMTAD"))
-  (command "DIMEDIT" "H" ss_ent "")         ;¬åÈ‚–E dimension·i home·a¡
+  (command "DIMEDIT" "H" ss_ent "")         ;ì„ íƒëœ dimensionì„ homeìœ¼ë¡œ
 
-  (setq ndim (sslength ss_ent))             ;dimension ˆ•®
+  (setq ndim (sslength ss_ent))             ;dimension ê°¯ìˆ˜
   (setq count 0)
 
-  (repeat ndim                              ;¤e¥¢ ®Ğ—
-    (setq dim_ent (entget (ssname ss_ent count)))  ;dim¸÷¥¡
-    (setq dline_point (cdr (assoc 10 dim_ent)))   ;Ã¡®¬å¸ñ
-    (setq dend_point (cdr (assoc 14 dim_ent)))    ;Ã¡®¬å»¡¸÷¸ñ(definition point)
-    (setq dim_angle (angle dend_point dline_point))     ;ˆb•¡ŠĞa‹¡
-    (setq dim_dist (distance dend_point dline_point))   ;ˆáŸ¡ŠĞa‹¡
+  (repeat ndim                              ;ë°˜ë³µ ìˆ˜í–‰
+    (setq dim_ent (entget (ssname ss_ent count)))  ;dimì •ë³´
+    (setq dline_point (cdr (assoc 10 dim_ent)))   ;ì¹˜ìˆ˜ì„ ì 
+    (setq dend_point (cdr (assoc 14 dim_ent)))    ;ì¹˜ìˆ˜ì„ ì§€ì •ì (definition point)
+    (setq dim_angle (angle dend_point dline_point))     ;ê°ë„êµ¬í•˜ê¸°
+    (setq dim_dist (distance dend_point dline_point))   ;ê±°ë¦¬êµ¬í•˜ê¸°
     (setq new_dline_point
-          (polar dend_point dim_angle (* dim_dist dsc)));¬ Ã¡®¬å¸ñ ŠĞa‹¡
+          (polar dend_point dim_angle (* dim_dist dsc)));ìƒˆ ì¹˜ìˆ˜ì„ ì  êµ¬í•˜ê¸°
     (setq ass10 (assoc 10 dim_ent))                     ;assoc 10
-    (setq newass10 (cons (car ass10) new_dline_point))  ;¬¸ñ
+    (setq newass10 (cons (car ass10) new_dline_point))  ;ìƒˆì 
     (setq new_ent (subst newass10 ass10 dim_ent))       ;
-    (entmod new_ent)                                    ;®¸÷Ğa‹¡
-    (setq count (1+ count))                 ;”a·qÃ¡®¬å·a¡
+    (entmod new_ent)                                    ;ìˆ˜ì •í•˜ê¸°
+    (setq count (1+ count))                 ;ë‹¤ìŒì¹˜ìˆ˜ì„ ìœ¼ë¡œ
   ) ;of repeat
 
-  (pop-env)                                ;ÑÅ‰w¥e® ¥¢Šá
+  (pop-env)                                ;í™˜ê²½ë³€ìˆ˜ ë³µê·€
 
   (princ)
 

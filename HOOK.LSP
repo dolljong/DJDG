@@ -4,7 +4,7 @@
 ;           Suk-Jong Yi
 ;           96/5/23
 ;***************************************
-; ˆi‰¡Ÿ¡ Àé‹e·i ‹aaº…”a.(90•¡, 180•¡)
+; ê°ˆê³ ë¦¬ ì² ê·¼ì„ ê·¸ë ¤ì¤€ë‹¤.(90ë„, 180ë„)
 ;***************************************
 
 (defun C:HOOK(/)
@@ -18,72 +18,72 @@
   ); of SETERR
   (setq oer *error* *error* seterr)
 
-  (push-env)                                                    ;ÑÅ‰w¥e® ”Ï¡
+  (push-env)                                                    ;í™˜ê²½ë³€ìˆ˜ ëŒ€í”¼
 
-  (setq r (getreal "\nRadius: "))                               ;¤e»¡Ÿq
-  (setq l (getreal "\nLength: "))                               ;ˆi‰¡Ÿ¡‹©·¡
+  (setq r (getreal "\nRadius: "))                               ;ë°˜ì§€ë¦„
+  (setq l (getreal "\nLength: "))                               ;ê°ˆê³ ë¦¬ê¸¸ì´
 
   (initget "90 180")
-  (setq ans (getkword "\n90 180 <90>: "))                       ;90•¡ 180•¡ ˆi‰¡Ÿ¡¬åÈ‚
-  (if (= ans nil) (setq ans 90))                                ;return·³b¯¡ 90•¡¡
+  (setq ans (getkword "\n90 180 <90>: "))                       ;90ë„ 180ë„ ê°ˆê³ ë¦¬ì„ íƒ
+  (if (= ans nil) (setq ans 90))                                ;returnì…ë ¥ì‹œ 90ë„ë¡œ
 
-  (setq lent (entget (car (entsel "\nSelect LINE: "))))         ;line¬åÈ‚
+  (setq lent (entget (car (entsel "\nSelect LINE: "))))         ;lineì„ íƒ
   (setq spnt (cdr (assoc 10 lent))
-        epnt (cdr (assoc 11 lent))                              ;¯¡¸b¸ñ‰Á {¸ñ
-        newc (cdr (assoc 62 lent)))                             ;¯¡¸b¸ñ‰Á {¸ñ
+        epnt (cdr (assoc 11 lent))                              ;ì‹œì‘ì ê³¼ ëì 
+        newc (cdr (assoc 62 lent)))                             ;ì‹œì‘ì ê³¼ ëì 
 
-;  (setq angse (angle spnt epnt))                                ;¯¡¸b¸ñ‰Á {¸ñ·¡ ·¡“e ˆb
+;  (setq angse (angle spnt epnt))                                ;ì‹œì‘ì ê³¼ ëì ì´ ì´ë£¨ëŠ” ê°
 
-  (setq pnt (getpoint "\Pick end point: "))                     ;ˆi‰¡Ÿ¡ {¸ñ ·³b
+  (setq pnt (getpoint "\Pick end point: "))                     ;ê°ˆê³ ë¦¬ ëì  ì…ë ¥
 
-  (setq dstsp (distance spnt pnt)                               ;¯¡¸b¸ñµA¬á ˆáŸ¡
-        dstep (distance epnt pnt)                               ;{¸ñµA¬á ˆáŸ¡
-        dstse (distance spnt epnt))                             ;¯¡¸b¸ñµA¬á {¸ñŒa»¡ ˆáŸ¡
+  (setq dstsp (distance spnt pnt)                               ;ì‹œì‘ì ì—ì„œ ê±°ë¦¬
+        dstep (distance epnt pnt)                               ;ëì ì—ì„œ ê±°ë¦¬
+        dstse (distance spnt epnt))                             ;ì‹œì‘ì ì—ì„œ ëì ê¹Œì§€ ê±°ë¦¬
 
   (if (<= dstsp dstep)
-    (setq p1 spnt                                               ;ˆaŒa¶…½¢ ¸ñ·i p1
-          p2 epnt)                                              ; å½¢ ¸ñ·i p2
+    (setq p1 spnt                                               ;ê°€ê¹Œìš´ìª½ ì ì„ p1
+          p2 epnt)                                              ;ë¨¼ìª½ ì ì„ p2
     (setq p1 epnt
           p2 spnt))
 
-  (setq ang (angle p2 p1))                                      ;¯¡¸b¸ñ~{¸ñ ˆb
-  (setq tmp (polar pnt (+ (/ pi 2.0) ang) 1))                ;œa·¥‰Á {¸ñ· ŠaÀa¸ñ Àx‹¡ ¶áĞe ·±¯¡ ¸ñ
-  (setq pnt (inters p2 p1 tmp pnt nil))                     ;ˆi‰¡Ÿ¡ {¸ñ‰Á œa·¥‰Á· ŠaÀa¸ñ
+  (setq ang (angle p2 p1))                                      ;ì‹œì‘ì ~ëì  ê°
+  (setq tmp (polar pnt (+ (/ pi 2.0) ang) 1))                ;ë¼ì¸ê³¼ ëì ì˜ êµì°¨ì  ì°¾ê¸° ìœ„í•œ ì„ì‹œ ì 
+  (setq pnt (inters p2 p1 tmp pnt nil))                     ;ê°ˆê³ ë¦¬ ëì ê³¼ ë¼ì¸ê³¼ì˜ êµì°¨ì 
 
-  (setq sdpnt (getpoint "\nPick side point: "))                 ;ˆi‰¡Ÿ¡ ¤wĞ·
-  (setq tmp (polar sdpnt (+ (/ pi 2.0) ang) 1))                 ;œa·¥‰Á side¸ñ· ŠaÀa¸ñ Àx‹¡ ¶áĞe ¸ñ
-  (setq insp (inters p2 p1 tmp sdpnt nil))                      ;side pointµÁ œa·¥‰Á· ŠaÀa¸ñ
-  (setq ang1 (angle insp sdpnt))                                ;ŠaÀa¸ñ‰Á side pointˆa ·¡“e ˆb
-  (setq epnt1 (polar p2 ang (- (distance p2 pnt) r)))           ;Ñ¡· ¯¡¸b¸ñ
-  (setq cen (polar epnt1 ang1 r))                               ;ˆi‰¡Ÿ¡ ¶¥· º—¯±
+  (setq sdpnt (getpoint "\nPick side point: "))                 ;ê°ˆê³ ë¦¬ ë°©í–¥
+  (setq tmp (polar sdpnt (+ (/ pi 2.0) ang) 1))                 ;ë¼ì¸ê³¼ sideì ì˜ êµì°¨ì  ì°¾ê¸° ìœ„í•œ ì 
+  (setq insp (inters p2 p1 tmp sdpnt nil))                      ;side pointì™€ ë¼ì¸ê³¼ì˜ êµì°¨ì 
+  (setq ang1 (angle insp sdpnt))                                ;êµì°¨ì ê³¼ side pointê°€ ì´ë£¨ëŠ” ê°
+  (setq epnt1 (polar p2 ang (- (distance p2 pnt) r)))           ;í˜¸ì˜ ì‹œì‘ì 
+  (setq cen (polar epnt1 ang1 r))                               ;ê°ˆê³ ë¦¬ ì›ì˜ ì¤‘ì‹¬
 ;  (if (= ans 90)
-;    (command "ARC" "C" cen epnt1 "A" (rtod (dang ang ang1)))        ;Ñ¡ ‹aŸ¡‹¡
-;    (command "ARC" "C" cen epnt1 "A" (rtod (* 2 (dang ang ang1))))  ;Ñ¡ ‹aŸ¡‹¡
+;    (command "ARC" "C" cen epnt1 "A" (rtod (dang ang ang1)))        ;í˜¸ ê·¸ë¦¬ê¸°
+;    (command "ARC" "C" cen epnt1 "A" (rtod (* 2 (dang ang ang1))))  ;í˜¸ ê·¸ë¦¬ê¸°
 ;  ) ;of if
 
-  (setq lent (subst (cons 10 p2) (assoc 10 lent) lent))         ;¯¡¸b¸ñ line¸÷¥¡
-  (setq lent (subst (cons 11 epnt1) (assoc 11 lent) lent))      ;{¸ñ ¸÷¥¡ ¤a‹¡
-  (entmod lent)                                                 ;line¤a‹¡
+  (setq lent (subst (cons 10 p2) (assoc 10 lent) lent))         ;ì‹œì‘ì  lineì •ë³´
+  (setq lent (subst (cons 11 epnt1) (assoc 11 lent) lent))      ;ëì  ì •ë³´ ë°”ê¾¸ê¸°
+  (entmod lent)                                                 ;lineë°”ê¾¸ê¸°
 
   (if (= ans 90)
     (setq lpnt1 (polar pnt ang1 r)
-          lpnt2 (polar lpnt1 ang1 l))                           ;90•¡ ˆi‰¡Ÿ¡ »¢¬å¦
-    (setq lpnt1 (polar epnt1 ang1 (* 2 r))                      ;180•¡ ˆi‰¡Ÿ¡ »¢¬å¯¡¸ñ
-          lpnt2 (polar lpnt1 (- ang pi) l))                     ;180•¡ ˆi‰¡Ÿ¡ »¢¬å¹·¸ñ
+          lpnt2 (polar lpnt1 ang1 l))                           ;90ë„ ê°ˆê³ ë¦¬ ì§ì„ ë¶€
+    (setq lpnt1 (polar epnt1 ang1 (* 2 r))                      ;180ë„ ê°ˆê³ ë¦¬ ì§ì„ ì‹œì 
+          lpnt2 (polar lpnt1 (- ang pi) l))                     ;180ë„ ê°ˆê³ ë¦¬ ì§ì„ ì¢…ì 
   ) ;of if
 
   (setq oldc (getvar "CECOLOR"))
   (command "COLOR" newc)
 
   (if (= ans 90)
-    (command "ARC" "C" cen epnt1 "A" (rtod (dang ang ang1)))        ;Ñ¡ ‹aŸ¡‹¡
-    (command "ARC" "C" cen epnt1 "A" (rtod (* 2 (dang ang ang1))))  ;Ñ¡ ‹aŸ¡‹¡
+    (command "ARC" "C" cen epnt1 "A" (rtod (dang ang ang1)))        ;í˜¸ ê·¸ë¦¬ê¸°
+    (command "ARC" "C" cen epnt1 "A" (rtod (* 2 (dang ang ang1))))  ;í˜¸ ê·¸ë¦¬ê¸°
   ) ;of if
-  (command "LINE" lpnt1 lpnt2 "")                               ;line‹aŸ¡‹¡
+  (command "LINE" lpnt1 lpnt2 "")                               ;lineê·¸ë¦¬ê¸°
 
   (setvar "CECOLOR" oldc)
 
-  (pop-env)                                                     ;ÑÅ‰w¥e® ¥¢Šá
+  (pop-env)                                                     ;í™˜ê²½ë³€ìˆ˜ ë³µê·€
   (setq *error* oer seterr nil)
   (princ)
 

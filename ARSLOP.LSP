@@ -4,7 +4,7 @@
 ;            By Jong-Suk Yi
 ;            1998. 1. 22
 ;*************************************
-; ‰w¬a»¥ ¡e·i ˜aœa arrayĞe”a.
+; ê²½ì‚¬ì§„ ë©´ì„ ë”°ë¼ arrayí•œë‹¤.
 ;*************************************
 
 (defun c:ARSLOP(/
@@ -13,7 +13,7 @@ kword temp dxsgn dysgn arxn aryn totalx totaly ardstx ardsty repeatn
 angbase angbase90 intspnt intepnt angdia ldia
 count cpnt
 )
-  (defun SETERR(s)                                          ;¸w µAœáË¥ ¸÷·
+  (defun SETERR(s)                                          ;ë‚´ì¥ ì—ëŸ¬ë£¨í‹´ ì •ì˜
     (if (/= s "Function cancelled")
         (princ (strcat "\nError: " s))
     ); of If
@@ -21,55 +21,55 @@ count cpnt
     (princ)
   ); of SETERR
 
-  (setq oer *error* *error* seterr)                        ;¸wµAœáË¥ ˆa•·
+  (setq oer *error* *error* seterr)                        ;ë‚´ì¥ì—ëŸ¬ë£¨í‹´ ê°€ë™
 
   (setvar "CMDECHO" 0)
 
-  (setq ent (ssget))                                        ;array µEË¡Ë¡ ¬åÈ‚
+  (setq ent (ssget))                                        ;array ì—”í‹°í‹° ì„ íƒ
 
-  (setq spnt (getpoint "\nPick start point: "))             ;¯¡¸b¸ñ ·³b
-  (setq epnt (getpoint spnt "\nPick end point: "))          ;{¸ñ ·³b
-  (setq spntx (car spnt)                                    ;¯¡¸b¸ñ x¹ÁÎa
-        spnty (cadr spnt))                                  ;¯¡¸b¸ñ y¹ÁÎa
-  (setq dx (- (car epnt) (car spnt)))                       ;xÀa
-  (setq dy (- (cadr epnt) (cadr spnt)))                     ;yÀa
+  (setq spnt (getpoint "\nPick start point: "))             ;ì‹œì‘ì  ì…ë ¥
+  (setq epnt (getpoint spnt "\nPick end point: "))          ;ëì  ì…ë ¥
+  (setq spntx (car spnt)                                    ;ì‹œì‘ì  xì¢Œí‘œ
+        spnty (cadr spnt))                                  ;ì‹œì‘ì  yì¢Œí‘œ
+  (setq dx (- (car epnt) (car spnt)))                       ;xì°¨
+  (setq dy (- (cadr epnt) (cadr spnt)))                     ;yì°¨
 
-  (if (< dx 0) (setq dxsgn -1) (setq dxsgn 1))              ;x ¦Ñ¡
-  (if (< dy 0) (setq dysgn -1) (setq dysgn 1))              ;y ¦Ñ¡
+  (if (< dx 0) (setq dxsgn -1) (setq dxsgn 1))              ;x ë¶€í˜¸
+  (if (< dy 0) (setq dysgn -1) (setq dysgn 1))              ;y ë¶€í˜¸
 
-;--- arrayˆe‰b/¤wĞ· ·³b
-  (setq arl (getdist "\nArray distance: "))                 ;arrayˆe‰b
-  (initget "X Y D")                ;x,y,diagonal ¤wĞ·»¡¸÷
+;--- arrayê°„ê²©/ë°©í–¥ ì…ë ¥
+  (setq arl (getdist "\nArray distance: "))                 ;arrayê°„ê²©
+  (initget "X Y D")                ;x,y,diagonal ë°©í–¥ì§€ì •
   (setq kword (getkword "\nX-direction/Y-direction/Diagonal: "))
 
-;--- baseœa·¥ ™¡“e 2¸ñ·a¡ ‹¡¶‰‹¡·³b
+;--- baseë¼ì¸ ë˜ëŠ” 2ì ìœ¼ë¡œ ê¸°ìš¸ê¸°ì…ë ¥
 
   (initget "2P")
   (setq slent (entsel "\nSelect base line/2P: "))
   (cond
-    ((= slent "2P")                                             ;2¸ñ·a¡ ˆb•¡»¡¸÷
-      (setq slpnt1 (getpoint "\nPick start point: "))           ;slop¯¡¸b¸ñ
-      (setq slpnt2 (getpoint slpnt1 "\nPick end point: "))      ;slop{¸ñ
-      (setq sldx (- (car slpnt2) (car slpnt1)))                 ;slop xÀa
-      (setq sldy (- (cadr slpnt2) (cadr slpnt1)))               ;slop yÀa
+    ((= slent "2P")                                             ;2ì ìœ¼ë¡œ ê°ë„ì§€ì •
+      (setq slpnt1 (getpoint "\nPick start point: "))           ;slopì‹œì‘ì 
+      (setq slpnt2 (getpoint slpnt1 "\nPick end point: "))      ;slopëì 
+      (setq sldx (- (car slpnt2) (car slpnt1)))                 ;slop xì°¨
+      (setq sldy (- (cadr slpnt2) (cadr slpnt1)))               ;slop yì°¨
     ) ;of sub cond
     ((/= slent "2P")
-      (setq slent (entget (car slent)))                          ;line·i ¬åÈ‚Ğ ˆb•¡»¡¸÷
-      (setq slpnt1 (cdr (assoc 10 slent)))                       ;¯¡¸ñ
-      (setq slpnt2 (cdr (assoc 11 slent)))                       ;¹·¸ñ
+      (setq slent (entget (car slent)))                          ;lineì„ ì„ íƒí•´ ê°ë„ì§€ì •
+      (setq slpnt1 (cdr (assoc 10 slent)))                       ;ì‹œì 
+      (setq slpnt2 (cdr (assoc 11 slent)))                       ;ì¢…ì 
       (setq sldx (- (car slpnt2) (car slpnt1))
             sldy (- (cadr slpnt2) (cadr slpnt1)))
     ) ;of sub cond
   ) ;of cond
 
   (cond
-    ((= kword "X")                        ;x¤wĞ· array·¥ ‰w¶
+    ((= kword "X")                        ;xë°©í–¥ arrayì¸ ê²½ìš°
       (if (< (* sldx dxsgn) 0)
         (setq temp   slpnt1
               slpnt1 slpnt2
               slpnt2 temp))
     ) ;of sun cond
-    ((= kword "Y")                        ;y¤wĞ· array·¥ ‰w¶
+    ((= kword "Y")                        ;yë°©í–¥ arrayì¸ ê²½ìš°
       (if (< (* sldy dysgn) 0)
         (setq temp   slpnt1
               slpnt1 slpnt2
@@ -81,81 +81,81 @@ count cpnt
         sldy (- (cadr slpnt2) (cadr slpnt1)))
 
 
-;--- ˆ•®/‹©·¡ ¬e¸÷
-  (setq arxn (fix (abs (/ dx arl)))                         ;xˆ•®
-        aryn (fix (abs (/ dy arl))))                         ;yˆ•®
+;--- ê°¯ìˆ˜/ê¸¸ì´ ì‚°ì •
+  (setq arxn (fix (abs (/ dx arl)))                         ;xê°¯ìˆ˜
+        aryn (fix (abs (/ dy arl))))                         ;yê°¯ìˆ˜
 
-  (setq totalx (* arxn arl)                                  ;x¤wĞ· Á·‹©·¡
-        totaly (* aryn arl))                                  ;y¤wĞ· Á·‹©·¡
+  (setq totalx (* arxn arl)                                  ;xë°©í–¥ ì´ê¸¸ì´
+        totaly (* aryn arl))                                  ;yë°©í–¥ ì´ê¸¸ì´
 
-;--- x¤wĞ·/y¤wĞ· Ìe”e
+;--- xë°©í–¥/yë°©í–¥ íŒë‹¨
   (cond
-    ((= kword "X")                                          ;x¤wĞ· array·©˜
-      (setq ardstx (* arl dxsgn))                           ;x¤wĞ· ˆáŸ¡
-      (setq ardsty (/ (* (/ sldy (abs sldx)) totalx) arxn)) ;y¤wĞ· ˆáŸ¡
-      (setq repeatn arxn)                                   ;copy ˆ•®
+    ((= kword "X")                                          ;xë°©í–¥ arrayì¼ë•Œ
+      (setq ardstx (* arl dxsgn))                           ;xë°©í–¥ ê±°ë¦¬
+      (setq ardsty (/ (* (/ sldy (abs sldx)) totalx) arxn)) ;yë°©í–¥ ê±°ë¦¬
+      (setq repeatn arxn)                                   ;copy ê°¯ìˆ˜
     ) ;of sub cond
-    ((= kword "Y")                                          ;y¤wĞ· array·©˜
-      (setq ardstx (/ (* (/ sldx (abs sldy)) totaly) aryn)) ;x¤wĞ· ˆáŸ¡
-      (setq ardsty (* arl dysgn))                           ;y¤wĞ· ˆáŸ¡
-      (setq repeatn aryn)                                   ;copy ˆ•®
+    ((= kword "Y")                                          ;yë°©í–¥ arrayì¼ë•Œ
+      (setq ardstx (/ (* (/ sldx (abs sldy)) totaly) aryn)) ;xë°©í–¥ ê±°ë¦¬
+      (setq ardsty (* arl dysgn))                           ;yë°©í–¥ ê±°ë¦¬
+      (setq repeatn aryn)                                   ;copy ê°¯ìˆ˜
     ) ;of sub cond
-    ((= kword "D")                                          ;y¤wĞ· array·©˜
-      (setq angbase (angle slpnt1 slpnt2))          ;baseœa·¥· ˆb•¡
-      (setq angbase90 (+ angbase (/ pi 2.0)))         ;baseœa·¥· »¢ˆb
+    ((= kword "D")                                          ;yë°©í–¥ arrayì¼ë•Œ
+      (setq angbase (angle slpnt1 slpnt2))          ;baseë¼ì¸ì˜ ê°ë„
+      (setq angbase90 (+ angbase (/ pi 2.0)))         ;baseë¼ì¸ì˜ ì§ê°
       (setq intspnt (inters slpnt1 slpnt2
-                            spnt (polar spnt angbase90 1.0) nil))  ;baseœa·¥ ¶á· ¯¡¸b¸ñ
+                            spnt (polar spnt angbase90 1.0) nil))  ;baseë¼ì¸ ìœ„ì˜ ì‹œì‘ì 
       (setq intepnt (inters slpnt1 slpnt2
-                            epnt (polar epnt angbase90 1.0) nil))  ;baseœa·¥ ¶á· {¸ñ
-      (setq angdia (angle intspnt intepnt))         ;baseœa·¥· ˆb•¡
-      (setq ldia (distance intspnt intepnt))        ;baseœa·¥‹©·¡
-      (setq repeatn (fix (abs (/ ldia arl))))       ;yˆ•®
+                            epnt (polar epnt angbase90 1.0) nil))  ;baseë¼ì¸ ìœ„ì˜ ëì 
+      (setq angdia (angle intspnt intepnt))         ;baseë¼ì¸ì˜ ê°ë„
+      (setq ldia (distance intspnt intepnt))        ;baseë¼ì¸ê¸¸ì´
+      (setq repeatn (fix (abs (/ ldia arl))))       ;yê°¯ìˆ˜
     ) ;of sub cond
   ) ;of cond
 
-;--- copy¡ww ®Ğ—
-  (command "copy" ent "" "M" spnt)                          ;copy¡ww¯¡¸b
+;--- copyëª…ë ¹ ìˆ˜í–‰
+  (command "copy" ent "" "M" spnt)                          ;copyëª…ë ¹ì‹œì‘
 
   (cond
-    ((or (= kword "X") (= kword "Y"))                     ;x,y¤wĞ· array·¥ ‰w¶
+    ((or (= kword "X") (= kword "Y"))                     ;x,yë°©í–¥ arrayì¸ ê²½ìš°
       (setq count 1)
-      (repeat repeatn                                           ;copyˆ•® eÇq ¤e¥¢
+      (repeat repeatn                                           ;copyê°¯ìˆ˜ë§Œí¼ ë°˜ë³µ
         (setq cpnt (list (+ spntx (* ardstx count))         ;copy point
                           (+ spnty (* ardsty count))
                           0.0))
-        (command cpnt)                                  ;copy¡ww ®Ğ—
+        (command cpnt)                                  ;copyëª…ë ¹ ìˆ˜í–‰
         (setq count (1+ count))
       ) ;of repeat
-      (command "")                                      ;copy ¡ww {‘
+      (command "")                                      ;copy ëª…ë ¹ ëëƒ„
     ) ;of sub cond
-    ((= kword "D")                                      ;x,y¤wĞ· array·¥ ‰w¶
+    ((= kword "D")                                      ;x,yë°©í–¥ arrayì¸ ê²½ìš°
       (setq count 1)
-      (repeat repeatn                                   ;copyˆ•® eÇq ¤e¥¢
+      (repeat repeatn                                   ;copyê°¯ìˆ˜ë§Œí¼ ë°˜ë³µ
         (setq cpnt (polar spnt angdia (* count arl)))  ;copy point
-        (command cpnt)                                      ;copy¡ww ®Ğ—
+        (command cpnt)                                      ;copyëª…ë ¹ ìˆ˜í–‰
         (setq count (1+ count))
       ) ;of repeat
-      (command "")                                          ;copy ¡ww {‘
+      (command "")                                          ;copy ëª…ë ¹ ëëƒ„
     ) ;of sub cond
   ) ;of cond
 
-;--- Á·‹©·¡ £¹ ˆ•®,a á»¡ Îa¯¡
+;--- ì´ê¸¸ì´ ë° ê°¯ìˆ˜,ë‚˜ë¨¸ì§€ í‘œì‹œ
   (cond
-    ((= kword "X")                                          ;x¤wĞ· array·©˜
+    ((= kword "X")                                          ;xë°©í–¥ arrayì¼ë•Œ
       (terpri) (princ repeatn)
       (princ "@")
       (princ ardstx)
       (princ "=")
       (princ totalx)
     ) ;of sub cond
-    ((= kword "Y")                                          ;y¤wĞ· array·©˜
+    ((= kword "Y")                                          ;yë°©í–¥ arrayì¼ë•Œ
       (terpri) (princ repeatn)
       (princ "@")
       (princ ardsty)
       (princ "=")
       (princ totaly)
     ) ;of sub cond
-    ((= kword "D")                                          ;Diagonal¤wĞ· array·©˜
+    ((= kword "D")                                          ;Diagonalë°©í–¥ arrayì¼ë•Œ
       (terpri) (princ repeatn)
       (princ "@")
       (princ arl)
@@ -166,7 +166,7 @@ count cpnt
 
   (setvar "CMDECHO" 1)
 
-  (setq *error* oer seterr nil)                             ;¸wµAœáË¥ ¥¢Šá
+  (setq *error* oer seterr nil)                             ;ë‚´ì¥ì—ëŸ¬ë£¨í‹´ ë³µê·€
 
   (princ)
 

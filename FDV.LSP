@@ -19,42 +19,42 @@
 ;  dtxt1p dtxt2p
 )
 
-(setq th (getvar "DIMTXT")                          ;textÇa‹¡ = dimtxt
-      dim_gap 10.0)                                 ;Ã¡®¬å ˆe‰b
+(setq th (getvar "DIMTXT")                          ;textí¬ê¸° = dimtxt
+      dim_gap 10.0)                                 ;ì¹˜ìˆ˜ì„  ê°„ê²©
 (setq ds (getvar "DIMSCALE"))                       ;scale factor
 
-(if (> lr 0)                                        ;¶E½¢/µ¡Ÿe½¢
+(if (> lr 0)                                        ;ì™¼ìª½/ì˜¤ë¥¸ìª½
   (setq sgn 1)
   (setq sgn -1)
 ) ;of if
 
   (setq dx (* ds (+ 20 (* dim_gap (- (abs lr) 1)))))
 
-  (setq next (* dst n))                                 ;{¸ñŒa»¡ ˆáŸ¡
+  (setq next (* dst n))                                 ;ëì ê¹Œì§€ ê±°ë¦¬
 
-  (setq ep (list (car sp) (+ (cadr sp) next)))          ;®¸÷–E {¸ñ
+  (setq ep (list (car sp) (+ (cadr sp) next)))          ;ìˆ˜ì •ëœ ëì 
 
-  (setq dxy (list (+ (car ep) (* dx sgn)) (car ep) 0.0))  ;Ã¡®¬å·¡ ‘½·© ¶áÃ¡
+  (setq dxy (list (+ (car ep) (* dx sgn)) (car ep) 0.0))  ;ì¹˜ìˆ˜ì„ ì´ ë†“ì¼ ìœ„ì¹˜
 
-  (setq dy (distance sp ep))                          ;– ¸ñ· ˆáŸ¡
+  (setq dy (distance sp ep))                          ;ë‘ ì ì˜ ê±°ë¦¬
 
   (if (< dy 1000.0)
-    (setq txt (rtos dy 2 0))                          ;1000£¡ e·© ˜
-    (setq txt (rtos (* dy 0.001) 2 3))                ;1000·¡¬w·© ˜
+    (setq txt (rtos dy 2 0))                          ;1000ë¯¸ë§Œì¼ ë•Œ
+    (setq txt (rtos (* dy 0.001) 2 3))                ;1000ì´ìƒì¼ ë•Œ
   ) ;of if(dy < 1000)
 
   (if (> n 1)
     (progn
-      (setq divl dst)                                   ;a’“e ‹©·¡ ·³b
-      (setq divn (rtos n 2 0))                          ;a’… ˆ•®‰¬e
+      (setq divl dst)                                   ;ë‚˜ëˆ„ëŠ” ê¸¸ì´ ì…ë ¥
+      (setq divn (rtos n 2 0))                          ;ë‚˜ëˆˆ ê°¯ìˆ˜ê³„ì‚°
       (if (< divl 1000.)
-        (setq divl (rtos divl 2 0))                   ;a’“e ‹©·¡ˆa 1000£¡ e¯¡
-        (setq divl (rtos (* divl 0.001) 2 3))) ;of if           ;a’“e ‹©·¡ˆa 1000·¡¬w¯¡
+        (setq divl (rtos divl 2 0))                   ;ë‚˜ëˆ„ëŠ” ê¸¸ì´ê°€ 1000ë¯¸ë§Œì‹œ
+        (setq divl (rtos (* divl 0.001) 2 3))) ;of if           ;ë‚˜ëˆ„ëŠ” ê¸¸ì´ê°€ 1000ì´ìƒì‹œ
       (setq txtlen (* (+ (strlen txt) (strlen divn) (strlen divl) 2) th ds
                    (cdr (assoc 41 (tblsearch "STYLE" (getvar "TEXTSTYLE"))))))
       (if (>= txtlen dy)
-        (progn                                  ;textˆa ¥¡¹¡¬å µA ´e—i´áˆa¡e
-          (setq dtxt1 (strcat divn "@" divl))   ;–º‰¡ a’‘
+        (progn                                  ;textê°€ ë³´ì¡°ì„  ë‚´ì— ì•ˆë“¤ì–´ê°€ë©´
+          (setq dtxt1 (strcat divn "@" divl))   ;ë‘ì¤„ë¡œ ë‚˜ëˆ”
           (setq dtxt2 (strcat "=" txt))
           (setq dtxt1p (mapcar '+ (mid-point sp ep)
                                   (list (- (* dx sgn) (* ds th)) 0.0 0.0)))
@@ -62,17 +62,17 @@
                                   (list (+ (* dx sgn) (* ds th)) 0.0 0.0)))
           (command "TEXT" "M" dtxt1p (* th ds) "90" dtxt1)
           (command "TEXT" "M" dtxt2p (* th ds) "90" dtxt2)
-          (command "DIM1" "VER" sp ep dxy " ")               ;DIM¡ww Ÿ±
+          (command "DIM1" "VER" sp ep dxy " ")               ;DIMëª…ë ¹ ë‚´ë¦¼
         ) ;of progn THEN
-        (progn                                  ;textˆa ¥¡¹¡¬å µA —i´áˆa¡e
+        (progn                                  ;textê°€ ë³´ì¡°ì„  ë‚´ì— ë“¤ì–´ê°€ë©´
           (setq dtxt1 (strcat divn "@" divl "=" txt))
-          (command "DIM1" "VER" sp ep dxy dtxt1)               ;DIM¡ww Ÿ±
+          (command "DIM1" "VER" sp ep dxy dtxt1)               ;DIMëª…ë ¹ ë‚´ë¦¼
         ) ;of progn ELSE
       ) ;of IF
     ) ;of progn THEN
     (progn
-      (if (= txt1 nil) (setq txt1 txt))                    ;Ÿ¡Èå·³b¯¡ µ• textŸi ³q
-      (command "DIM1" "VER" sp ep dxy txt1)               ;DIM¡ww Ÿ±
+      (if (= txt1 nil) (setq txt1 txt))                    ;ë¦¬í„´ì…ë ¥ì‹œ ì˜› textë¥¼ ì”€
+      (command "DIM1" "VER" sp ep dxy txt1)               ;DIMëª…ë ¹ ë‚´ë¦¼
     ) ;of progn ELSE
   ) ;of if
 

@@ -4,45 +4,45 @@
 ;           by Yi Suk-Jong
 ;           98/9/24
 ;---------------------------
-;Bracket‹aŸ¡‹¡
+;Bracketê·¸ë¦¬ê¸°
 ;---------------------------
 
 (defun C:BRACKET(
 / ent entp sidep dis hbk p1 p2 ang ps pt1 pt2 pt3 pt4 ang1
 )
 
-  (push-env)                                        ;ÑÅ‰w¥e®”Ï¡
+  (push-env)                                        ;í™˜ê²½ë³€ìˆ˜ëŒ€í”¼
 
-  (setq ents (entsel "\nSelect Line: "))            ;œa·¥¸÷¥¡
+  (setq ents (entsel "\nSelect Line: "))            ;ë¼ì¸ì •ë³´
 
-  (setq ent (entget (car ents)))                    ;œa·¥¸÷¥¡
-  (setq entp (cadr ents))                           ;¬åÈ‚¸ñ
+  (setq ent (entget (car ents)))                    ;ë¼ì¸ì •ë³´
+  (setq entp (cadr ents))                           ;ì„ íƒì 
 
-  (setq sidep (getpoint "\nPick side: "))           ;§aœaÅU¤wĞ· ¬é¸÷
+  (setq sidep (getpoint "\nPick side: "))           ;ë¸Œë¼ì¼“ë°©í–¥ ì„¤ì •
 
-  (setq dis (getdist "\nHeight <880mm>: "))         ;§aœaÅU¬w¡e~‘¡¡e
+  (setq dis (getdist "\nHeight <880mm>: "))         ;ë¸Œë¼ì¼“ìƒë©´~ë…¸ë©´
   (if (= dis nil) (setq dis 880))
 
-  (setq hbk (getdist "\nB: "))                      ;§aœaÅU Í¢
+  (setq hbk (getdist "\nB: "))                      ;ë¸Œë¼ì¼“ í­
 
-  (setq p1 (cdr (assoc 10 ent)))                    ;¯¡¸b¸ñ¹ÁÎa
-  (setq p2 (cdr (assoc 11 ent)))                    ;{¸ñ¹ÁÎa
+  (setq p1 (cdr (assoc 10 ent)))                    ;ì‹œì‘ì ì¢Œí‘œ
+  (setq p2 (cdr (assoc 11 ent)))                    ;ëì ì¢Œí‘œ
 
-  (if (< (distance p1 entp) (distance p2 entp))     ;line· ˆb•¡ ¸s´a‹¡
-    (setq ang (angle p1 p2)                         ;Ša” ¬w”eµA¬á Ğa”e·a¡· ˆb•¡
-          ps  p1)                                   ;ps : Ša” ¬w¡e¸ñ
+  (if (< (distance p1 entp) (distance p2 entp))     ;lineì˜ ê°ë„ ì¡ì•„ë‚´ê¸°
+    (setq ang (angle p1 p2)                         ;êµëŒ€ ìƒë‹¨ì—ì„œ í•˜ë‹¨ìœ¼ë¡œì˜ ê°ë„
+          ps  p1)                                   ;ps : êµëŒ€ ìƒë©´ì 
     (setq ang (angle p2 p1)
           ps p2)
   );if
 
-  (setq pt1 (polar ps ang dis)                      ;§aœaÅU ¯¡¸b¸ñ
-        pt2 (polar pt1 ang (* hbk 2)))              ;§aœaÅU {¸ñ
+  (setq pt1 (polar ps ang dis)                      ;ë¸Œë¼ì¼“ ì‹œì‘ì 
+        pt2 (polar pt1 ang (* hbk 2)))              ;ë¸Œë¼ì¼“ ëì 
 
-  (command "BREAK" ents "F" pt1 pt2)                ;Ša”¬å ¸aŸa‹¡
+  (command "BREAK" ents "F" pt1 pt2)                ;êµëŒ€ì„  ìë¥´ê¸°
 
-  (setq sideang (angle ps sidep))                   ;side pointµÁ ¯¡¸b¸ñ· angle
+  (setq sideang (angle ps sidep))                   ;side pointì™€ ì‹œì‘ì ì˜ angle
 
-  (if (>= (dang sideang ang) 0)                     ;Ša”¬å‰Á· ÀaµA ˜aŸe +90•¡ or -90•¡
+  (if (>= (dang sideang ang) 0)                     ;êµëŒ€ì„ ê³¼ì˜ ì°¨ì— ë”°ë¥¸ +90ë„ or -90ë„
     (setq ang1 (- ang (* 0.5 pi)))
     (setq ang1 (+ ang (* 0.5 pi)))
   );if
@@ -50,9 +50,9 @@
   (setq pt3 (polar pt1 ang1 hbk)
         pt4 (polar pt3 ang  hbk))
 
-  (command "LINE" pt1 pt3 pt4 pt2 "")               ;§aœaÅU ‹aŸ¡‹¡
+  (command "LINE" pt1 pt3 pt4 pt2 "")               ;ë¸Œë¼ì¼“ ê·¸ë¦¬ê¸°
 
-  (pop-env)                                         ;ÑÅ‰w¥e® ¥¢Šá
+  (pop-env)                                         ;í™˜ê²½ë³€ìˆ˜ ë³µê·€
 
   (princ)
 

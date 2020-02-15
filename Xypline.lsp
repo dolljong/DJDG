@@ -8,7 +8,7 @@
 (defun C:XYPLINE(
 / xy oldxy node x y
 )
-  (defun SETERR(s)                              ;ΈwµAαΛ¥ Έχ·
+  (defun SETERR(s)                              ;λ‚΄μ¥μ—λ¬λ£¨ν‹΄ μ •μ
     (if (/= s "Function cancelled")
         (princ (strcat "\nError: " s))
     ); of If

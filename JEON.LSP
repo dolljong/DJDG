@@ -4,7 +4,7 @@
 ;           Suk-Jong Yi
 ;           96/5/20
 ;*********************************************
-; ¤‹e•¡µA¬á box ´eµA ¸å¡e·¡œa‰¡ Îa¯¡Ğº…”a.
+; ë°°ê·¼ë„ì—ì„œ box ì•ˆì— ì „ë©´ì´ë¼ê³  í‘œì‹œí•´ì¤€ë‹¤.
 ;*********************************************
 
 (defun C:JEON(/)
@@ -18,53 +18,53 @@
   ); of SETERR
   (setq oer *error* *error* seterr)
 
-  (push-env)                                                ;ÑÅ‰w¥e® ¸á¸w
+  (push-env)                                                ;í™˜ê²½ë³€ìˆ˜ ì €ì¥
 
   (setq B 12
         H  4)
 
-  (setq ds 50)                                               ;¯aÅA·© ˆt
+  (setq ds 50)                                               ;ìŠ¤ì¼€ì¼ ê°’
 
   (princ "\nPick insert point: ")
 
   (command "INSERT" (strcat (prefix) "blocks/jeon") pause 1 1 "0")
 
-  (setq  ipnt (cdr (assoc 10 (entget (entlast))))) ;¬s·³–E §iœâ· insert point
+  (setq  ipnt (cdr (assoc 10 (entget (entlast))))) ;ì‚½ì…ëœ ë¸”ëŸ­ì˜ insert point
 
   (setq p1 (list (- (car ipnt) (* ds B))
-                 (+ (cadr ipnt) (* ds H)) 0.0))             ;¶E½¢ ¬w”e
+                 (+ (cadr ipnt) (* ds H)) 0.0))             ;ì™¼ìª½ ìƒë‹¨
   (setq p2 (list (+ (car ipnt) (* ds B))
-                 (- (cadr ipnt) (* ds H)) 0.0))             ;µ¡Ÿe½¢ Ğa”e
+                 (- (cadr ipnt) (* ds H)) 0.0))             ;ì˜¤ë¥¸ìª½ í•˜ë‹¨
   (setq p3 (list (- (car ipnt) (* ds B))
-                 (- (cadr ipnt) (* ds H)) 0.0))             ;¶E½¢ Ğa”e
+                 (- (cadr ipnt) (* ds H)) 0.0))             ;ì™¼ìª½ í•˜ë‹¨
   (setq p4 (list (+ (car ipnt) (* ds B))
-                 (+ (cadr ipnt) (* ds H)) 0.0))             ;µ¡Ÿe½¢ ¬w”e
+                 (+ (cadr ipnt) (* ds H)) 0.0))             ;ì˜¤ë¥¸ìª½ ìƒë‹¨
 
   (setq p11 (list (- (car ipnt) (* ds B) -1)
-                  (+ (cadr ipnt) (* ds H) -1) 0.0))         ;trim point ¶E½¢¬w”e
+                  (+ (cadr ipnt) (* ds H) -1) 0.0))         ;trim point ì™¼ìª½ìƒë‹¨
   (setq p22 (list (+ (car ipnt) (* ds B) -1)
-                  (- (cadr ipnt) (* ds H) -1) 0.0))         ;trim point µ¡Ÿe½¢Ğa”e
+                  (- (cadr ipnt) (* ds H) -1) 0.0))         ;trim point ì˜¤ë¥¸ìª½í•˜ë‹¨
   (setq p33 (list (- (car ipnt) (* ds B) -1)
-                  (- (cadr ipnt) (* ds H) -1) 0.0))         ;trim point ¶E½¢Ğa”e
+                  (- (cadr ipnt) (* ds H) -1) 0.0))         ;trim point ì™¼ìª½í•˜ë‹¨
   (setq p44 (list (+ (car ipnt) (* ds B) -1)
-                  (+ (cadr ipnt) (* ds H) -1) 0.0))         ;trim point µ¡Ÿe½¢¬w”e
+                  (+ (cadr ipnt) (* ds H) -1) 0.0))         ;trim point ì˜¤ë¥¸ìª½ìƒë‹¨
 
-  (setq oldc (getvar "CECOLOR"))                            ;Á¡¢¬‚·a¡
+  (setq oldc (getvar "CECOLOR"))                            ;ì´ˆë¡ìƒ‰ìœ¼ë¡œ
   (setvar "CECOLOR" "GREEN")
-  (command "PLINE" p1 "W" "0.0" "0.0" p4 p2 p3 "C")         ;¬aˆbÑw ‹aŸ¡‹¡
-  (setvar "CECOLOR" oldc)                                   ;¶¥œ¬‚·a¡
+  (command "PLINE" p1 "W" "0.0" "0.0" p4 p2 p3 "C")         ;ì‚¬ê°í˜• ê·¸ë¦¬ê¸°
+  (setvar "CECOLOR" oldc)                                   ;ì›ë˜ìƒ‰ìœ¼ë¡œ
 
-  (setq lstent (entlast))                                   ;¬aˆbÑw ¬åÈ‚
+  (setq lstent (entlast))                                   ;ì‚¬ê°í˜• ì„ íƒ
 
   (command "TRIM" lstent "" "f" p11 p44 ""
                             "f" p44 P22 ""
                             "f" p22 P33 ""
-                            "f" p33 p11 "" "")        ;¸iœa‹¡
+                            "f" p33 p11 "" "")        ;ì˜ë¼ë‚´ê¸°
 
-  (command "ERASE" "WP" p11 p44 p22 p33 "" lstent "")              ;¬aˆbÑw ´e »¡¶‹¡
+  (command "ERASE" "WP" p11 p44 p22 p33 "" lstent "")              ;ì‚¬ê°í˜• ì•ˆ ì§€ìš°ê¸°
   (command "REDRAW")
 
-  (pop-env)                                                 ;ÑÅ‰w¥e® ¥¢Šá
+  (pop-env)                                                 ;í™˜ê²½ë³€ìˆ˜ ë³µê·€
   (setq *error* oer seterr nil)
   (princ)
 

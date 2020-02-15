@@ -8,7 +8,7 @@
 (defun C:GRNDMRK(/
 p1 p2 ent p3 intp ang sabun
 )
-  (defun SETERR(s)                          ;¸wµAœáË¥ ¸÷·
+  (defun SETERR(s)                          ;ë‚´ì¥ì—ëŸ¬ë£¨í‹´ ì •ì˜
     (if (/= s "Function cancelled")
         (princ (strcat "\nError: " s))
     ); of If
@@ -16,14 +16,14 @@ p1 p2 ent p3 intp ang sabun
     (princ)
   ); of SETERR
 
-  (setq oer *error* *error* seterr)         ;¸wµAœáË¥ ˆa•·
+  (setq oer *error* *error* seterr)         ;ë‚´ì¥ì—ëŸ¬ë£¨í‹´ ê°€ë™
 
-  (setq p1 (getpoint "\nFirst point or press ENTER to select: "))       ;¯¡¸b¸ñ
+  (setq p1 (getpoint "\nFirst point or press ENTER to select: "))       ;ì‹œì‘ì 
   (if (= p1 nil)
     (setq ent (entget (car (entsel "\nSelect line: ")))
           p1 (cdr (assoc 10 ent))
           p2 (cdr (assoc 11 ent)))
-    (setq p2 (getpoint p1 "\nPick point second point: "))   ;{¸ñ
+    (setq p2 (getpoint p1 "\nPick point second point: "))   ;ëì 
   );if
 
   (setq p3 (getpoint "\nPick insert point: "))
@@ -32,17 +32,17 @@ p1 p2 ent p3 intp ang sabun
                      (list (car p3) (cadr p2))
                      (list (car p3) (- (cadr p3) 1.0)) nil))
 
-  (setq ang (angle p1 p2))             ;–¸ñ· ˆb
-  (setq sabun (which4 ang))  ;¡y¬a¦…¡e·¥»¡ Ìe”e
+  (setq ang (angle p1 p2))             ;ë‘ì ì˜ ê°
+  (setq sabun (which4 ang))  ;ëª‡ì‚¬ë¶„ë©´ì¸ì§€ íŒë‹¨
 
   (cond
-    ((= sabun 2)  ;2¬a¦…¡e·©˜
+    ((= sabun 2)  ;2ì‚¬ë¶„ë©´ì¼ë•Œ
       (setq ang (- ang pi))
     );sub cond
-    ((= sabun 3)  ;3¬a¦…¡e·©˜
+    ((= sabun 3)  ;3ì‚¬ë¶„ë©´ì¼ë•Œ
       (setq ang (- ang pi))
     );sub cond
-    ((= sabun 4)  ;4¬a¦…¡e·©˜
+    ((= sabun 4)  ;4ì‚¬ë¶„ë©´ì¼ë•Œ
       (setq ang (- ang (* pi 2)))
     );sub cond
   );cond
@@ -52,7 +52,7 @@ p1 p2 ent p3 intp ang sabun
                     (rtod ang))
 
 
-  (setq *error* oer seterr nil)                             ;µAœáË¥ ¥¢Šá
+  (setq *error* oer seterr nil)                             ;ì—ëŸ¬ë£¨í‹´ ë³µê·€
 
   (prin1)
 

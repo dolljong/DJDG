@@ -4,7 +4,7 @@
 ;*              By Suk-Jong Yi
 ;*              1997/1/13
 ;****************************************
-; ÉB¯aËa· WidthŸi ¤a¡º‘
+; í…ìŠ¤íŠ¸ì˜ Widthë¥¼ ë°”ê¿”ì¤Œ
 ;****************************************
 (defun C:CTW()
   (defun SETERR(s)
@@ -51,22 +51,22 @@
        (if (= "TEXT" (cdr ass))
            (progn
                (setq cnum (1+ cnum))
-               (setq ass1 (assoc 40 entl))    ;‘¼·¡ŠĞa‹¡
-               (setq ass1 (assoc 41 entl))    ;Í¢ŠĞa‹¡
-               (setq ass10 (assoc 10 entl))   ;¯¡¸ñ
-               (setq ass11 (assoc 11 entl))   ;¸÷i¸ñ
-               (setq ass72 (assoc 72 entl))   ;¸÷i¤w¯¢
-                (if (= (cdr ass72) 5 )        ;¸÷i¤w¯¢·¡ fit·©˜
+               (setq ass1 (assoc 40 entl))    ;ë†’ì´êµ¬í•˜ê¸°
+               (setq ass1 (assoc 41 entl))    ;í­êµ¬í•˜ê¸°
+               (setq ass10 (assoc 10 entl))   ;ì‹œì 
+               (setq ass11 (assoc 11 entl))   ;ì •ë ¬ì 
+               (setq ass72 (assoc 72 entl))   ;ì •ë ¬ë°©ì‹
+                (if (= (cdr ass72) 5 )        ;ì •ë ¬ë°©ì‹ì´ fitì¼ë•Œ
                   (progn
-                    (setq ali (cons (car ass72) 1))   ;¬ ¸÷i¤w¯¢·i center¡
+                    (setq ali (cons (car ass72) 1))   ;ìƒˆ ì •ë ¬ë°©ì‹ì„ centerë¡œ
                     (setq mp (mid-point (cdr ass10) (cdr ass11))) ;center point
-                    (setq nmp (cons (car ass11) mp))        ;center¸ñ ¸÷¥¡ e—i‹¡
-                    (setq entl (subst ali ass72 entl))      ;¸÷i¤w¯¢ ¸÷¥¡‰¡Ã¡‹¡
-                    (setq entl (subst nmp ass11 entl))      ;center¸ñ ¸÷¥¡‰¡Ã¡‹¡
+                    (setq nmp (cons (car ass11) mp))        ;centerì  ì •ë³´ë§Œë“¤ê¸°
+                    (setq entl (subst ali ass72 entl))      ;ì •ë ¬ë°©ì‹ ì •ë³´ê³ ì¹˜ê¸°
+                    (setq entl (subst nmp ass11 entl))      ;centerì  ì •ë³´ê³ ì¹˜ê¸°
                   ) ;of progn
                 ) ;of if
-               (setq co (cons (car ass1) ncr))       ;¬Í¢¸÷¥¡ e—i‹¡
-               (setq entl (subst co ass1 entl))      ;¬Í¢¸÷¥¡¤a‹¡
+               (setq co (cons (car ass1) ncr))       ;ìƒˆí­ì •ë³´ë§Œë“¤ê¸°
+               (setq entl (subst co ass1 entl))      ;ìƒˆí­ì •ë³´ë°”ê¾¸ê¸°
                (entmod entl)
                (princ)
            ) ;of progn

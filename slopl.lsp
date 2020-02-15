@@ -4,7 +4,7 @@
 ;           By Suk-Jong Yi
 ;           1995/7/3
 ;*************************************
-; ‹¡¶‰´á»¥ ¡e·i Îa¯¡Ğa“e ¬å‹aŸ¡‹¡
+; ê¸°ìš¸ì–´ì§„ ë©´ì„ í‘œì‹œí•˜ëŠ” ì„ ê·¸ë¦¬ê¸°
 ;*************************************
 
 (defun C:SLOPL(/
@@ -22,7 +22,7 @@
   ); of SETERR
   (setq oer *error* *error* seterr)
 
-  (push-env)                                                ;ÑÅ‰w¥e® ”Ï¡
+  (push-env)                                                ;í™˜ê²½ë³€ìˆ˜ ëŒ€í”¼
 
   (setq l1 (entget (car (entsel "\nSelect first line: "))))
   (setq l2 (entget (car (entsel "\nSelect second line: "))))
@@ -76,13 +76,13 @@
 ;;;    ) ;of progn
 ;;;  ) ;of if(dst2<dst1)
 
-  (setq angs (angle l1s l2s))          ;Àõœa·¥ ¯¡¸b~–¼œa·¥ ¯¡¸b ˆb
-  (setq ange (angle l1e l2e))          ;Àõœa·¥ {~–¼œa·¥ { ˆb
+  (setq angs (angle l1s l2s))          ;ì²«ë¼ì¸ ì‹œì‘~ë‘ì§¸ë¼ì¸ ì‹œì‘ ê°
+  (setq ange (angle l1e l2e))          ;ì²«ë¼ì¸ ë~ë‘ì§¸ë¼ì¸ ë ê°
 
   (setq dst1 (distance l1s l2s))
   (setq dst2 (distance l1e l2e))
 
-  (setq dt1 (/ dst1 dnum))              ;¯¡¸b¸ñ~»¡¸b¸ñ
+  (setq dt1 (/ dst1 dnum))              ;ì‹œì‘ì ~ì§€ì‘ì 
   (setq dt2 (/ dst2 dnum))
 
   (setq oldc (getvar "CECOLOR"))
@@ -98,7 +98,7 @@
 
   (setvar "CECOLOR" oldc)
 
-  (pop-env)                                                 ;ÑÅ‰w¥e® ¥¢Šá
+  (pop-env)                                                 ;í™˜ê²½ë³€ìˆ˜ ë³µê·€
   (setq *error* oer seterr nil)
   (prin1)
 

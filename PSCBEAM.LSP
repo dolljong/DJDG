@@ -4,7 +4,7 @@
 ;           Suk-Jong Yi
 ;           96/5/10
 ;********************************************
-; PSC BEAM ”e¡e ·©¤e•¡Ÿi ‹aaº…”a.
+; PSC BEAM ë‹¨ë©´ ì¼ë°˜ë„ë¥¼ ê·¸ë ¤ì¤€ë‹¤.
 ;********************************************
 
 (defun C:PSCBEAM()
@@ -19,121 +19,121 @@
   (setq oer *error* *error* seterr)
 
   (push-env)
-  (setq ds (getvar "DIMSCALE"))                                 ;¯aÅA·©ˆt
-  (setq b (* 1000.0 (getreal "\nB(m): ")))                      ;Šaœ·Í¢
-  (setq bn (getint "\nNumber of beam: "))                       ;beamˆ•®
-  (setq pb (* 1000.0 (getreal "\nPich of beam(m): ")))          ;beamˆe‰b
-  (setq ls (* 0.01 (getreal "\nLeft slop(%): ")))               ;¹ÁÃb slop
-  (setq rs (* 0.01 (getreal "\nRight slop(%): ")))              ;¹ÁÃb slop
-  (setq ta (getreal "\nThickness of asphalt(mm): "))            ;Í¡¸w–A
-  (setq ts (getreal "\nThickness of slab(mm): "))               ;slab–A
-  (setq p (getpoint "\nPick Insert point: "))                   ;¬s·³¸ñ (º—´w¬w”e)
+  (setq ds (getvar "DIMSCALE"))                                 ;ìŠ¤ì¼€ì¼ê°’
+  (setq b (* 1000.0 (getreal "\nB(m): ")))                      ;êµëŸ‰í­
+  (setq bn (getint "\nNumber of beam: "))                       ;beamê°¯ìˆ˜
+  (setq pb (* 1000.0 (getreal "\nPich of beam(m): ")))          ;beamê°„ê²©
+  (setq ls (* 0.01 (getreal "\nLeft slop(%): ")))               ;ì¢Œì¸¡ slop
+  (setq rs (* 0.01 (getreal "\nRight slop(%): ")))              ;ì¢Œì¸¡ slop
+  (setq ta (getreal "\nThickness of asphalt(mm): "))            ;í¬ì¥ë‘ê»˜
+  (setq ts (getreal "\nThickness of slab(mm): "))               ;slabë‘ê»˜
+  (setq p (getpoint "\nPick Insert point: "))                   ;ì‚½ì…ì  (ì¤‘ì•™ìƒë‹¨)
 
-  (setq b2 (/ b 2.0))                                           ;Šaœ·Í¢· ¤e
-  (setq bb (* pb (- bn 1)))                                     ;beam´·Ãb ˆe‰b
+  (setq b2 (/ b 2.0))                                           ;êµëŸ‰í­ì˜ ë°˜
+  (setq bb (* pb (- bn 1)))                                     ;beamì–‘ì¸¡ ê°„ê²©
 
   (setq pl (list (- (car p) (- b2 456))
-                 (+ (cadr p) (* (- b2 456) ls)) 0.0))           ;Í¡¸w¶E½¢
+                 (+ (cadr p) (* (- b2 456) ls)) 0.0))           ;í¬ì¥ì™¼ìª½
   (setq pr (list (+ (car p) (- b2 456))
-                 (+ (cadr p) (* (- b2 456) rs)) 0.0))           ;Í¡¸wµ¡Ÿe½¢
+                 (+ (cadr p) (* (- b2 456) rs)) 0.0))           ;í¬ì¥ì˜¤ë¥¸ìª½
 
-  (setq sct (list (car p) (- (cadr p) ta))                      ;¯iœa§aº—´w¬w”e
-        scb (list (car p) (- (cadr sct) ts)))                   ;¯iœa§aº—´wĞa”e
+  (setq sct (list (car p) (- (cadr p) ta))                      ;ìŠ¬ë¼ë¸Œì¤‘ì•™ìƒë‹¨
+        scb (list (car p) (- (cadr sct) ts)))                   ;ìŠ¬ë¼ë¸Œì¤‘ì•™í•˜ë‹¨
 
-  (setq slte (list (- (car p) b2) (+ (cadr sct) (* ls b2)) 0.0))    ;¯iœa§a¶E½¢¬w”e{
-  (setq srte (list (+ (car p) b2) (+ (cadr sct) (* rs b2)) 0.0))    ;¯iœa§aµ¡Ÿe½¢¬w”e{
+  (setq slte (list (- (car p) b2) (+ (cadr sct) (* ls b2)) 0.0))    ;ìŠ¬ë¼ë¸Œì™¼ìª½ìƒë‹¨ë
+  (setq srte (list (+ (car p) b2) (+ (cadr sct) (* rs b2)) 0.0))    ;ìŠ¬ë¼ë¸Œì˜¤ë¥¸ìª½ìƒë‹¨ë
 
-  (setq slbe (list (car slte) (- (cadr slte) ts) 0.0))              ;¯iœa§a¶E½¢Ğa”e{
-  (setq srbe (list (car srte) (- (cadr srte) ts) 0.0))              ;¯iœa§aµ¡Ÿe½¢Ğa”e{
+  (setq slbe (list (car slte) (- (cadr slte) ts) 0.0))              ;ìŠ¬ë¼ë¸Œì™¼ìª½í•˜ë‹¨ë
+  (setq srbe (list (car srte) (- (cadr srte) ts) 0.0))              ;ìŠ¬ë¼ë¸Œì˜¤ë¥¸ìª½í•˜ë‹¨ë
 
-  (command "LINE" sct slte slbe scb srbe srte sct "")               ;¯iœa§a‹aŸ¡‹¡
+  (command "LINE" sct slte slbe scb srbe srte sct "")               ;ìŠ¬ë¼ë¸Œê·¸ë¦¬ê¸°
 
-  (barrier 0 slte (* ls 100.0))                                               ;¶E½¢¤wÑ¡¥b
-  (barrier 1 srte (* rs 100.0))                                               ;µ¡Ÿe½¢¤wÑ¡¥b
+  (barrier 0 slte (* ls 100.0))                                               ;ì™¼ìª½ë°©í˜¸ë²½
+  (barrier 1 srte (* rs 100.0))                                               ;ì˜¤ë¥¸ìª½ë°©í˜¸ë²½
 
-  (command "LINE" pl p pr "")                                       ;Í¡¸w¬å ‹aŸ¡‹¡
+  (command "LINE" pl p pr "")                                       ;í¬ì¥ì„  ê·¸ë¦¬ê¸°
 
   (if (= (rem bn 2) 1)
-    (progn                                                          ;§± ˆ•®ˆa Ñ©® ·©˜
-      (setq ly (+ (cadr scb) (* 350 ls))                            ;º—´w§± ¹ÁÃb y
-            ry (+ (cadr scb) (* 350 rs)))                           ;º—´w§± ¶Ãb y
+    (progn                                                          ;ë¹” ê°¯ìˆ˜ê°€ í™€ìˆ˜ ì¼ë•Œ
+      (setq ly (+ (cadr scb) (* 350 ls))                            ;ì¤‘ì•™ë¹” ì¢Œì¸¡ y
+            ry (+ (cadr scb) (* 350 rs)))                           ;ì¤‘ì•™ë¹” ìš°ì¸¡ y
       (if (<= ly ry)
         (setq iy ly)
-        (setq iy ry))                                           ;x·e ½¢·i insert y¡
-      (draw_beam (list (car p) iy))                             ;º—´w§± ‹aŸ¡‹¡
-      (setq bn2 (/ (- bn 1) 2))                                 ;Ğe½¢ §± ˆ•®
-      (setq cnt 1)                                              ;¶E½¢Àõ¤å¼ §±
+        (setq iy ry))                                           ;ë‚®ì€ ìª½ì„ insert yë¡œ
+      (draw_beam (list (car p) iy))                             ;ì¤‘ì•™ë¹” ê·¸ë¦¬ê¸°
+      (setq bn2 (/ (- bn 1) 2))                                 ;í•œìª½ ë¹” ê°¯ìˆ˜
+      (setq cnt 1)                                              ;ì™¼ìª½ì²«ë²ˆì§¸ ë¹”
       (repeat bn2
-        (setq btp (list (- (car p) (* cnt pb))                  ;§± ¬w”e¸ñ
+        (setq btp (list (- (car p) (* cnt pb))                  ;ë¹” ìƒë‹¨ì 
                         (- (+ (cadr scb) (* cnt pb ls)) (* (abs ls) 350.0))
                         0.0))
-        (draw_beam btp)                                         ;¶E½¢§± ‹aŸ¡‹¡
-        (setq cnt (1+ cnt))                                     ;¶E½¢ ”a·q §±
+        (draw_beam btp)                                         ;ì™¼ìª½ë¹” ê·¸ë¦¬ê¸°
+        (setq cnt (1+ cnt))                                     ;ì™¼ìª½ ë‹¤ìŒ ë¹”
       ) ;of repeat
-      (setq cnt 1)                                              ;µ¡Ÿe½¢Àõ¤å¼ §±
+      (setq cnt 1)                                              ;ì˜¤ë¥¸ìª½ì²«ë²ˆì§¸ ë¹”
       (repeat bn2
-        (setq btp (list (+ (car p) (* cnt pb))                  ;§± ¬w”e¸ñ
+        (setq btp (list (+ (car p) (* cnt pb))                  ;ë¹” ìƒë‹¨ì 
                         (- (+ (cadr scb) (* cnt pb rs)) (* (abs rs) 350.0))
                         0.0))
-        (draw_beam btp)                                         ;¶E½¢§± ‹aŸ¡‹¡
-        (setq cnt (1+ cnt))                                     ;¶E½¢ ”a·q §±
+        (draw_beam btp)                                         ;ì™¼ìª½ë¹” ê·¸ë¦¬ê¸°
+        (setq cnt (1+ cnt))                                     ;ì™¼ìª½ ë‹¤ìŒ ë¹”
       ) ;of repeat
     ) ;of progn
-    (progn                                                      ;§± ˆ•®ˆa ¼b® ·©˜
-      (setq bn2 (/ bn 2))                                       ;Ğe½¢ §±· ˆ•®
-      (setq cnt 1)                                              ;Àõ ¶E½¢§±¦Èá
+    (progn                                                      ;ë¹” ê°¯ìˆ˜ê°€ ì§ìˆ˜ ì¼ë•Œ
+      (setq bn2 (/ bn 2))                                       ;í•œìª½ ë¹”ì˜ ê°¯ìˆ˜
+      (setq cnt 1)                                              ;ì²« ì™¼ìª½ë¹”ë¶€í„°
       (repeat bn2
         (if (= cnt 1)
-          (setq dx (* pb 0.5))                                  ;º—´wµA¬á §±º—´wŒa»¡ ˆáŸ¡
+          (setq dx (* pb 0.5))                                  ;ì¤‘ì•™ì—ì„œ ë¹”ì¤‘ì•™ê¹Œì§€ ê±°ë¦¬
           (setq dx (+ (* pb 0.5) (* (1- cnt) pb)))
         ) ;of IF
-        (setq btp (list (- (car p) dx)                          ;§± ¬w”e¸ñ
+        (setq btp (list (- (car p) dx)                          ;ë¹” ìƒë‹¨ì 
                         (- (+ (cadr scb) (* dx ls)) (* (abs ls) 350.0))
                         0.0))
-        (draw_beam btp)                                         ;§± ‹aŸ¡‹¡
-        (setq cnt (1+ cnt))                                     ;¶E½¢ ”a·q §±
+        (draw_beam btp)                                         ;ë¹” ê·¸ë¦¬ê¸°
+        (setq cnt (1+ cnt))                                     ;ì™¼ìª½ ë‹¤ìŒ ë¹”
       ) ;of repeat
-      (setq cnt 1)                                              ;Àõ µ¡Ÿe½¢§±¦Èá
+      (setq cnt 1)                                              ;ì²« ì˜¤ë¥¸ìª½ë¹”ë¶€í„°
       (repeat bn2
         (if (= cnt 1)
-          (setq dx (* pb 0.5))                                  ;º—´wµA¬á §±º—´wŒa»¡ ˆáŸ¡
+          (setq dx (* pb 0.5))                                  ;ì¤‘ì•™ì—ì„œ ë¹”ì¤‘ì•™ê¹Œì§€ ê±°ë¦¬
           (setq dx (+ (* pb 0.5) (* (1- cnt) pb)))
         ) ;of IF
-        (setq btp (list (+ (car p) dx)                          ;§± ¬w”e¸ñ
+        (setq btp (list (+ (car p) dx)                          ;ë¹” ìƒë‹¨ì 
                         (- (+ (cadr scb) (* dx rs)) (* (abs rs) 350.0))
                         0.0))
-        (draw_beam btp)                                         ;§± ‹aŸ¡‹¡
-        (setq cnt (1+ cnt))                                     ;¶E½¢ ”a·q §±
+        (draw_beam btp)                                         ;ë¹” ê·¸ë¦¬ê¸°
+        (setq cnt (1+ cnt))                                     ;ì™¼ìª½ ë‹¤ìŒ ë¹”
       ) ;of repeat
     ) ;of progn
   ) ;of IF
 
-;******  Ã¡®¬å ‹¡·³ (´aœ)
-  (setq canl (/ (- b (* (1- bn) pb)) 2.0))                 ;Ä…Ë©A¤á ‹©·¡
-  (setq dpy1 (- (cadr slbe) 2000.0))                       ;Ã¡®¬åyˆt
-  (setq dp1 (list (car slbe) dpy1 0.0))                    ;Ã¡®¬å ¯¡¸b¸ñ
-  (setq dpy2 (- dpy1 (* ds 20)))                           ;Ã¡®¬åyˆt
-  (setq dp11 (list (car slbe) dpy2 0.0))                   ;Ã¡®¬å¶áÃ¡
-  (setq pp (f_dh dp1 canl 1 -1 nil))                       ;¶E½¢ Ä…Ë©A¤á Ã¡®
-  (setq pp (f_dh pp pb (1- bn) -1 nil))                    ;beamˆe‰bÃ¡®
-  (setq pp (f_dh pp canl 1 -1 nil))                        ;µ¡Ÿe½¢ Ä…Ë©A¤á Ã¡®
-  (setq pp (f_dh dp1 b 1 -2 nil))                          ;Á·Í¢ Ã¡®
+;******  ì¹˜ìˆ˜ì„  ê¸°ì… (ì•„ë˜)
+  (setq canl (/ (- b (* (1- bn) pb)) 2.0))                 ;ìº”í‹¸ë ˆë²„ ê¸¸ì´
+  (setq dpy1 (- (cadr slbe) 2000.0))                       ;ì¹˜ìˆ˜ì„ yê°’
+  (setq dp1 (list (car slbe) dpy1 0.0))                    ;ì¹˜ìˆ˜ì„  ì‹œì‘ì 
+  (setq dpy2 (- dpy1 (* ds 20)))                           ;ì¹˜ìˆ˜ì„ yê°’
+  (setq dp11 (list (car slbe) dpy2 0.0))                   ;ì¹˜ìˆ˜ì„ ìœ„ì¹˜
+  (setq pp (f_dh dp1 canl 1 -1 nil))                       ;ì™¼ìª½ ìº”í‹¸ë ˆë²„ ì¹˜ìˆ˜
+  (setq pp (f_dh pp pb (1- bn) -1 nil))                    ;beamê°„ê²©ì¹˜ìˆ˜
+  (setq pp (f_dh pp canl 1 -1 nil))                        ;ì˜¤ë¥¸ìª½ ìº”í‹¸ë ˆë²„ ì¹˜ìˆ˜
+  (setq pp (f_dh dp1 b 1 -2 nil))                          ;ì´í­ ì¹˜ìˆ˜
 
-;****** Ã¡®¬å ‹¡·³ (¶á)
-  (setq pp1 (list (- (car p) (/ b 2)) (+ (cadr p) (* ls b 0.5) 1000)))   ;¶E½¢¤wÑ¡¥b ¬w”e¸ñ
-  (setq pp (f_dh pp1 450 1 1 nil))                          ;¶E½¢ µe¬â Ã¡®
-  (setq pp (f_dh pp (- b 900) 1 1 nil))                     ;Í¡¸w¡e Ã¡®
-  (setq pp (f_dh pp 450 1 1 nil))                           ;µ¡Ÿe½¢ µe¬â Ã¡®
-  (setq pp (f_dh pp1 b 1 2 nil))                            ;¸åÁA Í¢ Ã¡®
+;****** ì¹˜ìˆ˜ì„  ê¸°ì… (ìœ„)
+  (setq pp1 (list (- (car p) (/ b 2)) (+ (cadr p) (* ls b 0.5) 1000)))   ;ì™¼ìª½ë°©í˜¸ë²½ ìƒë‹¨ì 
+  (setq pp (f_dh pp1 450 1 1 nil))                          ;ì™¼ìª½ ì—°ì„ ì¹˜ìˆ˜
+  (setq pp (f_dh pp (- b 900) 1 1 nil))                     ;í¬ì¥ë©´ ì¹˜ìˆ˜
+  (setq pp (f_dh pp 450 1 1 nil))                           ;ì˜¤ë¥¸ìª½ ì—°ì„ ì¹˜ìˆ˜
+  (setq pp (f_dh pp1 b 1 2 nil))                            ;ì „ì²´ í­ ì¹˜ìˆ˜
 
-;****** slop Îa¯¡
+;****** slop í‘œì‹œ
   (setq pnt (list (- (car p) (/ b 4)) (+ (cadr p) (* (/ b 4) ls) ds)))
   (f_slop pnt -1 (* ls 100))
   (setq pnt (list (+ (car p) (/ b 4)) (+ (cadr p) (* (/ b 4) rs) ds)))
   (f_slop pnt 1 (* rs 100))
 
 
-;******  a¢Ÿ¡
+;****** ë§ˆë¬´ë¦¬
 
   (pop-env)
   (setq *error* oer seterr nil)
@@ -148,11 +148,11 @@
 ;            Suk-Jong Yi
 ;            96/5/11
 ;*******************************************
-; PSC BEAM(”e¡e)·i ‹aaº…”a
+; PSC BEAM(ë‹¨ë©´)ì„ ê·¸ë ¤ì¤€ë‹¤
 ;*******************************************
 
 (defun DRAW_BEAM( ipnt / ipnt fp)
-  (setq fp (list (- (car ipnt) 350) (cadr ipnt) 0.0))           ;¯¡¸b¸ñ
+  (setq fp (list (- (car ipnt) 350) (cadr ipnt) 0.0))           ;ì‹œì‘ì 
   (command "LINE" fp "@700,0" "@0,-180" "@-250,-100" "@0,-1270"
                      "@230,-220" "@0,-230" "@-660,0" "@0,230"
                      "@230,220" "@0,1270" "@-250,100" "C")
@@ -164,29 +164,29 @@
 ;            Suk-Jong Yi
 ;            96/7/3
 ;********************************************
-;¤wÑ¡À‚·i ‹aaº…”a.
-; ñ´áµ¡“e ˆt
+;ë°©í˜¸ì±…ì„ ê·¸ë ¤ì¤€ë‹¤.
+; ë„˜ì–´ì˜¤ëŠ” ê°’
 ;     LR : Left / Right
 ;     ip : Insert Point
 ;     SL : SLOP (%)
 ;********************************************
 (defun BARRIER( LR ip SL / LR ip SL)
-  (if (= LR 0)                                      ;¶E½¢µe¬â
+  (if (= LR 0)                                      ;ì™¼ìª½ì—°ì„
     (progn
       (setq inpo (list (+ (car ip) 30)
-                       (+ (cadr ip) (* sl -30.0 0.01)) 0.0))     ;¤aŒ{½¢´aœ
+                       (+ (cadr ip) (* sl -30.0 0.01)) 0.0))     ;ë°”ê¹¥ìª½ì•„ë˜
       (setq inpi (list (+ (car ip) 450.0)
-                       (+ (cadr ip) (* sl -450.0 0.01)) 0.0))   ;´e½¢´aœ
+                       (+ (cadr ip) (* sl -450.0 0.01)) 0.0))   ;ì•ˆìª½ì•„ë˜
       (command "PLINE" inpo "@0,1080" "@230,0" "@70,-700"
-                           "@120,-175" inpi "")                             ;µe¬â‹aŸ¡‹¡
+                           "@120,-175" inpi "")                             ;ì—°ì„ê·¸ë¦¬ê¸°
     ) ;of PROGN
     (progn
       (setq inpo (list (- (car ip) 30.0)
-                       (+ (cadr ip) (* sl -30.0 0.01)) 0.0))     ;¤aŒ{½¢´aœ
+                       (+ (cadr ip) (* sl -30.0 0.01)) 0.0))     ;ë°”ê¹¥ìª½ì•„ë˜
       (setq inpi (list (- (car ip) 450.0)
-                       (+ (cadr ip) (* sl -450.0 0.01)) 0.0))   ;´e½¢´aœ
+                       (+ (cadr ip) (* sl -450.0 0.01)) 0.0))   ;ì•ˆìª½ì•„ë˜
       (command "PLINE" inpo "@0,1080" "@-230,0" "@-70,-700"
-                           "@-120,-175" inpi "")                            ;µe¬â‹aŸ¡‹¡
+                           "@-120,-175" inpi "")                            ;ì—°ì„ê·¸ë¦¬ê¸°
     ) ;of progn
   ) ;of IF
 ) ;of defun
@@ -197,11 +197,11 @@
 ;           Suk-Jong Yi
 ;           96/7/3
 ;***********************************
-;‘¡¡e· slop·i Îa¯¡Ğº…”a. (%)
-; ñ´áµ¡“e ˆt
-;     MP : Mid Point ÑÁ¬iÎa· º—ˆe¸ñ
-;   SGNX : (ÑÁ¬iÎa· »¥Ğ—¤wĞ·)
-;     SL : SLopˆt (%)
+;ë…¸ë©´ì˜ slopì„ í‘œì‹œí•´ì¤€ë‹¤. (%)
+; ë„˜ì–´ì˜¤ëŠ” ê°’
+;     MP : Mid Point í™”ì‚´í‘œì˜ ì¤‘ê°„ì 
+;   SGNX : (í™”ì‚´í‘œì˜ ì§„í–‰ë°©í–¥)
+;     SL : SLopê°’ (%)
 ;***********************************
 
 (defun F_SLOP(MP SGNX SL
@@ -216,46 +216,46 @@
         th (getvar "DIMTXT"))
 
   (setq ang (atan (/ sl 100.0)))
-  (cond                                    ;ÑÁ¬iÎaˆa ¶E½¢·a¡ ˆa“eˆa µ¡Ÿe½¢·a¡
-    ((= sgnx -1) (setq angl (- pi ang)))   ;ˆa“eˆaµA ˜aœa¬á œa·¥· ˆb•¡Ÿi ‰¬e
-    ((= sgnx 1) (setq angl (+ 0.0 ang)))   ;¶E½¢·a¡ ˆi ‰w¶ 180+ang
-  ) ;of cond                               ;µ¡Ÿe½¢·a¡ ˆi ‰w¶ 0+ang
+  (cond                                    ;í™”ì‚´í‘œê°€ ì™¼ìª½ìœ¼ë¡œ ê°€ëŠ”ê°€ ì˜¤ë¥¸ìª½ìœ¼ë¡œ
+    ((= sgnx -1) (setq angl (- pi ang)))   ;ê°€ëŠ”ê°€ì— ë”°ë¼ì„œ ë¼ì¸ì˜ ê°ë„ë¥¼ ê³„ì‚°
+    ((= sgnx 1) (setq angl (+ 0.0 ang)))   ;ì™¼ìª½ìœ¼ë¡œ ê°ˆ ê²½ìš° 180+ang
+  ) ;of cond                               ;ì˜¤ë¥¸ìª½ìœ¼ë¡œ ê°ˆ ê²½ìš° 0+ang
 
 
-;‹¡¶‰‹¡· ¦Ñ¡Ÿi ¯aËaŸ··a¡  e—e”a
+;ê¸°ìš¸ê¸°ì˜ ë¶€í˜¸ë¥¼ ìŠ¤íŠ¸ë§ìœ¼ë¡œ ë§Œë“ ë‹¤
   (if (> sl 0.0)
     (setq sgnt "S=+")
     (setq sgnt "S=")
-  )               ;´·· slop·¥ ‰w¶ +‹¡Ñ¡ Âˆa
+  )               ;ì–‘ì˜ slopì¸ ê²½ìš° +ê¸°í˜¸ ì¶”ê°€
 
   (if (> (abs (rem sl 1)) 0)
     (setq slt (rtos sl 2 3))
     (setq slt (rtos (float sl) 2 1))
   ) ;of if
-  (setq sltxt (strcat sgnt slt "%"))   ;¦Ñ¡ + slop + "%"
+  (setq sltxt (strcat sgnt slt "%"))   ;ë¶€í˜¸ + slop + "%"
   (setq lsttxt sltxt)
-  (setq txtlen (* (strlen lsttxt) th ds))                    ;¸åÁA text· ‹©·¡
-  (setq txtl (+ txtlen (* ds 2 th)))  ;text‹©·¡µA”a 2ˆ· ‹i¸aŸi ÂˆaĞe ‹©·¡
+  (setq txtlen (* (strlen lsttxt) th ds))                    ;ì „ì²´ textì˜ ê¸¸ì´
+  (setq txtl (+ txtlen (* ds 2 th)))  ;textê¸¸ì´ì—ë‹¤ 2ê°œì˜ ê¸€ìë¥¼ ì¶”ê°€í•œ ê¸¸ì´
 
-;ÑÁ¬iÎa ¥A·¡¯aœa·¥· ¯¡¸b¸ñ‰Á {¸ñ·i ŠĞe”a
+;í™”ì‚´í‘œ ë² ì´ìŠ¤ë¼ì¸ì˜ ì‹œì‘ì ê³¼ ëì ì„ êµ¬í•œë‹¤
   (setq blsp (polar mp (- angl pi) (/ txtl 2.0)))
-  (setq blep (polar mp    angl     (+ (/ txtl 2.0) (* ds th)))) ;ÑÁ¬iÎa½¢·i ‹©‰A
+  (setq blep (polar mp    angl     (+ (/ txtl 2.0) (* ds th)))) ;í™”ì‚´í‘œìª½ì„ ê¸¸ê²Œ
   (setq ap1ang (+ angl pi (* (dtor 15.0) sgnx -1)))
-  (setq ap1 (polar blep ap1ang (* ds 2.0)))     ;ÑÁ¬iÎa ¬a‹©·¡“e 2.0mm
+  (setq ap1 (polar blep ap1ang (* ds 2.0)))     ;í™”ì‚´í‘œ ì‚¬ê¸¸ì´ëŠ” 2.0mm
   (setq ap2ang (+ ap1ang (* (dtor 105.0) sgnx)))
   (setq ap2 (polar ap1 ap2ang (* (sin (dtor 15.0)) (* ds 2.0))))
 
 
-  (setq txtp (polar mp (* (+ angl (/ pi 2.0)) sgnx) (* ds th)))  ;ÉB¯aËa· insert point
+  (setq txtp (polar mp (* (+ angl (/ pi 2.0)) sgnx) (* ds th)))  ;í…ìŠ¤íŠ¸ì˜ insert point
   (if (< sgnx 0)
-    (setq txtang (- angl pi))          ;¶E½¢¤wĞ··© ‰w¶ textˆb ŠĞq
-    (setq txtang angl)                 ;µ¡Ÿe½¢ ¤wĞ··© ‰w¶ ¥A·¡¯aœa·¥ ˆb‰Á ˆ{”a
+    (setq txtang (- angl pi))          ;ì™¼ìª½ë°©í–¥ì¼ ê²½ìš° textê° êµ¬í•¨
+    (setq txtang angl)                 ;ì˜¤ë¥¸ìª½ ë°©í–¥ì¼ ê²½ìš° ë² ì´ìŠ¤ë¼ì¸ ê°ê³¼ ê°™ë‹¤
   )
   (setq clr (getvar "CECOLOR"))
   (setvar "CECOLOR" "RED")
-  (command "PLINE" blsp blep ap1 ap2 "")                      ;ÑÁ¬iÎa ‹aŸ¡‹¡
+  (command "PLINE" blsp blep ap1 ap2 "")                      ;í™”ì‚´í‘œ ê·¸ë¦¬ê¸°
   (setvar "CECOLOR" clr)
-  (command "TEXT" "J" "M" txtp (* ds th) (rtod txtang) lsttxt) ;ÉB¯aËa ³a‹¡
+  (command "TEXT" "J" "M" txtp (* ds th) (rtod txtang) lsttxt) ;í…ìŠ¤íŠ¸ ì“°ê¸°
 
 ) ;of defun
 
@@ -265,9 +265,9 @@
 ;           Jong-Suk Yi
 ;           96/7/3
 ;*******************************************
-; Vertical DIM·i OBLIQUE¯¡Åaº…”a.
-; ¹A´¢¹¡ˆå - ®»¢ DIMµA e Ğ”w–E”a.
-;          - OBLIQUEˆb·e 30•¡¡ ¸÷Ğ¹a ·¶”a.
+; Vertical DIMì„ OBLIQUEì‹œì¼œì¤€ë‹¤.
+; ì œì•½ì¡°ê±´ - ìˆ˜ì§ DIMì—ë§Œ í•´ë‹¹ëœë‹¤.
+;          - OBLIQUEê°ì€ 30ë„ë¡œ ì •í•´ì ¸ ìˆë‹¤.
 ;*******************************************
 
 (defun F_DO(SP DST N LR TXT1
@@ -277,75 +277,75 @@ dtxt2p  dx      dxy     dy      ep      fst     lstdim  next    pnt1
 pnt2    ppnt    sent    sgn     sp      th      txt     txt1    txtlen
 )
 
-  (setq th (getvar "DIMTXT")                          ;textÇa‹¡ =dimtxt
-        dim_gap 10.0)                                 ;Ã¡®¬å ˆe‰b
+  (setq th (getvar "DIMTXT")                          ;textí¬ê¸° =dimtxt
+        dim_gap 10.0)                                 ;ì¹˜ìˆ˜ì„  ê°„ê²©
 
   (setq ds (getvar "DIMSCALE"))                       ;scale factor
 
-  (if (> lr 0)                                              ;¶E½¢ µ¡Ÿe½¢ ¬åÈ‚
+  (if (> lr 0)                                              ;ì™¼ìª½ ì˜¤ë¥¸ìª½ ì„ íƒ
     (setq sgn 1)
     (setq sgn -1)
   ) ;of if
 
-  (setq dx (* ds (+ 15 (* dim_gap (- (abs lr) 1)))))        ;¿¢·e¸ñ‰Á Ã¡®¬å·ˆáŸ¡
+  (setq dx (* ds (+ 15 (* dim_gap (- (abs lr) 1)))))        ;ì°ì€ì ê³¼ ì¹˜ìˆ˜ì„ ì˜ê±°ë¦¬
 
   (setq next (* dst n))
 
-  (setq ep (list (car sp) (+ (cadr sp) next)))        ;ep ¶áÃ¡‰¬e
+  (setq ep (list (car sp) (+ (cadr sp) next)))        ;ep ìœ„ì¹˜ê³„ì‚°
 
-  (setq dxy (list (+ (car ep) (* dx sgn)) (car ep) 0.0))  ;Ã¡®¬å·¡ ‘½·© ¶áÃ¡
+  (setq dxy (list (+ (car ep) (* dx sgn)) (car ep) 0.0))  ;ì¹˜ìˆ˜ì„ ì´ ë†“ì¼ ìœ„ì¹˜
 
-  (setq dy (distance sp ep))                          ;– ¸ñ· ˆáŸ¡
+  (setq dy (distance sp ep))                          ;ë‘ ì ì˜ ê±°ë¦¬
 
   (if (< dy 1000.0)
-    (setq txt (rtos dy 2 0))                          ;1000£¡ e·© ˜
-    (setq txt (rtos (* dy 0.001) 2 3))                ;1000·¡¬w·© ˜
+    (setq txt (rtos dy 2 0))                          ;1000ë¯¸ë§Œì¼ ë•Œ
+    (setq txt (rtos (* dy 0.001) 2 3))                ;1000ì´ìƒì¼ ë•Œ
   ) ;of if(dy < 1000)
 
   (if (> n 1)
     (progn
-      (setq divl dst)                                 ;a’“e ‹©·¡ ·³b
-      (setq divn (rtos n 2 0))              ;a’… ˆ•®‰¬e
+      (setq divl dst)                                 ;ë‚˜ëˆ„ëŠ” ê¸¸ì´ ì…ë ¥
+      (setq divn (rtos n 2 0))              ;ë‚˜ëˆˆ ê°¯ìˆ˜ê³„ì‚°
       (if (< divl 1000.)
-        (setq divl (rtos divl 2 0))                   ;a’“e ‹©·¡ˆa 1000£¡ e¯¡
-        (setq divl (rtos (* divl 0.001) 2 3))) ;of if  a’“e ‹©·¡ˆa 1000·¡¬w¯¡
+        (setq divl (rtos divl 2 0))                   ;ë‚˜ëˆ„ëŠ” ê¸¸ì´ê°€ 1000ë¯¸ë§Œì‹œ
+        (setq divl (rtos (* divl 0.001) 2 3))) ;of if  ë‚˜ëˆ„ëŠ” ê¸¸ì´ê°€ 1000ì´ìƒì‹œ
         (setq txtlen (* (+ (strlen txt) (strlen divn) (strlen divl) 2) th ds
                      (cdr (assoc 41 (tblsearch "STYLE" (getvar "TEXTSTYLE"))))))
         (if (>= txtlen dy)
-          (progn                                  ;textˆa ¥¡¹¡¬å µA ´e—i´áˆa¡e
-            (setq dtxt1 (strcat divn "@" divl))   ;–º‰¡ a’‘
+          (progn                                  ;textê°€ ë³´ì¡°ì„  ë‚´ì— ì•ˆë“¤ì–´ê°€ë©´
+            (setq dtxt1 (strcat divn "@" divl))   ;ë‘ì¤„ë¡œ ë‚˜ëˆ”
             (setq dtxt2 (strcat "=" txt))
             (setq dtxt1p (mapcar '+ (mid-point sp ep)
-                                    (list (- (* dx sgn) (* ds th))  ;x¶áÃ¡
+                                    (list (- (* dx sgn) (* ds th))  ;xìœ„ì¹˜
                                           (* dx (/ (sin (/ pi 6)) (cos (/ pi 6))))
-                                          0.0)))                     ;z¶áÃ¡
+                                          0.0)))                     ;zìœ„ì¹˜
             (setq dtxt2p (mapcar '+ (mid-point sp ep)
-                                    (list (+ (* dx sgn) (* ds th))  ;x¶áÃ¡
+                                    (list (+ (* dx sgn) (* ds th))  ;xìœ„ì¹˜
                                           (* dx (/ (sin (/ pi 6)) (cos (/ pi 6))))
-                                          0.0)))                     ;z¶áÃ¡
+                                          0.0)))                     ;zìœ„ì¹˜
             (command "TEXT" "M" dtxt1p (* th ds) "90" dtxt1)
             (command "TEXT" "M" dtxt2p (* th ds) "90" dtxt2)
-            (command "DIM1" "VER" sp ep dxy " ")              ;DIM¡ww Ÿ±
+            (command "DIM1" "VER" sp ep dxy " ")              ;DIMëª…ë ¹ ë‚´ë¦¼
           ) ;of progn THEN
-          (progn                                  ;textˆa ¥¡¹¡¬å µA —i´áˆa¡e
+          (progn                                  ;textê°€ ë³´ì¡°ì„  ë‚´ì— ë“¤ì–´ê°€ë©´
             (setq dtxt1 (strcat divn "@" divl "=" txt))
-            (command "DIM1" "VER" sp ep dxy dtxt1)            ;DIM¡ww Ÿ±
+            (command "DIM1" "VER" sp ep dxy dtxt1)            ;DIMëª…ë ¹ ë‚´ë¦¼
           ) ;of progn ELSE
         ) ;of IF
       ) ;of progn THEN
       (progn
-        (if (= txt1 "") (setq txt1 txt))                      ;Ÿ¡Èå·³b¯¡ µ• textŸi ³q
-        (command "DIM1" "VER" sp ep dxy txt1)             ;DIM¡ww Ÿ±
+        (if (= txt1 "") (setq txt1 txt))                      ;ë¦¬í„´ì…ë ¥ì‹œ ì˜› textë¥¼ ì”€
+        (command "DIM1" "VER" sp ep dxy txt1)             ;DIMëª…ë ¹ ë‚´ë¦¼
       ) ;of progn ELSE
     ) ;of if(txt1=@)
 
-    (setq lstdim (entlast))                               ;¤w‹q  e—i´á»¥ dim¬åÈ‚
+    (setq lstdim (entlast))                               ;ë°©ê¸ˆ ë§Œë“¤ì–´ì§„ dimì„ íƒ
     (setq oldexo (getvar "DIMEXO"))
     (setvar "DIMEXO" 3)
-    (command "DIM1" "OBL" lstdim "" (* sgn 30))           ;30•¡ eÇq •©aº‘
+    (command "DIM1" "OBL" lstdim "" (* sgn 30))           ;30ë„ë§Œí¼ ëŒë ¤ì¤Œ
     (command "DIM1" "UPDATE" lstdim "")
     (setvar "DIMEXO" oldexo)
 
-  ep                                                        ;{¸ñ·i •©a¥¡…”a.
+  ep                                                        ;ëì ì„ ëŒë ¤ë³´ë‚¸ë‹¤.
 
 ) ;defun

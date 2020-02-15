@@ -4,9 +4,9 @@
 ;           Jong-Suk Yi
 ;           97/7/30
 ;*******************************************
-; Vertical DIM·i OBLIQUE¯¡Åaº…”a.
-; ¹A´¢¹¡ˆå - ®»¢ DIMµA e Ğ”w–E”a.
-;          - OBLIQUEˆb·e 30•¡¡ ¸÷Ğ¹a ·¶”a.
+; Vertical DIMì„ OBLIQUEì‹œì¼œì¤€ë‹¤.
+; ì œì•½ì¡°ê±´ - ìˆ˜ì§ DIMì—ë§Œ í•´ë‹¹ëœë‹¤.
+;          - OBLIQUEê°ì€ 30ë„ë¡œ ì •í•´ì ¸ ìˆë‹¤.
 ;*******************************************
 
 (defun C:OB(/
@@ -14,7 +14,7 @@ entdim  ents    sp      ep      ang     selpnt  lent    sp      ep
 ang     deg     dxy     dy      ep
 )
 
-  (defun SETERR(s)                                  ;¸wµAœáË¥ ¸÷·
+  (defun SETERR(s)                                  ;ë‚´ì¥ì—ëŸ¬ë£¨í‹´ ì •ì˜
     (if (/= s "Function cancelled")
         (princ (strcat "\nError: " s))
     ); of If
@@ -22,43 +22,43 @@ ang     deg     dxy     dy      ep
     (princ)
   ); of SETERR
 
-  (setq oer *error* *error* seterr)                 ;¸wµAœáË¥ ˆa•·
+  (setq oer *error* *error* seterr)                 ;ë‚´ì¥ì—ëŸ¬ë£¨í‹´ ê°€ë™
 
-  (push-env)                                        ;ÑÅ‰w¥e® ”Ï¡
+  (push-env)                                        ;í™˜ê²½ë³€ìˆ˜ ëŒ€í”¼
 
-  (princ "\nSelect Dimension: ")                    ;dimension ¬åÈ‚
+  (princ "\nSelect Dimension: ")                    ;dimension ì„ íƒ
   (setq entdim (ssget '((0 . "DIMENSION"))))
 
   (initget "2p")
-  (setq ents (entsel "\nSelect line/2p: "))         ;œa·¥ ™¡“e –¸ñ ¬åÈ‚
+  (setq ents (entsel "\nSelect line/2p: "))         ;ë¼ì¸ ë˜ëŠ” ë‘ì  ì„ íƒ
 
   (if (= ents "2p")
     (progn
-      (setq sp (getpoint "\nPick start point: "))   ;¯¡¸b¸ñ ·³b
-      (setq ep (getpoint "\nPick end point: "))     ;{¸ñ ·³b
-      (setq ang (angle sp ep))                      ;ˆb•¡ ‰¬e
+      (setq sp (getpoint "\nPick start point: "))   ;ì‹œì‘ì  ì…ë ¥
+      (setq ep (getpoint "\nPick end point: "))     ;ëì  ì…ë ¥
+      (setq ang (angle sp ep))                      ;ê°ë„ ê³„ì‚°
     ) ;of progn
     (progn
-      (setq selpnt (car (cdr ents)))                ;œa·¥¬åÈ‚¸ñ
-      (setq lent (entget (car ents)))               ;line element¸÷¥¡
-      (setq sp (cdr (assoc 10 lent)))               ;¯¡¸b¸ñ ·³b
-      (setq ep (cdr (assoc 11 lent)))               ;{¸ñ ·³b
+      (setq selpnt (car (cdr ents)))                ;ë¼ì¸ì„ íƒì 
+      (setq lent (entget (car ents)))               ;line elementì •ë³´
+      (setq sp (cdr (assoc 10 lent)))               ;ì‹œì‘ì  ì…ë ¥
+      (setq ep (cdr (assoc 11 lent)))               ;ëì  ì…ë ¥
       (if (< (distance sp selpnt) (distance ep selpnt))
-        (setq ang (angle ep sp))                    ;¬åÈ‚¸ñ·¡ ¯¡¸b¸ñ‰Á ˆaŒa¶¡e ˆb·e {¸ñ~¯¡¸b¸ñ
-        (setq ang (angle sp ep))                    ;   "     {¸ñ        "          ¯¡¸b¸ñ~{¸ñ
+        (setq ang (angle ep sp))                    ;ì„ íƒì ì´ ì‹œì‘ì ê³¼ ê°€ê¹Œìš°ë©´ ê°ì€ ëì ~ì‹œì‘ì 
+        (setq ang (angle sp ep))                    ;   "     ëì         "          ì‹œì‘ì ~ëì 
       ) ;of if
     ) ;of progn
   ) ;of if
 
-  (setq deg (rtod ang))             ;radian·i degree¡
+  (setq deg (rtod ang))             ;radianì„ degreeë¡œ
 
-  (COMMAND "DIM1" "OBLIQUE"         ;oblique¡ww
-           entdim ""                ;dimensio¬åÈ‚
-           deg)                     ;ˆb•¡·³b
+  (COMMAND "DIM1" "OBLIQUE"         ;obliqueëª…ë ¹
+           entdim ""                ;dimensioì„ íƒ
+           deg)                     ;ê°ë„ì…ë ¥
 
-  (pop-env)                                         ;ÑÅ‰w¥e® ¥¢Šá
+  (pop-env)                                         ;í™˜ê²½ë³€ìˆ˜ ë³µê·€
 
-  (setq *error* oer seterr nil)                     ;¸¸wµAœáË¥ ¥¢Šá
+  (setq *error* oer seterr nil)                     ;ì¬ì¥ì—ëŸ¬ë£¨í‹´ ë³µê·€
 
   (prin1)
 ) ;defun

@@ -5,33 +5,33 @@
 ;           1995/5/27
 ;****************************************
 
-;”aŸe A·¡´áµA ·¶“e µEË¡Ë¡Ÿi Ñe¸· A·¡´á¡ copyĞe”a.
+;ë‹¤ë¥¸ ë ˆì´ì–´ì— ìˆëŠ” ì—”í‹°í‹°ë¥¼ í˜„ì¬ì˜ ë ˆì´ì–´ë¡œ copyí•œë‹¤.
 
-(defun C:COPYL(/                    ;»¡µb¥e® ¸÷·
+(defun C:COPYL(/                    ;ì§€ì—­ë³€ìˆ˜ ì •ì˜
 clayer ents nent bpnt dpnt
 count cent lent oldl newl
 )
 
-(push-env)                          ;ÑÅ‰w¥e® ”Ï¡
+(push-env)                          ;í™˜ê²½ë³€ìˆ˜ ëŒ€í”¼
 
-(setq clayer (getvar "CLAYER"))     ;Ñe¸ A·¡´á ´i´a‘
-(setq ents (ssget))                 ;ÄaÏ¡Ği µEË¡Ë¡ ¬åÈ‚
-(setq nent (sslength ents))         ;¬åÈ‚–E µEË¡Ë¡ ˆ•®
-(setq bpnt (getpoint "\nBase point or displacement: "))        ;¥A·¡¯aÍ¡·¥Ëa
-(setq dpnt (getpoint bpnt "\nSecond point of displacement: ")) ;–‰¼Í¡·¥Ëa
+(setq clayer (getvar "CLAYER"))     ;í˜„ì¬ ë ˆì´ì–´ ì•Œì•„ëƒ„
+(setq ents (ssget))                 ;ì¹´í”¼í•  ì—”í‹°í‹° ì„ íƒ
+(setq nent (sslength ents))         ;ì„ íƒëœ ì—”í‹°í‹° ê°¯ìˆ˜
+(setq bpnt (getpoint "\nBase point or displacement: "))        ;ë² ì´ìŠ¤í¬ì¸íŠ¸
+(setq dpnt (getpoint bpnt "\nSecond point of displacement: ")) ;ë‘˜ì§¸í¬ì¸íŠ¸
 (setq count 0)                                                 ; coun=0
-(repeat nent                                               ;µEË¡Ë¡ˆ•® eÇq ¤e¥¢
-  (setq cent (ssname ents count))             ;ÄaÏ¡–I µEË¡Ë¡
-  (command "COPY" cent "" bpnt dpnt)          ;ÄaÏ¡¡ww ¯©Ğ—
-  (setq lent (entget (entlast)))              ;¤w‹q ÄaÏ¡–E µEË¡Ë¡
-  (setq oldl (assoc 8 lent))                  ;¤w‹qÄaÏ¡–E µEË¡Ë¡· layer
-  (setq newl (cons 8 clayer))                 ;oldlayerŸi ”ÁAĞi layer
-  (setq lent (subst newl oldl lent))          ;µ•A·¡´áŸi Ñe A·¡´á¡ ”ÁA
-  (entmod lent)                             ;”ÁA–E µEË¡Ë¡ ¸÷¥¡¡ ˆ—¯¥
-  (setq count (+ count 1))                  ;”a·q µEË¡Ë¡¡
-) ;of repeat                                ;µEË¡Ë¡· ˆ•® eÇq ¤e¥¢
+(repeat nent                                               ;ì—”í‹°í‹°ê°¯ìˆ˜ë§Œí¼ ë°˜ë³µ
+  (setq cent (ssname ents count))             ;ì¹´í”¼ë  ì—”í‹°í‹°
+  (command "COPY" cent "" bpnt dpnt)          ;ì¹´í”¼ëª…ë ¹ ì‹¤í–‰
+  (setq lent (entget (entlast)))              ;ë°©ê¸ˆ ì¹´í”¼ëœ ì—”í‹°í‹°
+  (setq oldl (assoc 8 lent))                  ;ë°©ê¸ˆì¹´í”¼ëœ ì—”í‹°í‹°ì˜ layer
+  (setq newl (cons 8 clayer))                 ;oldlayerë¥¼ ëŒ€ì²´í•  layer
+  (setq lent (subst newl oldl lent))          ;ì˜›ë ˆì´ì–´ë¥¼ í˜„ ë ˆì´ì–´ë¡œ ëŒ€ì²´
+  (entmod lent)                             ;ëŒ€ì²´ëœ ì—”í‹°í‹° ì •ë³´ë¡œ ê°±ì‹ 
+  (setq count (+ count 1))                  ;ë‹¤ìŒ ì—”í‹°í‹°ë¡œ
+) ;of repeat                                ;ì—”í‹°í‹°ì˜ ê°¯ìˆ˜ë§Œí¼ ë°˜ë³µ
 
-(pop-env)                           ;ÑÅ‰w¥e® ¥¢Šá
+(pop-env)                           ;í™˜ê²½ë³€ìˆ˜ ë³µê·€
 
 ) ;of defun
 

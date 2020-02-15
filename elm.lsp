@@ -9,11 +9,11 @@
 ;           Jong-Suk Yi
 ;           96/6/4
 ;**********************************
-; 05/08/09 : functionÀ» ÀÌ¿ëÇÏµµ·Ï ¼öÁ¤
+; 05/08/09 : functionì±¹ ì²‡Â¿Ã«Ã‡í•ì˜¹Ã ì© ì´‹
 (defun c:elm( / ip pv txt )
-  (setq ip (getpoint "\nPick insert point: "))                ;¬s·³¸ñ ·³b
-  (setq pv (getpoint ip "\nPick Position point: "))            ;®»¢ ¤wĞ· ·³b
-  (setq txt (strcat "EL.=" (getstring "\nElevation: ")))      ;ÉB¯aËa ·³b
+  (setq ip (getpoint "\nPick insert point: "))                ;ì‚½ì…ì  ì…ë ¥
+  (setq pv (getpoint ip "\nPick Position point: "))            ;ìˆ˜ì§ ë°©í–¥ ì…ë ¥
+  (setq txt (strcat "EL.=" (getstring "\nElevation: ")))      ;í…ìŠ¤íŠ¸ ì…ë ¥
   (djdgf_elm ip pv txt)
 );defun
 
@@ -22,7 +22,7 @@
 ;           Jong-Suk Yi
 ;           96/6/4
 ;**********************************
-; 05/08/09 : functiondÀ¸·Î ¼öÁ¤
+; 05/08/09 : functiondì±¶Â·Ã ì© ì´‹
 (defun djdgf_ELM(  ip pv txt / 
 		ds ip pv ph dv dh vs hs txt txtl p1 p2 tp
 		)
@@ -41,34 +41,34 @@
       th (getvar "DIMTXT"))
 
   
-;(setq ph (getpoint pv "\nPick Holizontal side: "))          ;®Íw¤wĞ· ·³b
+;(setq ph (getpoint pv "\nPick Holizontal side: "))          ;ìˆ˜í‰ë°©í–¥ ì…ë ¥
 
-  (setq dv (- (cadr pv) (cadr ip)))                           ;®»¢Àa
-  (setq dh (- (car pv) (car ip)))                             ;®ÍwÀa
+  (setq dv (- (cadr pv) (cadr ip)))                           ;ìˆ˜ì§ì°¨
+  (setq dh (- (car pv) (car ip)))                             ;ìˆ˜í‰ì°¨
 
-  (if (= dv 0) (setq vs 1) (setq vs (/ (abs dv) dv)))                                   ;®»¢¦Ñ¡
-  (if (= dh 0) (setq hs 1) (setq hs (/ (abs dh) dh)))                                   ;®Íw¦Ñ¡
+  (if (= dv 0) (setq vs 1) (setq vs (/ (abs dv) dv)))                                   ;ìˆ˜ì§ë¶€í˜¸
+  (if (= dh 0) (setq hs 1) (setq hs (/ (abs dh) dh)))                                   ;ìˆ˜í‰ë¶€í˜¸
 
 
-  (setq txtl (* th ds (+ (strlen txt) 2)))  ;–‹i¸aŸi ”áĞe ‹i¸aˆa Àa»¡Ğa“e ‹©·¡
+  (setq txtl (* th ds (+ (strlen txt) 2)))  ;ë‘ê¸€ìë¥¼ ë”í•œ ê¸€ìê°€ ì°¨ì§€í•˜ëŠ” ê¸¸ì´
 
-  (setq p1 (list (car ip) (+ (cadr ip) (* ds 13.0 vs)) 0.0))  ;13mm ¶á/´aœ point
-  (setq p2 (list (+ (car p1) (* txtl hs)) (cadr p1) 0.0))     ;‹i¸a‹©·¡ eÇq ¹Á/¶ pnt
+  (setq p1 (list (car ip) (+ (cadr ip) (* ds 13.0 vs)) 0.0))  ;13mm ìœ„/ì•„ë˜ point
+  (setq p2 (list (+ (car p1) (* txtl hs)) (cadr p1) 0.0))     ;ê¸€ìê¸¸ì´ë§Œí¼ ì¢Œ/ìš° pnt
 
-  (setq tp (list (+ (car p1) (/ txtl 2.0 hs)) (+ (cadr p1) (* ds th)) 0.0))  ;‹i¸a¶áÃ¡
+  (setq tp (list (+ (car p1) (/ txtl 2.0 hs)) (+ (cadr p1) (* ds th)) 0.0))  ;ê¸€ììœ„ì¹˜
 
-  (setq blkdir (strcat (prefix) "BLOCKS/ELM"))                ;ÑÁ¬iÎa¬s·³
+  (setq blkdir (strcat (prefix) "BLOCKS/ELM"))                ;í™”ì‚´í‘œì‚½ì…
 
-  (push-env)                                          ;Ñe¸ ÑÅ‰w¥e® ”Ï¡
+  (push-env)                                          ;í˜„ì¬ í™˜ê²½ë³€ìˆ˜ ëŒ€í”¼
 
-  (command "INSERT" blkdir ip ds (* ds vs) "")                ;ÑÁ¬iÎa¬s·³
+  (command "INSERT" blkdir ip ds (* ds vs) "")                ;í™”ì‚´í‘œì‚½ì…
   (setq oldc (getvar "CECOLOR"))
   (setvar "CECOLOR" "GREEN")
-  (command "PLINE" ip p1 p2 "")                               ;Ÿ¡”á¬å ‹aŸ±
+  (command "PLINE" ip p1 p2 "")                               ;ë¦¬ë”ì„  ê·¸ë¦¼
   (setvar "CECOLOR" oldc)
-  (command "TEXT" "J" "M" tp (* th ds) "0" (strcase txt))    ;ÉB¯aËa ³q
+  (command "TEXT" "J" "M" tp (* th ds) "0" (strcase txt))    ;í…ìŠ¤íŠ¸ ì”€
 
-  (pop-env)                                                   ;ÑÅ‰w¥e® ¥¢Šá
+  (pop-env)                                                   ;í™˜ê²½ë³€ìˆ˜ ë³µê·€
   (setq *error* oer seterr nil)
   (princ)
 
@@ -80,9 +80,9 @@
 ;           Yi Suk Jong
 ;           04/10/30
 ;---------------------------
-; ±âÁ¸ ElavationÁ¤º¸¸¦ ÀÌ¿ëÇØ¼­ ¿øÇÏ´Â Elevation¿¡ xlineÀ» ±×·ÁÁØ´Ù.
+; ì‘ì´ Elavationì´‹ì¤®ìŸ ì²‡Â¿Ã«Ã‡Ã˜ì¨  Â¿Ã¸Ã‡í•Ã‚ Elevationì°Œ xlineì±¹ ì‰Â·ì´¤Ã˜ì–¯.
 (defun c:pel()
-  (setq scl 1000)  ;mm·Î ±×¸±¶§, 1000, m·Î ±×¸± ¶§ 1.0
+  (setq scl 1000)  ;mmÂ·Ã ì‰ìŸ˜ì›’, 1000, mÂ·Ã ì‰ìŸ˜ ì›’ 1.0
   (setq ip (getpoint "\nPick Inital point: ")) ;initial point
   (setq elt (entsel "\nSelect Elevation text: ")) ;elevation text
   (setq nel (getreal "\nEnter New Elevation: ")) ;new elevation
@@ -94,8 +94,8 @@
   );if
   (setq el (atof eltxt))
   (setq del (* (- nel el) scl))
-  (setq newip (list (car ip) (+ (cadr ip) del)))      	; xline½ÃÁ¡
-  (setq newipx (list (+ (car ip) 10) (cadr newip))) 	; xlineÁ¾Á¡
+  (setq newip (list (car ip) (+ (cadr ip) del)))      	; xlineì«šì´ˆ
+  (setq newipx (list (+ (car ip) 10) (cadr newip))) 	; xlineÃì®€Â¡
   (push-os)
   (command "xline" "h" newip "")
   (pop-os)  
@@ -103,17 +103,17 @@
 
 ;-------------------------------------
 ; program : melm (multi elevation mark)
-;           ¿©·¯°³ÀÇ elevation ¸¶Å·À» ±âÁ¸ ¸¶Å·À» ÂüÁ¶·Î ¸¸µé¾îÁØ´Ù.
+;           ì°”ì‚ìì²‚ elevation ìŸœì½©ì±¹ ì‘ì´ ìŸœì½©ì±¹ ì¸‚ì´œÂ·Ã ìŸì™¤ì®©ì´ºì–¯.
 ;           Yi Suk Jong
 ;           05/08/10
 ;-------------------------------------
 (defun c:melm( / scl ip elt nip pv ent txt eqpos eltxt el deltay nel neltxt )
-  (setq scl 1000)  ;mm·Î ±×¸±¶§, 1000, m·Î ±×¸± ¶§ 1.0
+  (setq scl 1000)  ;mmÂ·Ã ì‰ìŸ˜ì›’, 1000, mÂ·Ã ì‰ìŸ˜ ì›’ 1.0
   (setq ip (getpoint "\nPick Inital point: ")) 		;initial point
   (setq elt (entsel "\nSelect Elevation text: ")) 	;elevation text
   
-  (while (/= nil (setq nip (getpoint "\nPick insert point: "))); »õ·Î¿î »ğÀÔÁ¡ ÀÔ·Â¹Ş±â
-    (setq pv (getpoint nip "\nPick Position point: "))            ; »õ·Î¿î elmÀÇ position point
+  (while (/= nil (setq nip (getpoint "\nPick insert point: "))); Â»ÃµÂ·ÃÂ¿Ã® Â»Ã°ì²ì´ˆ ì²Â·ì·‡Ãì‘
+    (setq pv (getpoint nip "\nPick Position point: "))            ; Â»ÃµÂ·ÃÂ¿Ã® elmì²‚ position point
 
 ;  (setq nel (getreal "\nEnter New Elevation: ")) ;new elevation
     (setq ent (entget (car elt)))  ;entity info
@@ -125,11 +125,11 @@
     (setq el (atof eltxt))
 ;    (setq del (* (- nel el) scl))   
 
-    (setq deltay (- (cadr nip) (cadr ip))) 	; ±âÁ¸ »ğÀÔÁ¡°ú »õ »ğÀÔÁ¡ÀÇ delta y
-    (setq nel (+ el (/ deltay scl))) 		;»õ·Î¿î el
-    (setq neltxt (strcat "EL.=" (rtos nel 2 3)));»õ·Î¿î el text (¼Ò¼öÁ¡ 3ÀÚ¸®)   	
-;  (setq txt (strcat "EL.=" (getstring "\nElevation: ")))      ;ÉB¯aËa ·³b
-    (djdgf_elm nip pv neltxt)			; elevation marking »ğÀÔÇÏ±â.
+    (setq deltay (- (cadr nip) (cadr ip))) 	; ì‘ì´ Â»Ã°ì²ì´ˆì€ Â»Ãµ Â»Ã°ì²ì´ˆì²‚ delta y
+    (setq nel (+ el (/ deltay scl))) 		;Â»ÃµÂ·ÃÂ¿Ã® el
+    (setq neltxt (strcat "EL.=" (rtos nel 2 3)));Â»ÃµÂ·ÃÂ¿Ã® el text (Â¼í›ºÃ¶ì´ˆ 3ì²”ìŸ•)   	
+;  (setq txt (strcat "EL.=" (getstring "\nElevation: ")))      ;í…ìŠ¤íŠ¸ ì…ë ¥
+    (djdgf_elm nip pv neltxt)			; elevation marking Â»Ã°ì²Ã‡í•ŒÃ¢.
   );while
 );defun
 

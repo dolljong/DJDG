@@ -17,30 +17,30 @@
   ); of SETERR
   (setq oer *error* *error* seterr)
 
-(push-env)                    ;ÑÅ‰w¥e®ˆt ”Ï¡
+(push-env)                    ;í™˜ê²½ë³€ìˆ˜ê°’ ëŒ€í”¼
 
 (setq oldclr (getvar "CECOLOR"))
 
-(setq ds (getvar "DIMSCALE")  ;dimension ¯aÅA·© ˆt ŠĞq
-      th (getvar "DIMTXT"))   ;textÇa‹¡“e dimtxt
+(setq ds (getvar "DIMSCALE")  ;dimension ìŠ¤ì¼€ì¼ ê°’ êµ¬í•¨
+      th (getvar "DIMTXT"))   ;textí¬ê¸°ëŠ” dimtxt
 
-(setq mp (getpoint "\nPick middle point: "))   ;text· º—ˆe¸ñ ·³b
-(setq ang (getangle mp "\nEnter angle: "))   ;{¸ñ ·³b
-(setq txt (getstring T "\nEnter text: "))      ;text ·³b
-(setq txtl (* th (strlen txt) ds))            ;ÉB¯aËa·¡ ‹©·¡ ŠĞq
-(setq pnt1 (polar mp (+ ang pi) (+ (/ txtl 2.0) (* ds th)))) ; aÇa-1 ¬s·³¸ñ
-(setq pnt2 (polar mp    ang     (+ (/ txtl 2.0) (* ds th)))) ; aÇa-2 ¬s·³¸ñ
+(setq mp (getpoint "\nPick middle point: "))   ;textì˜ ì¤‘ê°„ì  ì…ë ¥
+(setq ang (getangle mp "\nEnter angle: "))   ;ëì  ì…ë ¥
+(setq txt (getstring T "\nEnter text: "))      ;text ì…ë ¥
+(setq txtl (* th (strlen txt) ds))            ;í…ìŠ¤íŠ¸ì´ ê¸¸ì´ êµ¬í•¨
+(setq pnt1 (polar mp (+ ang pi) (+ (/ txtl 2.0) (* ds th)))) ;ë§ˆí¬-1 ì‚½ì…ì 
+(setq pnt2 (polar mp    ang     (+ (/ txtl 2.0) (* ds th)))) ;ë§ˆí¬-2 ì‚½ì…ì 
 
 (setvar "CECOLOR" "GREEN")
 (command "INSERT" (strcat (prefix) "blocks/plmark") pnt1 ds "" (rtod ang))
-                                                                ; aÇa-1 ¬s·³
+                                                                ;ë§ˆí¬-1 ì‚½ì…
 (command "INSERT" (strcat (prefix) "blocks/plmark") pnt2
-                   (* ds -1) "" (rtod ang))                     ; aÇa-2 ¬s·³
+                   (* ds -1) "" (rtod ang))                     ;ë§ˆí¬-2 ì‚½ì…
 
 (setvar "CECOLOR" oldclr)
-(command "TEXT" "j" "M" mp (* ds th) (rtod ang) txt)               ;ÉB¯aËa ³a‹¡
+(command "TEXT" "j" "M" mp (* ds th) (rtod ang) txt)               ;í…ìŠ¤íŠ¸ ì“°ê¸°
 
-(pop-env)                                      ;”Ï¡ ÑÅ‰w¥e® ¥¢Šá
+(pop-env)                                      ;ëŒ€í”¼ í™˜ê²½ë³€ìˆ˜ ë³µê·€
   (setq *error* oer seterr nil)
 (princ)
 ) ;of defun

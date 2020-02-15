@@ -2,8 +2,8 @@
   (setq fn (getstring "Enter File Name: "))
   (setq ffn (strcat (getvar "DWGPREFIX") fn))
   (if (findfile ffn)
-    (setq opf (open ffn "a"))  ;file ÀÖÀ» ¶§
-    (setq opf (open ffn "w"))  ;file ¾øÀ» ¶§
+    (setq opf (open ffn "a"))  ;file ì²ì±¹ ì›’
+    (setq opf (open ffn "w"))  ;file ì®²ì±¹ ì›’
   );if
   (setq tdc (menucmd "m=$(edtime,$(getvar,tdcreate),YY/MO/DD HH:MM:SSSS)"))
   (setq tdu (menucmd "m=$(edtime,$(getvar,tdupdate),YY/MO/DD HH:MM:SSSS)"))

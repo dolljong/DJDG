@@ -18,21 +18,21 @@ ds ent1 ent2 pnt1s pnt1e pnt2s pnt2e ans mpnts mpnte
   ); of SETERR
   (setq oer *error* *error* seterr)
 
-(push-env)  ;ÑÅ‰w¥e® ”Ï¡
+(push-env)  ;í™˜ê²½ë³€ìˆ˜ ëŒ€í”¼
 
 (setq ds (getvar "DIMSCALE"))
 
-(setq ent1 (entget (car (entsel "\nSelect first line: ")))) ;œa¶…—·Ği – ¬å ¬åÈ‚
+(setq ent1 (entget (car (entsel "\nSelect first line: ")))) ;ë¼ìš´ë”©í•  ë‘ ì„  ì„ íƒ
 (setq ent2 (entget (car (entsel "\nSelect second line: "))))
 
-(setq pnt1s (cdr (assoc 10 ent1)))              ;– œa·¥· ¯¡¸b¸ñ‰Á {¸ñ
+(setq pnt1s (cdr (assoc 10 ent1)))              ;ë‘ ë¼ì¸ì˜ ì‹œì‘ì ê³¼ ëì 
 (setq pnt1e (cdr (assoc 11 ent1)))
 (setq pnt2s (cdr (assoc 10 ent2)))
 (setq pnt2e (cdr (assoc 11 ent2)))
 ;
-(setq ssd (distance pnt1s pnt2s))     ;Àõœa·¥· ¯¡¸b¸ñµA¬á –¼œa·¥· ¯¡¸b¸ñˆáŸ¡
-(setq sed (distance pnt1s pnt2e))     ;Àõœa·¥· ¯¡¸b¸ñµA¬á –¼œa·¥· {¸ñˆáŸ¡
-(if (< sed ssd)                 ;¶á· – ˆáŸ¡º— ˆaŒa¶…½¢·¡ ¯¡¸b¸ñ·¡ –E”a
+(setq ssd (distance pnt1s pnt2s))     ;ì²«ë¼ì¸ì˜ ì‹œì‘ì ì—ì„œ ë‘ì§¸ë¼ì¸ì˜ ì‹œì‘ì ê±°ë¦¬
+(setq sed (distance pnt1s pnt2e))     ;ì²«ë¼ì¸ì˜ ì‹œì‘ì ì—ì„œ ë‘ì§¸ë¼ì¸ì˜ ëì ê±°ë¦¬
+(if (< sed ssd)                 ;ìœ„ì˜ ë‘ ê±°ë¦¬ì¤‘ ê°€ê¹Œìš´ìª½ì´ ì‹œì‘ì ì´ ëœë‹¤
   (progn
     (setq tmp pnt2s)
     (setq pnt2s pnt2e)
@@ -40,12 +40,12 @@ ds ent1 ent2 pnt1s pnt1e pnt2s pnt2e ans mpnts mpnte
   ) ;of progn
 ) ; of if
 
-(initget "All Half")                            ;¸åÁAœa¶…—· ™¡“e ¤e œa¶…—· ¢‰·q
+(initget "All Half")                            ;ì „ì²´ë¼ìš´ë”© ë˜ëŠ” ë°˜ ë¼ìš´ë”© ë¬¼ìŒ
 (setq ans (getkword "\nAll round/<Half round>: "))
 (if (= ans nil) (setq ans "Half"))
 
-(if (= ans "All")                       ;¸åÁAœa¶…—··© ‰w¶ º—ˆeœa·¥·i ŠĞa‰¡
-  (progn                                ; ‹a ¹Á¶¡ œa¶…—· ¬å ‹aŸ±
+(if (= ans "All")                       ;ì „ì²´ë¼ìš´ë”©ì¼ ê²½ìš° ì¤‘ê°„ë¼ì¸ì„ êµ¬í•˜ê³ 
+  (progn                                ; ê·¸ ì¢Œìš°ë¡œ ë¼ìš´ë”© ì„  ê·¸ë¦¼
     (setq mpnts (list (/ (+ (car pnt1s) (car pnt2s)) 2.0)
                       (/ (+ (cadr pnt1s) (cadr pnt2s)) 2.0)))
     (setq mpnte (list (/ (+ (car pnt1e) (car pnt2e)) 2.0)
@@ -60,10 +60,10 @@ ds ent1 ent2 pnt1s pnt1e pnt2s pnt2e ans mpnts mpnte
     (hround mpnts mpnte pnt1s pnt1e)
     (hround mpnts mpnte pnt2s pnt2e)
   ) ; of progn
-  (hround pnt1s pnt1e pnt2s pnt2e)     ;¤e œa¶…—··© ‰w¶ ¯¡¸b¬åµA¬á {¬å·a¡
-) ; of if                              ;œa¶…—· ¬å ‹aŸ±
+  (hround pnt1s pnt1e pnt2s pnt2e)     ;ë°˜ ë¼ìš´ë”©ì¼ ê²½ìš° ì‹œì‘ì„ ì—ì„œ ëì„ ìœ¼ë¡œ
+) ; of if                              ;ë¼ìš´ë”© ì„  ê·¸ë¦¼
 
-(pop-env)                              ;”Ï¡¯¡Åa–… ÑÅ‰w¥e®ˆt ¥¢Š
+(pop-env)                              ;ëŒ€í”¼ì‹œì¼œë‘” í™˜ê²½ë³€ìˆ˜ê°’ ë³µêµ¬
   (setq *error* oer seterr nil)
 
 ) ;of defun ROUND
@@ -75,28 +75,28 @@ ds ent1 ent2 pnt1s pnt1e pnt2s pnt2e ans mpnts mpnte
 ;            1995. 3. 16
 ;**************************************
 
-(defun HROUND(p1s p1e p2s p2e /             ;¤e œa¶…—··i Ğº“e Function
-sdst edst lpnts lpnte ds p1s p1e oldclr     ;Argument“e –¬å· ¯¡¸b¸ñ‰Á {¸ñ
+(defun HROUND(p1s p1e p2s p2e /             ;ë°˜ ë¼ìš´ë”©ì„ í•´ì£¼ëŠ” Function
+sdst edst lpnts lpnte ds p1s p1e oldclr     ;ArgumentëŠ” ë‘ì„ ì˜ ì‹œì‘ì ê³¼ ëì 
 )
 
-(setq ds (getvar "DIMSCALE"))         ;DIMSCALE·i ´i´a…”a.
+(setq ds (getvar "DIMSCALE"))         ;DIMSCALEì„ ì•Œì•„ë‚¸ë‹¤.
 
-(setq sdst (distance p1s p2s))    ;Àõ¼œa·¥ ¯¡¸b¸ñµA¬á –‰¼œa·¥ ¯¡¸b¸ñŒa»¡ ˆáŸ¡
-(setq edst (distance p1e p2e))    ;Àõ¼œa·¥ {¸ñµA¬á –‰¼œa·¥ {¸ñŒa»¡ ˆáŸ¡
+(setq sdst (distance p1s p2s))    ;ì²«ì§¸ë¼ì¸ ì‹œì‘ì ì—ì„œ ë‘˜ì§¸ë¼ì¸ ì‹œì‘ì ê¹Œì§€ ê±°ë¦¬
+(setq edst (distance p1e p2e))    ;ì²«ì§¸ë¼ì¸ ëì ì—ì„œ ë‘˜ì§¸ë¼ì¸ ëì ê¹Œì§€ ê±°ë¦¬
 
-             ;– ¬åˆe· ˆáŸ¡ˆa 2£¡Ÿ¡·¡¬w ·©˜ e – ¬å· º—ˆeµA”a ¬å·i ‹aŸ¥”a
+             ;ë‘ ì„ ê°„ì˜ ê±°ë¦¬ê°€ 2ë¯¸ë¦¬ì´ìƒ ì¼ë•Œë§Œ ë‘ ì„ ì˜ ì¤‘ê°„ì—ë‹¤ ì„ ì„ ê·¸ë¦°ë‹¤
 (setq oldclr (getvar "CECOLOR"))
 (setvar "CECOLOR" "GREEN")
 (while (or (> sdst (* ds 1.0)) (> edst (* ds 1.0)))
-  (setq lpnts (list (/ (+ (car p1s) (car p2s)) 2.0)      ;– ¯¡¸b¸ñ· º—ˆe¸ñ X
+  (setq lpnts (list (/ (+ (car p1s) (car p2s)) 2.0)      ;ë‘ ì‹œì‘ì ì˜ ì¤‘ê°„ì  X
                     (/ (+ (cadr p1s) (cadr p2s)) 2.0)))  ;                   Y
-  (setq lpnte (list (/ (+ (car p1e) (car p2e)) 2.0)      ;– {¸ñ· º—ˆe¸ñ   X
+  (setq lpnte (list (/ (+ (car p1e) (car p2e)) 2.0)      ;ë‘ ëì ì˜ ì¤‘ê°„ì    X
                     (/ (+ (cadr p1e) (cadr p2e)) 2.0)))  ;                   Y
-  (command "LINE" lpnts lpnte "")     ; º—ˆe¬å·i ‹aŸ¥”a
-  (setq p1s lpnts)             ;º—ˆe¬å· ¯¡¸b¸ñ·i Àõ¼¬å· ¯¡¸b¸ñ·a¡ ¤a…”a
-  (setq p1e lpnte)             ;º—ˆe¬å· {¸ñ·i Àõ¼¬å· {¸ñ·a¡ ¤a…”a
-  (setq sdst (distance lpnts p2s))  ;– ¯¡¸b¸ñˆe· ˆáŸ¡Ÿi ŠĞe”a
-  (setq edst (distance lpnte p2e))  ;– {¸ñˆe· ˆáŸ¡Ÿi ŠĞe”a
+  (command "LINE" lpnts lpnte "")     ; ì¤‘ê°„ì„ ì„ ê·¸ë¦°ë‹¤
+  (setq p1s lpnts)             ;ì¤‘ê°„ì„ ì˜ ì‹œì‘ì ì„ ì²«ì§¸ì„ ì˜ ì‹œì‘ì ìœ¼ë¡œ ë°”ê¾¼ë‹¤
+  (setq p1e lpnte)             ;ì¤‘ê°„ì„ ì˜ ëì ì„ ì²«ì§¸ì„ ì˜ ëì ìœ¼ë¡œ ë°”ê¾¼ë‹¤
+  (setq sdst (distance lpnts p2s))  ;ë‘ ì‹œì‘ì ê°„ì˜ ê±°ë¦¬ë¥¼ êµ¬í•œë‹¤
+  (setq edst (distance lpnte p2e))  ;ë‘ ëì ê°„ì˜ ê±°ë¦¬ë¥¼ êµ¬í•œë‹¤
 ) ;of while
 (setvar "CECOLOR" oldclr)
 ) ;of defun HROUND

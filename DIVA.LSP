@@ -6,7 +6,7 @@
 ;**********************************
 
 (defun C:DIVA(/
-            ent     cen     r       spnt    epnt    sang    eang    ;»¡µb¥e® ¸÷·
+            ent     cen     r       spnt    epnt    sang    eang    ;ì§€ì—­ë³€ìˆ˜ ì •ì˜
             dvnum   dtang   count   ang     dpnt
 )
 
@@ -33,22 +33,22 @@
 ;*** Get start angle & end angle
 (setq sang (angle cen spnt))
 (setq eang (angle cen epnt))
-(setq dpang (angle cen dpnt))   ;¤wÐ· Í¡·¥Ëa· ˆb
+(setq dpang (angle cen dpnt))   ;ë°©í–¥ í¬ì¸íŠ¸ì˜ ê°
 
 ;*** Get divide number
 (setq dvnum (getint "\nNumber of divide: "))
 
-(setq pang (+ (- (* 2 pi) sang) eang)) ;¯¡¸b¸ñ~{¸ñ· ´·· ¤wÐ·ˆb
+(setq pang (+ (- (* 2 pi) sang) eang)) ;ì‹œìž‘ì ~ëì ì˜ ì–‘ì˜ ë°©í–¥ê°
 (if (> pang (* 2.0 pi)) (setq pang (- pang (* 2.0 pi))))
-(setq nang (- pang (* 2 pi)))             ;¯¡¸b¸ñ~{¸ñ· ·q· ¤wÐ·ˆb
-(setq sdsgn (/ (abs (dang sang dpang)) (dang sang dpang))) ;¤wÐ··i ŠÐq
+(setq nang (- pang (* 2 pi)))             ;ì‹œìž‘ì ~ëì ì˜ ìŒì˜ ë°©í–¥ê°
+(setq sdsgn (/ (abs (dang sang dpang)) (dang sang dpang))) ;ë°©í–¥ì„ êµ¬í•¨
 
 (cond
   ((> sdsgn 0.0) (setq deltaa pang))
   ((< sdsgn 0.0) (setq deltaa nang))
 )
 
-;*** Calc delta ang ;¯¡¸b¸ñ‰Á {¸ñ· ˆb Àa·¡Ÿi a’‰ ®¡ a’‘
+;*** Calc delta ang ;ì‹œìž‘ì ê³¼ ëì ì˜ ê° ì°¨ì´ë¥¼ ë‚˜ëˆŒ ìˆ˜ë¡œ ë‚˜ëˆ”
 (setq dtang (/ deltaa dvnum))
 
 ;*** Repeat divide while count<=dvnum-1
