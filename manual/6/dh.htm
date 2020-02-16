@@ -1,0 +1,64 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN">
+<html>
+<head>
+<title>수평치수선을 그려줍니다.</title>
+
+</head>
+
+<body bgcolor="white" text="black" link="blue" vlink="purple" alink="red">
+
+<pre><font face="굴림">수평치수선을 그려줍니다.</font><br>
+&nbsp;
+<img src="fmhbs004.gif" align="middle" width="85" height="62" border="0" hspace="3"> <img src="fmhbs005.gif" align="middle" width="25" height="23" border="0" hspace="3"> <font face="굴림">Program name : DH.LSP</font>
+<hr size="1" align="left" noshade>
+  <font face="굴림">도면 작업중 가장 많은 시간을 소요하는 작업이 무엇일까요? 음...  물론 사람들에 따라서 다르</font>
+<font face="굴림">겠지만, 저는 망설임 없이 치수선 작업이라고 대답하겠습니다. 사실 치수선이야말로 도면에서 가</font>
+<font face="굴림">장 중요한 것이라 하겠습니다. 도면은 설계자의 생각을 현장의 시공자에게 정확하게 전달하는 게 </font>
+<font face="굴림">목적이라고 할 수 있습니다. 현장의 시공자는 물론 그림도 보겠지만 치수에 의존해서 모든 작업</font>
+<font face="굴림">을 하므로 그림보다는 숫자가 중요하다고 하겠습니다. </font> <br>  
+<br>
+&nbsp;
+  ◆<font face="바탕"><b> </b></font><font face="돋움"><b>프로그램의</b></font><font face="바탕"><b> </b></font><font face="돋움"><b>기능</b></font><font face="바탕"><b> </b></font><font face="돋움"><b>및</b></font><font face="바탕"><b> </b></font><font face="돋움"><b>주의사항</b></font>
+     <font face="굴림"> ▷ 기존의 AutoCAD의 치수선 명령은 한개의 치수선만 그릴 수 있었습니다. 하지만 대부분의 </font>
+<font face="굴림">     도면엔 치수선이 연속해서 나옵니다. 연속치수기입이 쉽도록 프로그래밍 했습니다. </font>
+     <font face="굴림"> ▷ 두점을 찍거나 엔티티를 선택해서 치수선의 길이를 정해주는 기존방법이 불편할 때가 많아</font>
+<font face="굴림">     서 사용자가 길이를 직접 입력하여 치수선 길이를 정할  수 있도록 했습니다.</font>
+     <font face="굴림"> ▷ 치수선이 구조물에서 떨어진 거리를 사용자가 직접 찍어주기보다는 1단, 2단... 등의 옵션으</font>
+<font face="굴림">     로 택할 수 있게했습니다.</font>
+     <font face="굴림"> ▷ 골뱅이(@)기능을 만들어서 여러개의 반복되는 치수선을 하나로 묶어 표현할 수 있도록 했</font>
+<font face="굴림">     습니다. 골뱅이(?)기능을 쓰려면 dimension text를 물어올 때 @100과 같이 @나누는길이 형</font>
+<font face="굴림">     식으로 입력하면 프로그램이 나눠진 갯수를 계산하여 치수선을 그려줍니다. 이때 치수보조</font>
+<font face="굴림">     선 사이에 text가 들어가지 않으면 10@100부분과 =1000부분을 잘라서 위 아래에다 따로 기</font>
+<font face="굴림">     입해줍니다. 골뱅이(@)옵션을 사용할 때 주의 사항은 아래의 예와 같은 경우입니다. 골뱅이 </font>
+<font face="굴림">     옵션을 사용할 때 이미 찍어준 두점의 길이와 곱하기 연산결과가 틀릴 경우입니다. 이 때 </font>
+<font face="굴림">     프로그램은 틀린대로 도면에 그려줍니다. 일종의 경고 기능이라 하겠습니다. 예를 들어서 두</font>
+<font face="굴림">     점을 찍었는데 그 길이가 1050mm이고, 골뱅이(@100)옵션을 선택해서 나누기 길이 100을 </font>
+<font face="굴림">     주었다고 한다면, 프로그램은 1050/100의 결과인 10.5중 소수점 이하인 0.5를 버리고 10을 </font>
+<font face="굴림">     사용합니다. 그래서 결국 &quot;10@100=1050&quot;이란 결과를 내보냅니다. </font> <br>     
+<br>
+&nbsp;
+<font face="바탕"><b><u><img src="pencel.gif" border="0"> 사용예</u></b></font>
+<font face="Courier New">Pick first point/Object:</font><font face="굴림"> {p1}</font>   <font face="굴림">[치수선의 시작점]</font>
+<font face="Courier New">Pick Dimension line side:</font><font face="굴림"> {p2}</font>  <font face="굴림">[치수가 쓰여질 위치 위/아래 (여기서는 아래쪽)]</font>
+<font face="Courier New">Level &lt;1&gt;:</font><font face="굴림"> <img src="enter.gif" border="0"></font>                            <font face="굴림">[치수선 단계 (여기서는 1단)]</font>
+<font face="Courier New">Distance or RETURN to Pick point:</font><font face="굴림"> </font><font face="굴림"><b>950</b></font><font face="굴림"><img src="enter.gif" border="0"></font>  <font face="굴림">[알고있는 거리는 직접 입력함]</font>
+<font face="Courier New">Dimension text &lt;950&gt;:</font><font face="굴림"> <img src="enter.gif" border="0"></font>         <font face="굴림">[만일 text를 고치고 싶으면 여기서 바꿀 수 있음]</font>
+<font face="Courier New">Distance or RETURN to Pick point/eXit:</font><font face="굴림"> <img src="enter.gif" border="0"></font>        <font face="굴림">[거리를 모른다면 점을 찍어 입력하기 위해 Enter]</font>
+<font face="Courier New">Pick point:</font><font face="굴림"> </font><font face="굴림"><b>mid</b></font><font face="굴림"><img src="enter.gif" border="0"></font>
+<font face="굴림">of {p3}</font>                                 <font face="굴림">[한점을 찍어줌]</font>
+<font face="Courier New">Dimension text &lt;17.600&gt;:</font><font face="굴림"> </font><font face="굴림"><b>@2200</b></font><font face="굴림"><img src="enter.gif" border="0"></font> <font face="굴림">[프로그램이 계산한 거리를 보여줌, 골뱅이 옵션 선택]</font>
+<font face="Courier New">Distance or RETURN to Pick point/eXit:</font><font face="굴림"> </font><font face="굴림"><b>950</b></font><font face="굴림"><img src="enter.gif" border="0"></font>      <font face="굴림">[알고있는 거리는 직접 입력함]</font>
+<font face="Courier New">Dimension text &lt;950&gt;:</font><font face="굴림"> <img src="enter.gif" border="0"></font>         <font face="굴림">[950을 그대로 사용함]</font>
+<font face="Courier New">Distance or RETURN to Pick point/eXit:</font><font face="굴림"> </font><font face="굴림"><b>x</b></font><font face="굴림"><img src="enter.gif" border="0"></font>       <font face="굴림">[DH명령을 끝냄]</font>
+<font face="바탕">{다시 DH명령을 시작함}</font>                  <font face="굴림">[2단 치수선을 그리기 위함]</font>
+<font face="Courier New">Pick first point/Object:</font><font face="굴림"> {p1}</font>   <font face="굴림">[시작점을 찍어줌, 이때 1단 치수선의 node를 찍어줌]</font>
+<font face="Courier New">Pick Dimension line side:</font><font face="굴림"> {p2}</font>  <font face="굴림">[아래쪽/위쪽을 선택 (여기서는 아래쪽)]</font>
+<font face="Courier New">Level &lt;1&gt;:</font><font face="굴림"> </font><font face="굴림"><b>2</b></font><font face="굴림"><img src="enter.gif" border="0"></font>                           <font face="굴림">[2단 치수선을 선택]</font>
+<font face="Courier New">Distance or RETURN to Pick point:</font><font face="굴림"> </font><font face="굴림"><b>19500</b></font><font face="굴림"><img src="enter.gif" border="0"></font>        <font face="굴림">[알고 있는 거리는 직접 입력함]</font>
+<font face="Courier New">Dimension text &lt;19.500&gt;:</font><font face="굴림"> <img src="enter.gif" border="0"></font>              <font face="굴림">[그대로 사용함, 고치고 싶다면 원한는 text입력]</font>
+<font face="Courier New">Distance or RETURN to Pick point/eXit:</font><font face="굴림"> <img src="enter.gif" border="0"></font>        <font face="굴림">[DH명령 끝냄]</font> <br>
+&nbsp;
+<img src="dh.gif" align="middle" width="588" height="207" border="0" hspace="3"></pre>
+</body>
+
+</html>

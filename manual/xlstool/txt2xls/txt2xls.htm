@@ -1,0 +1,76 @@
+<html>
+<head>
+ <style>
+ p {font-size:10pt;text-align:justify;}
+ td {font-size:10pt;}
+ li {font-size:10pt;text-align:justify;}
+ </style>  
+ <title>CAD의 Text를 Excel로...</title>
+</head>
+<body>
+
+<table  ><tr><td>
+<img src=txt2xls-001.gif>
+<td bgcolor=navy><font size=3 color=white><b>&nbsp; CAD의 Text를 Excel로... &nbsp;</b>
+</table>
+
+<p style="background-color:ivory"><br>
+CAD에 있는 text들을 Excel로 불러들여 작업해야 할 때가 있습니다. 재료표를 수정해야 한다든가, 다른 사람이 작성한 Elevation table을 수정해야 한다든가, 또는
+모델링할 때 [다정다감]의 좌표를 찍어주는 numcoor기능을 사용하여 점들의 좌표를 도면에다 표기할 수 있는데, 이것을 excel에 불러들여서 사용하려면 text를 Excel로
+불러들이는 기능이 필요합니다. 출력해서 입력하는 번거로움을 없애 줄 수 있는 프로그램이 바로 Txt2xls입니다.<br><br>
+</p>
+
+<p><b>기능</b><br>
+<ul>
+<li> CAD의 Text를 Excel의 셀에 넣기
+</ul>
+
+<p><b>참고사항</b><br>
+<ul>
+<li> 한개의 열, 또는 한개의 행으로 이루어진 텍스트를 선택하면 수직구분선을 선택하는 과정없이 Excel로 뿌려집니다.
+<li> Excel에서의 표시형식은 CAD에서의 표시형식을 최대한 따르도록 되어있습니다. 예를 들어서 CAD에서의 text가  "1.000"이라면 Excel에서는 표시형식이 숫자 "0.000"과 같이 소수점 자리수를 맞춰서 표시됩니다.
+</ul>
+
+
+
+<p><b>사용법</b><br>
+
+<p>
+Excel에서 [다정다감] toolbar의 txt2xls버튼 클릭합니다. 만일 [다정다감] toolbar가 보이지 않는다면 이 도움말의 
+<a href=../install/djdgxlainst.htm>djdg.xla설치하기</a> 를 참조하시기 바랍니다.</P>
+
+
+<p align=justify>
+txt2xls 버튼을 클릭하고 text를 선택합니다. 이때 text가 아닌 entity를 선택하여도 자동적으로 text entity만 선택되므로 window box나 
+cross box를 사용하면 쉽게 text를 선택할 수 있습니다. 아래 그림과 같이 table전체를 선택해도 됩니다.</p>
+
+<img src=txt2xls-002.gif> <img src=txt2xls-003.gif> <br>
+
+<p>
+text선택을 마치면 위의 오른쪽 그림처럼 command window에 선택된 text갯수와 줄수를 나타내어줍니다. 그 아래줄에 보면 "Select vertical lines"라는 메시지와 함께 
+수직선 선택을 요구합니다. 이 수직선은 text와 text를 구분지어줄 수직선으로서 아래그림과 같이 안쪽 수직선을 선택해주면 됩니다. 이때 "f"를 눌러 fence옵션을 사용하면 쉽게 수직선을 선택할 수 있고습니다.
+주의해야 할 사항은 수직선의 역할은 text와 text의 column을 구분해주는 역할을 하는 선이라는 것입니다. 따라서 아래 오른쪽 그림과 같이 여러개의 수직선을 선택해선 안되고, 한 줄만 선택해줘야 한다는 것입니다.<p>
+
+<table> 
+<tr>
+<td align=center valign=bottom>
+  <img src=txt2xls-004.gif ><br>
+(O)
+<td align=center valign=bottom>  
+ <img src=txt2xls-005.gif ><br>
+(X)
+</table>
+
+<p> 수직선 선택을 요구하는 메세지가 나타나는 경우는 여러열, 여러줄의 텍스트를 선택했을 때만 나타납니다. 아래와 같이 한열 또는 한줄의 텍스트를 선택하면 수직선 선택없이 바로 엑셀로 뿌려집니다.</p>
+
+<img src=txt2xls-008.gif> <img src=txt2xls-009.gif>
+
+    
+<p>CAD에서의 작업은 끝났기 때문에 Excel로 넘어가서 아래와 같이 출력결과를 넣은 셀을 선택하라는 메세지 창이 뜹니다. 기본적으로 txt2xls명령을 시작할 때의 셀주소가 들어가 있습니다. 
+사용자가 셀을 마우스로 클릭하고 확인 버튼을 누르면 CAD의 text가 Excel의 cell로 들어오게 됩니다.</P>    
+
+<img src=txt2xls-006.gif> <img src=txt2xls-007.gif > 
+    
+
+</body>
+</html>

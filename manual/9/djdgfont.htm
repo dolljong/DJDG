@@ -1,0 +1,67 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN">
+<html>
+<head>
+<title>토목도면에서 자주쓰는 폰트추가</title>
+
+</head>
+
+<body bgcolor="white" text="black" link="blue" vlink="purple" alink="red">
+
+<pre>               <font face="굴림"><b>토목도면에서 자주쓰는 폰트추가<br></b></font>
+<font face="굴림"><b>&nbsp;</b></font>
+               σ<font face="바탕"><sub>ck</sub></font><font face="바탕">=240kg/cm</font><font face="바탕"><sup>2 </sup></font><font face="바탕">을 도면내에서 표현하려면 생각보다 까다롭습니다. 우선 style을 </font>
+<font face="바탕">               greeks로 바꿔서 </font>σ<font face="바탕">를 쓰고 다시 style을 romans체로 바꾸고 ck를 써서 크기를 줄</font>
+<font face="바탕">               여야합니다. 그런 다음 다시 정상 크기로 =240kg/cm까지 씁니다. 그런다음 마지</font>
+<font face="바탕">               막으로 2를 쓴다음에 크기를 줄여서 약간 위쪽으로 옮겨 놓아야합니다. 으~ 손으</font>
+<font face="바탕">               로 작업하면 별거 아닌데...</font> <br>               
+               <font face="바탕">AutoCAD는 사용자가 원하는 대로 폰트를 바꾸거나 전혀 새로운 폰트를 만들 수 </font>
+<font face="바탕">               있도록 폰트형식을 공개를 했습니다. autocad디렉토리중 sorce라는 이름의 서브디</font>
+<font face="바탕">               렉토리에 가보면 *.shp파일들이 많이 있습니다. 이 파일들이 바로 우리가 쓰는 폰</font>
+<font face="바탕">               트들의 source입니다. 사용자는 이 파일들을 적당히 요리해서 자기 입맛에 맞게 </font>
+<font face="바탕">               고쳐서 쓸 수 있습니다.</font> <br>               
+               <font face="바탕">[다정다감]에서 손댄 폰트 파일은 ROMANS파일입니다. 폰트의 다른 부분은 건드</font>
+<font face="바탕">               리지 않았고 아래와 같이 몇개의 폰트를 추가 하였습니다. </font> <br>               
+               <font face="바탕">아시다시피 이러한 특수 폰트를 text명령이나 dtext명령에서 사용하려면 %%뒤에</font>
+<font face="바탕">               다 코드번호를 써줍니다. 예를 들어 </font>σ<font face="바탕"><sub>ck</sub></font><font face="바탕">는 %%134번, </font><font face="바탕"><sup>2</sup></font><font face="바탕">은 %%142번으로 만들었습</font>
+<font face="바탕">               니다. </font> <br>               
+               <font face="바탕">아래 그림은 다음줄의 명령으로 만들어진 것입니다.</font>
+               <font face="바탕">command: text<img src="enter.gif" width="15" height="15" border="0"></font>
+               <font face="바탕">Justify/Style/&lt;Start point&gt; : {pick point}</font>
+               <font face="바탕">Height &lt;0.2&gt;: 2.5<img src="enter.gif" width="15" height="15" border="0"></font>
+               <font face="바탕">Rotation angle&lt;0.00&gt;: <img src="enter.gif" width="15" height="15" border="0"></font>
+               <font face="바탕">text: %%134=240kg/cm%%142<img src="enter.gif" width="15" height="15" border="0"><br></font>
+<font face="바탕">&nbsp;</font>
+               <img src="djdgfont1.gif" align="middle" width="331" height="54" border="1" vspace="3" hspace="3"> <br>                
+<br>               
+
+               아래첨자를 사용하기 위해서는 아래첨자의 시작을 의미하는 %%145를 입력하고
+               아래첨자가 될 텍스트를 입력한 다음 아래첨자의 끝을 의미하는 %%146을 입력
+               하면 됩니다. 위첨자는 %%147, %%148입니다.
+          
+              [예]
+                f<font color=red><b>%%145</b></font>ck<font color=red><b>%%146</b></font>= 240kg/cm<font color=red><b>%%147</b></font>2<font color=red><b>%%148</b></font>  → f<sub>ck</sub> = 240kg/cm<sup>2</sup><br>
+
+              참고로 mtext에서는 사용할 수 없습니다. mtext는 줄바꿈등의 제어문자를 사용하기 때문제
+              자체적으로 지원하는 %%c, %%p, %%d를 제외한 shx폰트 내의 다른 특수문자는 지원하지 않는
+              것으로 나타났습니다. 따라서 text명령을 사용하여주시기 바랍니다.
+
+
+              앞으로도 필요한 폰트들을 계속해서 추가할 예정입니다. 캐드를 사용하시다가 이 폰트는 꼭 
+              있었으면 좋겠다고 생각되시면 제게 메일을 주시면 추가하도록 하겠습니다.
+
+
+
+               <font face="바탕">  ◆ 토목인을 위한 CAD 폰트 djdg.shx 특수문자 목록</font>
+<center><img src="djdgfont.gif" align="bottom"  border="0" vspace="3" hspace="3" ></center><br>
+
+               <font face="바탕">도면에서는 많이 쓰이지 않지만 보고서 삽도등에서 많이 쓰이는 기호(그리스문자 </font>
+               <font face="바탕">등)를 모두 추가하였고 f</font><font face="바탕"><sub>ck</sub></font><font face="바탕">, f</font><font face="바탕"><sub>y</sub></font><font face="바탕">, </font><font face="바탕"><sup>2</sup></font><font face="바탕">, </font><font face="바탕"><sup>3</sup></font><font face="바탕">, </font><font face="바탕"><sup>4</sup></font><font face="바탕">등을 추가하였고 특정 숫자를 골라 아래첨자</font>
+               <font face="바탕">나 위첨자를 만들어도 그 외의 문자에 대해서는 불편하기가 마찬가지이므로 제어</font>
+               <font face="바탕">문자에 속하는 아래첨자(%%145, %%146), 위첨자(%%147,%%149)를 추가하였습</font>
+               <font face="바탕">니다.</font> <br>               
+               <font face="바탕">%% + 숫자 형태로 입력하기 때문에 좀 불편한 점이 있습니다만, 따로 따로 text</font>
+               <font face="바탕">를 만드는 것보다는 여러모로 편리할 것 같습니다. 앞으로 %%+숫자 형태로 입</font>
+               <font face="바탕">력은 하되 외우지 않고 선택할 수 있는 기능을 추가하려 합니다.</font> <br></pre>
+</body>
+
+</html>

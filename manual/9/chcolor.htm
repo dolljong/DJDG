@@ -1,0 +1,41 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN">
+<html>
+<head>
+<title>색바꾸기</title>
+
+</head>
+
+<body bgcolor="white" text="black" link="blue" vlink="purple" alink="red">
+
+<pre>               <font face="굴림"><b>색바꾸기<br>
+&nbsp;</b></font>
+<font face="굴림">               AutoCAD에서 entity의 색을 바꾸는 방법은 몇가지가 있습니다. chprop, ddchpro등</font>
+<font face="굴림">               이 그것입니다. 하지만 이런 명령들을 사용하여 색을 바꾸려면 한번의 키입력을 </font>
+<font face="굴림">               더 해줘야 원하는 색으로 바꿀 수 있습니다. 이러한 불편을 없애고 빠르게 색을 </font>
+<font face="굴림">               바꿀 수 있도록 아래와 같은 프로그램을 만들었습니다.</font>        <br>
+               <font face="굴림"><b>   CH1, CH2, CH3, CH4, CH5, CH6, CH7<br>
+&nbsp;</b></font>
+              <img src="pencel.gif" width="9" height="16" border="0"> <font face="굴림"><b><u>사용예 </u></b></font>
+               <font face="Courier New">command: </font><font face="Courier New"><b>ch1</b></font><font face="Courier New"><img src="enter.gif" width="15" height="15" border="0"></font><font face="굴림">     </font>               <font face="굴림">[entity의 색을 빨간색(color=1)으로 바꾸기]</font>
+               <font face="Courier New">Select objects: </font><font face="바탕">{entity</font><font face="굴림">선택</font><font face="바탕">}</font>       
+               <font face="Courier New">Select objects: <img src="enter.gif" width="15" height="15" border="0"></font>                <font face="굴림">[entity선택 끝냄]</font> <br>               
+<font face="굴림">               CH1이라고 세글자까지 타이핑하는 것도 귀찮다면 c:\acad\support방의 acad.lsp를 </font>
+<font face="굴림">               열고 CH1명령을 정의한 부분을 아래와 같이 고쳐서 1<img src="enter.gif" width="15" height="15" border="0">와</font><font face="Courier New"> </font><font face="굴림">같이</font><font face="Courier New"> </font><font face="굴림">한큐</font><font face="Courier New">(?)</font><font face="굴림">에</font><font face="Courier New"> </font><font face="굴림">명령</font>
+<font face="굴림">               을</font><font face="Courier New"> </font><font face="굴림">내릴</font><font face="Courier New"> </font><font face="굴림">수</font><font face="Courier New"> </font><font face="굴림">있도록</font><font face="Courier New"> </font><font face="굴림">할</font><font face="Courier New"> </font><font face="굴림">수도</font><font face="Courier New"> </font><font face="굴림">있습니다</font><font face="Courier New">.</font>
+               </pre>
+<table border cellpadding="14" cellspacing="0" bordercolordark="white" bordercolorlight="black"><caption
+ align="bottom"> </caption>
+    <tr>
+        <td width="120%"><pre><font face="바탕">(defun C:</font><font face="바탕"><u>CH1</u></font><font face="바탕">()      →  <b>(defun C:</font><font face="바탕"><u>1</u></font><font face="바탕">()</b></font>
+<font face="바탕">  (setvar &quot;CMDECHO&quot; 0)</font>
+<font face="바탕">  (setq ss (ssget))</font>
+<font face="바탕">  (command &quot;CHPROP&quot; ss &quot;&quot; &quot;C&quot; &quot;1&quot; &quot;&quot;)</font>
+<font face="바탕">  (setvar &quot;CMDecho&quot; 1)</font>
+<font face="바탕">  (princ)</font>
+<font face="바탕">) ;of defun</font></pre></td>
+    </tr>
+</table>
+<p>&nbsp;</p>
+</body>
+
+</html>

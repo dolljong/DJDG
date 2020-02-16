@@ -1,0 +1,32 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN">
+<html>
+<head>
+<title>여러번 offset해줍니다.</title>
+
+</head>
+
+<body bgcolor="white" text="black" link="blue" vlink="purple" alink="red">
+
+<pre><font face="굴림" size="4"><b>여러번 offset해줍니다.</b></font>
+&nbsp;
+<img src="trjqh039.gif" align="middle" width="90" height="64" border="0" hspace="3"><img src="trjqh040.gif" align="middle" width="25" height="24" border="0" vspace="3" hspace="3"> <font face="굴림">Program name : FFP.LSP</font>
+<hr size="1" noshade>
+  <font face="굴림">R먹은 교량의 슬라브 배근도를 그리다보면 CAD에 있을 것 같은 명령이 없다는 것을 알게됩니</font>
+<font face="굴림">다. 어떤 상황이냐하면, 슬라브 배근도에서 배력근은 R이 계속 변하며 내측부터 외측까지 배근됩</font>
+<font face="굴림">니다. 이것을 쉽게 그릴 수 있는 기능이 CAD에 있을 것 같은데, 없습니다. Array명령은 똑같은 R</font>
+<font face="굴림">을 가진 호를 만들어 주기때문에 이 경우에는 쓸모가 없습니다. 그래서 일일이 offset을 시켜야 </font>
+<font face="굴림">합니다.(</font><font face="바탕">이구 지겨워~</font><font face="굴림">) 이 프로그램은 그러한 번거로움을 없애줍니다. 두 점을 찍어주면 프로그램</font>
+<font face="굴림">은 두점간의 거리를 구하고 사용자가 입력한 offset거리로 나누어 몇번을 offset할 것인가를 정한</font>
+<font face="굴림">다음 그 횟수만큼 offset해줍니다. </font> <br>  
+<br>
+&nbsp;
+<font face="바탕"><b><u><img src="pencel.gif" border="0"> 사용예</u></b></font>
+<font face="Courier New">Pick start point:</font><font face="굴림"> end of {p1}</font>           <font face="굴림">[시작점]</font>
+<font face="Courier New">Pick end point</font><font face="굴림">: end of {p2}</font>             <font face="굴림">[끝점]</font>
+<font face="Courier New">Offset distance&lt;2000.0&gt;:</font><font face="굴림"> 200<img src="enter.gif" border="0"></font>   <font face="굴림">[offset distance]</font>
+<font face="Courier New">Select object:</font><font face="굴림"> {p3}</font>                     <font face="바탕">[offset될 entity선택]<br></font>
+<font face="바탕">&nbsp;</font>
+<img src="ffp.gif" align="middle" width="415" height="185" border="0" hspace="3"></pre>
+</body>
+
+</html>

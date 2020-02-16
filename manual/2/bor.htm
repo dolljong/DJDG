@@ -1,0 +1,47 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN">
+<html>
+<head>
+<title>보링주상도를 만들어줍니다.</title>
+
+</head>
+
+<body bgcolor="white" text="black" link="blue" vlink="purple" alink="red">
+
+<pre><font size="4"><b>  </b></font><font face="굴림" size="4"><b>보링주상도를 만들어줍니다.</b></font>
+<img src="vydqp086.gif" align="middle" width="85" height="63" border="0"><font face="굴림"> </font><img src="vydqp087.gif" align="middle" width="25" height="24" border="0"> <font face="굴림">파일명 : BOR.LSP</font>
+<hr size="1" noshade>
+  <font face="굴림">보링주상도를(시추주상도)를 그려주는 프로그램입니다. 보통 종단면도 작업을 할때 많이 쓰는 </font>
+<font face="굴림">기능인데, 생각보다 시간이 많이 걸리고 까다로운 작업입니다. 그 이유는 보통 종단면도가 수평 </font>
+<font face="굴림">스케일과 수직스케일이 다르기 때문입니다. H=1:600, V=1:300으로 그리는 종단면도에서는 모든 수</font>
+<font face="굴림">직 길이들이 수평길이의 두배로 그려야 하는 것입니다. 돌종이 사무실에서는 보통 DIMSCALE을 </font>
+<font face="굴림">수평스케일에 맞추고 작업을 하기 때문에 수직길이를 두배로 외곡해서 작업을 하고있습니다.<br></font>
+<font face="굴림">&nbsp;</font>
+  ◆<font face="굴림"> </font><font face="굴림"><b>BOR.LSP의 기능 및 제한사항</b></font>
+   <font face="굴림">▷ 지반별 표시형태는 도로공사형식을 따랐습니다. 하지만 각 공사별, 공구별로 조금씩은 차이</font>
+<font face="굴림">        가 있을 수도 있을 것입니다. 바로 이점이 프로그램을 만드는데 있어서 가장 어려운 점이라 </font>
+<font face="굴림">        하겠습니다. 애써 만든 프로그램이 범용성을 가지지 못할 수도 있기 때문이죠.</font>
+  <font face="굴림"> ▷ Y스케일을 줄 수 있습니다.</font>
+  <font face="굴림"> ▷ 범례를 슬라이드 파일로 보여주므로 실수 없이 입력할 수 있도록 했습니다.</font>
+   <font face="굴림">▷ N값을 쓸 수 있도록 했습니다. 보통 N값은 1.5M마다 구하므로 1.5, 3.0..위치에 N값을 입력할 </font>
+<font face="굴림">       수 있도록 했습니다.</font>
+   <font face="굴림">▷ 한가지 아쉬운 점은 전석을 표현할 방법이 마땅치 않다는 것입니다. 할 수 없이 전석은 손</font>
+<font face="굴림">       으로.. 하지만 좋은 아이디어가 있으면 알려주세요.<br></font>
+<font face="굴림">&nbsp;</font>
+  <img src="bor1.gif" align="bottom" width="486" height="307" border="0" hspace="3"><img src="bor2.gif" align="bottom" width="137" height="295" border="0" hspace="3"> <br>  
+&nbsp;
+  <font face="바탕"><b><u><img src="pencel.gif" border="0"> 사용예</u></b></font>
+  <font face="Courier New">command:</font><font face="굴림"> </font><font face="굴림"><b>BOR</b></font><font face="굴림"><img src="enter.gif" width="15" height="15" border="0"> </font>                <font face="굴림">[또는 DJDG메뉴에서 선택]</font>
+  <font face="Courier New">Insert point:</font><font face="굴림"> </font>                <font face="굴림">[지반 상단점을 찍어준다]</font>
+  <font face="Courier New">Y-SCALE:</font><font face="굴림"> </font><font face="굴림"><b>2</b></font><font face="굴림"><img src="enter.gif" width="15" height="15" border="0"> </font>          <font face="굴림">[Y-SCALE값을 입력한다. 이경우엔 X-SCALE의 두배]</font>
+  <font face="Courier New">DEPTH(m):</font><font face="굴림"> </font><font face="굴림"><b>0.5</b></font><font face="굴림"><img src="enter.gif" width="15" height="15" border="0"> </font>               <font face="굴림">[지반 상단에서 지층의 하단까지 깊이를 입력한다]</font>
+  <font face="Courier New">EARTH TYPE(1~11):</font><font face="굴림"> </font><font face="굴림"><b>1</b></font><font face="굴림"><img src="enter.gif" width="15" height="15" border="0"> </font> <font face="굴림">[화면의 그림을 보고 1번부터 11번 TYPE까지중 하나 선택한다]</font>
+  <font face="Courier New">DEPTH(m):</font><font face="굴림"> </font><font face="굴림"><b>1.0</b></font><font face="굴림"><img src="enter.gif" width="15" height="15" border="0"> </font>               <font face="굴림">[다음 지층까지의 깊이(지반 상단에서부터)를 입력한다.</font>
+  <font face="굴림">... 반복 ...</font>
+  <font face="Courier New">DEPTH(m):<img src="enter.gif" width="15" height="15" border="0"></font><font face="굴림"> </font>                   <font face="굴림">[더이상의 지층이 없으면 <img src="enter.gif" width="15" height="15" border="0">으로 끝낸다]</font>
+  <font face="Courier New">N-VALUE(1.5M):</font><font face="굴림"> </font><font face="굴림"><b>5/30</b></font><font face="굴림"><img src="enter.gif" width="15" height="15" border="0"> </font> <font face="굴림">[여기서 부터는 N값을 입력한다. 1.5M위치의 N값을 입력한다]</font>
+  <font face="Courier New">N-VALUE(3.0M):</font><font face="굴림"> </font><font face="굴림"><b>10/30</b></font><font face="굴림"><img src="enter.gif" width="15" height="15" border="0"></font>
+  <font face="굴림">... 반복 ...</font>
+  <font face="Courier New">N-VALUE(6.0M):</font><font face="굴림"> <img src="enter.gif" width="15" height="15" border="0"> </font>             <font face="굴림">[N값 입력을 끝내기 위해서 <img src="enter.gif" width="15" height="15" border="0">을 입력한다]</font></pre>
+</body>
+
+</html>

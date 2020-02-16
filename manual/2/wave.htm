@@ -1,0 +1,43 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN">
+<html>
+<head>
+<title>물결모양으로 생략표시를 해줍니다.</title>
+
+</head>
+
+<body bgcolor="white" text="black" link="blue" vlink="purple" alink="red">
+
+<p><font face="굴림" size="4"><b>물결모양으로 생략표시를 해줍니다.</b></font><br>
+<br>
+&nbsp; <img src="vydqp052.gif" align="middle" width="81" height="62" border="0"
+ hspace="3"> <img src="vydqp053.gif" align="middle" width="25" height="24" border="0"
+ hspace="3"> <font face="굴림">파일명 : WAVE.LSP</font> <hr size="1" noshade> 
+</p>
+<pre><font face="굴림">구조물을 그릴 때 그 구조물 전체를 보여줄 필요가 없는 경우에는 중간을 생략하고 그리는 경</font>
+<font face="굴림">우가 있습니다. 이때 도면을 그리는 사람은 도면을 보는 사람에게 중간에 생략된 부분이 있다는 </font>
+<font face="굴림">표시를 해주어야 합니다. 보통 생략된 부분에다 번개표시(?)를 해주거나 물결무늬 표시를 해줍니</font>
+<font face="굴림">다. 이 프로그램은 물결무늬를 그려주고 그 물결무늬 사이의 entity를 trim해줍니다. 물결무늬는 </font>
+<font face="굴림">polyline으로 구성되어 있고 trim될 entity를 선택하는 방법은 F(fance) option입니다. 호는 1/4원으로 </font>
+<font face="굴림">이루어져 있습니다. 물결모양으로 trim할 경우 두가지 방법으로 그 시작점과 끝점을 찍어줄 수 있</font>
+<font face="굴림">는데 한가지는 첫점과 마지막 점을 찍어주는 방법이고, 두번째는 중간점과 한 끝점을 찍어주는 </font>
+<font face="굴림">방법입니다. 후자의 방법은 파일이나 post의 철근 등 center선이 있는 구조물을 trim할 때 유용하</font>
+<font face="굴림">리라 봅니다.</font>
+&nbsp;
+  <font face="바탕"><b><u><img src="pencel.gif" border="0"> 사용예-1 </u></b></font><font face="바탕">가운데 점과 한쪽 끝점을 지정할 때</font>
+  &lt;<font face="Courier New">Pick center point&gt;/2point:</font><font face="굴림"> {p1}</font>      <font face="굴림">[물결모양의 가운데 점이 들어갈 점을 찍어줍니다]</font>
+  <font face="Courier New">pick end point:</font><font face="굴림"> {p2}</font>            <font face="굴림">[물결모양의 한쪽 끝을 찍어줍니다]</font>
+                                <font face="굴림">                              프로그램은 p1과 p2의 각을 인식하여 p2의 맞은편 쪽에서부터 </font>
+<font face="굴림">                                p2까지 물결모양을 만들고 trim을 해줍니다.</font>
+&nbsp;
+  <img src="wave1.gif" align="middle" width="194" height="200" border="0" vspace="3" hspace="3">
+&nbsp;
+  <font face="굴림"><b><u><img src="pencel.gif" border="0"> 사용예-2 </u></b></font><font face="굴림">양끝점을 지정할 때</font>
+  &lt;<font face="Courier New">Pick center point&gt;/2point:</font><font face="굴림"> 2<img src="enter.gif" width="15" height="15" border="0"></font>        <font face="굴림">[양끝점을 지정하기 위해 2point option을 선택합니다]</font>
+  <font face="Courier New">pick start point:</font><font face="굴림"> {p1}</font>          <font face="굴림">[한쪽 끝점을 지정합니다]</font>
+<font face="Courier New">  pick end point:</font><font face="굴림"> {p2}</font>            <font face="굴림">[다른 한쪽 끝점을 지정합니다]</font>
+&nbsp;
+  <img src="wave2.gif" align="middle" width="205" height="202" border="0" vspace="3" hspace="3"> <br>   </pre>
+<p>&nbsp;</p>
+</body>
+
+</html>

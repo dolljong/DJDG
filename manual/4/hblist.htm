@@ -1,0 +1,105 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN">
+<html>
+<head>
+<title>철근재료표를 만들어줍니다.</title>
+
+</head>
+
+<body bgcolor="white" text="black" link="blue" vlink="purple" alink="red">
+
+<pre><font face="굴림" size="4"><b>철근재료표를 만들어줍니다.</b></font>
+&nbsp;
+<img src="ncmar071.gif" align="middle" width="84" height="63" border="0"> <img src="ncmar072.gif" align="middle" width="25" height="23" border="0"> <font face="굴림">Program name : HBLIST.LSP</font>
+<hr size="1" align="left" noshade>
+  <font face="굴림">사실 철근재료표를 그리는 방법은 매우 단순합니다. 철근의 길이들과 갯수들을 곱해서 철근의 </font>
+<font face="굴림">총중량을 구하는 것이죠. 국민학생들도 할 수 있는 작업이지요. 그래서인지 계산기 두드리기를 귀</font>
+<font face="굴림">찮아하는 사람들이 있습니다. 바로 그런 사람들을 위해서 이 프로그램은 만들어졌습니다. 철근의 </font>
+<font face="굴림">길이와 직경만 써주면 재료표를 완성시켜줍니다. 이 프로그램을 사용하여 재료표를 만들면 처음 </font>
+<font face="굴림">만들때도 편하지만 특히 이미 만들어진 재료표를 수정할 때 상당히 편합니다. 한개의 철근 길이</font>
+<font face="굴림">때문에 모두 다시 계산하는 대신에 데이타 한줄만 바꿔서 프로그램을 다시 돌리면 되니까요.</font> <br>  
+&nbsp;
+  ◆<font face="굴림"><b> 어떤 기능을 가지고 있는가?</b></font>
+     <font face="굴림"> ▷data file의 data들은 ,로 구분됩니다. 공백은 무시되므로 보기좋게 편집하시면 됩니다.</font>
+     <font face="굴림"> ▷보통의 철근재료표에는 소문자를 쓰지 않으므로 소문자로 입력된 data는 모두 대문자로 바</font>
+     <font face="굴림">   꿔줍니다. Caps Lock키가 눌러져 있는지 신경을 안써도 되겠죠?</font>
+     <font face="굴림"> ▷철근직경을 기준으로 정렬하고 다시 철근번호를 기준으로 정렬되므로 입력순서에 신경쓸 필</font>
+     <font face="굴림">   요가 없습니다. 아무생각없이(?) Bar detail도에 나온 순서대로 입력하면 OK!</font>
+     <font face="굴림"> ▷철근길이의 단위는 m단위입니다. 길이가 1m이하일 경우 재료표에 0.500이 아닌 500으로 표</font>
+     <font face="굴림">   시해줍니다. 물론 중량계산에서는 정상으로 계산되니 걱정하지 마시고...</font>
+     <font face="굴림"> ▷재료표만으로 한장의 도면을 만드는 경우도 있지만, 때에 따라서는 배근도 옆에다 재료표를 </font>
+     <font face="굴림">   그리는 경우도 있습니다. 그때를 위해서 scale factor를 줄 수 있도록 했습니다.</font>
+     <font face="굴림"> ▷재료표 한줄의 높이는 7mm이고 글씨의 크기는 2.5mm입니다. (물론 출력했을 때 기준으로..)</font> <br>     
+  ◆<font face="굴림"> 주의사항</font>
+     <font face="굴림"> ▷AutoCAD에서 한글을 구현하기 힘들었기 때문에 부득이 블럭을 이용하였습니다. 즉 철근재</font>
+     <font face="굴림">   료표에는 네개의 블럭이 사용됩니다. 대가리(Header,제목과 테이블의 첫줄)와 소계, 총계입니</font>
+     <font face="굴림">   다. 블럭의 이름은 각각 \BLOCKS\BHEAD.DWG, \BLOCKS\BGRDT.DWG, \BLOCKS\BSUBT.DWG</font>
+     <font face="굴림">   입니다.</font> <br>     
+<br>
+&nbsp;
+  <font face="바탕"><b><img src="pencel.gif" border="0"></b></font><font face="돋움"><b><u>사용예</u></b></font><font face="바탕"><b><u>-1 </u></b></font><font face="바탕"><b>  data file</b></font><font face="돋움"><b>을</b></font><font face="바탕"><b> </b></font><font face="돋움"><b>이용하는</b></font><font face="바탕"><b> </b></font><font face="돋움"><b>경우</b></font>
+  <font face="Courier New">File/Entity &lt;File&gt;:</font><font face="굴림"> <img src="enter.gif" width="16" height="16" border="0">나 </font><font face="굴림"><b>f</b></font><font face="굴림"><img src="enter.gif" width="16" height="16" border="0">  </font>   <font face="굴림">[file을 통해서 data를 입력받기 위해 Enter]</font>
+                              <font face="굴림"><b>e</b></font><font face="굴림"><img src="enter.gif" width="16" height="16" border="0"> </font>    <font face="굴림">[도면내의 text를 통해서 철근 data 입력받음]</font>
+                <font face="굴림">  </font>      <font face="굴림">여기서 data file선택 dialog box가 뜨면, data file을 선택해주고...</font>
+  <font face="Courier New">insert point:</font><font face="굴림">          [insert point찍어줌]</font>
+  <font face="Courier New">scale factor:</font><font face="굴림"> </font><font face="굴림"><b>50</b></font><font face="굴림"><img src="enter.gif" width="16" height="16" border="0">     [현재도면의 scale을 입력해줍니다. scale을 입력하도록 한 이유는 재</font>
+                           <font face="굴림">료표가 배근도의 한쪽에 들어갈 경우가 있기 때문입니다. 역기서는 </font>
+                           <font face="굴림">1:50도면에 삽입하는 경우임]</font>
+<font face="굴림">     data file 내용</font></pre>
+<table border cellpadding="2" cellspacing="0" bordercolordark="white" bordercolorlight="black"><caption
+ align="bottom"> </caption>
+    <tr>
+        <td width="197" height="165" valign="top"><pre><font face="굴림체">      1, d19,  5.540,  91 </font>
+<font face="굴림체">      4, d19,  2.671,  91 </font>
+<font face="굴림체">     13, d16, 10.584,   4 </font>
+<font face="굴림체">     23, d22,  1.200, 264 </font>
+<font face="굴림체">     d1, d16,  2.870,  16 </font>
+<font face="굴림체">     d2, d16,  1.000,  16 </font>
+<font face="굴림체">     12, d16, 11.670, 125 </font>
+<font face="굴림체">     14, d16,  3.200, 132 </font>
+<font face="굴림체">   15-1, d16,  6.300,  14</font>
+<font face="굴림체">   16-1, d16,  5.175,  18</font>
+<font face="굴림체">   17-1, d16,  3.113,  40</font>
+<font face="굴림체">     22, d13,  6.300,   4 </font></pre></td>
+        <td width="171" height="165" valign="top"><pre><font face="굴림체">   a1, d16,  8.770,  25 </font>
+<font face="굴림체">   a3, d19,  5.900,  35 </font>
+<font face="굴림체">    d, d25,  0.500,  17 </font>
+<font face="굴림체">    3, d19,  2.100,  91 </font>
+<font face="굴림체">    8, d22,  5.100,  91 </font>
+<font face="굴림체">    9, d13,  1.035,  55 </font>
+<font face="굴림체">   10, d13,  1.233,  35 </font>
+<font face="굴림체">   11, d13,  1.138,  11 </font>
+<font face="굴림체">   19, d13,  0.538,  50</font>
+<font face="굴림체">   20, d25,  2.700, 128</font>
+<font face="굴림체">   a2, d19,  9.260,  49</font>
+<font face="굴림체">   a4, d25,  6.300,  69</font></pre></td>
+        <td width="154" height="165" valign="top"><pre><font face="굴림체"> a5, d13,  0.435,  44 </font>
+<font face="굴림체">  7, d19,  6.117,  91 </font>
+<font face="굴림체"> 18, d16,  1.556,  72</font>
+<font face="굴림체"> 21, d13,  0.692,  31</font>
+<font face="굴림체">  2, d19,  1.549,  91</font>
+<font face="굴림체"> 15, d22,  6.600,  14</font>
+<font face="굴림체"> 16, d22,  5.475,  18</font>
+<font face="굴림체"> 17, d22,  3.413,  40</font>
+<font face="굴림체">  5, d19,  5.953,  91</font>
+<font face="굴림체">  6, d25,  5.953,  91</font></pre></td>
+    </tr>
+</table>
+<pre><br>
+  <font face="바탕">※ data file이 길어서 3단으로 나누어놓은 것임 (입력시엔 연속으로 입력하여야 함)</font>
+&nbsp;
+<font face="바탕"><b><img src="pencel.gif" border="0"></b></font><font face="돋움"><b><u>사용예</u></b></font><font face="바탕"><b><u>-2</u></b></font><font face="바탕"><b>  </b></font><font face="돋움"><b>도면내의</b></font><font face="바탕"><b> text enetity</b></font><font face="돋움"><b>를</b></font><font face="바탕"><b> </b></font><font face="돋움"><b>이용하는</b></font><font face="바탕"><b> </b></font><font face="돋움"><b>경우</b></font>
+<font face="Courier New">File/Entity &lt;File&gt;:</font><font face="굴림"> </font><font face="굴림"><b>E</b></font><font face="굴림"><img src="enter.gif" width="16" height="16" border="0">         </font> <font face="굴림">[도면내의 text를 통해서 철근 data입력받습니다]</font>
+<font face="Courier New">select entity:</font><font face="굴림"> {p} {p2}</font>        <font face="굴림">[cross box를 이용하여 도면내의 text선택]</font>
+<font face="Courier New">select entity: </font><font face="굴림"><img src="enter.gif" width="16" height="16" border="0"></font>              <font face="굴림">[입력을 마치기 위해서 엔터입력]</font>
+<font face="Courier New">insert point:</font><font face="굴림"> </font>                  <font face="굴림">[insert point 찍어줌 (table의 왼쪽상단)]</font>
+<font face="Courier New">scale factor:</font><font face="굴림"> </font><font face="굴림"><b>50</b></font><font face="굴림"><img src="enter.gif" width="16" height="16" border="0"></font>             <font face="굴림">[알맞은 scale factor]<br></font>
+<font face="굴림">&nbsp;</font>
+<img src="hblist1.gif" align="middle" width="243" height="531" border="0" vspace="3" hspace="3"><img src="hblist2.gif" align="middle" width="352" height="529" border="0" vspace="3" hspace="3"><br>
+&nbsp;
+<font face="굴림">   ※ data를 입력하는 방법은 위와 같이 두가지 입니다. 파일을 이용하거나 도면내에다 text</font>
+<font face="굴림">   명령 또는 dtext명령을 이용해서 입력하는 방법입니다. 파일을 이용하는 방법의 장점은 편집이 </font>
+<font face="굴림">   간편하다는 것이고, 도면내에다 직접 입력하는 방법의 장점은 도면내에 data가 있으므로 데이</font>
+<font face="굴림">   타파일을 따로 챙길 필요가 없다는 것입니다. 사용자의 취향에 맞추어 쓰시면 되겠습니다.</font></pre>
+</body>
+
+</html>

@@ -1,0 +1,54 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN">
+<html>
+<head>
+<title>좌표값 data file을 읽어 좌표값대로 line을 그려줍니다.</title>
+
+</head>
+
+<body bgcolor="white" text="black" link="blue" vlink="purple" alink="red">
+
+<pre><font face="굴림" size="4"><b>좌표값 data file을 읽어 좌표값대로 line을 그려줍니다.</b></font>
+&nbsp;
+<img src="dvtuh033.gif" align="middle" width="80" height="64" border="0" hspace="3"> <img src="dvtuh034.gif" align="middle" width="25" height="23" border="0" hspace="3"> <font face="굴림">Program name : RDL.LSP</font>
+<hr size="1" noshade>
+  <font face="굴림">Tendon도나 Camber도 또는 선형계산결과를 도면으로 만드는 작업같이 어떤 좌표값대로 line들</font>
+<font face="굴림">을 그리는 작업은 생각보다 번거롭습니다. 일일이 좌표값들을 입력해야되기 때문입니다. 이 프로</font>
+<font face="굴림">그램은 좌표 data파일을 읽어들여 그대로 line들을 그려줍니다. 아래에 작업순서를 보였습니다.<br></font>
+<font face="굴림">&nbsp;</font>
+<font face="바탕"><b><u><img src="pencel.gif" border="0"> 사용예</u></b></font>
+<font face="굴림"> ① 아래와 같이 data file을 만듭니다.</font>
+<font face="굴림">   </font><font face="굴림"><b>첫번째줄</b></font><font face="굴림">은 제목으로 도면에도 기입됩니다.</font>
+<font face="굴림">   </font><font face="굴림"><b>두번째줄</b></font><font face="굴림">부터는 좌표값들입니다. 차례대로 node-number, X-좌표, Y-좌표입니다.</font>
+    <font face="굴림">      만일 node-number에 숫자가 아닌 text가 오면 그 다음부터의 data를 새로운 line의 data로 </font>
+<font face="굴림">    인식합니다. 그러므로 한개의 data file에 여러개의 line data를 넣을 수 있습니다.</font></pre>
+<pre><div align="center">&nbsp;</div></pre>
+<div align="left"><table border cellpadding="14" cellspacing="0" bordercolordark="white"
+ bordercolorlight="black"><caption align="bottom"> </caption>
+    <tr>
+        <td width="100%"><pre><span style="font-size:10pt;"><font face="바탕체" size="2">line-1</font></span>
+<span style="font-size:10pt;"><font face="바탕체" size="2"> 1,   40.000,    0.000</font></span>
+<span style="font-size:10pt;"><font face="바탕체" size="2"> 2, 1085.304,  810.527</font></span>
+<span style="font-size:10pt;"><font face="바탕체" size="2"> 3, 2355.591, 1253.010</font></span>
+<span style="font-size:10pt;"><font face="바탕체" size="2"> 4, 3725.283, 1466.762</font></span>
+<span style="font-size:10pt;"><font face="바탕체" size="2"> 5, 5215.884, 1468.970</font></span>
+<span style="font-size:10pt;"><font face="바탕체" size="2"> 6, 6734.565, 1274.062</font></span>
+<span style="font-size:10pt;"><font face="바탕체" size="2"> 7, 7797.277,  906.742</font></span>
+<span style="font-size:10pt;"><font face="바탕체" size="2"> 8, 8875.419,  127.080</font></span>
+<span style="font-size:10pt;"><font face="바탕체" size="2"> 9, 9975.057, -449.378</font></span>
+<span style="font-size:10pt;"><font face="바탕체" size="2">10,11057.900, -884.224</font></span>
+<span style="font-size:10pt;"><font face="바탕체" size="2">11,12197.054,-1186.411</font></span>
+<span style="font-size:10pt;"><font face="바탕체" size="2">12,13478.444,-1312.553</font></span>
+<span style="font-size:10pt;"><font face="바탕체" size="2">13,14876.123,-1278.594</font></span>
+<span style="font-size:10pt;"><font face="바탕체" size="2">14,16308.118,-1087.458</font></span>
+<span style="font-size:10pt;"><font face="바탕체" size="2">15,17898.825, -729.017</font></span>
+<span style="font-size:10pt;"><font face="바탕체" size="2">16,19432.219,  -92.768</font></span></pre></td>
+    </tr>
+</table></div>
+<pre aling="CENTER">&nbsp;</pre>
+<pre><font face="굴림">② 프로그램을 실행시켜 data file을 정해줍니다. 아래에 위 data file에 의한 결과를 보였습니다. </font>
+<font face="굴림">첫줄의 line-1이라는 제목이 도면에 표시되어있습니다.<br></font>
+<font face="굴림">&nbsp;</font>
+<img src="rdl1.gif" width="469" height="137" border="0"></pre>
+</body>
+
+</html>

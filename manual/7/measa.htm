@@ -1,0 +1,36 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN">
+<html>
+<head>
+<title>호를 measure해줍니다.</title>
+
+</head>
+
+<body bgcolor="white" text="black" link="blue" vlink="purple" alink="red">
+
+<pre><font face="굴림" size="4"><b>호를 measure해줍니다.</b></font><font size="4"><b><br></b></font>
+&nbsp;
+<img src="trjqh004.gif" align="middle" width="85" height="63" border="0" hspace="3"><img src="trjqh005.gif" align="middle" width="25" height="23" border="0" hspace="3"> <font face="굴림">Program name : MEASA.LSP</font>
+<hr size="1" noshade>
+  <font face="굴림">AutoCAD가 제공하는 기능중 어떤 entity를 일정간격으로 나누어 표시를 해주는 기능이 있습니</font>
+<font face="굴림">다. 바로 MEASURE기능입니다. 하지만 MEASURE명령은 그 대상entity가 하나의 entity여야 합니다. </font>
+<font face="굴림">즉 하나의 호가 있고 그 중간의 어느 두점 사이를 일정길이로 나누어 표시를 하고 싶다면 entity</font>
+<font face="굴림">를 잘라야만 measure기능을 사용할 수 있습니다. 이 프로그램은 그러한 불편함을 없애고 호위의 </font>
+<font face="굴림">두점 사이를 사용자가 원하는 길이로 measure할 수 있도록 했습니다. measure된 점들에 point가 </font>
+<font face="굴림">찍히는데 이 point를 인용하려면 osnap의 node를 이용하는 건 잘 아시죠? R먹은 교량의 평면작업</font>
+<font face="굴림">에 유용하리라 생각됩니다.</font> <br>     
+<br>
+&nbsp;
+<font face="바탕"><b><u><img src="pencel.gif" border="0"> 사용예</u></b></font>
+<font face="Courier New">Select Arc or Circle:</font><font face="굴림"> {호를 선택} </font>
+<font face="Courier New">Pick start point:</font><font face="굴림"> end of {p1}</font>           <font face="굴림">[시작점]</font>
+<font face="Courier New">Pick end point:</font><font face="굴림"> nea to {p2}</font>             <font face="굴림">[끝점, 호위의 한점을 찍어도 됨]</font>
+                                        <font face="Courier New">Pick Direction point:</font><font face="굴림"> {p3}</font>      <font face="굴림">        [방향을 정해줍니다. 즉 p1에서 시작하여 시계방향으로 </font>
+<font face="굴림">                                        measure할 것인가 반시계방향으로 measure할 </font>
+<font face="굴림">                                        것인가를 정해줍니다]</font>
+<font face="Courier New">Measure length:</font><font face="굴림"> 100<img src="enter.gif" border="0"></font>                    <font face="굴림">[measure길이, 100mm씩 나누어 표시해줌]<br></font>
+<font face="굴림">&nbsp;</font>
+<img src="measa.gif" align="middle" width="421" height="272" border="0" hspace="3"></pre>
+<p>&nbsp;</p>
+</body>
+
+</html>

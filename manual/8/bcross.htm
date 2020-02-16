@@ -1,0 +1,37 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN">
+<html>
+<head>
+<title>서로만나는 점을 잘라줍니다.</title>
+
+</head>
+
+<body bgcolor="white" text="black" link="blue" vlink="purple" alink="red">
+
+<pre><font face="굴림" size="4"><b>서로만나는 점을 잘라줍니다.</b></font>
+&nbsp;
+<img src="dvtuh048.gif" align="middle" width="85" height="60" border="0" hspace="3"> <img src="dvtuh049.gif" align="middle" width="24" height="23" border="0" hspace="3"> <font face="굴림">Program name : BCROSS.LSP</font>
+<hr size="1" noshade>
+  <font face="굴림">이 프로그램은 범용적인 목적보다는 특별한 목적으로 만들어진 프로그램입니다. (게으른 돌종이</font>
+<font face="굴림">의 필요에 따라서..) 하지만 혹 저같은 불편함을 느끼시고 계신 토목인들을 위해 소개합니다. </font>
+<font face="굴림">ALGOR을 사용하여 격자해석 또는 SHELL요소해석을 할 때 ALGOR의 Decorder를 사용하는데 이 </font>
+<font face="굴림">프로그램은 CAD에서 그려진 모델을 불러다 쓸 수 있는 기능이 있습니다. 즉 DXF format을 이용</font>
+<font face="굴림">하여 data를 교환할 수 있다는 것이지요. 이때 CAD에서의 model은 아래의 오른쪽 그림과 같이 교</font>
+<font face="굴림">점들에서 모두 끊어져 있어야 합니다. 결국 사용자는 CAD에서 일일이 그 선들을 그려야 하는 불</font>
+<font face="굴림">편한 점을 감수해야 합니다.  </font>
+  <font face="굴림">그래서 이 프로그램은 ARC와 LINE으로 이루어진 model 그림의 교점들을 잘라서 ALGOR에서 불</font>
+<font face="굴림">러들일 수 있게 만들어줍니다. 물론 ALGOR에서는 곡선 entity는 인식하지 못하므로 ARC entity는 </font>
+<font face="굴림">직선으로 연결됩니다. </font> <br>
+<br>  
+<font face="바탕"><b><u><img src="pencel.gif" border="0"> 사용예-1</u></b></font>
+<font face="Courier New">select entity :</font><font face="굴림"> </font>                <font face="굴림">[원하는 entity를 선택합니다. (ARC와 LINE만 가능)]</font>
+<font face="Courier New">base point:</font><font face="굴림"> </font>                    <font face="굴림">[기준점을 찍어줍니다.]</font>
+<font face="Courier New">destination point: </font>             <font face="굴림">[목표점을 찍어줍니다.]</font> <br>
+<br>  
+<img src="bcross.gif" align="middle" width="400" height="226" border="0" vspace="3" hspace="3">
+<br>
+<font face="굴림">이 프로그램은 실제로 선택된 entity들을 잘라주는 것이 아니라 선택된 entity들의 정보를 이용</font>
+<font face="굴림">하여 또 다른 entity를 만들어주므로 base point와 destination point가 필요합니다. 그 이유는 수정</font>
+<font face="굴림">을 대비해서 원본은 보관한 상태에서 새로운 model을 만들기 위함입니다.</font> <br></pre>
+</body>
+
+</html>

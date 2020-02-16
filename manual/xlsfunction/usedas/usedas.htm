@@ -1,0 +1,52 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN">
+<html>
+<head>
+<title>UsedAs()함수</title>
+
+<style type="text/css">
+P {font-size:10pt;}
+li {font-size:10pt;}
+</style>
+</head>
+
+<body bgcolor="white" text="black" link="blue" vlink="purple" alink="red">
+
+<table border="0" cellpadding="0" width="519">
+    <tr>
+        <td width="80%" height="31" bgcolor="blue"><p align="center"><span style="font-size:15pt;"><font
+             face="굴림" size="4" color="white"><b>사용철근량구하기 =UsedAs()</b></font></span></td>
+    </tr>
+</table>                                          
+<p> 
+주어진 철근직경(또는 명칭)과 간격(mm)에 대해서 1m당 철근량(cm)구해줍니다.<br>
+</p>
+
+<p><b><br>
+구문 <br>
+USEDAS(Dia,CTC)</b> <br>
+Dia 철근명칭 또는 직경, "D16" "d16" 16 직경을 입력할 때는 mm로 입력한다. D16=16<br>
+CTC 철근간격 (mm)<br>
+
+<br>
+<br>
+<p><b>주의</b><br> 
+
+    <li>반드시 주어진 단위에 맞게 사용하여야 합니다.
+    <li>사용가능한 철근 13,16,19,22,25,29,32이며 이외의 직경이 입력되는 경우 "Dia Not Found"를 돌려줍니다.
+<p> 
+<br>
+<b>예제</b><br>         
+UsdAs("D16",100) = 19.860<br>
+UsdAs(19,125) = 22.920<br>
+<bR>
+<Br>
+<b>TIP</b><br>        
+<a href=../reqas/reqas.htm>ReqAs()함수</a>를 이용하여 필요철근량을 구한 후 L5셀에 UsedAs()함수를 이용하여 사용철근량을 산출하도록 하고 Dia와 CTC를 바꾸어 가면서 
+철근의 직경과 간격을 결정할 수 있습니다.
+<img src=usedas0.gif align=bottom>
+
+
+</p>
+</body>
+
+</html>

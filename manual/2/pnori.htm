@@ -1,0 +1,31 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN">
+<html>
+<head>
+<title>평면상의 노리(직선)를 그려줍니다.</title>
+
+</head>
+
+<body bgcolor="white" text="black" link="blue" vlink="purple" alink="red">
+
+<pre><font size="4"><b>  </b></font><font face="굴림" size="4"><b>평면상의 노리(직선)를 그려줍니다.</b></font>
+&nbsp;
+<img src="vydqp138.gif" align="bottom" width="71" height="48" border="0"><font face="굴림"> </font><img src="vydqp139.gif" align="bottom" width="24" height="23" border="0"> <font face="굴림">파일명 : pnori.lsp</font>
+<hr size="1" noshade>
+  <font face="바탕">도로부에서 작업해온 평면노선은  pline으로 구성되어 있습니다. 교량이 놓이는 곳이 직선구간</font>
+<font face="바탕">이라면 노리를 그리는 것도 그렇게 어려운 것은 없습니다. array 명령과 copy명령을 몇번 사용하</font>
+<font face="바탕">면 되기 때문이죠. 하지만 곡선부분에 교량이 놓인다면 노리는 그리는 일이 만만치 않은 작업입</font>
+<font face="바탕">니다. 노리선의 각도가 계속 변하기 때문이죠. 이 프로그램은 pline에 직각이 되도록 노리를 그</font>
+<font face="바탕">려줍니다. 노리선의 간격은 출력했을 때 4mm간격을 기본값으로 하였으나 임의로 바꿀 수 있습니</font>
+<font face="바탕">다.<br></font>
+<font face="바탕">&nbsp;</font>
+  <font face="바탕"><b><u><img src="pencel.gif" border="0"> 사용예</u></b></font>
+<font face="Courier New">Select Polyline: {p0}        [</font><font face="굴림">도로의</font><font face="Courier New"> </font><font face="굴림">외곽선</font><font face="Courier New"> polyline</font><font face="굴림">을</font><font face="Courier New"> </font><font face="굴림">선택해줍니다</font><font face="Courier New">]</font>
+<font face="Courier New">Pick start point: {p1}       [</font><font face="굴림">노리가</font><font face="Courier New"> </font><font face="굴림">시작되는</font><font face="Courier New"> </font><font face="굴림">점을</font><font face="Courier New"> </font><font face="굴림">찍어줍니다</font><font face="Courier New">]</font>
+<font face="Courier New">Pick end point: {p2}         [</font><font face="굴림">노리가</font><font face="Courier New"> </font><font face="굴림">끝나는</font><font face="Courier New"> </font><font face="굴림">점을</font><font face="Courier New"> </font><font face="굴림">찍어줍니다</font><font face="Courier New">]</font>
+<font face="Courier New">Pick Nori Direction: {p3}    [</font><font face="굴림">노리가</font><font face="Courier New"> </font><font face="굴림">어느쪽으로</font><font face="Courier New"> </font><font face="굴림">생기는</font><font face="Courier New"> </font><font face="굴림">지</font><font face="Courier New"> </font><font face="굴림">찍어줍니다</font><font face="Courier New">]</font>
+<font face="굴림">노리선</font><font face="Courier New"> </font><font face="굴림">간격</font><font face="Courier New"> &lt;400.0&gt;: <img src="enter.gif" width="16" height="16" border="0"> [</font><font face="굴림">노리선</font><font face="Courier New"> </font><font face="굴림">간격을</font><font face="Courier New"> </font><font face="굴림">입력합니다</font><font face="Courier New">]<br></font>
+<font face="Courier New">&nbsp;</font>
+<img src="vydqp142.gif" align="bottom" width="326" height="151" border="0"></pre>
+</body>
+
+</html>

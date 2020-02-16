@@ -1,0 +1,35 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN">
+<html>
+<head>
+<title>노면의 기울기(%)를 표시해줍니다.</title>
+
+</head>
+
+<body bgcolor="white" text="black" link="blue" vlink="purple" alink="red">
+
+<pre><font face="굴림" size="4"><b>노면의 기울기(%)를 표시해줍니다.</b></font>
+&nbsp;
+  <img src="vydqp036.gif" align="middle" width="85" height="63" border="0" hspace="3"> <img src="vydqp037.gif" align="middle" width="25" height="24" border="0" hspace="3"> <font face="굴림">파일명 : SLOP.LSP</font>
+<hr size="1" noshade>
+  <font face="굴림">도로나 교량의 단면을 그릴 때 노면의 기울기를 표시해줍니다. 이미 그려진 라인의 기울기를 </font>
+<font face="굴림">참조하여 만들 수도 있고, 이미 알고 있는 기울기 값을 입력해서 그릴 수도 있습니다. 또한 사용</font>
+<font face="굴림">자가 원하는 text를 넣을 수 있습니다.(예:'S=A%') 화살표의 길이는 text길이를 인식하여 자동조정</font>
+<font face="굴림">됩니다.</font>
+&nbsp;
+  <font face="바탕"><b><u><img src="pencel.gif" border="0"> 사용예-1</u></b></font><font face="바탕">  기존 line의 기울기를 참조하는 경우</font>
+<font face="Courier New">Pick mid-point:</font><font face="굴림"> {p1}     </font>       <font face="굴림">[화살표의 가운데 점을 찍어줍니다]</font>
+<font face="Courier New">Pick side:</font><font face="굴림"> {p2}          </font>       <font face="굴림">[화살표의 머리쪽을 찍어줍니다]</font>
+<font face="Courier New">Referance/&lt;Slope&gt;:</font><font face="굴림"> R<img src="enter.gif" border="0">  </font> <font face="굴림">[기존의 line을 참조하기 위하여 &quot;R&quot;을 입력합니다]</font>
+<font face="Courier New">Select object:</font><font face="굴림"> {p3}      </font>       <font face="굴림">[기존 line을 선택합니다, line이 아닌 entity선택하면 에러발생] </font>
+<font face="Courier New">Enter text:&lt;+3.000%&gt;: </font><font face="굴림"><img src="enter.gif" border="0"> </font>        <font face="바탕">[프로그램이 구한 text를 그대로 사용하려면 Enter를 입력]</font> <br>
+&nbsp;
+  <font face="바탕"><b><u><img src="pencel.gif" border="0"> 사용예-2</u></b></font><font face="바탕">  기울기를 직접 입력하는 경우</font>
+<font face="Courier New">Pick mid-point:</font><font face="굴림"> {p4}</font>
+<font face="Courier New">Pick side:</font><font face="굴림"> {p5}</font>
+<font face="Courier New">Referance/&lt;Slope&gt;:</font><font face="굴림"> 3<img src="enter.gif" border="0"></font>           <font face="굴림">[기울기를 직접 입력]</font>
+<font face="Courier New">Enter text:&lt;+3.000%&gt;: </font><font face="굴림">S=3.000%<img src="enter.gif" border="0"> </font>        <font face="바탕">[사용자가 원하는 text를 입력]</font>
+&nbsp;
+  <img src="slop.gif" align="middle"  border="0" hspace="3"></pre>
+</body>
+
+</html>
