@@ -1,9 +1,9 @@
-# DJDG
+# [DJDG]
 [다정다감] AutoCAD AutoLisp 3'rd party program for Civil Engineers 
 # Manual
 Site : <a href=http://www.gumifo.org/djdg/manual target=_blank>http://www.gumifo.org/djdg/manual</a>
 # Download
-Click [chlone or Down] button on DJDG repository. Click [Download ZIP]  
+Click [Clone or Down] button on DJDG repository. Click [Download ZIP]  
 You can get DJDG-master.zip
 # Install
 1. Unzip DJDG-master.zip
