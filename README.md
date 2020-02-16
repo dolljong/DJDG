@@ -15,7 +15,7 @@ You can get DJDG-master.zip
 7. Select djdg.cuix at support folder 
 8. You can find the DJDG menu on menubar. if you can't find menubar then command menubar and select 1.
 # Command list
-| command | 설명(Kor) | Description(Eng) |
+| Command | 설명(Kor) | Description(Eng) |
 |---------|---------|----------|
 |2PD		|두 점간의 길이 기입하기	|Write distance between two points|
 |ABUT		|교대단면그리기리			|Draw section of abutment|
