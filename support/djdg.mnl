@@ -650,7 +650,7 @@ len rang ps spang rrang rxy
 
 (princ "djdg.mnl loaded.")
 (princ)
-(load (strcat (prefix) "djdg/djdgfun.fas"))  ;autoload
+(load (strcat (prefix) "djdg/djdgfun.lsp"))  ;autoload
 (load (strcat (prefix) "djdg/loadjdg"))  ;autoload
 
 ;;-------------------------
