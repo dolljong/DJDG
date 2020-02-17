@@ -18,12 +18,12 @@
 
 
 
-;* ½Ã½ºÅÛº¯¼öÀÇ ÇöÀç°ªÀ» ´ëÇÇ½ÃÅ³ Àü¿ªº¯¼ö(list ÇüÅÂ)
+;* ì‹œìŠ¤í…œë³€ìˆ˜ì˜ í˜„ì¬ê°’ì„ ëŒ€í”¼ì‹œí‚¬ ì „ì—­ë³€ìˆ˜(list í˜•íƒœ)
 (setq #ENV nil)
 (setq #ENVOS nil)
 
-;* »ç¿ëÇÒ ½Ã½ºÅÛ º¯¼öÀÇ ÇöÀç°ªÀ» ´ëÇÇ½ÃÅ²´Ù.
-;* ÇØ´ç ½Ã½ºÅÛ º¯¼öÀÇ °ªÀ» ¼³Á¤ÇÑ´Ù
+;* ì‚¬ìš©í•  ì‹œìŠ¤í…œ ë³€ìˆ˜ì˜ í˜„ì¬ê°’ì„ ëŒ€í”¼ì‹œí‚¨ë‹¤.
+;* í•´ë‹¹ ì‹œìŠ¤í…œ ë³€ìˆ˜ì˜ ê°’ì„ ì„¤ì •í•œë‹¤
 (defun push-env()
   (setq #ENV (list (getvar "BLIPMODE")
                    (getvar "CMDECHO")
@@ -37,7 +37,7 @@
   (setvar "OSMODE" 0)
 ) ;of defun
 
-;* ´ëÇÇ½ÃÄÑµĞ ½Ã½ºÅÛ º¯¼öÀÇ °ªÀ» º¹±¸½ÃÅ²´Ù.
+;* ëŒ€í”¼ì‹œì¼œë‘” ì‹œìŠ¤í…œ ë³€ìˆ˜ì˜ ê°’ì„ ë³µêµ¬ì‹œí‚¨ë‹¤.
 (defun pop-env()
   (setvar "BLIPMODE" (car #ENV))
   (setvar "CMDECHO" (cadr #ENV))
@@ -91,7 +91,7 @@
 ;            Suk-Jong Yi
 ;            1995. 3. 9
 ;************************************
-; µÎ°¢ÀÇ Â÷¸¦ ±¸ÇØÁØ´Ù.
+; ë‘ê°ì˜ ì°¨ë¥¼ êµ¬í•´ì¤€ë‹¤.
 ;************************************
 (defun DANG(ang1 ang2 /     ; ang1, ang2 : radian
 wang1 wang2 ang
@@ -245,7 +245,7 @@ wang1 wang2 ang
 ;           Yi Suk-Jong
 ;           94/5
 ;******************************************
-; ¼±ÅÃÇÑ entityµéÀÇ line typeÀ» bylayer·Î
+; ì„ íƒí•œ entityë“¤ì˜ line typeì„ bylayerë¡œ
 ;******************************************
 
 (defun c:chlay(/ ss count e oldlt newlt)
@@ -294,10 +294,10 @@ wang1 wang2 ang
 ;           By Yi suk jong
 ;           1995. 1. 20, 3. 22.
 ;******************************************
-; ARC(È£)ÀÇ ±æÀÌ¸¦ ±¸ÇÔ
+; ARC(í˜¸)ì˜ ê¸¸ì´ë¥¼ êµ¬í•¨
 ;******************************************
 (defun c:LARC(/
-ent elist cen ra sp                     ;Áö¿ªº¯¼ö Á¤ÀÇ
+ent elist cen ra sp                     ;ì§€ì—­ë³€ìˆ˜ ì •ì˜
 ep sang eang seang cl
 )
 
@@ -325,11 +325,11 @@ ep sang eang seang cl
 ;           By Yi suk jong
 ;           1995. 1. 24, 3. 22, 5/27
 ;************************************************
-; È£À§ÀÇ ÇÑÁ¡¿¡¼­ ÀÏÁ¤±æÀÌ(È£ÀÇ ±æÀÌ)¶³¾îÁø Á¡ÀÇ ÁÂÇ¥¸¦ ±¸ÇÔ
+; í˜¸ìœ„ì˜ í•œì ì—ì„œ ì¼ì •ê¸¸ì´(í˜¸ì˜ ê¸¸ì´)ë–¨ì–´ì§„ ì ì˜ ì¢Œí‘œë¥¼ êµ¬í•¨
 ;
 
 (defun C:PARC(/
-ent elist cen ra sp sang                ;Áö¿ªº¯¼ö Á¤ÀÇ
+ent elist cen ra sp sang                ;ì§€ì—­ë³€ìˆ˜ ì •ì˜
 len rang ps spang rrang rxy
 )
 
@@ -361,7 +361,7 @@ len rang ps spang rrang rxy
 ;            Suk-Jong Yi
 ;            1995. 3. 15
 ;******************************************
-; ¾î¶² °¢ÀÌ ¸î»çºĞ¸é¿¡ ÀÖ´Â°¡¸¦ µÇµ¹·ÁÁØ´Ù.
+; ì–´ë–¤ ê°ì´ ëª‡ì‚¬ë¶„ë©´ì— ìˆëŠ”ê°€ë¥¼ ë˜ëŒë ¤ì¤€ë‹¤.
 ;******************************************
 (defun WHICH4(ang / ang)
 
@@ -377,7 +377,7 @@ len rang ps spang rrang rxy
 ;*****************************************
 ; Function : PREFIX
 ;            Get prefix of acad= variable
-;            acadÇ®±×¸²ÀÌ À§Ä¡ÇÑ µğ·ºÅä¸®¸¦ Ã£¾Æ³½´Ù
+;            acadí’€ê·¸ë¦¼ì´ ìœ„ì¹˜í•œ ë””ë ‰í† ë¦¬ë¥¼ ì°¾ì•„ë‚¸ë‹¤
 ;            Suk-Jong Yi
 ;            1995. 3/28, 4/28
 ;*****************************************
@@ -424,7 +424,7 @@ len rang ps spang rrang rxy
     (setq ent (entget e))
     (setq oldlt (assoc 6 ent))
     (setq oldc (assoc 62 ent))
-;¶óÀÎÅ¸ÀÔ¹Ù²Ù±â
+;ë¼ì¸íƒ€ì…ë°”ê¾¸ê¸°
     (if (= oldlt nil)
        (setq ent (append ent (list (cons 6 "CONTINUOUS"))))
        (progn
@@ -432,7 +432,7 @@ len rang ps spang rrang rxy
           (setq ent (subst newlt oldlt ent))
        ) ; progn
     ) ; if
-;»ö±ò ¹Ù²Ù±â
+;ìƒ‰ê¹” ë°”ê¾¸ê¸°
     (if (= oldc nil)
        (setq ent (append ent (list (cons 62 2))))
        (progn
@@ -562,7 +562,7 @@ len rang ps spang rrang rxy
 ;    Yi Suk Jong (dolljong@dreamwiz.com)
 ;    01/12/07
 ;-----------------------------------
-;±âÁ¸ÀÇ °ªÀÌ ÀÖ´Â °æ¿ì ±âÁ¸°ªÀ» returnÇÏ´Â get... ÇÔ¼öµé
+;ê¸°ì¡´ì˜ ê°’ì´ ìˆëŠ” ê²½ìš° ê¸°ì¡´ê°’ì„ returní•˜ëŠ” get... í•¨ìˆ˜ë“¤
 ;-----------------------------------
 (defun getstringold( oldstring msg / oldstring msg newstring)
   (if (= oldstring nil)
@@ -614,17 +614,17 @@ len rang ps spang rrang rxy
 ;    Yi Suk Jong (dolljong@dreamwiz.com)
 ;    01/12/13
 ;-----------------------------------
-;TextÇ¥±â¸¦ À§ÇÑ Angle
-; sp : ½ÃÀÛÁ¡
-; ep : ³¡Á¡
+;Textí‘œê¸°ë¥¼ ìœ„í•œ Angle
+; sp : ì‹œì‘ì 
+; ep : ëì 
 ;-----------------------------------
 (defun ang4text(sp ep / sp ep ang wh4 ang2)
 
-  (setq ang (angle sp ep))                             ;µÎÁ¡ÀÌ ÀÌ·ç´Â °¢
+  (setq ang (angle sp ep))                             ;ë‘ì ì´ ì´ë£¨ëŠ” ê°
 
-  (setq wh4 (which4 ang))                              ;¸î»çºĞ¸é¿¡ ÀÖ´Â°¡?
+  (setq wh4 (which4 ang))                              ;ëª‡ì‚¬ë¶„ë©´ì— ìˆëŠ”ê°€?
 
-  (cond                                                ;1~4»çºĞ¸é¿¡ ÀÖÀ» ¶§
+  (cond                                                ;1~4ì‚¬ë¶„ë©´ì— ìˆì„ ë•Œ
      ((= wh4 1)
        (setq ang2 ang)
      )
@@ -639,18 +639,18 @@ len rang ps spang rrang rxy
      )
   );of cond
 
-  (setq ang2 ang2)                    ;»õ·Î¿î text°¢ ÁöÁ¤
+  (setq ang2 ang2)                    ;ìƒˆë¡œìš´ textê° ì§€ì •
 );defun
 
 
-;(load (strcat (prefix) "djdg/loadjdg"))       ;autoload ÀĞ¾î¿È
-;(princ "\n[´ÙÁ¤´Ù°¨]ÀÌ ¼º°øÀûÀ¸·Î ¿Ã·ÁÁ³½À´Ï´Ù. ")
+;(load (strcat (prefix) "djdg/loadjdg"))       ;autoload ì½ì–´ì˜´
+;(princ "\n[ë‹¤ì •ë‹¤ê°]ì´ ì„±ê³µì ìœ¼ë¡œ ì˜¬ë ¤ì¡ŒìŠµë‹ˆë‹¤. ")
 
 (princ "\nacad.lsp loaded")
 
 (princ "djdg.mnl loaded.")
 (princ)
-(load (strcat (prefix) "djdg/djdgfun.fas"))  ;autoload
+(load (strcat (prefix) "djdg/djdgfun.lsp"))  ;autoload
 (load (strcat (prefix) "djdg/loadjdg"))  ;autoload
 
 ;;-------------------------
