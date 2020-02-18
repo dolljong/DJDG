@@ -1,0 +1,686 @@
+
+;----------------------- acad.lsp
+; Function : RTOD           Radian TO Degree
+; Function : DTOR           Degree TO Radian
+; function : DANG           Delta ANGle
+; Program  : GANG           Get Angle
+; Program  : MIDP           MIDdle Point
+; Porgram  : LARC           Get length of arc or circle
+; Program  : PARC           Point on the ARC
+; Function : WHICH4         WHICH   (95.3.16)
+; Function : PREFIX         get PREFIX of 'acad=' variable (95.3.28)
+; Function : MID-POINT      get MIDdle POINT of two point
+; Program  : CHB            CHange a line type to reBar
+; Function : F_DH           Dim Horizontal
+; Function : F_DV           Dim Vertical
+; Function : ang4text       angle to write a text
+; getstringold, getintold, getrealold
+
+
+
+;* 시스템변수의 현재값을 대피시킬 전역변수(list 형태)
+(setq #ENV nil)
+(setq #ENVOS nil)
+
+;* 사용할 시스템 변수의 현재값을 대피시킨다.
+;* 해당 시스템 변수의 값을 설정한다
+(defun push-env()
+  (setq #ENV (list (getvar "BLIPMODE")
+                   (getvar "CMDECHO")
+                   (getvar "EXPERT")
+                   (getvar "OSMODE")
+             )
+  )
+  (setvar "BLIPMODE" 0)
+  (setvar "CMDECHO" 0)
+  (setvar "EXPERT" 1)
+  (setvar "OSMODE" 0)
+) ;of defun
+
+;* 대피시켜둔 시스템 변수의 값을 복구시킨다.
+(defun pop-env()
+  (setvar "BLIPMODE" (car #ENV))
+  (setvar "CMDECHO" (cadr #ENV))
+  (setvar "EXPERT" (caddr #ENV))
+  (setvar "OSMODE" (cadddr #ENV))
+) ;of defun
+
+
+(defun push-os()
+  (setq #ENVOS (getvar "OSMODE"))
+  (setvar "OSMODE" 0)  
+);defun
+
+(defun pop-os()
+  (setvar "OSMODE" #ENVOS)
+);defun
+  
+(defun ceLTYPE(LTYPE / LTYPE)
+  (setq #ENVLT (getvar "CELTYPE"))
+  (setvar "CELTYPE" LTYPE)  
+);defun
+
+(defun pop-LTYPE()
+  (setvar "CELTYPE" #ENVLT)
+);defun
+
+;************************************
+; function : cecolor
+;************************************
+(defun cecolor(color / color)
+  
+  (setq #oldcolor (getvar "CECOLOR"))
+  (setvar "CECOLOR" color)
+)  
+
+
+;************************************
+; function : popcolor
+;************************************
+(defun popcolor()
+  (if (= #oldcolor nil)
+    (setvar "CECOLOR" "BYLAYER")
+    (setvar "CECOLOR" #oldcolor)
+  );if  
+)  
+
+;
+;************************************
+; function : DANG
+;            Delta ANGle
+;            Suk-Jong Yi
+;            1995. 3. 9
+;************************************
+; 두각의 차를 구해준다.
+;************************************
+(defun DANG(ang1 ang2 /     ; ang1, ang2 : radian
+wang1 wang2 ang
+)
+  (setq wang1 (+ (fix (/ ang1 (dtor 90.0))) 1))
+  (setq wang2 (+ (fix (/ ang2 (dtor 90.0))) 1))
+  (if (and (= wang1 1) (= wang2 4))
+    (setq ang (* (+ ang1 (- (dtor 360.0) ang2)) -1))
+    (if (and (= wang1 4) (= wang2 1))
+      (setq ang (+ (- (dtor 360.0) ang1) ang2))
+      (setq ang (- ang2 ang1))
+    ) ;of if
+  ) ;of if
+) ;of defun
+
+
+;*****************************
+; Function : RTOD
+;           Radian TO Degree
+;          By Jong-Suk Yi
+;          1995. 2. 26
+;*****************************
+(defun rtod(r)
+  (/ (* r 180) pi)
+)
+
+;*****************************
+; Function : DTOR
+;            Degree TO Radian
+;            By Jong-Suk Yi
+;            1995. 2. 26
+;*****************************
+(defun dtor(d)
+  (* (/ d 180) pi)
+)
+
+;*****************************
+;  Program : GANG
+;            Get Angle
+;*****************************
+(DEFUN C:GANG()
+  (/ (* (GETANGLE "PICK TWO POINTS") 180) PI)
+)
+
+;****************************
+; Program : MIDP
+;           MIDdle Point
+;****************************
+(defun C:MIDP(/ p1 p2 rad dist)
+  (setq p1 (getpoint "Pick first point: "))(terpri)
+  (setq p2 (getpoint p1 "Pick second point: "))(terpri)
+  (setq rad (angle p1 p2))
+  (setq dist (distance p1 p2))
+  (setq dist2 (/ dist 2))
+  (setq mp (polar p1 rad dist2))
+)
+
+
+
+;**************************************************
+; change a line type to hidden line
+;               By  Yi Suk Jong
+;                        1994,7
+;**************************************************
+
+(defun c:chhid(/ ss count e oldlt newlt)
+  (setq ss (ssget))
+  (setq count 0)
+  (while
+    (setq e (ssname ss count))
+    (setq ent (entget e))
+    (setq oldlt (assoc 6 ent))
+    (if (= oldlt nil)
+       (setq ent (append ent (list (cons 6 "hidden"))))
+       (progn
+          (setq newlt (cons 6 "hidden"))
+          (setq ent (subst newlt oldlt ent))
+       ) ; progn
+    ) ; if
+    (entmod ent)
+    (setq count (+ count 1))
+  ) ; while
+  (princ)
+);;; End of program CHHID
+
+;**************************************************
+; PROGRAM: CHCEN
+;          CHange a line type to CENter line
+;          Yi Suk-Jong
+;          94/5, 95/4/15
+;**************************************************
+
+(defun C:CHCEN (/ ss count e oldlt newlt)
+  (setq ss (ssget))
+  (setq count 0)
+  (while
+    (setq e (ssname ss count))
+    (setq ent (entget e))
+    (setq oldlt (assoc 6 ent))
+    (setq oldc (assoc 62 ent))
+    (if (= oldlt nil)
+       (setq ent (append ent (list (cons 6 "center"))))
+       (progn
+          (setq newlt (cons 6 "center"))
+          (setq ent (subst newlt oldlt ent))
+       ) ; progn
+    ) ; if
+    (if (= oldc nil)
+       (setq ent (append ent (list (cons 62 1))))
+       (progn
+          (setq newc (cons 62 1))
+          (setq ent (subst newc oldc ent))
+       ) ; progn
+    ) ; if
+    (entmod ent)
+    (setq count (+ count 1))
+  ) ; while
+  (princ)
+)
+
+;********************************************
+; Program : CHDASH
+;           Change a line to Dashed Line
+;           Yi Suk-Jong
+;           94/5
+;********************************************
+
+(defun C:CHDASH(/ ss count e oldlt newlt)
+  (setq ss (ssget))
+  (setq count 0)
+  (while
+    (setq e (ssname ss count))
+    (setq ent (entget e))
+    (setq oldlt (assoc 6 ent))
+    (if (= oldlt nil)
+       (setq ent (append ent (list (cons 6 "dashed"))))
+       (progn
+          (setq newlt (cons 6 "DASHED"))
+          (setq ent (subst newlt oldlt ent))
+       ) ; progn
+    ) ; if
+    (entmod ent)
+    (setq count (+ count 1))
+  ) ; while
+  (princ)
+ ) ;;; End of program CHDASH
+
+;******************************************
+; Program : CHLAY
+;           Change a line to BaLayer type
+;           Yi Suk-Jong
+;           94/5
+;******************************************
+; 선택한 entity들의 line type을 bylayer로
+;******************************************
+
+(defun c:chlay(/ ss count e oldlt newlt)
+  (setq ss (ssget))
+  (setq count 0)
+  (while
+    (setq e (ssname ss count))
+    (setq ent (entget e))
+    (setq oldlt (assoc 6 ent))
+    (if (= oldlt nil)
+       (setq ent (append ent (list (cons 6 "bylayer"))))
+       (progn
+          (setq newlt (cons 6 "bylayer"))
+          (setq ent (subst newlt oldlt ent))
+       ) ; progn
+    ) ; if
+    (entmod ent)
+    (setq count (+ count 1))
+  ) ; while
+  (princ)
+);;; End of program CHLAYER
+
+;*********************************************
+; Program : COORD
+;           COORD Marking
+;           By Yi Suk Jong
+;           94/
+;*********************************************
+(defun c:coord()
+  (setq pt1 (getpoint "\nPick First Point:"))
+  (setq pt2 (getpoint pt1 "Pick Second Point:"))
+  (setq px (car pt1))
+  (setq py (cadr pt1))
+  ;****** real to string
+  (setq pxt (rtos px 2 (getvar "luprec")))
+  (setq pyt (rtos py 2 (getvar "luprec")))
+  (setq pxy (strcat "(" pxt "," pyt ")"))
+  ;(setq pt12d (list (car pt1) (cadr pt1)))
+  (command "dim1" "leader" pt1 pt2 "" pxy)
+);;; End of program COORD
+
+
+;******************************************
+; Porgram : LARC
+;           Get length of arc or circle
+;           By Yi suk jong
+;           1995. 1. 20, 3. 22.
+;******************************************
+; ARC(호)의 길이를 구함
+;******************************************
+(defun c:LARC(/
+ent elist cen ra sp                     ;지역변수 정의
+ep sang eang seang cl
+)
+
+  (setq ent (entsel "Select Arc or Circle: "))
+  (setq elist (entget (car ent)))
+  (setq cen (cdr (assoc 10 elist)))
+  (setq ra (cdr (assoc 40 elist)))
+  (setq sp (getpoint "Pick start point: "))
+  (setq ep (getpoint "Pick End point: "))
+  (setq sang (angle cen sp))
+  (setq eang (angle cen ep))
+  (setq seang (abs (dang sang eang)))
+
+  (setq cl (/ (* 2 Pi ra seang) (* 2 pi)))
+  (princ "\nLength of ARC : ")
+  (princ cl)
+  (princ)
+
+);;; End of program LARC
+
+
+;************************************************
+; Program : PARC
+;           Point on the ARC
+;           By Yi suk jong
+;           1995. 1. 24, 3. 22, 5/27
+;************************************************
+; 호위의 한점에서 일정길이(호의 길이)떨어진 점의 좌표를 구함
+;
+
+(defun C:PARC(/
+ent elist cen ra sp sang                ;지역변수 정의
+len rang ps spang rrang rxy
+)
+
+  (setq ent (entsel "Select Arc or Circle: "))
+  (setq elist (entget (car ent)))
+  (setq cen (cdr (assoc 10 elist)))
+  (setq ra (cdr (assoc 40 elist)))
+  (setq sp (getpoint "Pick start point: "))
+  (setq sang (angle cen sp))
+  (setq len (getdist "Enter Arc Lenth: "))
+  (setq rang (/ len ra))
+  (setq ps (getpoint sp "Pick Which side: "))
+  (setq spang (angle cen ps))
+  (setq deltaa (dang sang spang))
+  (setq absang (/ deltaa (abs deltaa)))
+  (setq rrang (+ sang (* absang rang)))
+
+  (setq rxy (polar cen rrang ra))
+
+) ;;; End of program PARC
+
+
+
+
+
+;******************************************
+; Function : WHICH4
+;            WHICH
+;            Suk-Jong Yi
+;            1995. 3. 15
+;******************************************
+; 어떤 각이 몇사분면에 있는가를 되돌려준다.
+;******************************************
+(defun WHICH4(ang / ang)
+
+(cond
+  ((<= ang (dtor 90.0)) 1)
+  ((and (> ang (dtor 90.0)) (<= ang (dtor 180.0))) 2)
+  ((and (> ang (dtor 180.0)) (<= ang (dtor 270.0))) 3)
+  ((and (> ang (dtor 270.0)) (<= ang (dtor 360.0))) 4)
+) ; of cond
+
+) ; of defun
+
+;*****************************************
+; Function : PREFIX
+;            Get prefix of acad= variable
+;            acad풀그림이 위치한 디렉토리를 찾아낸다
+;            Suk-Jong Yi
+;            1995. 3/28, 4/28
+;*****************************************
+
+(defun prefix( / cfg count)
+;  (setq cfg (strcat (getenv "acadcfg") "\\"))
+  (setq cfg (vl-string-trim "acad.exe" (findfile "acad.exe")))
+
+  (setq sl (strlen cfg))
+  (setq count 1)
+  (repeat sl
+    (if (= (substr cfg count 1) "\\")
+      (setq cfg (strcat (substr cfg 1 (1- count)) "/"
+                      (substr cfg (+ count 1) (- sl count))))
+    ) ;of if
+    (setq count (1+ count))
+  ); repeat
+  cfg
+) ;of defun
+
+
+
+;*****************************************
+; Function : MID-POINT
+;            get MID POINT of two point
+;*****************************************
+
+(defun mid-point (sp ep / dp)
+    (setq dp (mapcar '+ sp ep))
+    (mapcar '/ dp '(2.0 2.0 2.0))
+) ;of defun
+
+;**************************************************
+; CHange a line type to reBar
+;               By  Yi Suk Jong
+;                        95/4/14
+;**************************************************
+
+(defun C:CHB(/ ss count e oldlt newlt oldc newc)
+  (setq ss (ssget))
+  (setq count 0)
+  (while
+    (setq e (ssname ss count))
+    (setq ent (entget e))
+    (setq oldlt (assoc 6 ent))
+    (setq oldc (assoc 62 ent))
+;라인타입바꾸기
+    (if (= oldlt nil)
+       (setq ent (append ent (list (cons 6 "CONTINUOUS"))))
+       (progn
+          (setq newlt (cons 6 "CONTINUOUS"))
+          (setq ent (subst newlt oldlt ent))
+       ) ; progn
+    ) ; if
+;색깔 바꾸기
+    (if (= oldc nil)
+       (setq ent (append ent (list (cons 62 2))))
+       (progn
+          (setq newc (cons 62 2))
+          (setq ent (subst newc oldc ent))
+       ) ; progn
+    ) ; if
+    (entmod ent)
+    (setq count (+ count 1))
+  ) ; while
+  (princ)
+)
+;*******************************
+
+
+(defun C:CH1()
+  (setvar "CMDECHO" 0)
+  (setq ss (ssget))
+  (command "CHPROP" ss "" "C" "1" "")
+  (setvar "CMDecho" 1)
+  (princ)
+) ;of defun
+
+(defun C:CH2()
+  (setvar "CMDECHO" 0)
+  (setq ss (ssget))
+  (command "CHPROP" ss "" "C" "2" "")
+  (setvar "CMDecho" 1)
+  (princ)
+) ;of defun
+
+(defun C:CH3()
+  (setvar "CMDECHO" 0)
+  (setq ss (ssget))
+  (command "CHPROP" ss "" "C" "3" "")
+  (setvar "CMDecho" 1)
+  (princ)
+) ;of defun
+
+(defun C:CH4()
+  (setvar "CMDECHO" 0)
+  (setq ss (ssget))
+  (command "CHPROP" ss "" "C" "4" "")
+  (setvar "CMDecho" 1)
+  (princ)
+) ;of defun
+
+(defun C:CH5()
+  (setvar "CMDECHO" 0)
+  (setq ss (ssget))
+  (command "CHPROP" ss "" "C" "5" "")
+  (setvar "CMDecho" 1)
+  (princ)
+) ;of defun
+
+(defun C:CH6()
+  (setvar "CMDECHO" 0)
+  (setq ss (ssget))
+  (command "CHPROP" ss "" "C" "6" "")
+  (setvar "CMDecho" 1)
+  (princ)
+) ;of defun
+
+(defun C:CH7()
+  (setvar "CMDECHO" 0)
+  (setq ss (ssget))
+  (command "CHPROP" ss "" "C" "7" "")
+  (setvar "CMDecho" 1)
+  (princ)
+) ;of defun
+
+(defun C:BB()
+  (push-env)
+  (setq ent (entsel "\nSelect Entity: "))
+  (setq pt (getpoint "\nPick break point: "))
+  (command "BREAK" ent "F" pt pt)
+  (pop-env)
+  (princ)
+) ;of defun
+
+
+
+
+;----------------------------------
+; function : str_position
+;            Yi Suk Jong
+;            00/7/15
+;----------------------------------
+; str1 : long string
+; str2 : short string
+;----------------------------------
+(defun str_position(str1 str2 / str1 str2 len1 len2 count )
+
+  (setq len1 (strlen str1)
+	len2 (strlen str2))
+  (setq count 1)
+  (while (and (/= (substr str1 count len2) str2) (<= count (- len1 len2 -1)))
+    (setq count (1+ count))
+  ); repeat  
+ (if (> count (- len1 len2 -1)) nil count)
+);defun str_position
+
+;----------------------------------
+; function : str_subst
+;            Yi Suk Jong
+;            01/12/07
+;----------------------------------
+; newstr : new string
+; oldstr : old string
+;----------------------------------
+(defun str_subst(newstr oldstr deststr / str1 str2 len1 len2 count )
+
+  (setq loldstr (strlen oldstr))
+  (setq strpos (str_position deststr oldstr))
+  (if (/= strpos nil)
+    (strcat (substr deststr 1 (1- strpos))
+	    newstr
+	    (substr deststr (+ strpos loldstr))
+    );strcat
+    nil
+  );if  
+);defun str_position
+
+
+;-----------------------------------
+; getstringold, getintold, getrealold
+;    Yi Suk Jong (dolljong@dreamwiz.com)
+;    01/12/07
+;-----------------------------------
+;기존의 값이 있는 경우 기존값을 return하는 get... 함수들
+;-----------------------------------
+(defun getstringold( oldstring msg / oldstring msg newstring)
+  (if (= oldstring nil)
+    (setq msg (strcat msg ": "))
+    (setq msg (strcat msg " <" oldstring ">: "))
+  );if  
+  (setq newstring (getstring nil msg))
+  (if (= newstring "") (setq newstring oldstring))
+  newstring
+);defun
+
+(defun getintold( oldint msg / oldint msg newint)
+  (if (= oldint nil)
+    (setq msg (strcat msg ": "))
+    (setq msg (strcat msg " <" (itoa oldint) ">: "))
+  );if  
+  (setq newint (getint msg))
+  (if (= newint nil) (setq newint oldint))
+  newint
+);defun
+
+(defun getrealold(oldreal msg / oldreal msg newreal)
+  (if (= oldreal nil)
+    (setq msg (strcat msg ": "))
+    (setq msg (strcat msg " <" (rtos oldreal 2 (getvar "LUPREC")) ">: "))
+  );if  
+  (setq newreal (getreal msg))
+  (if (= newreal nil) (setq newreal oldreal))
+  newreal
+);defun
+
+(defun getangold(oldang msg init / oldang msg newang)
+  (if (= oldang nil)
+    (setq msg (strcat msg ": "))
+    (if (= (type oldang) (type "STR"))
+      (setq msg (strcat msg " <" oldang ">: "))
+      (setq msg (strcat msg " <" (rtos (rtod oldang) 2 (getvar "AUPREC")) ">: "))
+    );if  
+  );if
+  (initget init)
+  (setq newang (getangle msg))
+  (if (= newang nil) (setq newang oldang))
+  newang
+);defun
+
+
+;-----------------------------------
+; Function : ang4text 
+;    Yi Suk Jong (dolljong@dreamwiz.com)
+;    01/12/13
+;-----------------------------------
+;Text표기를 위한 Angle
+; sp : 시작점
+; ep : 끝점
+;-----------------------------------
+(defun ang4text(sp ep / sp ep ang wh4 ang2)
+
+  (setq ang (angle sp ep))                             ;두점이 이루는 각
+
+  (setq wh4 (which4 ang))                              ;몇사분면에 있는가?
+
+  (cond                                                ;1~4사분면에 있을 때
+     ((= wh4 1)
+       (setq ang2 ang)
+     )
+     ((= wh4 2)
+       (setq ang2 (- ang pi))
+     )
+     ((= wh4 3)
+       (setq ang2 (- ang pi))
+     )
+     ((= wh4 4)
+       (setq ang2 (- ang (* 2 pi)))
+     )
+  );of cond
+
+  (setq ang2 ang2)                    ;새로운 text각 지정
+);defun
+
+
+;(load (strcat (prefix) "djdg/loadjdg"))       ;autoload 읽어옴
+;(princ "\n[다정다감]이 성공적으로 올려졌습니다. ")
+
+(princ "\nacad.lsp loaded")
+
+(princ "djdg.mnl loaded.")
+(princ)
+(load (strcat (prefix) "djdg/djdgfun.lsp"))  ;autoload
+(load (strcat (prefix) "djdg/loadjdg"))  ;autoload
+
+;;-------------------------
+;;acad200doc.lsp
+;;-------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
