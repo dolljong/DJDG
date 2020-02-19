@@ -8,7 +8,7 @@
   (setq sn (car ss))  ;sname
   (setq ipnt (cadr ss))
 
-  (setq fname (getvar "dwgprefix"))    ;filenameì„ ë°©ì´ë¦„ìœ¼ë¡œ
+  (setq fname (getvar "dwgprefix"))    ;filenameÀ» ¹æÀÌ¸§À¸·Î
   (setq dwgname (getvar "dwgname"))
   (setq fname (strcat fname (substr dwgname 1 (vl-string-search "_" dwgname))
 		      "_apt_block_"
@@ -18,8 +18,8 @@
   (setq fname (strcat fname txt))
   
 
-;  (setq ipnt (getpoint "\nInsertion base point:")) ;ì‚½ì…ì  ì„ íƒ
-  (setq sse (ssget))                        ;wblockí•  entityì„ íƒ
+;  (setq ipnt (getpoint "\nInsertion base point:")) ;»ğÀÔÁ¡ ¼±ÅÃ
+  (setq sse (ssget))                        ;wblockÇÒ entity¼±ÅÃ
 
   (setq sn (sslength sse))
   (setq index 0)
@@ -27,7 +27,7 @@
     (setq sget (entget (ssname  sse index)))
     (setq ty (cdr (assoc 0 sget)))  ;type
     (setq ly (cdr (assoc 8 sget)))  ;layer
-    (if (and (= ty "LWPOLYLINE") (= ly "ì´œÂ»Ã§ì®ì­ì¯"))
+    (if (and (= ty "LWPOLYLINE") (= ly "?¡íc???"))
       (progn
         (setq p0 (getLwVert sget 0)
 	    p1 (getLwVert sget 1)
@@ -51,13 +51,13 @@
     (setq index (1+ index ))
   );  
   
-  (setvar "FILEDIA" 0)                      ;ëª…ë ¹ì§„í–‰ì‹œ dialog boxëœ¨ì§€ ì•Šë„ë¡
+  (setvar "FILEDIA" 0)                      ;¸í·ÉÁøÇà½Ã dialog box¶ßÁö ¾Êµµ·Ï
 
-  (command "WBLOCK"          ;wblockëª…ë ¹ ì‹¤í–‰
+  (command "WBLOCK"          ;wblock¸í·É ½ÇÇà
            fname             ;filename
            ""                ;block name
            ipnt              ;insert point
-           sse               ;ì„ íƒëœ entity
+           sse               ;¼±ÅÃµÈ entity
            "")               ;end selection
   
 ;  (command "oops")
@@ -68,17 +68,18 @@
 
 
 
-    ; -------------------------------------
+
+; -------------------------------------
 ; function : getLwVert
-; LwPolylineì²‚ VertexìŸ ì¹ªì®…
-; ì²‰ì© : vlist  : vertext list
-;       tmpctr : ì´‰ì‹Ã‡Ã’ vertext ì¢¾íƒº 0,1,2
+; LwPolylineÀÇ Vertex¸¦ Ã£À½
+; ÀÎ¼ö: vlist  : vertext list
+; tmpctr : Á¢±ÙÇÒ vertext ¹øÈ£ 0,1,2
 ; -------------------------------------
 
   (defun getLwVert (vlist tmpctr / count tmp)
-;    (setq vlist (entget (car (entsel))))       		;ì«
+;    (setq vlist (entget (car (entsel))))               ;
 
-    (setq count 0)					;ì¹¯ vertex ì¹šì®…ìŒ·
+    (setq count 0)                                      ;Ã¹ vertex Ã£¾Æ°¨
     (while (/= (car (nth count vlist)) 10)
         (setq count (+ count 1))
     )

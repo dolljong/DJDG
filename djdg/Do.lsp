@@ -4,9 +4,9 @@
 ;           Jong-Suk Yi    
 ;           96/4/16    
 ;*******************************************    
-; Vertical DIMì„ OBLIQUEì‹œì¼œì¤€ë‹¤.    
-; ì œì•½ì¡°ê±´ - ìˆ˜ì§ DIMì—ë§Œ í•´ë‹¹ëœë‹¤.    
-;          - OBLIQUEê°ì€ 30ë„ë¡œ ì •í•´ì ¸ ìˆë‹¤.    
+; Vertical DIMÀ» OBLIQUE½ÃÄÑÁØ´Ù.    
+; Á¦¾àÁ¶°Ç - ¼öÁ÷ DIM¿¡¸¸ ÇØ´çµÈ´Ù.    
+;          - OBLIQUE°¢Àº 30µµ·Î Á¤ÇØÁ® ÀÖ´Ù.    
 ;*******************************************    
     
 (defun C:DO(/    
@@ -24,129 +24,129 @@ pnt2    ppnt    sent    sgn     sp      th      txt     txt1    txtlen
   ); of SETERR    
   (setq oer *error* *error* seterr)    
     
-  (setq th (getvar "DIMTXT")                          ;textí¬ê¸° = dimtxt    
-        dim_gap (getvar "DIMDLI"))                                 ;ì¹˜ìˆ˜ì„  ê°„ê²©    
+  (setq th (getvar "DIMTXT")                          ;textÅ©±â = dimtxt    
+        dim_gap (getvar "DIMDLI"))                                 ;Ä¡¼ö¼± °£°İ    
   (setq ds (getvar "DIMSCALE"))                       ;scale factor    
     
   (setvar "BLIPMODE" 0)    
   (setvar "CMDECHO" 0)    
       
-;  (push-env)                                          ;í™˜ê²½ë³€ìˆ˜ê°’ ëŒ€í”¼    
+;  (push-env)                                          ;È¯°æº¯¼ö°ª ´ëÇÇ    
     
   (initget "Object")    
-  (setq sp (getpoint "\nPick first point/Object: "))  ;ê¸°ì¡´ ì¹˜ìˆ˜ì„  ì°¸ì¡°=Object    
+  (setq sp (getpoint "\nPick first point/Object: "))  ;±âÁ¸ Ä¡¼ö¼± ÂüÁ¶=Object    
   (if (= sp "Object")    
     (progn    
-      (setq dsel (entsel "\nSelect Dimension Entity: "))   ;ê¸°ì¡´ ì¹˜ìˆ˜ì„  ì„ íƒ    
-      (setq sent (entget (car dsel)))                      ;ì¹˜ìˆ˜ì„  entity    
-      (setq pnt1 (cdr (assoc 13 sent)))                    ;ë³´ì¡°ì„  ì‹œì‘ì     
-      (setq pnt2 (cdr (assoc 14 sent)))                    ;ë³´ì¡°ì„  ëì     
-      (setq ppnt (cadr dsel))                              ;ì„ íƒì‹œ pick point    
-      (if (> (distance ppnt pnt1) (distance ppnt pnt2))    ;pick pointì— ê°€ê¹Œìš´    
-        (setq sp pnt2) (setq sp pnt1))                     ;ìª½ ì ì„ spë¡œ    
+      (setq dsel (entsel "\nSelect Dimension Entity: "))   ;±âÁ¸ Ä¡¼ö¼± ¼±ÅÃ    
+      (setq sent (entget (car dsel)))                      ;Ä¡¼ö¼± entity    
+      (setq pnt1 (cdr (assoc 13 sent)))                    ;º¸Á¶¼± ½ÃÀÛÁ¡    
+      (setq pnt2 (cdr (assoc 14 sent)))                    ;º¸Á¶¼± ³¡Á¡    
+      (setq ppnt (cadr dsel))                              ;¼±ÅÃ½Ã pick point    
+      (if (> (distance ppnt pnt1) (distance ppnt pnt2))    ;pick point¿¡ °¡±î¿î    
+        (setq sp pnt2) (setq sp pnt1))                     ;ÂÊ Á¡À» sp·Î    
     ) ;of progn THEN    
   ) ;of IF(sp=Object)    
     
-  (setq dp (getpoint "\nPick Dimension side: "))          ;ì¹˜ìˆ˜ì„ ì´ ìœ„ì¹˜í•  ë°©í–¥    
+  (setq dp (getpoint "\nPick Dimension side: "))          ;Ä¡¼ö¼±ÀÌ À§Ä¡ÇÒ ¹æÇâ    
     
   (setq dtx (- (car dp) (car sp)))    
-  (setq sgn (/ dtx (abs dtx)))                            ;ì™¼ìª½ ì˜¤ë¥¸ìª½ ë¶€í˜¸    
+  (setq sgn (/ dtx (abs dtx)))                            ;¿ŞÂÊ ¿À¸¥ÂÊ ºÎÈ£    
     
-  (setq fst (getint "\nDimension line LEVEL <1>: "))      ;ì¹˜ìˆ˜ì„  levelì…ë ¥    
+  (setq fst (getint "\nDimension line LEVEL <1>: "))      ;Ä¡¼ö¼± levelÀÔ·Â    
   (if (= fst nil) (setq fst 1))    
-  (setq dx (* ds (+ 15 (* dim_gap (- fst 1)))))           ;ì°ì€ì ê³¼ ì¹˜ìˆ˜ì„ ì˜ê±°ë¦¬    
+  (setq dx (* ds (+ 15 (* dim_gap (- fst 1)))))           ;ÂïÀºÁ¡°ú Ä¡¼ö¼±ÀÇ°Å¸®    
     
-  (setq next (getdist sp "\nDistance or RETURN to Pick point: ")) ;ëì ê¹Œì§€ ê±°ë¦¬    
-  (cond                                                ;ì ì„ ì…ë ¥í•˜ë ¤ë©´ ë¦¬í„´ì…ë ¥    
+  (setq next (getdist sp "\nDistance or RETURN to Pick point: ")) ;³¡Á¡±îÁö °Å¸®    
+  (cond                                                ;Á¡À» ÀÔ·ÂÇÏ·Á¸é ¸®ÅÏÀÔ·Â    
     ((= next nil)    
-      (setq ep (getpoint "\nPick point: "))               ;ëì ì„ ì…ë ¥    
-      (setq ep (list (car sp) (cadr ep)))                 ;ìˆ˜ì •ëœ ëì     
+      (setq ep (getpoint "\nPick point: "))               ;³¡Á¡À» ÀÔ·Â    
+      (setq ep (list (car sp) (cadr ep)))                 ;¼öÁ¤µÈ ³¡Á¡    
     ) ;cond(next=nil)    
-    ((numberp next)                                       ;dxê°€ ìˆ«ìì¸ ê²½ìš°    
-      (setq ep (list (car sp) (+ (cadr sp) next)))        ;ep ìœ„ì¹˜ê³„ì‚°    
+    ((numberp next)                                       ;dx°¡ ¼ıÀÚÀÎ °æ¿ì    
+      (setq ep (list (car sp) (+ (cadr sp) next)))        ;ep À§Ä¡°è»ê    
     ) ;cond(next=number)    
   ) ;of cond    
     
     
-  (while (/= ep nil)                                  ;epê°€ nilì´ ì•„ë‹Œë™ì•ˆ ë°˜ë³µ    
+  (while (/= ep nil)                                  ;ep°¡ nilÀÌ ¾Æ´Ñµ¿¾È ¹İº¹    
     
-    (setq dxy (list (+ (car ep) (* dx sgn)) (car ep) 0.0))  ;ì¹˜ìˆ˜ì„ ì´ ë†“ì¼ ìœ„ì¹˜    
+    (setq dxy (list (+ (car ep) (* dx sgn)) (car ep) 0.0))  ;Ä¡¼ö¼±ÀÌ ³õÀÏ À§Ä¡    
     
-    (setq dy (distance sp ep))                          ;ë‘ ì ì˜ ê±°ë¦¬    
+    (setq dy (distance sp ep))                          ;µÎ Á¡ÀÇ °Å¸®    
     (if (< dy 1000.0)    
-      (setq txt (rtos dy 2 0))                          ;1000ë¯¸ë§Œì¼ ë•Œ    
-;      (setq txt (rtos (* dy 0.001) 2 3))                ;1000ì´ìƒì¼ ë•Œ    
-      (setq txt (rtos_dimdsep (* dy 0.001) 3))                ;1000ì´ì¼      
+      (setq txt (rtos dy 2 0))                          ;1000¹Ì¸¸ÀÏ ¶§    
+;      (setq txt (rtos (* dy 0.001) 2 3))                ;1000ÀÌ»óÀÏ ¶§    
+      (setq txt (rtos_dimdsep (* dy 0.001) 3))                ;1000ÀÌÀÏ      
     ) ;of if(dy < 1000)    
     
-    (princ "\nDimension text <")                        ;Dimension textí‘œì‹œ    
+    (princ "\nDimension text <")                        ;Dimension textÇ¥½Ã    
     (princ txt)    
-    (setq txt1 (getstring T ">: "))                     ;ìƒˆë¡œìš´ dimension textì…ë ¥    
+    (setq txt1 (getstring T ">: "))                     ;»õ·Î¿î dimension textÀÔ·Â    
     (if (= (substr txt1 1 1) "@")    
       (progn    
-;        (setq divl (getint "\nDivision length: "))      ;ë‚˜ëˆ„ëŠ” ê¸¸ì´ ì…ë ¥    
+;        (setq divl (getint "\nDivision length: "))      ;³ª´©´Â ±æÀÌ ÀÔ·Â    
         (setq divl (atof (substr txt1 2 (1- (strlen txt1)))))    
-        (setq divn (rtos (/ dy divl) 2 0))              ;ë‚˜ëˆˆ ê°¯ìˆ˜ê³„ì‚°    
+        (setq divn (rtos (/ dy divl) 2 0))              ;³ª´« °¹¼ö°è»ê    
         (if (< divl 1000.)    
-          (setq divl (rtos divl 2 0))                   ;ë‚˜ëˆ„ëŠ” ê¸¸ì´ê°€ 1000ë¯¸ë§Œì‹œ    
-;          (setq divl (rtos (* divl 0.001) 2 3))) ;of if  ë‚˜ëˆ„ëŠ” ê¸¸ì´ê°€ 1000ì´ìƒì‹œ    
-          (setq divl (rtos_dimdsep (* divl 0.001) 3))) ;of if  ë‚˜ëˆ„ëŠ” ê¸¸ì´ê°€ 1000ì´ìƒ    
+          (setq divl (rtos divl 2 0))                   ;³ª´©´Â ±æÀÌ°¡ 1000¹Ì¸¸½Ã    
+;          (setq divl (rtos (* divl 0.001) 2 3))) ;of if  ³ª´©´Â ±æÀÌ°¡ 1000ÀÌ»ó½Ã    
+          (setq divl (rtos_dimdsep (* divl 0.001) 3))) ;of if  ³ª´©´Â ±æÀÌ°¡ 1000ÀÌ»ó    
 	  (setq txtlen (* (+ (strlen txt) (strlen divn) (strlen divl) 2) th ds    
                      (cdr (assoc 41 (tblsearch "STYLE" (getvar "TEXTSTYLE"))))))    
         (if (>= txtlen dy)    
-          (progn                                  ;textê°€ ë³´ì¡°ì„  ë‚´ì— ì•ˆë“¤ì–´ê°€ë©´    
-            (setq dtxt1 (strcat divn "@" divl))   ;ë‘ì¤„ë¡œ ë‚˜ëˆ”    
+          (progn                                  ;text°¡ º¸Á¶¼± ³»¿¡ ¾Èµé¾î°¡¸é    
+            (setq dtxt1 (strcat divn "@" divl))   ;µÎÁÙ·Î ³ª´®    
             (setq dtxt2 (strcat "=" txt))    
             (setq dtxt1p (mapcar '+ (mid-point sp ep)    
-                                    (list (- (* dx sgn) (* ds th))  ;xìœ„ì¹˜    
+                                    (list (- (* dx sgn) (* ds th))  ;xÀ§Ä¡    
                                           (* dx (/ (sin (/ pi 6)) (cos (/ pi 6))))    
-                                          0.0)))                     ;zìœ„ì¹˜    
+                                          0.0)))                     ;zÀ§Ä¡    
             (setq dtxt2p (mapcar '+ (mid-point sp ep)    
-                                    (list (+ (* dx sgn) (* ds th))  ;xìœ„ì¹˜    
+                                    (list (+ (* dx sgn) (* ds th))  ;xÀ§Ä¡    
                                           (* dx (/ (sin (/ pi 6)) (cos (/ pi 6))))    
-                                          0.0)))                     ;zìœ„ì¹˜    
+                                          0.0)))                     ;zÀ§Ä¡    
             (setq oldosmode (getvar "OSMODE")) (setvar "OSMODE" 0)    
 	    (command "TEXT" "M" dtxt1p (* th ds) "90" dtxt1)    
             (command "TEXT" "M" dtxt2p (* th ds) "90" dtxt2)    
-            (command "DIM1" "VER" sp ep dxy " ")              ;DIMëª…ë ¹ ë‚´ë¦¼    
+            (command "DIM1" "VER" sp ep dxy " ")              ;DIM¸í·É ³»¸²    
             (setvar "OSMODE" oldosmode)    
 	  ) ;of progn THEN    
-          (progn                                  ;textê°€ ë³´ì¡°ì„  ë‚´ì— ë“¤ì–´ê°€ë©´    
+          (progn                                  ;text°¡ º¸Á¶¼± ³»¿¡ µé¾î°¡¸é    
             (setq dtxt1 (strcat divn "@" divl "=" txt))    
             (setq oldosmode (getvar "OSMODE")) (setvar "OSMODE" 0)    
-	    (command "DIM1" "VER" sp ep dxy dtxt1)            ;DIMëª…ë ¹ ë‚´ë¦¼    
+	    (command "DIM1" "VER" sp ep dxy dtxt1)            ;DIM¸í·É ³»¸²    
             (setvar "OSMODE" oldosmode)    
 	  ) ;of progn ELSE    
         ) ;of IF    
       ) ;of progn THEN    
       (progn    
-        (if (= txt1 "") (setq txt1 txt))                      ;ë¦¬í„´ì…ë ¥ì‹œ ì˜› textë¥¼ ì”€    
+        (if (= txt1 "") (setq txt1 txt))                      ;¸®ÅÏÀÔ·Â½Ã ¿¾ text¸¦ ¾¸    
         (setq oldosmode (getvar "OSMODE")) (setvar "OSMODE" 0)    
-	(command "DIM1" "VER" sp ep dxy txt1)             ;DIMëª…ë ¹ ë‚´ë¦¼    
+	(command "DIM1" "VER" sp ep dxy txt1)             ;DIM¸í·É ³»¸²    
         (setvar "OSMODE" oldosmode)    
       ) ;of progn ELSE    
     ) ;of if(txt1=@)    
     
-    (setq lstdim (entlast))                               ;ë°©ê¸ˆ ë§Œë“¤ì–´ì§„ dimì„ íƒ    
+    (setq lstdim (entlast))                               ;¹æ±İ ¸¸µé¾îÁø dim¼±ÅÃ    
     (setq oldexo (getvar "DIMEXO"))    
     (setvar "DIMEXO" 3)    
-    (command "DIM1" "OBL" lstdim "" (* sgn 30))           ;30ë„ë§Œí¼ ëŒë ¤ì¤Œ    
+    (command "DIM1" "OBL" lstdim "" (* sgn 30))           ;30µµ¸¸Å­ µ¹·ÁÁÜ    
     (command "DIM1" "UPDATE" lstdim "")    
     (setvar "DIMEXO" oldexo)    
     
-    (setq sp ep)                    ;ëì ì„ ì²«ì ìœ¼ë¡œ    
+    (setq sp ep)                    ;³¡Á¡À» Ã¹Á¡À¸·Î    
     (initget "eXit Undo")    
-    (setq next (getdist "\nDistance or RETURN to Pick point/eXit: ")) ;ëì ê¹Œì§€ ê±°ë¦¬    
-    (cond                                               ;ì ì„ ì…ë ¥í•˜ë ¤ë©´ ë¦¬í„´ì…ë ¥    
+    (setq next (getdist "\nDistance or RETURN to Pick point/eXit: ")) ;³¡Á¡±îÁö °Å¸®    
+    (cond                                               ;Á¡À» ÀÔ·ÂÇÏ·Á¸é ¸®ÅÏÀÔ·Â    
       ((= next nil)    
-        (setq ep (getpoint "\nPick point: "))                 ;ëì ì„ ì…ë ¥    
-        (setq ep (list (car sp) (cadr ep)))                   ;ìˆ˜ì •ëœ ëì     
+        (setq ep (getpoint "\nPick point: "))                 ;³¡Á¡À» ÀÔ·Â    
+        (setq ep (list (car sp) (cadr ep)))                   ;¼öÁ¤µÈ ³¡Á¡    
       ) ;cond(next=nil)    
-      ((= next "eXit")                                        ;eXitì…ë ¥ì‹œ ep=nil    
+      ((= next "eXit")                                        ;eXitÀÔ·Â½Ã ep=nil    
         (setq ep nil)    
       ) ;cond(next="eXit")    
-      ((numberp next)                                         ;dxê°€ ìˆ«ìì¸ ê²½ìš°    
-        (setq ep (list (car sp) (+ (cadr ep) next)))          ;ep ìœ„ì¹˜ê³„ì‚°    
+      ((numberp next)                                         ;dx°¡ ¼ıÀÚÀÎ °æ¿ì    
+        (setq ep (list (car sp) (+ (cadr ep) next)))          ;ep À§Ä¡°è»ê    
       ) ;cond(next=number)    
     ) ;of cond    
     

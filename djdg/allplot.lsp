@@ -4,10 +4,10 @@
 ;           By Suk-Jong Yi
 ;           1997/12
 ;****************************************************************************
-; ì˜·ì ˆì•ì°Œ ì²ì–™ ì ì™¢ BorderìŸ ÃƒÃ¢Â·Ã‚
-; Device  : ì ŒÂ·í†±ì§–ì‰„Ã¢ ì²²ì°Œ ì¢—ìŸ• ì¨¤ì½²
-; pltì²‡ìŸ : BorderìŒ° Ã‡í™‡Â³ì²‰ ì­Â¿Ã¬ - DWG nameì€ ìŒ¿ì
-;           BorderìŒ° ì™ì ì²‡Â»Ã³ì²‰ ì­Â¿Ã¬ - DWGí€›ì²Š ì²‡ìŸì²‚ ìŸœìµ”ìŸ ì™ì²”ìŸ ì¢¾íƒºÂ·Ã
+; µµ¸é³»¿¡ ÀÖ´Â ¸ğµç Border¸¦ Ãâ·Â
+; Device  : ¸í·É³»¸®±â Àü¿¡ ¹Ì¸® ¼±ÅÃ
+; pltÀÌ¸§ : Border°¡ ÇÑ°³ÀÎ °æ¿ì - DWG name°ú °°°Ô
+;           Border°¡ µÎ°³ ÀÌ»óÀÎ °æ¿ì - DWGÆÄÀÏ ÀÌ¸§ÀÇ ¸¶Áö¸· µÎÀÚ¸¦ ¹øÈ£·Î
 ;****************************************************************************
 
 (defun C:ALLPLOT( /
@@ -16,7 +16,7 @@
                                                            low_right
 )
 
-  ;(push-env)                                        ;í„†ì­ì¤¦ì©  ì–¾Ã‡Ã‡
+  ;(push-env)                                        ;È¯°æº¯¼ö ´ëÇÇ
 
  (if (not printer_name)
    (progn
@@ -33,12 +33,12 @@
 
   
   (setq ;offset "-5.0,-2.0"
-        bdr_B 815                                   ;borderì²‚ íŠ
-        bdr_H 570                                   ;borderì²‚ Â³Ã´ì²‡(Âµì°Ã«ì®-ì­ì´¸)
-        bn    "BORDER*"                             ;ì¥œìƒ ì²‡ìŸ
-        xg    -15                                   ;x gap ì°”ì¢°ì±¶Â·í’®Â­ $ppìŒ° ì®²ì±¹ì›’ìŸ ì²•ÂµÂ¿(Âµì°Ã«ì®-ì­ì´¸)
-        yg     -5                                    ;y gap (Âµì°Ã«ì®-ì­ì´¸)
-        ytol (* (getvar "DIMSCALE") bdr_H))         ;border rowÃ‡Ã£Â¿Ã«Â³Ã´ì²‡
+        bdr_B 815                                   ;borderÀÇ Æø
+        bdr_H 570                                   ;borderÀÇ ³ôÀÌ(µ¿´ë±¸-°æÁÖ)
+        bn    "BORDER*"                             ;ºí·° ÀÌ¸§
+        xg    -15                                   ;x gap ¿©¹éÀ¸·Î¼­ $pp°¡ ¾øÀ»¶§¸¸ ÀÛµ¿(µ¿´ë±¸-°æÁÖ)
+        yg     -5                                    ;y gap (µ¿´ë±¸-°æÁÖ)
+        ytol (* (getvar "DIMSCALE") bdr_H))         ;border rowÇã¿ë³ôÀÌ
 
   (initget "File Plotter")
   (setq fplot (getkword "\nWrite the plot to a file? <F>ile/<P>lotter: "))
@@ -48,28 +48,28 @@
   (setq fitscl (getkword "\nPlot Millimeters=Drawing Units or Fit or ? <F>it/<S>cale/<A3>: "))
 
 
-  (setq dwgn (dwg_name))                                ;í€›ì²Š ì²‡ìŸ
-  (setq dwgnl (strlen dwgn))                            ;í€›ì²Š ì²‡ìŸì²‚ ì•ì²‡
+  (setq dwgn (dwg_name))                                ;ÆÄÀÏ ÀÌ¸§
+  (setq dwgnl (strlen dwgn))                            ;ÆÄÀÏ ÀÌ¸§ÀÇ ±æÀÌ
   (setq f_list (list (cons 0 "INSERT") (cons 2 bn)))    ;filter list
-  (setq ss_lst (ssget "X" f_list))                      ;entity ì¨¤ì½²
-  (setq ss_num (sslength ss_lst))                       ;ì¨¤ì½²ì™‡ entityì‡ì© 
+  (setq ss_lst (ssget "X" f_list))                      ;entity ¼±ÅÃ
+  (setq ss_num (sslength ss_lst))                       ;¼±ÅÃµÈ entity°¹¼ö
 
-  ;------ ì¨¤ì½²ì™‡ borderìŸ x,yì¢­Ã‡Ã¢ì±¶Â·Ã sort
+  ;------ ¼±ÅÃµÈ border¸¦ x,y¹æÇâÀ¸·Î sort
   (setq ssn_lst (sort_xy ss_lst))
 
-;------ borderÂ»Ã°ì²ì´ˆ x,yìŒ¹ ÃƒÃ¢Â·Ã‚ (testÂ¿Ã« source)
+;------ border»ğÀÔÁ¡ x,y°ª Ãâ·Â (test¿ë source)
 ;  (setq count 0)
-;  (repeat ss_num                                                ;borderì© ìŸì½  ì¢§ì¤¯
-;    (setq ip (cdr (assoc 10 (entget (nth count ssn_lst)))))     ;yì´¥í‚¨ì²™ì®…ì•ì‘
+;  (repeat ss_num                                                ;border¼ö¸¸Å­ ¹İº¹
+;    (setq ip (cdr (assoc 10 (entget (nth count ssn_lst)))))     ;yÁÂÇ¥Àâ¾Æ³»±â
 ;    (princ ip) ;(princ "\n")
 ;    (setq count (1+ count))
 ;  ) ;of repeat
 
-  (setq pltn1 (strcat (getvar "DWGPREFIX") dwgn))      ; dwgì¢­ì°Œ Â»Ã½ì—
+  (setq pltn1 (strcat (getvar "DWGPREFIX") dwgn))      ; dwg¹æ¿¡ »ı±è
 
-  ;--------- ì¹¯ì¢¾ì¶¿ borderì¥ì½¼ ÃƒÃ¢Â·ì·’í•ŒÃ¢
-  (setq index 0)                        ;ì¹¯ì¢¾ì¶¿ borderì¥ì½¼
-  (repeat ss_num                        ;ì¨¤ì½²ì™‡ border ì‡ì© ìŸì½  ì¢§ì¤¯
+  ;--------- Ã¹¹øÂ° borderºÎÅÍ Ãâ·ÂÇÏ±â
+  (setq index 0)                        ;Ã¹¹øÂ° borderºÎÅÍ
+  (repeat ss_num                        ;¼±ÅÃµÈ border °¹¼ö¸¸Å­ ¹İº¹
     (if (= index 0)
       (setq pltn pltn1)
       (if (and (<= index 9) (> ss_num 9))
@@ -77,22 +77,22 @@
         (setq pltn (strcat pltn1 (itoa index)))
       ) ;of IF
     ) ;of IF
-    (setq bdr_ent (entget (nth index ssn_lst)))     ;border entityì´‹ì¤®
-    (setq ipnt (cdr (assoc 10 bdr_ent)))            ;borderì²‚ insert point
-    (setq bdrname (cdr (assoc 2 bdr_ent)))         ;borderì²‡ìŸ
-    (setq i_scale (cdr (assoc 41 bdr_ent)))         ;borderì²‚ scale factor
+    (setq bdr_ent (entget (nth index ssn_lst)))     ;border entityÁ¤º¸
+    (setq ipnt (cdr (assoc 10 bdr_ent)))            ;borderÀÇ insert point
+    (setq bdrname (cdr (assoc 2 bdr_ent)))         ;borderÀÌ¸§
+    (setq i_scale (cdr (assoc 41 bdr_ent)))         ;borderÀÇ scale factor
     (if (= fitscl "Scale") (setq fitscl (strcat "1=" (rtos i_scale))))
     (if (= fitscl "A3") (setq fitscl (strcat "1=" (rtos (* 2 i_scale)))))
     
-    (setq wpoint (ipnt_nblk bdrname "$PP"))         ;print windowì°Ÿì°• point
+    (setq wpoint (ipnt_nblk bdrname "$PP"))         ;print window¿µ¿ª point
 
-    (if (= wpoint nil)                              ;$ppì¥œÂ·Ãì²‡ ì®²ì±¹ ì›’
-      (setq low_left (list (+ (car ipnt) (* xg i_scale))        ;borderì²‚ ì´¥ÃƒÃ¸ ì®…ì´
+    (if (= wpoint nil)                              ;$ppºí·ÏÀÌ ¾øÀ» ¶§
+      (setq low_left (list (+ (car ipnt) (* xg i_scale))        ;borderÀÇ ÁÂÃø ¾Æ·¡
                            (+ (cadr ipnt) (* yg i_scale)))
-            up_right (list (+ (car ipnt) (* bdr_B i_scale))    ;borderì²‚ Â¿Ã¬ÃƒÃ¸ ì±¦
+            up_right (list (+ (car ipnt) (* bdr_B i_scale))    ;borderÀÇ ¿ìÃø À§
                            (+ (cadr ipnt) (* bdr_H i_scale))))
-      (setq low_left (nth 0 wpoint)                   ;Â¿Ãì·•ì®…ì´
-            up_right (nth 1 wpoint)                   ;Â¿ì±¶ë´‘ÃŠì±¦
+      (setq low_left (nth 0 wpoint)                   ;¿ŞÂÊ¾Æ·¡
+            up_right (nth 1 wpoint)                   ;¿À¸¥ÂÊÀ§
             low_left (list (+ (car ipnt) (* i_scale (car low_left)))
                            (+ (cadr ipnt) (* i_scale (cadr low_left))))
             up_right (list (+ (car ipnt) (* i_scale (car up_right)))
@@ -107,7 +107,7 @@
 ;    (setvar "CMDDIA" 0)                                     ;command echo OFF
     (setq pltn0 (strcat pltn ".plt"))
 
-; r14Â¿Ã« plot routine
+; r14¿ë plot routine
 ;    (command "PLOT" "W" low_left up_right
 ;             "5"  ;Enter choice, 0-5 <0>:
 ;             "N"  ;Do you want to change plotters?
@@ -121,7 +121,7 @@
 ;           fitscl ;Plotter Millimeters=Drawing units or Fit or ?
 ;            "0"   );Enter choice, 0-5
 
-; 2000Â¿Ã« plot routine
+; 2000¿ë plot routine
 ;    (setq ctr "center")
     ;command
 (command "PLOT"
@@ -161,23 +161,23 @@ fplot               ;Write the plot to a file [Yes/No] <N>:
 ;	 low_left            ;Enter lower left corner of window <0.000000,0.000000>:
 ;up_right            ;Enter upper right corner of window <0.000000,0.000000>: 100,100
 ;"")
-;    (if (/= (getvar "PLOTID") "Default System Printer")     ;ì™«íŒí€‰ Â¾ì­¿ì¤¸Ã› Ã‡ì´ìÃì²Šì›’ ì¾–ì€
-;        (command "N"))                                      ;ì–¯ìŸŒ Ã‡ì´ìÃì²Š ì›’ autospool "N"
-;    (if (= fplot "Y")                                       ;fileÂ·Ã ÃƒÃ¢Â·ì·’Ã’ ì›’
+;    (if (/= (getvar "PLOTID") "Default System Printer")     ;µğÆúÆ® ¾¾½ºÅÛ ÇÁ¸°ÅÍÀÏ¶§ Åë°ú
+;        (command "N"))                                      ;´Ù¸¥ ÇÁ¸°ÅÍÀÏ ¶§ autospool "N"
+;    (if (= fplot "Y")                                       ;file·Î Ãâ·ÂÇÒ ¶§
 ;        (command "N"))                                      ;Autospool "N"
 ;
-;    (if (= fplot "Y")                                       ;fileÂ·Ã ÃƒÃ¢Â·ì·’í›´Â§
+;    (if (= fplot "Y")                                       ;file·Î Ãâ·ÂÇÒ¶§
 ;        (command pltn))
 ;
-;    (command)                                               ;plotì ŒÂ·Ã‰ ì”¨Â³Â¿
+;    (command)                                               ;plot¸í·É ³¡³¿
 
     (setvar "CMDDIA" 1)                                     ;command echo ON
     (princ pltn) (princ " is Plotted") (terpri)
 ;    (command "text" up_right "1000" "0" (rtos index 3 0) "")
-    (setq index (1+ index))                                 ;ì–¯ì±» borderÂ·Ã
+    (setq index (1+ index))                                 ;´ÙÀ½ border·Î
   ) ;of repeat
 
-;  (pop-env)                                                 ;í„†ì­ì¤¦ì©  ì¤¯ì€
+;  (pop-env)                                                 ;È¯°æº¯¼ö º¹±Í
 
   (princ)
 ) ;of defun
@@ -186,21 +186,21 @@ fplot               ;Write the plot to a file [Yes/No] <N>:
 ;          Yi Suk Jong
 ;          97/7/24
 ;----------------------------------------------------------------
-; ì´¸ì®©ìµ– entity listìŸ x,yì´¥í‚¨ìŸ ì²‡Â¿Ã«Ã‡Ãì°” sortÃ‡í™ŠÃ™.
-; sortì¢­ì£ƒì±¸
-;     1. yìŒ¹ì²‡ ì¥ ì«˜Ã‡Ã‘ ì˜ì”©ìŸ• Ã‡Ã ì±¹ ìŸì™¢ì–¯
-;     2. ìŒ±Ã‡Ã ì™¤ì±¸ xìŒ¹ì±¶Â·Ã sortÃ‡í™ŠÃ™.
-; Â³Ã‘ì®©Â¿ì±²Ã‚ ìŒ¹
+; ÁÖ¾îÁø entity list¸¦ x,yÁÂÇ¥¸¦ ÀÌ¿ëÇÏ¿© sortÇÑ´Ù.
+; sort¹æ¹ıÀº
+;     1. y°ªÀÌ ºñ½ÁÇÑ °Í³¢¸® ÇàÀ» ¸¸µç´Ù
+;     2. °¢ÇàµéÀº x°ªÀ¸·Î sortÇÑ´Ù.
+; ³Ñ¾î¿À´Â °ª
 ;      entity list
-; Â³Ã‘ì®©ìŒ°ì–™ ìŒ¹
-;      sortì™‡ entity list
+; ³Ñ¾î°¡´Â °ª
+;      sortµÈ entity list
 ;----------------------------------------------------------------
 (defun SORT_XY(ss_lst
   / ss_lst ss_num ssn_lst row_col row  cy cn y ygap count1 rown coln
 )
-  (setq ss_num (sslength ss_lst))              ;listì‡ì© 
+  (setq ss_num (sslength ss_lst))              ;list°¹¼ö
 
-  ;------- borderì°í€–í€–ì Œ listìŸì™¤ì‘
+  ;------- border¿£Æ¼Æ¼¸í list¸¸µé±â
   (setq ssn_lst nil)
   (setq count 0)
   (repeat ss_num
@@ -208,51 +208,51 @@ fplot               ;Write the plot to a file [Yes/No] <N>:
     (setq count (1+ count))
   ) ;of repeat
 
-   ;------- insert yìŒ¹ì±¶Â·Ã ì´‹Â·Ã„
-  (setq ssn_lst (reverse (sort_ent ssn_lst 10 2)))  ;Â¿ì±¶Â§ì·½ì©¢-->ì•Â¸ì’Ã·ì©¢ì±¶Â·Ã ì¤¦ì­
+   ;------- insert y°ªÀ¸·Î Á¤·Ä
+  (setq ssn_lst (reverse (sort_ent ssn_lst 10 2)))  ;¿À¸§Â÷¼ø-->³»¸²Â÷¼øÀ¸·Î º¯°æ
 
-  ;------- Ã‡Ã ì€ ì°˜Â·Ã ì”±ì–„ì‘
-  (setq row_col nil)                                            ;Ã‡Ã Â·ì¹¿ist ì¥ Â¿Ã¬ì‘
-  (setq row nil)                                                ;Ã‡Ã  listì¥ Â¿Ã¬ì‘
+  ;------- Çà°ú ¿­·Î ³ª´©±â
+  (setq row_col nil)                                            ;Çà·Älist ºñ¿ì±â
+  (setq row nil)                                                ;Çà listºñ¿ì±â
   (setq count 0)
-  (setq cy (nth 2 (assoc 10 (entget (nth count ssn_lst)))))     ;Ã‡Ã¶ì² yìŒ¹
-  (setq cn 0)                                                   ;Ã‡Ã¶ì² ì¢¾íƒº
-  (setq count 1)                                                ;ì¹¯ì¢¾ì¶¿ Â¿Ã¤Â¼í›¸í’´Ã
+  (setq cy (nth 2 (assoc 10 (entget (nth count ssn_lst)))))     ;ÇöÀç y°ª
+  (setq cn 0)                                                   ;ÇöÀç ¹øÈ£
+  (setq count 1)                                                ;Ã¹¹øÂ° ¿ä¼ÒºÎÅÍ
   (repeat (1- ss_num)
-    (setq y (nth 2 (assoc 10 (entget (nth count ssn_lst)))))    ;Ã‡Ã¶ì² yìŒ¹
-    (setq ygap (abs (- cy y)))                                  ;yìŒ¹ì·½
-    (if (> ygap ytol)                        ;yìŒ¹ì·½ìŒ° borderÂ³Ã´ì²‡ìŸ Â³Ã‘ì±¹ì›’
+    (setq y (nth 2 (assoc 10 (entget (nth count ssn_lst)))))    ;ÇöÀç y°ª
+    (setq ygap (abs (- cy y)))                                  ;y°ªÂ÷
+    (if (> ygap ytol)                        ;y°ªÂ÷°¡ border³ôÀÌ¸¦ ³ÑÀ»¶§
       (progn
         (setq count1 cn)
-        (repeat (- count cn)                 ;rowÃ‡Ã¼ì¨¬
+        (repeat (- count cn)                 ;rowÇü¼º
           (setq row (append row (list (nth count1 ssn_lst))))
           (setq count1 (1+ count1))
         ) ;of repeat
-        (setq row_col (append row_col (list row)))          ;rowìŸ Ã‡Ã Â·Ã„ì°Œ ÃƒÃŸìŒ°
+        (setq row_col (append row_col (list row)))          ;row¸¦ Çà·Ä¿¡ Ãß°¡
         (setq cn count)
         (setq cy y)
         (setq row nil)
       ) ;of progn
     ) ;of if
-    (setq count (1+ count))                                     ;ì–¯ì±» Â¿Ã¤Â¼í›µÃ
+    (setq count (1+ count))                                     ;´ÙÀ½ ¿ä¼Ò·Î
   ) ;of repeat
-  (setq count1 cn)                                              ;ìŸœìµ”ìŸ rowì¹©ìŸ•
+  (setq count1 cn)                                              ;¸¶Áö¸· rowÃ³¸®
   (repeat (- ss_num cn)
     (setq row (append row (list (nth count1 ssn_lst))))
     (setq count1 (1+ count1))
   ) ;of repeat
   (setq row_col (append row_col (list row)))
 
-  ; ------------- rowì¤§Â·Ã ì”±ì–„ì®©ì´• ì²ì–™ listìŸ Ã‡í™‡Â³ì²‚ listÂ·Ã ì¾–Ã‡Ã•
+  ; ------------- rowº°·Î ³ª´©¾îÁ® ÀÖ´Â list¸¦ ÇÑ°³ÀÇ list·Î ÅëÇÕ
   (setq ssn_lst nil)
-  (setq rown (length row_col))                          ;rowì© 
-  (setq count 0)                                        ;ì¹¯ì¢¾ rowì¥ì½¼
+  (setq rown (length row_col))                          ;row¼ö
+  (setq count 0)                                        ;Ã¹¹ø rowºÎÅÍ
   (repeat rown
-    (setq row (sort_ent (nth count row_col) 10 1))      ;xì´¥í‚¨Â·Ã sort
-    (setq coln (length row))                            ;Ã‡Ã¶ì² rowì²‚ columnì© 
-    (setq count1 0)                                     ;ì¹¯ì¢¾ì¶¿ columnì¥ì½¼
+    (setq row (sort_ent (nth count row_col) 10 1))      ;xÁÂÇ¥·Î sort
+    (setq coln (length row))                            ;ÇöÀç rowÀÇ column¼ö
+    (setq count1 0)                                     ;Ã¹¹øÂ° columnºÎÅÍ
     (repeat coln
-      (setq ssn_lst (append ssn_lst (list (nth count1 row))))  ;entityì²‡ìŸ listì°Œ ÃƒÃŸìŒ°
+      (setq ssn_lst (append ssn_lst (list (nth count1 row))))  ;entityÀÌ¸§ list¿¡ Ãß°¡
       (setq count1 (1+ count1))
     ) ;of repeat
     (setq count (1+ count))
@@ -269,14 +269,14 @@ fplot               ;Write the plot to a file [Yes/No] <N>:
 ;          Yi Suk-Jong
 ;          96/6/27
 ;****************************************************************
-; open ì ŒÂ·Ã‰ì±¶Â·Ã í€›ì²Šì±¹ Âºí›µÂ¯Â¿Ãƒ ì­Â¿Ã¬ DWGNAMEì²‡ full pathì Œì²‡ ì™†ì¢’Â·Ã
-; full pathì ŒÃÃŸ í€›ì²Šì Œ ì¥ì¥ƒì±¹ ÃƒÃŸÃƒÃ¢Ã‡Ã˜Â³Â¿
+; open ¸í·ÉÀ¸·Î ÆÄÀÏÀ» ºÒ·¯¿Ã °æ¿ì DWGNAMEÀÌ full path¸íÀÌ µÇ¹Ç·Î
+; full path¸íÁß ÆÄÀÏ¸í ºÎºĞÀ» ÃßÃâÇØ³¿
 ;****************************************************************
 (defun DWG_NAME(/ dn ls count ch )
 
-  (setq dn (getvar "DWGNAME"))                          ;í€›ì²Šì²‡ìŸ ì²‰ì«›
-  (setq ls (strlen dn))                                 ;string ì•ì²‡
-  (setq count ls)                                       ;ìŸœìµ”ìŸ stringì¥ì½¼
+  (setq dn (getvar "DWGNAME"))                          ;ÆÄÀÏÀÌ¸§ ÀÎ½Ä
+  (setq ls (strlen dn))                                 ;string ±æÀÌ
+  (setq count ls)                                       ;¸¶Áö¸· stringºÎÅÍ
   (while (and (/= (setq ch (substr dn count 1)) "\\")
               (> count 1))
     (setq count (1- count))
@@ -286,7 +286,7 @@ fplot               ;Write the plot to a file [Yes/No] <N>:
     (setq dn (substr dn count (- ls (1- count))))
   ) ;of if
 
-  (substr dn 1 (- (strlen dn) 4))                       ;*.dwgì°Œì¨  '.dwg'ì´ì
+  (substr dn 1 (- (strlen dn) 4))                       ;*.dwg¿¡¼­ '.dwg'Á¦°Å
 
 ) ;of defun
 
@@ -297,13 +297,13 @@ fplot               ;Write the plot to a file [Yes/No] <N>:
 ;           Yi Suk-Jong
 ;           1996/2/23
 ;******************************************************
-; SSGET listìŸ sortÃ‡Ã˜ì´ºì–¯.
-; Â³Ã‘ì®©Â¿ì±²Ã‚ ìŒ¹
-;     ALIST : SORTì™†ì®©Â¾ÃŸÃ‡Ã’ SSGET LIST
-;       ASS : ì‘ì´ºì²‡ ì™†ì–™ sub list (ì°£:insert point --> 10)
-;         TH : sub listì²‚ ì ì¢¾ì¶¿ atomì±¹ ì‘ì´ºì±¶Â·Ã ì´‹Â·ì»Ã’ ì˜ì²‰ìŒ°ìŸ ì®ŠÂ·ì´¤Ã˜ì–¯.
-; Â³í™‡Ãœìµ”ì–™ ìŒ¹
-;             SORTì™‡ LIST
+; SSGET list¸¦ sortÇØÁØ´Ù.
+; ³Ñ¾î¿À´Â °ª
+;     ALIST : SORTµÇ¾î¾ßÇÒ SSGET LIST
+;       ASS : ±âÁØÀÌ µÇ´Â sub list (¿¹:insert point --> 10)
+;         TH : sub listÀÇ ¸î¹øÂ° atomÀ» ±âÁØÀ¸·Î Á¤·ÄÇÒ °ÍÀÎ°¡¸¦ ¾Ë·ÁÁØ´Ù.
+; ³Ñ°ÜÁö´Â °ª
+;             SORTµÈ LIST
 ;******************************************************
 
 (defun SORT_ENT(alist ass th
@@ -311,33 +311,33 @@ fplot               ;Write the plot to a file [Yes/No] <N>:
         min_th      count1   c_list      c_val        ass        th
 )
 
-  (setq nl (length alist))                  ;listì²‚ ì‡ì© 
+  (setq nl (length alist))                  ;listÀÇ °¹¼ö
 
-  (setq slist nil)                          ;ì¥¡ sortì™‡ listìŸì™¦
-  (setq rlist alist)                        ;ÃƒÃ–ì–¾ìŒ¹ì±¹ ÃƒÃ ÃƒÃ¢Ã‡Ã‘ ì”±ìŸµìµ” list
+  (setq slist nil)                          ;ºó sortµÈ list¸¸µë
+  (setq rlist alist)                        ;ÃÖ´ë°ªÀ» ÃàÃâÇÑ ³ª¸ÓÁö list
 
-  (setq count nl)                           ;list ì‡ì© ì¥ì½¼ Ã‡í™‡Â³Â¾Â¿ ì§ˆì ˆì¨  ì¢§ì¤¯
+  (setq count nl)                           ;list °¹¼öºÎÅÍ ÇÑ°³¾¿ »©¸é¼­ ¹İº¹
 
-  (repeat nl                                        ;listì‡ì© ìŸì½ 
-    (setq minv (nth th (assoc ass (entget (nth 0 rlist)))))             ;ì¹¯ì¢¾ì¶¿ listìŸ ì²•ì±¸ ìŒ¹ì±¶Â·Ã
-    (setq min_th 0)                                 ;ÃƒÃ–Â¼í›¯Âªì²‚ ì±¦ìº¬ìŸ ì¹©ì±»ì±¶Â·Ã
-    (setq count1 1)                                 ;ì™ì¢¾ì¶¿ listì¥ì½¼
+  (repeat nl                                        ;list°¹¼ö¸¸Å­
+    (setq minv (nth th (assoc ass (entget (nth 0 rlist)))))             ;Ã¹¹øÂ° list¸¦ ÀÛÀº °ªÀ¸·Î
+    (setq min_th 0)                                 ;ÃÖ¼Ò°ªÀÇ À§Ä¡¸¦ Ã³À½À¸·Î
+    (setq count1 1)                                 ;µÎ¹øÂ° listºÎÅÍ
     (repeat (1- count)
-      (setq c_list (nth count1 rlist))                          ;Ã‡Ã¶ì² list
-      (setq c_val (nth th (assoc ass (entget (nth count1 rlist)))))    ;Ã‡Ã¶ì² ìŒ¹
-      (if (< c_val minv)                            ;Ã‡Ã¶ì² ìŒ¹ì²‡ minì¤®ì–¯ ì²•ì±¹ì›’
+      (setq c_list (nth count1 rlist))                          ;ÇöÀç list
+      (setq c_val (nth th (assoc ass (entget (nth count1 rlist)))))    ;ÇöÀç °ª
+      (if (< c_val minv)                            ;ÇöÀç °ªÀÌ minº¸´Ù ÀÛÀ»¶§
         (progn
-          (setq min_th count1)                      ;ÃƒÃ–Â¼í›¯Âªì±¦ìº¬ìŸ Ã‡Ã¶ì² ì±¦ìº¬Â·Ã
-          (setq minv c_val)                          ;ÃƒÃ–Â¼í›¯Âªì±¹ Ã‡Ã¶ì² ìŒ¹ì±¶Â·Ã
+          (setq min_th count1)                      ;ÃÖ¼Ò°ªÀ§Ä¡¸¦ ÇöÀç À§Ä¡·Î
+          (setq minv c_val)                          ;ÃÖ¼Ò°ªÀ» ÇöÀç °ªÀ¸·Î
         ) ;of progn
       ) ;of if
-      (setq count1 (1+ count1))                     ;ì–¯ì±» listÂ·Ã
+      (setq count1 (1+ count1))                     ;´ÙÀ½ list·Î
     ) ;of repeat
-    (setq slist (append slist (list (nth min_th rlist)))) ;ÃƒÃ–Â¼í›¯Âªì±¹ sortì™‡ listì°Œ ÃƒÃŸìŒ°
-    (setq rlist (del_atom rlist min_th))            ;Â³Â²ì±¸listì°Œì¨  ÃƒÃ–Â¼Ã’ list ì´ì
-    (setq count (1- count))                         ;Ã‡í™‡Â³ ì´»ì°”ì¨ 
+    (setq slist (append slist (list (nth min_th rlist)))) ;ÃÖ¼Ò°ªÀ» sortµÈ list¿¡ Ãß°¡
+    (setq rlist (del_atom rlist min_th))            ;³²Àºlist¿¡¼­ ÃÖ¼Ò list Á¦°Å
+    (setq count (1- count))                         ;ÇÑ°³ ÁÙ¿©¼­
   ) ;of repeat
-;-------------- testÂ¿Ã« source ---------------------------------------------
+;-------------- test¿ë source ---------------------------------------------
 ;  (setq count 0)
 ;  (repeat nl
 ;    (princ (nth th (assoc ass (entget (nth count slist))))) (princ "\n")
@@ -354,26 +354,26 @@ fplot               ;Write the plot to a file [Yes/No] <N>:
 ;           Yi Suk-Jong
 ;           1996/2/23
 ;************************************************
-; listì°Œì¨  í€Šì´‹ atomì±¹ ìµ”Â¿Ã®ì–¯
-; Â³Ã‘ì®©Â¿ì±²Ã‚ ìŒ¹
-;             b_list : ÃƒÃ ÃƒÃ¢ì²² list
-;               anth : ÃƒÃ ÃƒÃ¢ì™†Â¾ÃŸÃ‡Ã’ atomì²‚ ì±¦ìº¬
-; Â³í™‡ÃœìŒ°ì–™ ìŒ¹
-;                    : ÃƒÃ ÃƒÃ¢í„— list
+; list¿¡¼­ Æ¯Á¤ atomÀ» Áö¿î´Ù
+; ³Ñ¾î¿À´Â °ª
+;             b_list : ÃàÃâÀü list
+;               anth : ÃàÃâµÇ¾ßÇÒ atomÀÇ À§Ä¡
+; ³Ñ°Ü°¡´Â °ª
+;                    : ÃàÃâÈÄ list
 ;************************************************
 
 (defun DEL_ATOM(b_list anth
-/       b_list      mlist       a_list      count   ;ìµ”ì°•ì¤¦ì© 
+/       b_list      mlist       a_list      count   ;Áö¿ªº¯¼ö
 )
 
-  (setq nlist (length b_list))                      ;listì²‚ ì‡ì© 
+  (setq nlist (length b_list))                      ;listÀÇ °¹¼ö
 
-  (setq a_list nil)                                 ;ì¥¡ listÂ»Ã½ì¨¬
-  (setq count 0)                                    ;ì¹¯ì¢¾ì¶¿ listì¥ì½¼
+  (setq a_list nil)                                 ;ºó list»ı¼º
+  (setq count 0)                                    ;Ã¹¹øÂ° listºÎÅÍ
 
-  (repeat nlist                                     ;listì‡ì© ìŸì½  ì¢§ì¤¯
-    (if (/= count anth)                             ;ìµ”ì´‹ì™‡ atomì²‡ ì®…ì–¨ì­Â¿Ã¬ìŸ
-      (setq a_list (append a_list (list (nth count b_list))))   ;listì°Œì–¯ ÃƒÃŸìŒ°
+  (repeat nlist                                     ;list°¹¼ö¸¸Å­ ¹İº¹
+    (if (/= count anth)                             ;ÁöÁ¤µÈ atomÀÌ ¾Æ´Ñ°æ¿ì¸¸
+      (setq a_list (append a_list (list (nth count b_list))))   ;list¿¡´Ù Ãß°¡
     ) ;of if
     (setq count (1+ count))
   ) ;of repeat
@@ -388,21 +388,21 @@ fplot               ;Write the plot to a file [Yes/No] <N>:
 ;            Yi Suk-Jong
 ;            1999/7/15
 ;********************************************
-; ì‘ì–  : ì¥ì blockì²‚ table dataìŸ ì™˜ì´• ì®…ì™¤ì¥œÂ·í•Ã©ì²‚
-;        Â»Ã°ì²ì´ˆì™¤ì±¹ ì˜»Â·ì´¤Ã˜ì–¯. ì˜·ìŒ±ì²‚ Ã‡ì´ì‘Â®ì°Ÿì°•, ì˜·ì ˆì Œì°Ÿì°•,
-;        ì˜·ì ˆì¤¦íƒºì°Ÿì°• ì™©ì±¹ ì¹šì‘ì±¦Ã‡Ã‘ Ã‡Ã”ì© ì²‡ì–¯.
-; Â³Ã‘ì®©Â¿ì±²Ã‚ ìŒ¹
-;   pblkname : parent block name ;ì¥ì ì¥œÂ·Ãì²‡ìŸ
-;   sblkname : son block name    ;ì®…ì™¤ì¥œÂ·Ãì²‡ìŸ
-; Â³Ã‘ì®©ìŒ°ì–™ ìŒ¹
-;   ipnt_list : insert point list;ì®…ì™¤ì¥œÂ·Ãì²‚ Â»Ã°ì²ì´ˆ(insert pointì‘ì´º ì´¥í‚¨)
-; ì°£)
+; ±â´É : ºÎ¸ğblockÀÇ table data¸¦ µÚÁ® ¾Æµéºí·ÏµéÀÇ
+;        »ğÀÔÁ¡µéÀ» µ¹·ÁÁØ´Ù. µµ°¢ÀÇ ÇÁ¸°Æ®¿µ¿ª, µµ¸é¸í¿µ¿ª,
+;        µµ¸éº¯È£¿µ¿ª µîÀ» Ã£±âÀ§ÇÑ ÇÔ¼öÀÌ´Ù.
+; ³Ñ¾î¿À´Â °ª
+;   pblkname : parent block name ;ºÎ¸ğºí·ÏÀÌ¸§
+;   sblkname : son block name    ;¾Æµéºí·ÏÀÌ¸§
+; ³Ñ¾î°¡´Â °ª
+;   ipnt_list : insert point list;¾Æµéºí·ÏÀÇ »ğÀÔÁ¡(insert point±âÁØ ÁÂÇ¥)
+; ¿¹)
 ; (ipnt_nblk "BORDERKK" "$PUL")
-;     -> borderkkìœ•ì–™ ì²‡ìŸì²‚ blockì®‡ì²‚ $PULì²‡ìœ— ì¥œìƒì²‡
-;        Â»Ã°ì²ì™‡ ì´ˆì™¤ì±¹ ìŸ•ì½¾Ã‡Ã˜ì´ºì–¯.
-;     -> Â»Ã§Â¿Ã«ì²”ì–™ ì±¦ì°Œì¨  Â¾Ã²ì®©ìµ– insert pointìŒ¹ì°Œ ì¥œÂ·Ãì²‚ scale
-;        ìŒ¹ì±¹ ì¼Ã‡Ã‘ í„— insertì´ˆì´¥í‚¨ìŒ¹ì°Œì–¯ ì—‡Ã‡í•’Ã© $PULì™¤ì²‚ ì²³ì–¾ì´¥í‚¨ìŸ
-;        ì®Ã‡Ã’ ì©  ì²ì–¯.
+;     -> borderkk¶ó´Â ÀÌ¸§ÀÇ block¾ÈÀÇ $PULÀÌ¶õ ºí·°ÀÌ
+;        »ğÀÔµÈ Á¡µéÀ» ¸®ÅÏÇØÁØ´Ù.
+;     -> »ç¿ëÀÚ´Â À§¿¡¼­ ¾ò¾îÁø insert point°ª¿¡ ºí·ÏÀÇ scale
+;        °ªÀ» °öÇÑ ÈÄ insertÁ¡ÁÂÇ¥°ª¿¡´Ù ´õÇÏ¸é $PULµéÀÇ Àı´ëÁÂÇ¥¸¦
+;        ±¸ÇÒ ¼ö ÀÖ´Ù.
 ;******************************
 
 (defun ipnt_nblk(pblkname sblkname
@@ -412,18 +412,18 @@ fplot               ;Write the plot to a file [Yes/No] <N>:
 
   
   (setq tblh (tblsearch "BLOCK" pblkname))   ;table data head
-  (setq base_point (cdr (assoc 10 tblh)))  ;blockì²‚ base point
+  (setq base_point (cdr (assoc 10 tblh)))  ;blockÀÇ base point
 
-  (setq t-1 (cdr (assoc -2 tblh)))           ;blockì• ì¹¯ entityì Œ
+  (setq t-1 (cdr (assoc -2 tblh)))           ;block³» Ã¹ entity¸í
 
   (if (= (cdr (assoc 70 tblh)) 0)
     (setq bname sblkname)
     (setq bname (strcat pblkname "|" sblkname))
   );if  
   
-  (setq ipnt_list nil)                      ;insert point listìŸ ìŸì™¥
+  (setq ipnt_list nil)                      ;insert point list¸¦ ¸¸µê
 
-  (setq t-list (entget t-1))                ;ì¹¯ì¢¾ì¶¿ entity
+  (setq t-list (entget t-1))                ;Ã¹¹øÂ° entity
 
   (if (and (= "INSERT" (cdr (assoc 0 t-list)))
 ;           (= (strcase (strcat pblkname "|" sblkname))
@@ -434,7 +434,7 @@ fplot               ;Write the plot to a file [Yes/No] <N>:
                     (list (mapcar '- (cdr (assoc 10 t-list)) base_point))))
   );if
 
-  (while (setq t-1 (entnext t-1))           ;ì–¯ì±» entity
+  (while (setq t-1 (entnext t-1))           ;´ÙÀ½ entity
     (setq t-list (entget t-1))
     (if (and (= "INSERT" (cdr (assoc 0 t-list)))
 ;             (= (strcase (strcat pblkname "|" sblkname))

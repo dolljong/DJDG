@@ -16,15 +16,15 @@
   ); of SETERR
   (setq oer *error* *error* seterr)
 
-  (push-env)                                        ;í™˜ê²½ë³€ìˆ˜ ëŒ€í”¼
-  (setq ds (getvar "DIMSCALE"))                     ;ìŠ¤ì¼€ì¼ê°’
+  (push-env)                                        ;È¯°æº¯¼ö ´ëÇÇ
+  (setq ds (getvar "DIMSCALE"))                     ;½ºÄÉÀÏ°ª
 
-  (setq ip (getpoint "\nInsert point :"))           ;ì‚½ì…ì 
-  (setq sp (getpoint ip "\nDirection: "))              ;ë°©í–¥ì…ë ¥
-  (setq ang (angle ip sp))                          ;ê°ë„
+  (setq ip (getpoint "\nInsert point :"))           ;»ğÀÔÁ¡
+  (setq sp (getpoint ip "\nDirection: "))              ;¹æÇâÀÔ·Â
+  (setq ang (angle ip sp))                          ;°¢µµ
 
   (command "INSERT" (strcat (prefix) "blocks/dirmrk") ip
-                    ds ds (rtod ang))               ;blockì‚½ì…
+                    ds ds (rtod ang))               ;block»ğÀÔ
 
   (pop-env)
   (setq *error* oer seterr nil)

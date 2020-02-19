@@ -4,13 +4,13 @@
 ;           Yi Suk-Jong
 ;           98/1/22
 ;*******************************
-; ì¤‘ì•™ë¶„ë¦¬ëŒ€ë¥¼ ê·¸ë ¤ì¤€ë‹¤ (ë„ë¡œê³µì‚¬)
+; Áß¾ÓºĞ¸®´ë¸¦ ±×·ÁÁØ´Ù (µµ·Î°ø»ç)
 ;*******************************
 
 (defun C:JUNG(/
-              pk pp ent p1 p2 dst1 dst2 ip dx dy        ;ì§€ì—­ë³€ìˆ˜ ì •ì˜
+              pk pp ent p1 p2 dst1 dst2 ip dx dy        ;Áö¿ªº¯¼ö Á¤ÀÇ
 )
-  (defun SETERR(s)                                      ;ë‚´ì¥ ì—ëŸ¬ë£¨í‹´ ì •ì˜
+  (defun SETERR(s)                                      ;³»Àå ¿¡·¯·çÆ¾ Á¤ÀÇ
     (if (/= s "Function cancelled")
         (princ (strcat "\nError: " s))
     ); of If
@@ -18,33 +18,33 @@
     (princ)
   ); of SETERR
 
-  (setq oer *error* *error* seterr)                     ;ë‚´ì¥ ì—ëŸ¬ë£¨í‹´ ê°€ë™
+  (setq oer *error* *error* seterr)                     ;³»Àå ¿¡·¯·çÆ¾ °¡µ¿
 
-  (setq pk (entsel "\nSelect line: "))                  ;ìŠ¬ë¼ë¸Œ ìƒë‹¨ì„  ì„ íƒ
+  (setq pk (entsel "\nSelect line: "))                  ;½½¶óºê »ó´Ü¼± ¼±ÅÃ
 
-  (setq pp (cadr pk))                                   ;ì„ íƒì 
-  (setq ent (entget (car pk)))                          ;ìŠ¬ë¼ë¸Œìƒë‹¨ì„ ì˜ ì‹œì‘ì ê³¼ ëì 
+  (setq pp (cadr pk))                                   ;¼±ÅÃÁ¡
+  (setq ent (entget (car pk)))                          ;½½¶óºê»ó´Ü¼±ÀÇ ½ÃÀÛÁ¡°ú ³¡Á¡
   (setq p1 (cdr (assoc 10 ent))
         p2 (cdr (assoc 11 ent)))
 
-  (setq dst1 (distance pp p1)                           ;ì‹œì ê³¼ ì„ íƒì ì˜ ê±°ë¦¬
-        dst2 (distance pp p2))                          ;ì¢…ì ê³¼ ì„ íƒì ì˜ ê±°ë¦¬
+  (setq dst1 (distance pp p1)                           ;½ÃÁ¡°ú ¼±ÅÃÁ¡ÀÇ °Å¸®
+        dst2 (distance pp p2))                          ;Á¾Á¡°ú ¼±ÅÃÁ¡ÀÇ °Å¸®
 
-  (if (< dst1 dst2)                                     ;ê°€ê¹Œìš´ ì ì„ insert pointë¡œ
+  (if (< dst1 dst2)                                     ;°¡±î¿î Á¡À» insert point·Î
     (setq ip p1
-          dx (- (car p2) (car p1))                      ;xí¸ì°¨
-          dy (- (cadr p2) (cadr p1)))                   ;yí¸ì°¨
+          dx (- (car p2) (car p1))                      ;xÆíÂ÷
+          dy (- (cadr p2) (cadr p1)))                   ;yÆíÂ÷
     (setq ip p2
           dx (- (car p1) (car p2))
           dy (- (cadr p1) (cadr p2)))
   ) ;of if
 
   (if (> dx 0)
-    (jungbundae 0 ip (/ dy dx -0.01))                      ;ì™¼ìª½ ì¤‘ë¶„ëŒ€ í˜¸ì¶œ
-    (jungbundae 1 ip (/ dy dx 0.01))                       ;ì˜¤ë¥¸ìª½ ì¤‘ë¶„ëŒ€ í˜¸ì¶œ
+    (jungbundae 0 ip (/ dy dx -0.01))                      ;¿ŞÂÊ ÁßºĞ´ë È£Ãâ
+    (jungbundae 1 ip (/ dy dx 0.01))                       ;¿À¸¥ÂÊ ÁßºĞ´ë È£Ãâ
   ) ;of if
 
-  (setq *error* oer seterr nil)                         ;ì—ëŸ¬ë£¨í‹´ ë³µê·€
+  (setq *error* oer seterr nil)                         ;¿¡·¯·çÆ¾ º¹±Í
 
 ) ;of defun
 
@@ -54,29 +54,29 @@
 ;            Suk-Jong Yi
 ;            98/1/22
 ;********************************************
-;ì¤‘ë¶„ëŒ€ë¥¼ ê·¸ë ¤ì£¼ëŠ” í‘ì…˜.
-; ë„˜ì–´ì˜¤ëŠ” ê°’
+;ÁßºĞ´ë¸¦ ±×·ÁÁÖ´Â Æã¼Ç.
+; ³Ñ¾î¿À´Â °ª
 ;     LR : Left / Right
 ;     ip : Insert Point
 ;     SL : SLOP (%)
 ;********************************************
 (defun JUNGBUNDAE( LR ip SL / LR ip SL)
-  (if (= LR 0)                                                  ;ì™¼ìª½ì—°ì„
+  (if (= LR 0)                                                  ;¿ŞÂÊ¿¬¼®
     (progn
 ;      (setq inpo (list (+ (car ip) 30)
-;                       (+ (cadr ip) (* sl -30.0 0.01)) 0.0))     ;ë°”ê¹¥ìª½ì•„ë˜
+;                       (+ (cadr ip) (* sl -30.0 0.01)) 0.0))     ;¹Ù±ùÂÊ¾Æ·¡
       (setq inpi (list (+ (car ip) 280.0)
-                       (+ (cadr ip) (* sl -280.0 0.01)) 0.0))   ;ì•ˆìª½ì•„ë˜
+                       (+ (cadr ip) (* sl -280.0 0.01)) 0.0))   ;¾ÈÂÊ¾Æ·¡
       (command "PLINE" ip "@0,890" "@95,0" "@60,-560"
-                           "@125,-175" inpi "")                 ;ì¤‘ë¶„ëŒ€ ê·¸ë¦¬ê¸°
+                           "@125,-175" inpi "")                 ;ÁßºĞ´ë ±×¸®±â
     ) ;of PROGN
     (progn
 ;      (setq inpo (list (- (car ip) 30.0)
-;                       (+ (cadr ip) (* sl -30.0 0.01)) 0.0))     ;ë°”ê¹¥ìª½ì•„ë˜
+;                       (+ (cadr ip) (* sl -30.0 0.01)) 0.0))     ;¹Ù±ùÂÊ¾Æ·¡
       (setq inpi (list (- (car ip) 280.0)
-                       (+ (cadr ip) (* sl -280.0 0.01)) 0.0))   ;ì•ˆìª½ì•„ë˜
+                       (+ (cadr ip) (* sl -280.0 0.01)) 0.0))   ;¾ÈÂÊ¾Æ·¡
       (command "PLINE" ip "@0,890" "@-95,0" "@-60,-560"
-                           "@-125,-175" inpi "")                ;ì¤‘ë¶„ëŒ€ê·¸ë¦¬ê¸°
+                           "@-125,-175" inpi "")                ;ÁßºĞ´ë±×¸®±â
     ) ;of progn
   ) ;of IF
 ) ;of defun

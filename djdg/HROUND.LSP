@@ -5,15 +5,15 @@
 ;            1995. 3. 16
 ;**************************************
 
-(defun HROUND(p1s p1e p2s p2e /             ;ë°˜ ë¼ìš´ë”©ì„ í•´ì£¼ëŠ” Function
-sdst edst lpnts lpnte ds p1s p1e oldclr     ;ArgumentëŠ” ë‘ì„ ì˜ ì‹œì‘ì ê³¼ ëì 
+(defun HROUND(p1s p1e p2s p2e /             ;¹İ ¶ó¿îµùÀ» ÇØÁÖ´Â Function
+sdst edst lpnts lpnte ds p1s p1e oldclr     ;Argument´Â µÎ¼±ÀÇ ½ÃÀÛÁ¡°ú ³¡Á¡
 )
 
-(setq ds (getvar "DIMSCALE"))         ;DIMSCALEì„ ì•Œì•„ë‚¸ë‹¤.
+(setq ds (getvar "DIMSCALE"))         ;DIMSCALEÀ» ¾Ë¾Æ³½´Ù.
 
-(setq ssdst (distance p1s p2s))     ;ì²«ë¼ì¸ì˜ ì‹œì‘ì ì—ì„œ ë‘ì§¸ë¼ì¸ì˜ ì‹œì‘ì ê±°ë¦¬
-(setq sedst (distance p1s p2e))     ;ì²«ë¼ì¸ì˜ ì‹œì‘ì ì—ì„œ ë‘ì§¸ë¼ì¸ì˜ ëì ê±°ë¦¬
-(if (< sedst ssdst)                 ;ìœ„ì˜ ë‘ ê±°ë¦¬ì¤‘ ê°€ê¹Œìš´ìª½ì´ ì‹œì‘ì ì´ ëœë‹¤
+(setq ssdst (distance p1s p2s))     ;Ã¹¶óÀÎÀÇ ½ÃÀÛÁ¡¿¡¼­ µÎÂ°¶óÀÎÀÇ ½ÃÀÛÁ¡°Å¸®
+(setq sedst (distance p1s p2e))     ;Ã¹¶óÀÎÀÇ ½ÃÀÛÁ¡¿¡¼­ µÎÂ°¶óÀÎÀÇ ³¡Á¡°Å¸®
+(if (< sedst ssdst)                 ;À§ÀÇ µÎ °Å¸®Áß °¡±î¿îÂÊÀÌ ½ÃÀÛÁ¡ÀÌ µÈ´Ù
   (progn
     (setq tmp p2s)
     (setq p2s p2e)
@@ -21,22 +21,22 @@ sdst edst lpnts lpnte ds p1s p1e oldclr     ;ArgumentëŠ” ë‘ì„ ì˜ ì‹œì‘ì ê³¼ 
   ) ;of progn
 ) ; of if
 
-(setq sdst (distance p1s p2s))    ;ì²«ì§¸ë¼ì¸ ì‹œì‘ì ì—ì„œ ë‘˜ì§¸ë¼ì¸ ì‹œì‘ì ê¹Œì§€ ê±°ë¦¬
-(setq edst (distance p1e p2e))    ;ì²«ì§¸ë¼ì¸ ëì ì—ì„œ ë‘˜ì§¸ë¼ì¸ ëì ê¹Œì§€ ê±°ë¦¬
+(setq sdst (distance p1s p2s))    ;Ã¹Â°¶óÀÎ ½ÃÀÛÁ¡¿¡¼­ µÑÂ°¶óÀÎ ½ÃÀÛÁ¡±îÁö °Å¸®
+(setq edst (distance p1e p2e))    ;Ã¹Â°¶óÀÎ ³¡Á¡¿¡¼­ µÑÂ°¶óÀÎ ³¡Á¡±îÁö °Å¸®
 
-             ;ë‘ ì„ ê°„ì˜ ê±°ë¦¬ê°€ 2ë¯¸ë¦¬ì´ìƒ ì¼ë•Œë§Œ ë‘ ì„ ì˜ ì¤‘ê°„ì—ë‹¤ ì„ ì„ ê·¸ë¦°ë‹¤
+             ;µÎ ¼±°£ÀÇ °Å¸®°¡ 2¹Ì¸®ÀÌ»ó ÀÏ¶§¸¸ µÎ ¼±ÀÇ Áß°£¿¡´Ù ¼±À» ±×¸°´Ù
 (setq oldclr (getvar "CECOLOR"))
 (setvar "CECOLOR" "GREEN")
 (while (or (> sdst (* ds 1.0)) (> edst (* ds 1.0)))
-  (setq lpnts (list (/ (+ (car p1s) (car p2s)) 2.0)      ;ë‘ ì‹œì‘ì ì˜ ì¤‘ê°„ì  X
+  (setq lpnts (list (/ (+ (car p1s) (car p2s)) 2.0)      ;µÎ ½ÃÀÛÁ¡ÀÇ Áß°£Á¡ X
                     (/ (+ (cadr p1s) (cadr p2s)) 2.0)))  ;                   Y
-  (setq lpnte (list (/ (+ (car p1e) (car p2e)) 2.0)      ;ë‘ ëì ì˜ ì¤‘ê°„ì    X
+  (setq lpnte (list (/ (+ (car p1e) (car p2e)) 2.0)      ;µÎ ³¡Á¡ÀÇ Áß°£Á¡   X
                     (/ (+ (cadr p1e) (cadr p2e)) 2.0)))  ;                   Y
-  (command "LINE" lpnts lpnte "")     ; ì¤‘ê°„ì„ ì„ ê·¸ë¦°ë‹¤
-  (setq p1s lpnts)             ;ì¤‘ê°„ì„ ì˜ ì‹œì‘ì ì„ ì²«ì§¸ì„ ì˜ ì‹œì‘ì ìœ¼ë¡œ ë°”ê¾¼ë‹¤
-  (setq p1e lpnte)             ;ì¤‘ê°„ì„ ì˜ ëì ì„ ì²«ì§¸ì„ ì˜ ëì ìœ¼ë¡œ ë°”ê¾¼ë‹¤
-  (setq sdst (distance lpnts p2s))  ;ë‘ ì‹œì‘ì ê°„ì˜ ê±°ë¦¬ë¥¼ êµ¬í•œë‹¤
-  (setq edst (distance lpnte p2e))  ;ë‘ ëì ê°„ì˜ ê±°ë¦¬ë¥¼ êµ¬í•œë‹¤
+  (command "LINE" lpnts lpnte "")     ; Áß°£¼±À» ±×¸°´Ù
+  (setq p1s lpnts)             ;Áß°£¼±ÀÇ ½ÃÀÛÁ¡À» Ã¹Â°¼±ÀÇ ½ÃÀÛÁ¡À¸·Î ¹Ù²Û´Ù
+  (setq p1e lpnte)             ;Áß°£¼±ÀÇ ³¡Á¡À» Ã¹Â°¼±ÀÇ ³¡Á¡À¸·Î ¹Ù²Û´Ù
+  (setq sdst (distance lpnts p2s))  ;µÎ ½ÃÀÛÁ¡°£ÀÇ °Å¸®¸¦ ±¸ÇÑ´Ù
+  (setq edst (distance lpnte p2e))  ;µÎ ³¡Á¡°£ÀÇ °Å¸®¸¦ ±¸ÇÑ´Ù
 ) ;of while
 (setvar "CECOLOR" oldclr)
 ) ;of defun HROUND

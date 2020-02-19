@@ -4,8 +4,8 @@
 ;           Suk-Jong Yi
 ;           96/5/14
 ;*************************************************
-; ì£¼ì–´ì§„ ì¹¸ìˆ˜ì™€ ì¤„ìˆ˜ë¥¼ ê°€ì§„ í…Œì´ë¸”ì„ ë§Œë“¤ì–´ì¤€ë‹¤
-; (ì¤„ê°„ê²© 7mmë¡œ ê³ ì •)
+; ÁÖ¾îÁø Ä­¼ö¿Í ÁÙ¼ö¸¦ °¡Áø Å×ÀÌºíÀ» ¸¸µé¾îÁØ´Ù
+; (ÁÙ°£°İ 7mm·Î °íÁ¤)
 ;*************************************************
 
 (defun C:TABLE(/
@@ -21,59 +21,59 @@
   ); of SETERR
   (setq oer *error* *error* seterr)
 
-  (push-env)                                            ;í™˜ê²½ë³€ìˆ˜ ëŒ€í”¼
+  (push-env)                                            ;È¯°æº¯¼ö ´ëÇÇ
 
-  (setq ds (getvar "DIMSCALE"))                         ;ìŠ¤ì¼€ì¼ê°’
+  (setq ds (getvar "DIMSCALE"))                         ;½ºÄÉÀÏ°ª
 
-  (setq ip (getpoint "\nInsert point: "))                ;ì‚½ì…ì 
-  (setq cn (getint "\nColumn Number: "))                ;ì¹¸ìˆ˜
-  (setq rn (getint "\nRow Number: "))                   ;ì¤„ìˆ˜
-  (setq pc (getint "\nPitch of Column(mm)<20>: "))      ;ì¹¸ìˆ˜
-  (if (= pc nil) (setq pc 20))                           ;blankì…ë ¥ì‹œ 20mm
+  (setq ip (getpoint "\nInsert point: "))                ;»ğÀÔÁ¡
+  (setq cn (getint "\nColumn Number: "))                ;Ä­¼ö
+  (setq rn (getint "\nRow Number: "))                   ;ÁÙ¼ö
+  (setq pc (getint "\nPitch of Column(mm)<20>: "))      ;Ä­¼ö
+  (if (= pc nil) (setq pc 20))                           ;blankÀÔ·Â½Ã 20mm
 
-  (setq ys (cadr ip))                                    ;ìˆ˜ì§ì„  ì‹œì‘ yì¢Œí‘œ
-  (setq ye (- ys (* rn 7.0 ds)))                        ;ìˆ˜ì§ì„  ë yì¢Œí‘œ
+  (setq ys (cadr ip))                                    ;¼öÁ÷¼± ½ÃÀÛ yÁÂÇ¥
+  (setq ye (- ys (* rn 7.0 ds)))                        ;¼öÁ÷¼± ³¡ yÁÂÇ¥
 
-  (setq xs (car ip))                                    ;ìˆ˜í‰ì„  ì‹œì‘ xì¢Œí‘œ
-  (setq xe (+ xs (* cn pc ds)))                         ;ìˆ˜í‰ì„  ë xì¢Œí‘œ
+  (setq xs (car ip))                                    ;¼öÆò¼± ½ÃÀÛ xÁÂÇ¥
+  (setq xe (+ xs (* cn pc ds)))                         ;¼öÆò¼± ³¡ xÁÂÇ¥
 
-  (setq oldc (getvar "CECOLOR"))                        ;í˜„ì¬ìƒ‰ ëŒ€í”¼
-  (setvar "CECOLOR" "RED")                              ;í˜„ì¬ìƒ‰ì„ ë¶‰ì€ ìƒ‰ìœ¼ë¡œ
-  (setq count 0)                                        ;ìˆ˜ì§ì„  ê·¸ë¦¬ê¸°
+  (setq oldc (getvar "CECOLOR"))                        ;ÇöÀç»ö ´ëÇÇ
+  (setvar "CECOLOR" "RED")                              ;ÇöÀç»öÀ» ºÓÀº »öÀ¸·Î
+  (setq count 0)                                        ;¼öÁ÷¼± ±×¸®±â
   (repeat (1+ cn)
-    (setq x (+ xs (* count pc ds)))                     ;ìˆ˜ì§ì„  xì¢Œí‘œ
-    (setq spnt (list x ys 0.0))                         ;ìˆ˜ì§ì„  ì‹œì‘ì 
-    (setq epnt (list x ye 0.0))                         ;ìˆ˜ì§ì„  ëì 
-    (if (or (= count 0) (= count cn))                   ;ì²˜ìŒê³¼ ëì„ ì€ í°ìƒ‰ìœ¼ë¡œ
+    (setq x (+ xs (* count pc ds)))                     ;¼öÁ÷¼± xÁÂÇ¥
+    (setq spnt (list x ys 0.0))                         ;¼öÁ÷¼± ½ÃÀÛÁ¡
+    (setq epnt (list x ye 0.0))                         ;¼öÁ÷¼± ³¡Á¡
+    (if (or (= count 0) (= count cn))                   ;Ã³À½°ú ³¡¼±Àº Èò»öÀ¸·Î
       (progn
         (setvar "CECOLOR" "WHITE")
         (command "LINE" spnt epnt "")
         (setvar "CECOLOR" "RED")
       ) ;of progn
-      (command "LINE" spnt epnt "")                       ;lineê·¸ë¦¬ê¸°
+      (command "LINE" spnt epnt "")                       ;line±×¸®±â
     ) ;of IF
-    (setq count (1+ count))                             ;ë‹¤ìŒ ìˆ˜ì§ì„ ìœ¼ë¡œ
+    (setq count (1+ count))                             ;´ÙÀ½ ¼öÁ÷¼±À¸·Î
   ) ;of REPEAT
 
-  (setq count 0)                                        ;ìˆ˜í‰ì„  ê·¸ë¦¬ê¸°
+  (setq count 0)                                        ;¼öÆò¼± ±×¸®±â
   (repeat (1+ rn)
-    (setq y (- ys (* count 7.0 ds)))                     ;ìˆ˜í‰ì„  xì¢Œí‘œ
-    (setq spnt (list xs y 0.0))                         ;ìˆ˜í‰ì„  ì‹œì‘ì 
-    (setq epnt (list xe y 0.0))                         ;ìˆ˜í‰ì„  ëì 
-    (if (or (= count 0) (= count rn))                   ;ì²˜ìŒê³¼ ëì„ ì€ í°ìƒ‰ìœ¼ë¡œ
+    (setq y (- ys (* count 7.0 ds)))                     ;¼öÆò¼± xÁÂÇ¥
+    (setq spnt (list xs y 0.0))                         ;¼öÆò¼± ½ÃÀÛÁ¡
+    (setq epnt (list xe y 0.0))                         ;¼öÆò¼± ³¡Á¡
+    (if (or (= count 0) (= count rn))                   ;Ã³À½°ú ³¡¼±Àº Èò»öÀ¸·Î
       (progn
         (setvar "CECOLOR" "WHITE")
         (command "LINE" spnt epnt "")
         (setvar "CECOLOR" "RED")
       ) ;of progn
-      (command "LINE" spnt epnt "")                       ;lineê·¸ë¦¬ê¸°
+      (command "LINE" spnt epnt "")                       ;line±×¸®±â
     ) ;of IF
-    (setq count (1+ count))                             ;ë‹¤ìŒ ìˆ˜í‰ì„ ìœ¼ë¡œ
+    (setq count (1+ count))                             ;´ÙÀ½ ¼öÆò¼±À¸·Î
   ) ;of REPEAT
 
-  (setvar "CECOLOR" oldc)                               ;ëŒ€í”¼ìƒ‰ ë³µê·€
+  (setvar "CECOLOR" oldc)                               ;´ëÇÇ»ö º¹±Í
 
-  (pop-env)                                             ;í™˜ê²½ë³€ìˆ˜ ë³µê·€
+  (pop-env)                                             ;È¯°æº¯¼ö º¹±Í
   (setq *error* oer seterr nil)
   (princ)
 ) ;of defun

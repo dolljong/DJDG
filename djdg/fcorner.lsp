@@ -11,12 +11,12 @@
 
   (defun fcorner_dia(   / dcl_id 
                    )
-    (setq dcl_id (load_dialog "DJDG.DCL"))                  ;dialog탺Ãâ
+    (setq dcl_id (load_dialog "DJDG.DCL"))                  ;dialogȣ��
     (if (not (new_dialog "FCORNER" dcl_id)) (exit))
 
 
 ;-------------------
-; Ã퉘â쌹쨥촋
+; �ʱⰪ����
 ;-------------------
   
   (cond
@@ -31,7 +31,7 @@
   );cond
     
 ;---------------------------
-; dialog box Ã퉘â턄
+; dialog box �ʱ�ȭ
 ;---------------------------
    (action_tile "radio13" "(setq fcdia 13)")
    (action_tile "radio16" "(setq fcdia 16)")

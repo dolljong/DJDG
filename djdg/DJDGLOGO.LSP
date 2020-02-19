@@ -9,15 +9,15 @@
 )
 
   ;;
-  ;; Function: SB_DIALOG (Dialog boxÎ°ú ÏûÖÎ†•Î∞õÍ∏∞)
+  ;; Function: SB_DIALOG (Dialog box∑Œ ¿‘∑¬πﬁ±‚)
   ;;
   (defun LOGO_DIALOG (/
         dcl_id
   )
-    (setq dcl_id (load_dialog "DJDG"))                  ;dialogÌò∏Ï∂ú
+    (setq dcl_id (load_dialog "DJDG"))                  ;dialog»£√‚
     (if (not (new_dialog "DJDGLOGO" dcl_id)) (exit))
 
-    (start_image "djdglogo")                                  ;image Î≥¥Ïù¥Í∏∞
+    (start_image "djdglogo")                                  ;image ∫∏¿Ã±‚
     (slide_image
                  0 0
                  (dimx_tile "djdglogo") (dimy_tile "djdglogo")

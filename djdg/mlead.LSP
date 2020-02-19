@@ -20,17 +20,17 @@
   (setq blk (strcat (prefix) "blocks/arw1"))
 
   (princ "\nSelect LINES: ")
-  (setq ss (ssget))                               ;lineì„ íƒ
-  (setq spnt (getpoint "\nPick First Point: "))   ;ì‹œìž‘ì 
-  (setq epnt (getpoint spnt "\nPick End Point: "))     ;ëì 
-  (setq ang (/ (* (angle spnt epnt) 180) pi))          ;leaderì„ ì˜ ê°ë„
+  (setq ss (ssget))                               ;line¼±ÅÃ
+  (setq spnt (getpoint "\nPick First Point: "))   ;½ÃÀÛÁ¡
+  (setq epnt (getpoint spnt "\nPick End Point: "))     ;³¡Á¡
+  (setq ang (/ (* (angle spnt epnt) 180) pi))          ;leader¼±ÀÇ °¢µµ
   (setq wh4 (which4 (angle spnt epnt)))
-  (if (or (= wh4 1) (= wh4 4))                 ;leaderì„ ê°ì´ ëª‡ì‚¬ë¶„ë©´ì—
+  (if (or (= wh4 1) (= wh4 4))                 ;leader¼±°¢ÀÌ ¸î»çºÐ¸é¿¡
     (setq ysym ds)
     (setq ysym (* -1 ds))
   ) ;of if
 
-  (setq nss (sslength ss))                        ;ì„ íƒëœ lineì˜ ê°¯ìˆ˜
+  (setq nss (sslength ss))                        ;¼±ÅÃµÈ lineÀÇ °¹¼ö
 
   (setq index 0)
 
@@ -67,8 +67,8 @@
 ;            1995/6/26
 ;****************************************
 
-;í•¨ìˆ˜: í˜¸ì™€ ì§ì„ ì˜ êµì°¨ì  ì°¾ê¸°
-;     ì¸ìˆ˜: ARC entity list, ì§ì„ ì˜ ì²«ì  , ì§ì„ ì˜ ëì 
+;ÇÔ¼ö: È£¿Í Á÷¼±ÀÇ ±³Â÷Á¡ Ã£±â
+;     ÀÎ¼ö: ARC entity list, Á÷¼±ÀÇ Ã¹Á¡ , Á÷¼±ÀÇ ³¡Á¡
 
 (defun CROSS(aent sp ep /
 aent sp ep
@@ -77,35 +77,35 @@ a1 b1 c1 x1 x2 y1 y2 ang1 ang2
 )
 
 (push-env)
-(setq a (car (cdr (assoc 10 aent))))      ; ARC entityì˜ ì¤‘ì‹¬ì  xì¢Œí‘œ
-(setq b (cadr (cdr (assoc 10 aent))))     ; ARC entityì˜ ì¤‘ì‹¬ì  yì¢Œí‘œ
-(setq r (cdr (assoc 40 aent)))            ; ARC entityì˜ ë°˜ì§€ë¦„
-(setq sa (cdr (assoc 50 aent)))           ; ARC entityì˜ ì‹œìž‘ ê°ë„
-(setq ea (cdr (assoc 51 aent)))           ; ARC entityì˜ ë ê°ë„
+(setq a (car (cdr (assoc 10 aent))))      ; ARC entityÀÇ Áß½ÉÁ¡ xÁÂÇ¥
+(setq b (cadr (cdr (assoc 10 aent))))     ; ARC entityÀÇ Áß½ÉÁ¡ yÁÂÇ¥
+(setq r (cdr (assoc 40 aent)))            ; ARC entityÀÇ ¹ÝÁö¸§
+(setq sa (cdr (assoc 50 aent)))           ; ARC entityÀÇ ½ÃÀÛ °¢µµ
+(setq ea (cdr (assoc 51 aent)))           ; ARC entityÀÇ ³¡ °¢µµ
 
-(setq x1 (car sp))                        ; LINE entityì˜ ì‹œìž‘ì  xì¢Œí‘œ
-(setq x2 (car ep))                        ; LINE entityì˜ ëì  xì¢Œí‘œ
-(setq y1 (cadr sp))                       ; LINE entityì˜ ì‹œìž‘ì  yì¢Œí‘œ
-(setq y2 (cadr ep))                       ; LINE entityì˜ ëì  yì¢Œí‘œ
-(setq c (/ (- y1 y2) (- x1 x2)))          ; y=cx+dì—ì„œ c
-(setq d (- y2 (* c x2)))                  ; y=cx+dì—ì„œ d
+(setq x1 (car sp))                        ; LINE entityÀÇ ½ÃÀÛÁ¡ xÁÂÇ¥
+(setq x2 (car ep))                        ; LINE entityÀÇ ³¡Á¡ xÁÂÇ¥
+(setq y1 (cadr sp))                       ; LINE entityÀÇ ½ÃÀÛÁ¡ yÁÂÇ¥
+(setq y2 (cadr ep))                       ; LINE entityÀÇ ³¡Á¡ yÁÂÇ¥
+(setq c (/ (- y1 y2) (- x1 x2)))          ; y=cx+d¿¡¼­ c
+(setq d (- y2 (* c x2)))                  ; y=cx+d¿¡¼­ d
 
-(setq a1 (+ 1 (* c c)))                   ; xì— ëŒ€í•œ ì´ì°¨ë°©ì •ì‹ì˜ a
-(setq b1 (+ (* 2 d c) (* -2 a) (* -2 b c)))   ;xì— ëŒ€í•œ ì´ì°¨ë°©ì •ì‹ì˜ b
-(setq c1 (+ (* a a) (* b b) (* d d) (* -2 b d) (* -1 r r)))  ;ì´ì°¨ ë°©ì •ì‹ì˜ c
-(setq x1 (/ (+ (* -1 b1) (sqrt (- (* b1 b1) (* 4 a1 c1)))) (* 2 a1)))  ;ê·¼ 1
-(setq x2 (/ (- (* -1 b1) (sqrt (- (* b1 b1) (* 4 a1 c1)))) (* 2 a1)))  ;ê·¼ 2
-(setq y1 (+ (* c x1) d))                  ;ê·¼ 1ì¼ ë•Œ yê°’
-(setq y2 (+ (* c x2) d))                  ;ê·¼ 2ì¼ ë•Œ yê°’
+(setq a1 (+ 1 (* c c)))                   ; x¿¡ ´ëÇÑ ÀÌÂ÷¹æÁ¤½ÄÀÇ a
+(setq b1 (+ (* 2 d c) (* -2 a) (* -2 b c)))   ;x¿¡ ´ëÇÑ ÀÌÂ÷¹æÁ¤½ÄÀÇ b
+(setq c1 (+ (* a a) (* b b) (* d d) (* -2 b d) (* -1 r r)))  ;ÀÌÂ÷ ¹æÁ¤½ÄÀÇ c
+(setq x1 (/ (+ (* -1 b1) (sqrt (- (* b1 b1) (* 4 a1 c1)))) (* 2 a1)))  ;±Ù 1
+(setq x2 (/ (- (* -1 b1) (sqrt (- (* b1 b1) (* 4 a1 c1)))) (* 2 a1)))  ;±Ù 2
+(setq y1 (+ (* c x1) d))                  ;±Ù 1ÀÏ ¶§ y°ª
+(setq y2 (+ (* c x2) d))                  ;±Ù 2ÀÏ ¶§ y°ª
 
-(setq ang1 (angle (list a b 0.0) (list x1 y1 0.0)))   ;êµì 1ì˜ ì ˆëŒ€ê°(ì›ì ì—ì„œ)
-(setq ang2 (angle (list a b 0.0) (list x2 y2 0.0)))   ;êµì 2ì˜ ì ˆëŒ€ê°(ì›ì ì—ì„œ)
+(setq ang1 (angle (list a b 0.0) (list x1 y1 0.0)))   ;±³Á¡1ÀÇ Àý´ë°¢(¿øÁ¡¿¡¼­)
+(setq ang2 (angle (list a b 0.0) (list x2 y2 0.0)))   ;±³Á¡2ÀÇ Àý´ë°¢(¿øÁ¡¿¡¼­)
 
 (if (inang sa ea ang1)
-  (list x1 y1 0.0)         ;êµì 1ì´ í˜¸ì˜ ì‹œìž‘ê°ê³¼ ëê° ìƒì´ì— ìžˆìœ¼ë©´ êµì  ëŒë ¤ì¤Œ
-  (if (inang sa ea ang2)   ;êµì 2ê°€ í˜¸ì˜ ì‹œìž‘ê°ê³¼ ëê° ìƒì´ì— ìžˆìœ¼ë©´ êµì  ëŒë ¤ì¤Œ
+  (list x1 y1 0.0)         ;±³Á¡1ÀÌ È£ÀÇ ½ÃÀÛ°¢°ú ³¡°¢ »óÀÌ¿¡ ÀÖÀ¸¸é ±³Á¡ µ¹·ÁÁÜ
+  (if (inang sa ea ang2)   ;±³Á¡2°¡ È£ÀÇ ½ÃÀÛ°¢°ú ³¡°¢ »óÀÌ¿¡ ÀÖÀ¸¸é ±³Á¡ µ¹·ÁÁÜ
     (list x2 y2 0.0)
-    nil                    ;êµì  1ê³¼ 2ê°€ ëª¨ë‘ ê° ë²”ìœ„ë¥¼ ë²—ì–´ë‚  ê²½ìš° nilëŒë ¤ì¤Œ
+    nil                    ;±³Á¡ 1°ú 2°¡ ¸ðµÎ °¢ ¹üÀ§¸¦ ¹þ¾î³¯ °æ¿ì nilµ¹·ÁÁÜ
   ) ;of if
 ) ;of if
 )
@@ -117,16 +117,16 @@ a1 b1 c1 x1 x2 y1 y2 ang1 ang2
 ;            1995/6/26
 ;*************************************************************
 
-;ì–´ë–¤ ê°ì´ ì£¼ì–´ì§„ ë‘ê°(ang1, ang2) ì‚¬ì´ì— ìžˆëŠ”ê°€?
-; ë‘ê° ì‚¬ì´ì— ìžˆëŠ” ê²½ìš° ë‘ê°ì˜ ì°¨ì´ë¥¼ ëŒë ¤ì£¼ê³ 
-; ë‘ê° ì‚¬ì´ì— ì—†ëŠ” ê²½ìš°ëŠ” nilì„ ëŒë ¤ì¤€ë‹¤.
+;¾î¶² °¢ÀÌ ÁÖ¾îÁø µÎ°¢(ang1, ang2) »çÀÌ¿¡ ÀÖ´Â°¡?
+; µÎ°¢ »çÀÌ¿¡ ÀÖ´Â °æ¿ì µÎ°¢ÀÇ Â÷ÀÌ¸¦ µ¹·ÁÁÖ°í
+; µÎ°¢ »çÀÌ¿¡ ¾ø´Â °æ¿ì´Â nilÀ» µ¹·ÁÁØ´Ù.
 
-(defun inang(a1 a2 a3 /             ;ì¸ìˆ˜ ì •ì˜
-a1 a2 a3                            ;ì§€ì—­ë³€ìˆ˜ ì •ì˜
+(defun inang(a1 a2 a3 /             ;ÀÎ¼ö Á¤ÀÇ
+a1 a2 a3                            ;Áö¿ªº¯¼ö Á¤ÀÇ
 )
-(if (> a1 a2) (setq a2 (+ (* 2.0 pi) a2)))   ;ì²«ê°ì´ ë‘ë²ˆì§¸ ê°ë³´ë‹¤ í¬ë©´ +360ë„
-(if (and (>= a3 a1) (<= a3 a2)) (- a2 a1)    ;ì£¼ì–´ì§„ ê°ì´ ë‘ê°ì‚¬ì´ì— ìžˆìœ¼ë©´
-                                nil)         ; ë‘ê°ì˜ ì°¨ì´ë¥¼ ëŒë ¤ì¤Œ
-)                                            ; ë‘ê° ì‚¬ì´ì— ì—†ìœ¼ë©´ nilëŒë ¤ì¤Œ
+(if (> a1 a2) (setq a2 (+ (* 2.0 pi) a2)))   ;Ã¹°¢ÀÌ µÎ¹øÂ° °¢º¸´Ù Å©¸é +360µµ
+(if (and (>= a3 a1) (<= a3 a2)) (- a2 a1)    ;ÁÖ¾îÁø °¢ÀÌ µÎ°¢»çÀÌ¿¡ ÀÖÀ¸¸é
+                                nil)         ; µÎ°¢ÀÇ Â÷ÀÌ¸¦ µ¹·ÁÁÜ
+)                                            ; µÎ°¢ »çÀÌ¿¡ ¾øÀ¸¸é nilµ¹·ÁÁÜ
 
 

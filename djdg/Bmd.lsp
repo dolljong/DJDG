@@ -4,8 +4,8 @@
 ;           Jong-Suk Yi
 ;           1998. 2. 24
 ;*****************************************
-; ë„ë©˜íŠ¸ë„ë¥¼ ê·¸ë ¤ì¤€ë‹¤.
-; DATA ì…ë ¥ì‚¬í•­ì€ ì ˆì ë²ˆí˜¸, X-ì¢Œí‘œ, ëª¨ë©˜íŠ¸ê°’ì´ë‹¤.
+; µµ¸àÆ®µµ¸¦ ±×·ÁÁØ´Ù.
+; DATA ÀÔ·Â»çÇ×Àº ÀıÁ¡¹øÈ£, X-ÁÂÇ¥, ¸ğ¸àÆ®°ªÀÌ´Ù.
 
 (defun C:BMD(
  /               gap     bdrx     bdry    yfac   rh       fcw      trg     th
@@ -29,44 +29,44 @@
 
 ;  (setq oer *error* *error* seterr)
 
-  ;----- ê°ì¢… ì´ˆê¸°ê°’ ì§€ì • (Camberë„)
-  (setq gap (getint "\nLEFT MARGIN (mm)<60>: "))    ;ë„ê°ê³¼ camberë„ì™€ì˜ ê°„ê²©(ì—¬ë°±)
-  (if (= gap nil) (setq gap 60))                    ;returnì…ë ¥ì‹œ gap=60mm
-  (setq bdrx 780)                                   ;borderì˜ xí¬ê¸°
-  (setq bdry 557)                                   ;borderì˜ yí¬ê¸°
+  ;----- °¢Á¾ ÃÊ±â°ª ÁöÁ¤ (Camberµµ)
+  (setq gap (getint "\nLEFT MARGIN (mm)<60>: "))    ;µµ°¢°ú camberµµ¿ÍÀÇ °£°İ(¿©¹é)
+  (if (= gap nil) (setq gap 60))                    ;returnÀÔ·Â½Ã gap=60mm
+  (setq bdrx 780)                                   ;borderÀÇ xÅ©±â
+  (setq bdry 557)                                   ;borderÀÇ yÅ©±â
   (setq yfac 1)                                     ;y-factor
 
-  ;----- ê°ì¢… ì´ˆê¸°ê°’ ì§€ì • (Camber table)
-  (setq rh 7)                                     ;row height (table ì¤„ë†’ì´)
+  ;----- °¢Á¾ ÃÊ±â°ª ÁöÁ¤ (Camber table)
+  (setq rh 7)                                     ;row height (table ÁÙ³ôÀÌ)
   (setq fcw 20)                                   ;first column width
   (setq trg 2)                                    ;text right gap
 
   (setvar "CMDECHO" 0)                            ;command echo off
   (setvar "BLIPMODE" 0)                           ;blip mode off
-  (setq th (getvar "DIMTXT"))                      ;text size ì§€ì •
+  (setq th (getvar "DIMTXT"))                      ;text size ÁöÁ¤
 
-  (command "ZOOM" "W" "0,0" (list bdrx bdry))       ;ë„ê°ì´ ê½‰ ì°¨ê²Œ ë³´ì´ê¸°
+  (command "ZOOM" "W" "0,0" (list bdrx bdry))       ;µµ°¢ÀÌ ²Ë Â÷°Ô º¸ÀÌ±â
 
    (princ "alsdkjfl")
-  (setq fn (getfiled "INPUT DATA" "" "DAT" 0))    ;file nameì…ë ¥
+  (setq fn (getfiled "INPUT DATA" "" "DAT" 0))    ;file nameÀÔ·Â
   (setq opf (open fn "r"))                        ;file open
 
-  (setq nlist nil)                                ;ë¹ˆ node-list ë§Œë“¬
-  (setq comb nil)                                 ;ë¹ˆ ì¡°í•© ë§Œë“¬
-  (setq drw nil)                                 ;ë¹ˆ draw-listë§Œë“¬
+  (setq nlist nil)                                ;ºó node-list ¸¸µë
+  (setq comb nil)                                 ;ºó Á¶ÇÕ ¸¸µë
+  (setq drw nil)                                 ;ºó draw-list¸¸µë
 
-  ;----- data fileë¡œë¶€í„° DATAì…ë ¥
+  ;----- data file·ÎºÎÅÍ DATAÀÔ·Â
 
-  (if opf                                         ;fileì´ ì—†ëŠ” ê²½ìš°
+  (if opf                                         ;fileÀÌ ¾ø´Â °æ¿ì
     (progn
-       (while (and (/= (setq ch (read-line opf)) nil)         ;íŒŒì¼ì˜ ë
-                   (/= (strcase ch) "COMB")                   ;combë¼ëŠ” ë‹¨ì–´
-                   (/= (strcase ch) "DRAW")                   ;combë¼ëŠ” ë‹¨ì–´
-                   (/= ch ""))                                ;ë¹ˆì¹¸
-            (setq nlist (append nlist (list (strloc ch))))    ;nlistì— ì¶”ê°€
+       (while (and (/= (setq ch (read-line opf)) nil)         ;ÆÄÀÏÀÇ ³¡
+                   (/= (strcase ch) "COMB")                   ;comb¶ó´Â ´Ü¾î
+                   (/= (strcase ch) "DRAW")                   ;comb¶ó´Â ´Ü¾î
+                   (/= ch ""))                                ;ºóÄ­
+            (setq nlist (append nlist (list (strloc ch))))    ;nlist¿¡ Ãß°¡
        ) ;of while
-       (if (or (= ch "COMB") (= ch "comb"))                 ;combì¼ë•Œ
-         (while (and (/= (setq ch (read-line opf)) nil)     ;combë°ì´íƒ€ ì½ê¸°
+       (if (or (= ch "COMB") (= ch "comb"))                 ;combÀÏ¶§
+         (while (and (/= (setq ch (read-line opf)) nil)     ;combµ¥ÀÌÅ¸ ÀĞ±â
                      (/= ch "")
                      (/= (strcase ch) "DRAW"))
             (setq comb (append comb (list ch)))
@@ -79,228 +79,228 @@
          ) ;of while
        ) ;of if
     ) ;of progn
-    (princ "\nFile not found")                    ;fileì´ ì—†ëŠ” ê²½ìš°
+    (princ "\nFile not found")                    ;fileÀÌ ¾ø´Â °æ¿ì
   ) ;of if
   (close opf)                                     ;file close
 
-  ;----- ì…ë ¥ lineìˆ˜ ë“± êµ¬í•¨
-  (setq nnum (length nlist))                         ;ì…ë ¥ lineì˜ ê°¯ìˆ˜
-  (setq ncamb (- (length (nth 1 nlist)) 2))          ;camberì˜ ìˆ˜
-  (setq ncomb (length comb))                          ;ì…ë ¥ Combinationì˜ ê°¯ìˆ˜
-  (setq ndraw (length drw))                          ;drawìˆ˜
+  ;----- ÀÔ·Â line¼ö µî ±¸ÇÔ
+  (setq nnum (length nlist))                         ;ÀÔ·Â lineÀÇ °¹¼ö
+  (setq ncamb (- (length (nth 1 nlist)) 2))          ;camberÀÇ ¼ö
+  (setq ncomb (length comb))                          ;ÀÔ·Â CombinationÀÇ °¹¼ö
+  (setq ndraw (length drw))                          ;draw¼ö
 
   (if (= drw nil)
-    (progn (princ "\nDRAW not found") (exit))) ;drawì—†ì„ ë•Œ ì¢…ë£Œ
+    (progn (princ "\nDRAW not found") (exit))) ;draw¾øÀ» ¶§ Á¾·á
 
-  ;----- ì…ë ¥ lineìˆ˜ë“± í‘œì‹œí•´ì¤Œ
+  ;----- ÀÔ·Â line¼öµî Ç¥½ÃÇØÁÜ
   (princ nnum) (princ "-NODE / ")
   (princ ncamb) (princ "-CAMBER(S) / ")
   (princ ncomb) (princ "-COMBINATION(S) / ")
   (princ ndraw) (princ "-DRAWING(S) FOUND")
 
-  (setq xmax (atof (nth 1 (nth (1- nnum) nlist))))  ;ë§¨ ëì ì˜ xê°’
-  (setq xmin (atof (nth 1 (nth 0 nlist))))           ;ì²«ì  Xê°’
+  (setq xmax (atof (nth 1 (nth (1- nnum) nlist))))  ;¸Ç ³¡Á¡ÀÇ x°ª
+  (setq xmin (atof (nth 1 (nth 0 nlist))))           ;Ã¹Á¡ X°ª
 
-  (setq xscale (/ (- bdrx (* 2 gap)) xmax))          ;ë„ê°ê³¼ì˜ x scale(ê³„ì‚°)
-;  (setq yscale (getint "\nY-Scale: "))               ;yë°©í–¥ scale(ì…ë ¥ê°’)
+  (setq xscale (/ (- bdrx (* 2 gap)) xmax))          ;µµ°¢°úÀÇ x scale(°è»ê)
+;  (setq yscale (getint "\nY-Scale: "))               ;y¹æÇâ scale(ÀÔ·Â°ª)
 
-  (setq node nil)                                     ;node list ì´ˆê¸°í™”
-  (setq    x nil)                                     ;xê°’ listì´ˆê¸°í™”
-  (setq   YC nil)                                     ;Yê°’ listì˜ list
+  (setq node nil)                                     ;node list ÃÊ±âÈ­
+  (setq    x nil)                                     ;x°ª listÃÊ±âÈ­
+  (setq   YC nil)                                     ;Y°ª listÀÇ list
 
-  ;----- node list, xê°’ list ë§Œë“¤ê¸°
+  ;----- node list, x°ª list ¸¸µé±â
   (setq count 0)
-  (repeat nnum                                        ;nodeê°¯ìˆ˜ë§Œí¼
+  (repeat nnum                                        ;node°¹¼ö¸¸Å­
     (setq node (append node (list (nth 0 (nth count nlist)))))
     (setq X    (append x (list (atof (nth 1 (nth count nlist))))))
-    (setq count (1+ count))                           ;ë‹¤ìŒ nodeë¡œ
+    (setq count (1+ count))                           ;´ÙÀ½ node·Î
   ) ;of repeat
 
-  ;----- ìµœì†Œ columnì˜ í­ êµ¬í•˜ê¸°/ì…ë ¥ë°›ê¸°
+  ;----- ÃÖ¼Ò columnÀÇ Æø ±¸ÇÏ±â/ÀÔ·Â¹Ş±â
   (setq min_xlen (* (+ (strlen (rtos (nth 0 (reverse x)) 2 3)) 2) th))
   (princ "\nColumn width (mm)<")
   (princ min_xlen)
-  (setq cw (getint ">: "))                      ;camber table ì¹¸ ë„“ì´ ì…ë ¥ë°›ìŒ
-  (if (< cw min_xlen) (setq cw min_xlen))       ;ìµœì†Œí­ë³´ë‹¤ ì ìœ¼ë©´ ìµœì†Œí­ìœ¼ë¡œ
+  (setq cw (getint ">: "))                      ;camber table Ä­ ³ĞÀÌ ÀÔ·Â¹ŞÀ½
+  (if (< cw min_xlen) (setq cw min_xlen))       ;ÃÖ¼ÒÆøº¸´Ù ÀûÀ¸¸é ÃÖ¼ÒÆøÀ¸·Î
   (setq cw (fix min_xlen))
 
-  ;----- Yê°’ list ë§Œë“¤ê¸°
+  ;----- Y°ª list ¸¸µé±â
   (setq ccount 2)
-  (repeat ncamb                                           ;camberìˆ˜ë§Œí¼
-    (setq count 0)                                        ;ì²«ì ë¶€í„°..
-    (setq y nil)                                          ;y list ì´ˆê¸°í™”
-    (repeat nnum                                          ;ë§ˆì§€ë§‰ ì ê¹Œì§€..
-      (setq cy (atof (nth ccount (nth count nlist))))     ;yê°’ ì¶•ì¶œ
+  (repeat ncamb                                           ;camber¼ö¸¸Å­
+    (setq count 0)                                        ;Ã¹Á¡ºÎÅÍ..
+    (setq y nil)                                          ;y list ÃÊ±âÈ­
+    (repeat nnum                                          ;¸¶Áö¸· Á¡±îÁö..
+      (setq cy (atof (nth ccount (nth count nlist))))     ;y°ª ÃàÃâ
       (setq Y (append Y (list cy)))
       (setq count (1+ count))
     ) ;of repeat
-    (setq YC (append YC (list Y)))                        ;y list ë¬¶ìŒ ë§Œë“¤ê¸°
-    (setq ccount (1+ ccount))                             ;ë‹¤ìŒcamberë¡œ
+    (setq YC (append YC (list Y)))                        ;y list ¹­À½ ¸¸µé±â
+    (setq ccount (1+ ccount))                             ;´ÙÀ½camber·Î
   ) ;of repeat
 
-  ;----- combinationê²°ê³¼ Yê°’ listì— ì¶”ê°€í•˜ê¸°
+  ;----- combination°á°ú Y°ª list¿¡ Ãß°¡ÇÏ±â
   (setq cnt_comb 0)
   (repeat ncomb
-    (setq yc (append yc (list (op (nth cnt_comb comb) yc)))) ;combë¥¼ ê³„ì‚°í•˜ì—¬ ycì— ì¶”ê°€
-    (setq cnt_comb (1+ cnt_comb))                             ;ë‹¤ìŒ combë¡œ
+    (setq yc (append yc (list (op (nth cnt_comb comb) yc)))) ;comb¸¦ °è»êÇÏ¿© yc¿¡ Ãß°¡
+    (setq cnt_comb (1+ cnt_comb))                             ;´ÙÀ½ comb·Î
   ) ;of repeat
 
-  (setq n_camber (length yc))                           ;camberì˜ ì´ìˆ˜
+  (setq n_camber (length yc))                           ;camberÀÇ ÃÑ¼ö
 
-  ;----- ìµœëŒ€ yê°’ ë° yscaleêµ¬í•˜ê¸°
-  (setq maxcy (abs (nth 0 (nth 0 yc))))                 ;ìµœëŒ€ yê°’ì€ ì²˜ìŒ ê°’
+  ;----- ÃÖ´ë y°ª ¹× yscale±¸ÇÏ±â
+  (setq maxcy (abs (nth 0 (nth 0 yc))))                 ;ÃÖ´ë y°ªÀº Ã³À½ °ª
   (setq count_c 0)
-  (repeat n_camber                                      ;camberìˆ˜ ë§Œí¼
+  (repeat n_camber                                      ;camber¼ö ¸¸Å­
     (setq count_n 0)
-    (repeat nnum                                        ;nodeìˆ˜ ë§Œí¼
-      (setq cy (nth count_n (nth count_c yc)))          ;yê°’ ì¶•ì¶œ
-      (if (> (abs cy) maxcy) (setq maxcy (abs cy)))     ;ìµœëŒ€yê°’ì°¾ê¸°
-      (setq count_n (1+ count_n))                       ;ë‹¤ìŒ nodeë¡œ
+    (repeat nnum                                        ;node¼ö ¸¸Å­
+      (setq cy (nth count_n (nth count_c yc)))          ;y°ª ÃàÃâ
+      (if (> (abs cy) maxcy) (setq maxcy (abs cy)))     ;ÃÖ´ëy°ªÃ£±â
+      (setq count_n (1+ count_n))                       ;´ÙÀ½ node·Î
     ) ;of repeat
-    (setq count_c (1+ count_c))                         ;ë‹¤ìŒ camberë¡œ
+    (setq count_c (1+ count_c))                         ;´ÙÀ½ camber·Î
   ) ;of repeat
-  (setq yscale (/ xmax 10 maxcy))                       ;y-scale = xê¸¸ì´ì˜ 1/10
+  (setq yscale (/ xmax 10 maxcy))                       ;y-scale = x±æÀÌÀÇ 1/10
 
-  ;----- camberë„ ê·¸ë¦¬ê¸°
+  ;----- camberµµ ±×¸®±â
   (setq draw_cnt 0)
-  (repeat ndraw                                  ;drawê°¯ìˆ˜ë§Œí¼ ë°˜ë³µ
-    (setq ncmb (length (nth draw_cnt drw)))      ;camberë„ì— ë“¤ì–´ê°ˆ caseìˆ˜
+  (repeat ndraw                                  ;draw°¹¼ö¸¸Å­ ¹İº¹
+    (setq ncmb (length (nth draw_cnt drw)))      ;camberµµ¿¡ µé¾î°¥ case¼ö
 
-    ;---- ìˆ˜ì§ì„ ì˜ yì¢Œí‘œ êµ¬í•˜ê¸°(ì ˆëŒ€ê°’ y max)
-    (setq maxy_lst nil)                             ; max-Y list ì´ˆê¸°í™”
-    (setq n_node 0)                                 ;ì²« nodeë¶€í„°
-    (repeat nnum                                    ;caseìˆ˜ë§Œí¼ ë°˜ë³µ
+    ;---- ¼öÁ÷¼±ÀÇ yÁÂÇ¥ ±¸ÇÏ±â(Àı´ë°ª y max)
+    (setq maxy_lst nil)                             ; max-Y list ÃÊ±âÈ­
+    (setq n_node 0)                                 ;Ã¹ nodeºÎÅÍ
+    (repeat nnum                                    ;case¼ö¸¸Å­ ¹İº¹
       (setq n (1- (atoi (nth 0 (nth draw_cnt drw)))))
-      (setq maxy (nth n_node (nth n yc)))           ;ì²«ë²ˆì§¸ caseê°€ ìµœëŒ€ê°’
-      (setq n_case 0)                               ;ë‘˜ì§¸ caseë¶€í„°
+      (setq maxy (nth n_node (nth n yc)))           ;Ã¹¹øÂ° case°¡ ÃÖ´ë°ª
+      (setq n_case 0)                               ;µÑÂ° caseºÎÅÍ
       (repeat ncmb
-        (setq cn (1- (atoi (nth n_case (nth draw_cnt drw))))) ;caseë²ˆí˜¸
-        (setq n_y (nth n_node (nth cn yc)))         ;në²ˆì¬ nodeì˜ yê°’
-        (if (> (abs n_y) (abs maxy))                ;í˜„ì¬ maxë³´ë‹¤ í´ë•Œ
+        (setq cn (1- (atoi (nth n_case (nth draw_cnt drw))))) ;case¹øÈ£
+        (setq n_y (nth n_node (nth cn yc)))         ;n¹øÀç nodeÀÇ y°ª
+        (if (> (abs n_y) (abs maxy))                ;ÇöÀç maxº¸´Ù Å¬¶§
           (setq maxy n_y)
         ) ;of if
-        (setq n_case (1+ n_case))                  ;ë‹¤ìŒ caseë¡œ
-      ) ;of repeat                                 ;maxy listì— ì¶”ê°€
+        (setq n_case (1+ n_case))                  ;´ÙÀ½ case·Î
+      ) ;of repeat                                 ;maxy list¿¡ Ãß°¡
       (setq maxy_lst (append maxy_lst (list maxy)))
       (setq n_node (1+ n_node))
     ) ;of repeat
 
-    ;---- ë°‘ì¤„ ê·¸ë¦¬ê¸°
-    (setq camby (+ 0.3 (* (/ 0.7 ndraw) (- ndraw (1+ draw_cnt)))))      ;camberë„ yìœ„ì¹˜
+    ;---- ¹ØÁÙ ±×¸®±â
+    (setq camby (+ 0.3 (* (/ 0.7 ndraw) (- ndraw (1+ draw_cnt)))))      ;camberµµ yÀ§Ä¡
 
-    (setq firstx (list (+ (* xscale xmin) gap) (* bdry camby)))  ;ì²« xì 
-    (setq lastx (list (+ (* xscale xmax) gap) (* bdry camby)))   ;ë§ˆì§€ë§‰ xì 
-    (command "LINE" firstx lastx "")                 ;base lineê·¸ë¦¬ê¸°
+    (setq firstx (list (+ (* xscale xmin) gap) (* bdry camby)))  ;Ã¹ xÁ¡
+    (setq lastx (list (+ (* xscale xmax) gap) (* bdry camby)))   ;¸¶Áö¸· xÁ¡
+    (command "LINE" firstx lastx "")                 ;base line±×¸®±â
 
-    ;---- nodeë²ˆí˜¸/pier/ìˆ˜ì§ì„ ê·¸ë¦¬ê¸°
-    (setq count 0)                                  ;ì²«ì ë¶€í„°..
-    (repeat nnum                                    ;ë§ˆì§€ë§‰ ì ê¹Œì§€..
-      (setq nd (nth count node))                    ;nodeì¶•ì¶œ
+    ;---- node¹øÈ£/pier/¼öÁ÷¼±±×¸®±â
+    (setq count 0)                                  ;Ã¹Á¡ºÎÅÍ..
+    (repeat nnum                                    ;¸¶Áö¸· Á¡±îÁö..
+      (setq nd (nth count node))                    ;nodeÃàÃâ
       (setq xx (nth count x))
 
       (setq bpnt (list (+ (* xx xscale) gap) (* bdry camby)))  ;base point
 
-      (if (= (substr nd 1 1) "+")               ;nodeì— fixë‹¨í‘œì‹œ ìˆì„ë•Œ
+      (if (= (substr nd 1 1) "+")               ;node¿¡ fix´ÜÇ¥½Ã ÀÖÀ»¶§
         (progn
-          (command "LINE" bpnt "@3<-60" "@3<180" "C")   ;fixë‹¨ í‘œì‹œ(ì‚¼ê°í˜•)
-          (setq nd (substr nd 2))                   ;fixë‹¨ í‘œì‹œ(+)ì œê±°
-          (setq ap (nth 0 (reverse (nth count nlist)))) ;Abut/Pierë²ˆí˜¸ ì½ìŒ
+          (command "LINE" bpnt "@3<-60" "@3<180" "C")   ;fix´Ü Ç¥½Ã(»ï°¢Çü)
+          (setq nd (substr nd 2))                   ;fix´Ü Ç¥½Ã(+)Á¦°Å
+          (setq ap (nth 0 (reverse (nth count nlist)))) ;Abut/Pier¹øÈ£ ÀĞÀ½
         )
-        (if (= (substr nd 1 1) "-")            ;nodeì— moveë‹¨í‘œì‹œ ìˆì„ë•Œ
+        (if (= (substr nd 1 1) "-")            ;node¿¡ move´ÜÇ¥½Ã ÀÖÀ»¶§
           (progn
-            (command "LINE" bpnt "@3<-60" "@3<180" "C") ;moveë‹¨ í‘œì‹œ(ì‚¼ê°í˜•)
-            (setq b1 (list (- (+ (* xx xscale) gap) 1.5) ;ë°‘ì¤„ ì‹œì‘ì 
+            (command "LINE" bpnt "@3<-60" "@3<180" "C") ;move´Ü Ç¥½Ã(»ï°¢Çü)
+            (setq b1 (list (- (+ (* xx xscale) gap) 1.5) ;¹ØÁÙ ½ÃÀÛÁ¡
                            (- (* bdry camby) 3)))
-            (setq b2 (list (+ (+ (* xx xscale) gap) 1.5) ;ë°‘ì¤„ ëì 
+            (setq b2 (list (+ (+ (* xx xscale) gap) 1.5) ;¹ØÁÙ ³¡Á¡
                            (- (* bdry camby) 3)))
-            (command "LINE" b1 b2 "")                   ;ë°‘ì¤„ ê·¸ë¦¼
-            (setq nd (substr nd 2))                 ;moveë‹¨ í‘œì‹œ(-)ì œê±°
-            (setq ap (nth 0 (reverse (nth count nlist)))) ;Abut/Pierë²ˆí˜¸ ì½ìŒ
+            (command "LINE" b1 b2 "")                   ;¹ØÁÙ ±×¸²
+            (setq nd (substr nd 2))                 ;move´Ü Ç¥½Ã(-)Á¦°Å
+            (setq ap (nth 0 (reverse (nth count nlist)))) ;Abut/Pier¹øÈ£ ÀĞÀ½
           ) ;of progn
         );of if
       ) ;of if
 
-      (if (/= ap nil)                                     ;Abut/Pierì¼ ê²½ìš°
+      (if (/= ap nil)                                     ;Abut/PierÀÏ °æ¿ì
         (progn
-          (setq cp (list (car bpnt) (- (cadr bpnt) 12)))  ;ì›ì˜ ì¤‘ì‹¬
-          (command "CIRCLE" cp "4.0")                     ;ì›ê·¸ë¦¬ê¸°
-          (command "TEXT" "M" cp 3.0 0.0 ap)              ;textì“°ê¸°
+          (setq cp (list (car bpnt) (- (cadr bpnt) 12)))  ;¿øÀÇ Áß½É
+          (command "CIRCLE" cp "4.0")                     ;¿ø±×¸®±â
+          (command "TEXT" "M" cp 3.0 0.0 ap)              ;text¾²±â
           (setq ap nil)
         ) ;of progn
       ) ;of if
 
-      (setq nd (atoi nd))                     ;nodeë¥¼ ì •ìˆ˜ë¡œ
-      (setq nd (itoa nd))                     ;nodeë¥¼ ë¬¸ìì—´ë¡œ(ê³µë°±ì œê±°)
+      (setq nd (atoi nd))                     ;node¸¦ Á¤¼ö·Î
+      (setq nd (itoa nd))                     ;node¸¦ ¹®ÀÚ¿­·Î(°ø¹éÁ¦°Å)
       (setq txtpnt (list (+ (* xx xscale) gap) (- (* bdry camby) 5))) ;text pnt
-      (command "TEXT" "M" txtpnt th "0" nd)     ;node ë²ˆí˜¸ì ê¸°
+      (command "TEXT" "M" txtpnt th "0" nd)     ;node ¹øÈ£Àû±â
 
       (setq count (1+ count))
     ) ;of repeat
-                                     ;ë‹¤ìŒ nodeë¡œ
-    ;----- ìˆ˜ì§ì„ ê·¸ë¦¬ê¸°
+                                     ;´ÙÀ½ node·Î
+    ;----- ¼öÁ÷¼±±×¸®±â
     (setvar "CECOLOR" "1")
-    (setq count 0)                                  ;ì²«ì ë¶€í„°..
-    (repeat nnum                                    ;ë§ˆì§€ë§‰ ì ê¹Œì§€..
+    (setq count 0)                                  ;Ã¹Á¡ºÎÅÍ..
+    (repeat nnum                                    ;¸¶Áö¸· Á¡±îÁö..
       (setq xx (nth count x))
       (setq bpnt (list (+ (* xx xscale) gap) (* bdry camby)))  ;base point
       (setq yy (+ (* (nth count maxy_lst) yscale -1 xscale) (* bdry camby)))
       (command "LINE" bpnt
                       (list (car bpnt) yy) "")
-      (setq maxyy (nth count maxy_lst))             ;ìµœëŒ€ê°’
+      (setq maxyy (nth count maxy_lst))             ;ÃÖ´ë°ª
       (if (>= maxyy 0)
-        (setq txtalign "MR")                        ;ìµœëŒ€ê°’ì´ ì–‘ìˆ˜ì´ë©´
-        (setq txtalign "ML"))                       ;ìš°ì¸¡ì •ë ¬
+        (setq txtalign "MR")                        ;ÃÖ´ë°ªÀÌ ¾ç¼öÀÌ¸é
+        (setq txtalign "ML"))                       ;¿ìÃøÁ¤·Ä
       (command "TEXT" "J" txtalign (list (car bpnt) yy) th "90"
                       (strcat " " (rtos maxyy 2 1) " "))
 
       (setq count (1+ count))
-    ) ;of repeat                                      ;ë‹¤ìŒ nodeë¡œ
+    ) ;of repeat                                      ;´ÙÀ½ node·Î
     (setvar "CECOLOR" "BYLAYER")
 
-    ;---- camberê·¸ë¦¬ê¸°
-    (setq oldc (getvar "CECOLOR"))                    ;í˜„ì¬ìƒ‰ ëŒ€í”¼
+    ;---- camber±×¸®±â
+    (setq oldc (getvar "CECOLOR"))                    ;ÇöÀç»ö ´ëÇÇ
     (setq cmb_cnt 0)
     (repeat ncmb
       (setq c_count (1- (atoi (nth cmb_cnt (nth draw_cnt drw)))))
-      (setvar "CECOLOR" (itoa (1+ c_count)))               ;ìƒ‰ ì§€ì •
+      (setvar "CECOLOR" (itoa (1+ c_count)))               ;»ö ÁöÁ¤
       (setq n_count 0)
       (command "PLINE")
       (repeat nnum
         (setq xx (nth n_count x))
         (setq yy (nth n_count (nth c_count yc)))
-        (setq pnt (list (+ (* xx xscale) gap)                         ;camber ì 
+        (setq pnt (list (+ (* xx xscale) gap)                         ;camber Á¡
                         (+ (* yy yscale -1 xscale) (* bdry camby))))
 
-        (command pnt)                                             ;camberì„  ê·¸ë¦¬ê¸°
+        (command pnt)                                             ;camber¼± ±×¸®±â
         (setq n_count (1+ n_count))
       ) ;of repeat
       (command "")
       (setq cmb_cnt (1+ cmb_cnt))
-    ) ;of repeat                                            ;ë‹¤ìŒ camberë¡œ
-    (setvar "CECOLOR" oldc)                                 ;ì˜›ìƒ‰ ëŒë¦¬ê¸°
+    ) ;of repeat                                            ;´ÙÀ½ camber·Î
+    (setvar "CECOLOR" oldc)                                 ;¿¾»ö µ¹¸®±â
     (setq draw_cnt (1+ draw_cnt))
-  ) ;of repeat                                              ;ë‹¤ìŒ drawë¡œ
+  ) ;of repeat                                              ;´ÙÀ½ draw·Î
 
-  ;------ tableê·¸ë¦¬ê¸°
+  ;------ table±×¸®±â
   (setq table (append (list x) yc))
   (setq  ncamb (1+ n_camber))
-  (setq ntbl (+ (/ (* (1+ nnum) cw) (- bdrx (* gap 2))) 1))  ;tableê°¯ìˆ˜
-  (setq tblh (* rh (+ 2 ncamb)))                             ;table ë†’ì´
+  (setq ntbl (+ (/ (* (1+ nnum) cw) (- bdrx (* gap 2))) 1))  ;table°¹¼ö
+  (setq tblh (* rh (+ 2 ncamb)))                             ;table ³ôÀÌ
 
-  (setq maxn (/ (- bdrx (* gap 2)) cw))         ;í•œì¤„ ìµœëŒ€ nodeìˆ˜
+  (setq maxn (/ (- bdrx (* gap 2)) cw))         ;ÇÑÁÙ ÃÖ´ë node¼ö
 
   (setq tcount 0)                               ;table count
   (repeat ntbl
-    (setq node1 (1+ (* tcount maxn)))           ;ì‹œì‘ node
-    (setq node2 (* (1+ tcount) maxn))           ;ë node
-    (if (> node2 nnum)                          ;ë nodeê°€ ë§ˆì§€ë§‰ nodeë³´ë‹¤ í¬ë©´
+    (setq node1 (1+ (* tcount maxn)))           ;½ÃÀÛ node
+    (setq node2 (* (1+ tcount) maxn))           ;³¡ node
+    (if (> node2 nnum)                          ;³¡ node°¡ ¸¶Áö¸· nodeº¸´Ù Å©¸é
       (setq node2 nnum))
 
-    (setq tbly (/ camby 2.0))                   ;camber table yìœ„ì¹˜
+    (setq tbly (/ camby 2.0))                   ;camber table yÀ§Ä¡
     (setq tblpx (- gap fcw)
-          tblpy (- (* bdry tbly) (* tcount (+ tblh cw))))   ;tableì˜ ì‚½ì…ìœ„ì¹˜
+          tblpy (- (* bdry tbly) (* tcount (+ tblh cw))))   ;tableÀÇ »ğÀÔÀ§Ä¡
 
-    (camb_table tblpx tblpy node1 node2 table)              ;tableê·¸ë¦¬ê¸°
+    (camb_table tblpx tblpy node1 node2 table)              ;table±×¸®±â
 
     (setq tcount (1+ tcount))
   ) ;of repeat
@@ -317,39 +317,39 @@
 ;                Jong-Suk Yi
 ;                1995. 2. 8
 ;******************************************************************
-; ì´ í•¨ìˆ˜ëŠ” ,ë¡œ ë¶ˆë¦¬ëœ dataë¥¼ ë‚˜ëˆ„ì–´ í•œê°œì˜ listì— ë¬¶ì–´ì¤€ë‹¤.
-; ì´ë•Œ í˜•ë³€í™˜ ì—†ì´ ëª¨ë“  dataëŠ” ë¬¸ìì—´ë¡œ returnëœë‹¤.
+; ÀÌ ÇÔ¼ö´Â ,·Î ºÒ¸®µÈ data¸¦ ³ª´©¾î ÇÑ°³ÀÇ list¿¡ ¹­¾îÁØ´Ù.
+; ÀÌ¶§ Çüº¯È¯ ¾øÀÌ ¸ğµç data´Â ¹®ÀÚ¿­·Î returnµÈ´Ù.
 ;******************************************************************
 (defun STRLOC(arg1
 /             srt    strl    count    num    strt    nchr    subs
               lst    rslt
 )
 ;(setq oer *error* *error* seterr)   ;Store AutoLISP error routine
-   (setq str arg1)                              ;ë„˜ì–´ì˜¨ ë¬¸ìì—´
-   (setq strl (strlen arg1))                    ;ë„˜ì–´ì˜¨ ë¬¸ìì—´ì˜ ê¸¸ì´
+   (setq str arg1)                              ;³Ñ¾î¿Â ¹®ÀÚ¿­
+   (setq strl (strlen arg1))                    ;³Ñ¾î¿Â ¹®ÀÚ¿­ÀÇ ±æÀÌ
    (setq count 1)
    (setq num 1)
-   (setq strt 1)                                ;ì¶”ì¶œì‹œì‘ ìœ„ì¹˜
-   (setq nchr 1)                                ;ì¶”ì¶œë¬¸ì ê°¯ìˆ˜
+   (setq strt 1)                                ;ÃßÃâ½ÃÀÛ À§Ä¡
+   (setq nchr 1)                                ;ÃßÃâ¹®ÀÚ °¹¼ö
    (repeat (+ strl 1)
-      (setq subs (substr str count 1))          ;ë¬¸ì í•œê°œ
-      (if (or (= subs ",") (= subs ""))         ;í˜„ì¬ ë¬¸ìê°€ ,ì´ê±°ë‚˜ ëì¼ë•Œ
+      (setq subs (substr str count 1))          ;¹®ÀÚ ÇÑ°³
+      (if (or (= subs ",") (= subs ""))         ;ÇöÀç ¹®ÀÚ°¡ ,ÀÌ°Å³ª ³¡ÀÏ¶§
          (progn
-            (setq lst (substr str strt (- nchr 1)))    ;ì‹œì‘ìœ„ì¹˜ë¶€í„°
+            (setq lst (substr str strt (- nchr 1)))    ;½ÃÀÛÀ§Ä¡ºÎÅÍ
             (if (= rslt nil)
-               (setq rslt (list lst))                  ;ëŒë¦¼ê°’ì´ ë¹„ì—ˆì„ë•Œ
-               (setq rslt (append rslt (list lst)))    ;ëŒë¦¼ê°’ì—ë‹¤ ì¶”ê°€
+               (setq rslt (list lst))                  ;µ¹¸²°ªÀÌ ºñ¾úÀ»¶§
+               (setq rslt (append rslt (list lst)))    ;µ¹¸²°ª¿¡´Ù Ãß°¡
             ) ;of if
-            (setq nchr 0)                       ;ì¶”ì¶œê°¯ìˆ˜ ë‹¤ì‹œ 0ìœ¼ë¡œ
-            (setq strt (1+ count))              ;ë‹¤ìŒ ì¶”ì¶œì‹œì‘ì„ ë‹¤ìŒë¬¸ìë¡œ
+            (setq nchr 0)                       ;ÃßÃâ°¹¼ö ´Ù½Ã 0À¸·Î
+            (setq strt (1+ count))              ;´ÙÀ½ ÃßÃâ½ÃÀÛÀ» ´ÙÀ½¹®ÀÚ·Î
          ) ;of progn
          nil
       ) ;of if
-      (setq count (1+ count))                   ;ë‹¤ìŒ ë¬¸ìë¡œ
+      (setq count (1+ count))                   ;´ÙÀ½ ¹®ÀÚ·Î
       (setq num (1+ num))                       ;
-      (setq nchr (1+ nchr))                     ;ë¬¸ì ê°¯ìˆ˜ í•œê°œ ì¦ê°€
+      (setq nchr (1+ nchr))                     ;¹®ÀÚ °¹¼ö ÇÑ°³ Áõ°¡
    ) ;of repeat
-   (setq arg1 rslt)                             ;ëŒë¦¼ê°’ ëŒë¦¼
+   (setq arg1 rslt)                             ;µ¹¸²°ª µ¹¸²
 ;(setq *error* oer seterr nil)                  ; Restore previous error handler
 ) ;of defun STRLOC
 
@@ -360,13 +360,13 @@
 ;            Yi Suk-Jong
 ;            1996/2/14
 ;****************************************************
-; ì´ í•¨ìˆ˜ëŠ” ì£¼ì–´ì§„ dataë¡œ ì†ŸìŒë„ Tableë§Œë“¤ì–´ì¤€ë‹¤
-;  ë°›ëŠ” ê°’ì€
-;      ax : tableì˜ ì¢Œì¸¡ìƒë‹¨ì˜ xìœ„ì¹˜
-;      ay : tableì˜ ì¢Œì¸¡ìƒë‹¨ì˜ yìœ„ì¹˜
-;  anode1 : ì‹œì‘ nodeë²ˆí˜¸
-;  anode2 : ë nodeë²ˆí˜¸
-;  anlist : ì…ë ¥ëœ data list
+; ÀÌ ÇÔ¼ö´Â ÁÖ¾îÁø data·Î ¼ÚÀ½µµ Table¸¸µé¾îÁØ´Ù
+;  ¹Ş´Â °ªÀº
+;      ax : tableÀÇ ÁÂÃø»ó´ÜÀÇ xÀ§Ä¡
+;      ay : tableÀÇ ÁÂÃø»ó´ÜÀÇ yÀ§Ä¡
+;  anode1 : ½ÃÀÛ node¹øÈ£
+;  anode2 : ³¡ node¹øÈ£
+;  anlist : ÀÔ·ÂµÈ data list
 ;****************************************************
 
 (defun CAMB_TABLE(ax ay anode1 anode2 anlist
@@ -376,78 +376,78 @@
                   ncx      nc        ncy     ncoord   nctxt    ncxy
 )
 
-  (setq noden (+ 1 (- anode2 anode1)))              ;node ê°¯ìˆ˜
-  (setq xl (+ fcw (* noden cw)))                    ;xê¸¸ì´
+  (setq noden (+ 1 (- anode2 anode1)))              ;node °¹¼ö
+  (setq xl (+ fcw (* noden cw)))                    ;x±æÀÌ
 
-  (setq oldc (getvar "CECOLOR"))                    ;í˜„ì¬ ìƒ‰ ëŒ€í”¼
-  (setvar "CECOLOR" "RED")                          ;tableì˜ ìƒ‰ì„ ë¹¨ê°„ìƒ‰ìœ¼ë¡œ
+  (setq oldc (getvar "CECOLOR"))                    ;ÇöÀç »ö ´ëÇÇ
+  (setvar "CECOLOR" "RED")                          ;tableÀÇ »öÀ» »¡°£»öÀ¸·Î
 
 
-  ;----- ìˆ˜í‰ì„  ê·¸ë¦¬ê¸°
-  (setq hl 0)                                       ;ìˆ˜í‰ì„  count
+  ;----- ¼öÆò¼± ±×¸®±â
+  (setq hl 0)                                       ;¼öÆò¼± count
 
-  (repeat (+ ncamb 2)                               ;ìˆ˜í‰ì„ ê·¸ë¦¬ê¸°
-    (setq y (- ay (* hl rh)))                       ;ìˆ˜í‰ì„  yê°’
-    (setq st_pnt (list ax y))                       ;ìˆ˜í‰ì„  ì‹œì‘ì 
-    (setq end_pnt (list (+ ax xl) y))               ;ìˆ˜í‰ì„  ëì 
-    (command "LINE" st_pnt end_pnt "")              ;ìˆ˜í‰ì„  ê·¸ë¦¬ê¸°
-    (setq hl (1+ hl))                               ;ë‹¤ìŒ ìˆ˜í‰ì„ 
+  (repeat (+ ncamb 2)                               ;¼öÆò¼±±×¸®±â
+    (setq y (- ay (* hl rh)))                       ;¼öÆò¼± y°ª
+    (setq st_pnt (list ax y))                       ;¼öÆò¼± ½ÃÀÛÁ¡
+    (setq end_pnt (list (+ ax xl) y))               ;¼öÆò¼± ³¡Á¡
+    (command "LINE" st_pnt end_pnt "")              ;¼öÆò¼± ±×¸®±â
+    (setq hl (1+ hl))                               ;´ÙÀ½ ¼öÆò¼±
   ) ;of repeat
 
-  ;----- ìˆ˜ì§ì„  ê·¸ë¦¬ê¸°
-  (setq ey (- ay (* (+ ncamb 1) 7)))                ;ìˆ˜ì§ì„ ì˜ ëì  yê°’
-  (setq f_sp (list ax ay))                          ;ì²«ë²ˆì§¸ start point
-  (setq f_ep (list ax ey))                          ;ì²«ë²ˆì§¸ end point
-  (command "LINE" f_sp f_ep "")                     ;ì²«ë²ˆì§¸ ìˆ˜ì§ì„  ê·¸ë¦¬ê¸°
+  ;----- ¼öÁ÷¼± ±×¸®±â
+  (setq ey (- ay (* (+ ncamb 1) 7)))                ;¼öÁ÷¼±ÀÇ ³¡Á¡ y°ª
+  (setq f_sp (list ax ay))                          ;Ã¹¹øÂ° start point
+  (setq f_ep (list ax ey))                          ;Ã¹¹øÂ° end point
+  (command "LINE" f_sp f_ep "")                     ;Ã¹¹øÂ° ¼öÁ÷¼± ±×¸®±â
 
-  (setq vl 0)                                       ;ìˆ˜ì§ì„  count
+  (setq vl 0)                                       ;¼öÁ÷¼± count
 
-  (repeat (1+ noden)                                ;nodeê°¯ìˆ˜ ë§Œí¼ ë°˜ë³µ
-    (setq nx (+ ax fcw (* vl cw)))                  ;në²ˆì§¸ì˜ Xì¢Œí‘œ
-    (setq sp (list nx ay)                           ;ì‹œì‘ì 
-          ep (list nx ey))                          ;ëì 
-    (command "LINE" sp ep "")                       ;ìˆ˜ì§ì„  ê·¸ë¦¬ê¸°
-    (setq vl (1+ vl))                               ;ë‹¤ìŒ ìˆ˜ì§ì„ ìœ¼ë¡œ
+  (repeat (1+ noden)                                ;node°¹¼ö ¸¸Å­ ¹İº¹
+    (setq nx (+ ax fcw (* vl cw)))                  ;n¹øÂ°ÀÇ XÁÂÇ¥
+    (setq sp (list nx ay)                           ;½ÃÀÛÁ¡
+          ep (list nx ey))                          ;³¡Á¡
+    (command "LINE" sp ep "")                       ;¼öÁ÷¼± ±×¸®±â
+    (setq vl (1+ vl))                               ;´ÙÀ½ ¼öÁ÷¼±À¸·Î
   ) ;of repeat
 
-  (setvar "CECOLOR" oldc)                           ;ì˜›ìƒ‰ ë˜ëŒë¦¬ê¸°
+  (setvar "CECOLOR" oldc)                           ;¿¾»ö µÇµ¹¸®±â
 
-  ;----- node/x/camberì ê¸°
-  ;----- nodeë²ˆí˜¸ ì ê¸°
+  ;----- node/x/camberÀû±â
+  ;----- node¹øÈ£ Àû±â
   (setq nn anode1)                                  ;node count
   (setq cc 1)                                       ;column count
 
-  (repeat noden                                     ;nodeê°¯ìˆ˜ ë§Œí¼ ë°˜ë³µ
-    (setq nx (+ ax fcw (/ cw 2.0) (* (1- cc) cw)))  ;në²ˆì§¸ nodeì˜ xì¢Œí‘œ
-    (setq ny (- ay (/ rh 2.0)))                     ;nodeì˜ yì¢Œí‘œ
-    (setq nxy (list nx ny))                         ;nodeì˜ xyì¢Œí‘œ
-    (setq nd (nth (1- nn) node))                ;nodeë²ˆí˜¸ ì…ë ¥ê°’
-    (if (or (= (substr nd 1 1) "-") (= (substr nd 1 1) "+"))  ;Abut/Pierì¸ê²½ìš°
-      (setq nd (itoa (atoi (substr nd 2))))         ;ì²«ë¬¸ì(+/-)ì™€ ê³µë°± ì œê±°
-      (setq nd (itoa (atoi nd)))                    ;ê³µë°± ì œê±°
+  (repeat noden                                     ;node°¹¼ö ¸¸Å­ ¹İº¹
+    (setq nx (+ ax fcw (/ cw 2.0) (* (1- cc) cw)))  ;n¹øÂ° nodeÀÇ xÁÂÇ¥
+    (setq ny (- ay (/ rh 2.0)))                     ;nodeÀÇ yÁÂÇ¥
+    (setq nxy (list nx ny))                         ;nodeÀÇ xyÁÂÇ¥
+    (setq nd (nth (1- nn) node))                ;node¹øÈ£ ÀÔ·Â°ª
+    (if (or (= (substr nd 1 1) "-") (= (substr nd 1 1) "+"))  ;Abut/PierÀÎ°æ¿ì
+      (setq nd (itoa (atoi (substr nd 2))))         ;Ã¹¹®ÀÚ(+/-)¿Í °ø¹é Á¦°Å
+      (setq nd (itoa (atoi nd)))                    ;°ø¹é Á¦°Å
     ) ;of if
-    (command "TEXT" "M" nxy th 0.0 nd)             ;nodeë²ˆí˜¸ ì ê¸°
+    (command "TEXT" "M" nxy th 0.0 nd)             ;node¹øÈ£ Àû±â
 
-    ;----- X,camber ì ê¸°
-    (setq ncx (+ ax fcw cw (- 0.0 trg) (* (1- cc) cw)))   ;në²ˆì§¸ ì¢Œí‘œtextì˜ yì¢Œí‘œ
+    ;----- X,camber Àû±â
+    (setq ncx (+ ax fcw cw (- 0.0 trg) (* (1- cc) cw)))   ;n¹øÂ° ÁÂÇ¥textÀÇ yÁÂÇ¥
 
-    (setq nc 0)                                           ;ì²«ë²ˆì§¸ camberë¶€í„°
+    (setq nc 0)                                           ;Ã¹¹øÂ° camberºÎÅÍ
 
-    (repeat (1+ n_camber)                                 ;camberìˆ˜ë§Œí¼ ë°˜ë³µ
-      (setq ncy (- ny (* rh (1+ nc))))                    ;camber textì˜ yì¢Œí‘œ
-      (setq ncoord (nth (1- nn) (nth nc anlist)))   ;camberëŸ‰(ì…ë ¥ê°’,ì‹¤ìˆ˜)
+    (repeat (1+ n_camber)                                 ;camber¼ö¸¸Å­ ¹İº¹
+      (setq ncy (- ny (* rh (1+ nc))))                    ;camber textÀÇ yÁÂÇ¥
+      (setq ncoord (nth (1- nn) (nth nc anlist)))   ;camber·®(ÀÔ·Â°ª,½Ç¼ö)
       (if (= nc 0)
         (setq nctxt (rtos ncoord 2 3))
-;        (setq nctxt (rtos (* yfac ncoord -1) 2 3))      ;camberëŸ‰ text(ì²˜ì§ê°’ì— -1ì„ ê³±í•¨)
-        (setq nctxt (rtos (* yfac ncoord) 2 3))          ;camberëŸ‰ text(ì²˜ì§ê°’ì— -1ì„ ê³±í•¨)
+;        (setq nctxt (rtos (* yfac ncoord -1) 2 3))      ;camber·® text(Ã³Áü°ª¿¡ -1À» °öÇÔ)
+        (setq nctxt (rtos (* yfac ncoord) 2 3))          ;camber·® text(Ã³Áü°ª¿¡ -1À» °öÇÔ)
       ) ;of if
-      (setq ncxy (list ncx ncy))                          ;textì˜ insert point
-      (command "TEXT" "MR" ncxy th 0.0 nctxt)            ;textì“°ê¸°
-      (setq nc (1+ nc))                                   ;ë‹¤ìŒ camberë¡œ
+      (setq ncxy (list ncx ncy))                          ;textÀÇ insert point
+      (command "TEXT" "MR" ncxy th 0.0 nctxt)            ;text¾²±â
+      (setq nc (1+ nc))                                   ;´ÙÀ½ camber·Î
     ) ;of repeat
 
-    (setq nn (1+ nn))                                     ;ë‹¤ìŒ nodeë¡œ
-    (setq cc (1+ cc))                                     ;ë‹¤ìŒ columnìœ¼ë¡œ
+    (setq nn (1+ nn))                                     ;´ÙÀ½ node·Î
+    (setq cc (1+ cc))                                     ;´ÙÀ½ columnÀ¸·Î
   ) ;of repeat
 ) ;of defun
 
@@ -458,36 +458,36 @@
 ;            Yi Suk Jong
 ;            97/6/23
 ;---------------------------------------------
-; ì‚¬ìš©ìê°€ ì…ë ¥í•œ ì—°ì‚°ë¡œë¥¼ ì—°ì‚°ì„ ìˆ˜í–‰í•œë‹¤.
-; ì…ë ¥: eq  : ì—°ì‚°ì‹ì´ë‹¤. (í˜„ì¬ +,-ë§Œ ê°€ëŠ¥)
-;       lst : ì—°ì‚°ë  ê°’ë“¤, listë¡œ ë˜ì–´ìˆë‹¤.
+; »ç¿ëÀÚ°¡ ÀÔ·ÂÇÑ ¿¬»ê·Î¸¦ ¿¬»êÀ» ¼öÇàÇÑ´Ù.
+; ÀÔ·Â: eq  : ¿¬»ê½ÄÀÌ´Ù. (ÇöÀç +,-¸¸ °¡´É)
+;       lst : ¿¬»êµÉ °ªµé, list·Î µÇ¾îÀÖ´Ù.
 ; ex) (op "1+2" '((1 2) (2 3)))
 ;    --> (3 5)
 ;---------------------------------------------
 
 (defun op(eq lst /
 lst eq neq nlop lop oval count c val n cnt )
-  (setq neq (strlen eq))                      ;ì‹ì˜ ê¸¸ì´
-  (setq nlst (length (nth 0 lst)))            ;listê°œìˆ˜
-  (setq nlop 0)                               ;ì „ì—°ì‚°ìì˜ ìœ„ì¹˜
-  (setq lop "+")                              ;ì „ì—°ì‚°ì
-  (setq oval nil)                             ;ì „ê³„ì‚°ê°’
+  (setq neq (strlen eq))                      ;½ÄÀÇ ±æÀÌ
+  (setq nlst (length (nth 0 lst)))            ;list°³¼ö
+  (setq nlop 0)                               ;Àü¿¬»êÀÚÀÇ À§Ä¡
+  (setq lop "+")                              ;Àü¿¬»êÀÚ
+  (setq oval nil)                             ;Àü°è»ê°ª
 
-  (setq count 1)                                        ;ì²«ë²ˆ ê¸€ìë¶€í„°
-  (repeat (1+ neq)                                      ;ë§ˆì§€ë§‰ ê¸€ìê¹Œì§€
-    (setq c (substr eq count 1))                        ;í•œê¸€ì ì°ì–´ë‚´ê¸°
-    (if (or (= c "+") (= c "-") (= count (1+ neq)))     ; +,-ì´ê±°ë‚˜ ëì¼ë•Œ
-      (if (= nlop 0)                                    ; ì²˜ìŒì´ë©´
+  (setq count 1)                                        ;Ã¹¹ø ±ÛÀÚºÎÅÍ
+  (repeat (1+ neq)                                      ;¸¶Áö¸· ±ÛÀÚ±îÁö
+    (setq c (substr eq count 1))                        ;ÇÑ±ÛÀÚ Âó¾î³»±â
+    (if (or (= c "+") (= c "-") (= count (1+ neq)))     ; +,-ÀÌ°Å³ª ³¡ÀÏ¶§
+      (if (= nlop 0)                                    ; Ã³À½ÀÌ¸é
         (setq n (atoi (substr eq (1+ nlop) (- count nlop 1)))
-              oval (nth (1- n) lst)                          ;ì²«ê°’ë“¤ì„ ìµœì¢…ê°’ìœ¼ë¡œ
-              nlop count                                ;ì „ì—°ì‚°ììœ„ì¹˜
-              lop c)                                    ;ì „ì—°ì‚°ì
-        (progn                                          ;ë‘ë²ˆì§¸ë¶€í„°ì´ë©´
-          (setq val nil)                                ;ìµœì¢…ê°’ì„ ì´ˆê¸°í™”
-          (setq n (atoi (substr eq (1+ nlop) (- count nlop 1))))   ;ì „ì—°ì‚°ìì—ì„œ í˜„ì—°ì‚°ìê¹Œì§€=ìˆ«ì
+              oval (nth (1- n) lst)                          ;Ã¹°ªµéÀ» ÃÖÁ¾°ªÀ¸·Î
+              nlop count                                ;Àü¿¬»êÀÚÀ§Ä¡
+              lop c)                                    ;Àü¿¬»êÀÚ
+        (progn                                          ;µÎ¹øÂ°ºÎÅÍÀÌ¸é
+          (setq val nil)                                ;ÃÖÁ¾°ªÀ» ÃÊ±âÈ­
+          (setq n (atoi (substr eq (1+ nlop) (- count nlop 1))))   ;Àü¿¬»êÀÚ¿¡¼­ Çö¿¬»êÀÚ±îÁö=¼ıÀÚ
           (cond
-            ((= lop "+")                                ;+ì¼ë•Œ +ìˆ˜í–‰
-              (setq cnt 0)                              ;ì²«ë²ˆ ê°’ë¶€í„°
+            ((= lop "+")                                ;+ÀÏ¶§ +¼öÇà
+              (setq cnt 0)                              ;Ã¹¹ø °ªºÎÅÍ
               (repeat nlst
                 (setq val (append val (list (+ (nth cnt oval)
                                          (nth cnt (nth (1- n) lst))))))
@@ -495,22 +495,22 @@ lst eq neq nlop lop oval count c val n cnt )
               ) ;of repeat
               (setq oval val)
             ) ;of sub-cond
-            ((= lop "-")                                ;-ì¼ë•Œ -ìˆ˜í–‰
+            ((= lop "-")                                ;-ÀÏ¶§ -¼öÇà
               (setq cnt 0)
               (repeat nlst
                 (setq val (append val (list (- (nth cnt oval)
                                          (nth cnt (nth (1- n) lst))))))
                 (setq cnt (1+ cnt))
               ) ;of repeat
-              (setq oval val)                           ;í˜„ì¬ ê°’ì„ ìµœì¢…ê°’ìœ¼ë¡œ
+              (setq oval val)                           ;ÇöÀç °ªÀ» ÃÖÁ¾°ªÀ¸·Î
             ) ;of sub-cond
           ) ;of cond
-          (setq nlop count                              ;í˜„ì¬ ìœ„ì¹˜ë¥¼ ì „ì—°ì‚°ììœ„ì¹˜ë¡œ
-                lop c)                                  ;í˜„ì¬ ì—°ì‚°ìë¥¼ ì „ ì—°ì‚°ìë¡œ
+          (setq nlop count                              ;ÇöÀç À§Ä¡¸¦ Àü¿¬»êÀÚÀ§Ä¡·Î
+                lop c)                                  ;ÇöÀç ¿¬»êÀÚ¸¦ Àü ¿¬»êÀÚ·Î
         ) ;of progn
       ) ;of if
     ) ;of if
-    (setq count (1+ count))                             ;ë‹¤ìŒ ê¸€ìë¡œ
+    (setq count (1+ count))                             ;´ÙÀ½ ±ÛÀÚ·Î
   ); of repeat
   val
 ) ;of defun

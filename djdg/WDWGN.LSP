@@ -4,20 +4,20 @@
 ;           Yi Suk Jong
 ;           97/1/13
 ;****************************************************************
-;ë„ë©´ëª…ì„ ë„ë©´ì—ë‹¤ ì¨ì¤Œ
+;µµ¸é¸íÀ» µµ¸é¿¡´Ù ½áÁÜ
 ;****************************************************************
 
 (defun C:WDWGN(/ th ds th fn p)
 
-  (setq th 2.0)                             ; textë†’ì´
+  (setq th 2.0)                             ; text³ôÀÌ
 
-  (setq ds (getvar "DIMSCALE"))             ;ìŠ¤ì¼€ì¼ê°’
+  (setq ds (getvar "DIMSCALE"))             ;½ºÄÉÀÏ°ª
   (setq th (* th ds))
-;  (setq fn (strcat (dwg_name) ".DWG"))     ;fileì´ë¦„
-  (setq fn (dwg_name))                      ;fileì´ë¦„
+;  (setq fn (strcat (dwg_name) ".DWG"))     ;fileÀÌ¸§
+  (setq fn (dwg_name))                      ;fileÀÌ¸§
   (setq fn (substr fn 1 (- (strlen fn) 4)))
-  (setq p (getpoint "\nPick Insert point: ")) ;ì‚½ì…ì 
-  (command "TEXT" p th "0" fn)              ;fileì´ë¦„ ê¸°ì…
+  (setq p (getpoint "\nPick Insert point: ")) ;»ğÀÔÁ¡
+  (command "TEXT" p th "0" fn)              ;fileÀÌ¸§ ±âÀÔ
 
   (princ)
 
@@ -30,14 +30,14 @@
 ;          Yi Suk-Jong
 ;          96/6/27
 ;****************************************************************
-; open ëª…ë ¹ìœ¼ë¡œ íŒŒì¼ì„ ë¶ˆëŸ¬ì˜¬ ê²½ìš° DWGNAMEì´ full pathëª…ì´ ë˜ë¯€ë¡œ
-; full pathëª…ì¤‘ íŒŒì¼ëª… ë¶€ë¶„ì„ ì¶”ì¶œí•´ëƒ„
+; open ¸í·ÉÀ¸·Î ÆÄÀÏÀ» ºÒ·¯¿Ã °æ¿ì DWGNAMEÀÌ full path¸íÀÌ µÇ¹Ç·Î
+; full path¸íÁß ÆÄÀÏ¸í ºÎºĞÀ» ÃßÃâÇØ³¿
 ;****************************************************************
 (defun DWG_NAME(/ dn ls count ch )
 
-  (setq dn (getvar "DWGNAME"))                          ;íŒŒì¼ì´ë¦„ ì¸ì‹
-  (setq ls (strlen dn))                                 ;string ê¸¸ì´
-  (setq count ls)                                  ;ë§ˆì§€ë§‰ stringë¶€í„°
+  (setq dn (getvar "DWGNAME"))                          ;ÆÄÀÏÀÌ¸§ ÀÎ½Ä
+  (setq ls (strlen dn))                                 ;string ±æÀÌ
+  (setq count ls)                                  ;¸¶Áö¸· stringºÎÅÍ
   (while (and (/= (setq ch (substr dn count 1)) "\\")
               (> count 1))
     (setq count (1- count))

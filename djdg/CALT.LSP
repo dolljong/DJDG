@@ -4,7 +4,7 @@
 ;           By Suk-Jong Yi
 ;           1995/6/22
 ;*******************************************
-;ì‚¬ì¹™ì—°ì‚°ì„ í•˜ê³  ê·¸ ê²°ê³¼ë¥¼ ë„ë©´ì— í‘œì‹œ
+;»çÄ¢¿¬»êÀ» ÇÏ°í ±× °á°ú¸¦ µµ¸é¿¡ Ç¥½Ã
 ;*******************************************
 
 (defun C:CALT(/
@@ -22,19 +22,19 @@
   ); of SETERR
   (setq oer *error* *error* seterr)
 
-  (push-env)                                ;í™˜ê²½ë³€ìˆ˜ ëŒ€í”¼
-  (setq ds (getvar "DIMSCALE"))             ;scale factorêµ¬í•¨
+  (push-env)                                ;È¯°æº¯¼ö ´ëÇÇ
+  (setq ds (getvar "DIMSCALE"))             ;scale factor±¸ÇÔ
   (setq th (getvar "DIMTXT"))
 
   (setq total 0)
 
   (initget 1 "Sum")
-  (setq oper (entsel "\nSummation/<Select text>: ")) ;ìˆ«ì textì…ë ¥
+  (setq oper (entsel "\nSummation/<Select text>: ")) ;¼ıÀÚ textÀÔ·Â
 
   (while (= oper nil)
     (princ "\Select entity or Sum")
     (initget 1 "Sum")
-    (setq oper (entsel "\nSummation/<Select text>: ")) ;ìˆ«ì textì…ë ¥
+    (setq oper (entsel "\nSummation/<Select text>: ")) ;¼ıÀÚ textÀÔ·Â
   ) ;of while
 
   (if (/= oper "Sum")
@@ -50,42 +50,42 @@
     (cond
       ((= oper "Sum")
         (princ "\nSelect text: ")
-        (setq ents (ssget))                       ;entity ì…ë ¥
-        (setq nent (sslength ents))               ;entity ê°¯ìˆ˜
+        (setq ents (ssget))                       ;entity ÀÔ·Â
+        (setq nent (sslength ents))               ;entity °¹¼ö
 
-        (setq count 0)                            ;ë°˜ë³µëª…ë ¹ ë³€ìˆ˜ ì´ˆê¸°í™”
+        (setq count 0)                            ;¹İº¹¸í·É º¯¼ö ÃÊ±âÈ­
         (setq sum 0)
         (setq scount 0)
 
-        (repeat nent                              ;entityê°¯ìˆ˜ ë§Œí¼ ë°˜ë³µ
-          (setq ent (entget (ssname ents count))) ;entity ì •ë³´
-          (if (= (cdr (assoc 0 ent)) "TEXT")      ;entityê°€ textì¸ ê²½ìš°
+        (repeat nent                              ;entity°¹¼ö ¸¸Å­ ¹İº¹
+          (setq ent (entget (ssname ents count))) ;entity Á¤º¸
+          (if (= (cdr (assoc 0 ent)) "TEXT")      ;entity°¡ textÀÎ °æ¿ì
             (progn
-              (setq txt (cdr (assoc 1 ent)))      ;textì˜ ë‚´ìš©
-              (if (is-num txt)                    ;textì˜ ë‚´ìš©ì´ ìˆ«ìë¼ë©´
-                (progn                            ;entityì •ë³´ selection setì— ì¶”ê°€
+              (setq txt (cdr (assoc 1 ent)))      ;textÀÇ ³»¿ë
+              (if (is-num txt)                    ;textÀÇ ³»¿ëÀÌ ¼ıÀÚ¶ó¸é
+                (progn                            ;entityÁ¤º¸ selection set¿¡ Ãß°¡
                   (if (= scount 0) (setq ssent (ssadd (ssname ents count)))
                                    (setq ssent (ssadd (ssname ents count) ssent))
                   ) ;of if
-                  (redraw (ssname ents count) 3)  ;textê°•ì¡°
-                  (setq sum (+ sum (atof txt)))   ;textì˜ í•© êµ¬í•¨
-                  (setq scount (1+ scount))       ;ìˆ«ìì¸ textì˜ ê°¯ìˆ˜
+                  (redraw (ssname ents count) 3)  ;text°­Á¶
+                  (setq sum (+ sum (atof txt)))   ;textÀÇ ÇÕ ±¸ÇÔ
+                  (setq scount (1+ scount))       ;¼ıÀÚÀÎ textÀÇ °¹¼ö
                 ) ;of progn
               ) ;of if txt is number
             ) ;of progn
           ) ;of if entity=text
-          (setq count (1+ count))                 ;ë‹¤ìŒ entityë¡œ
+          (setq count (1+ count))                 ;´ÙÀ½ entity·Î
         ) ;of repeat
 
         (setq nssent (sslength ssent))
         (setq count 0)
         (repeat nssent
-          (redraw (ssname ssent count) 4)                 ;ê°•ì¡°ëœ entityë¥¼ ì •ìƒìœ¼ë¡œ
+          (redraw (ssname ssent count) 4)                 ;°­Á¶µÈ entity¸¦ Á¤»óÀ¸·Î
           (setq count (1+ count))
         ) ;of repeat
 
-        (princ "\n") (princ scount) (princ " Founded")    ;ëª‡ê°œì˜ textê°€ ì„ íƒë¬ëŠ”ê°€ë¥¼ ì¶œë ¥
-        (princ "\nSumation: ") (princ sum)                ;ì´ê³„ë¥¼ ì¶œë ¥
+        (princ "\n") (princ scount) (princ " Founded")    ;¸î°³ÀÇ text°¡ ¼±ÅÃ?´Â°¡¸¦ Ãâ·Â
+        (princ "\nSumation: ") (princ sum)                ;ÃÑ°è¸¦ Ãâ·Â
         (setq total (+ total sum))
       ) ;of cond(= oper "Sum")
 
@@ -135,13 +135,13 @@
     (progn
       (setq lp (getvar "LUPREC"))
       (princ "\nNumber of digits to right of decimal point (0 to 8): <")
-      (princ lp)                                    ;ì†Œìˆ«ì  ì´í•˜ ìë¦¿ìˆ˜ ë¬¼ìŒ
+      (princ lp)                                    ;¼Ò¼ıÁ¡ ÀÌÇÏ ÀÚ¸´¼ö ¹°À½
       (princ ">: ")
       (setq nlp (getint))
-      (if (= nlp nil) (setq nlp lp))                ;returnì…ë ¥ì‹œ ì˜› ìë¦¿ìˆ˜ë¡œ
-      (setq tpnt (getpoint "\nPick insert point: "))  ;ì‚½ì…ì  ì…ë ¥
-      (setq numtxt (rtos total 2 nlp))                  ;ìˆ«ìë¥¼ stringìœ¼ë¡œ
-      (command "TEXT" "R" tpnt (* th ds) "0" numtxt)         ;text ëª…ë ¹ìˆ˜í–‰
+      (if (= nlp nil) (setq nlp lp))                ;returnÀÔ·Â½Ã ¿¾ ÀÚ¸´¼ö·Î
+      (setq tpnt (getpoint "\nPick insert point: "))  ;»ğÀÔÁ¡ ÀÔ·Â
+      (setq numtxt (rtos total 2 nlp))                  ;¼ıÀÚ¸¦ stringÀ¸·Î
+      (command "TEXT" "R" tpnt (* th ds) "0" numtxt)         ;text ¸í·É¼öÇà
     ) ;of THEN
   ) ;of if
 
@@ -156,7 +156,7 @@
 ;            By Suk-Jong Yi
 ;            1995/6/1
 ;************************************
-; ë¬¸ìì—´ì´ ìˆ«ìì¸ê°€?ë¥¼ íŒë‹¨í•´ì¤€ë‹¤.
+; ¹®ÀÚ¿­ÀÌ ¼ıÀÚÀÎ°¡?¸¦ ÆÇ´ÜÇØÁØ´Ù.
 
 (defun IS-NUM(str
 / str strl count ch )

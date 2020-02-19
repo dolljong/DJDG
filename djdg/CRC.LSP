@@ -6,7 +6,7 @@
 ;****************************************
 
 (defun C:CRC()
-  (defun SETERR(s)                      ;ë‚´ì¥ì—ëŸ¬ë£¨í‹´ ì •ì˜
+  (defun SETERR(s)                      ;³»Àå¿¡·¯·çÆ¾ Á¤ÀÇ
     (if (/= s "Function cancelled")
         (princ (strcat "\nError: " s))
     ); of If
@@ -14,7 +14,7 @@
     (princ)
   ); of SETERR
 
-  (setq oer *error* *error* seterr)         ;ë‚´ì¥ì—ëŸ¬ë£¨í‹´ ê°€ë™
+  (setq oer *error* *error* seterr)         ;³»Àå¿¡·¯·çÆ¾ °¡µ¿
 
    (initget "Radius All Select")
    (setq ans (getkword "\nRadius/All/<Select>: "))

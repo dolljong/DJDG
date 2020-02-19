@@ -6,7 +6,7 @@
 ;**********************************
 
 (defun C:MEASA(/
-;ent cen ra spnt sang eang anges             ;ì§€ì—­ë³€ìˆ˜ ì •ì˜
+;ent cen ra spnt sang eang anges             ;Áö¿ªº¯¼ö Á¤ÀÇ
 ;larc mleng dvnum dtang count ang dpnt
 )
 
@@ -37,11 +37,11 @@
 (setq sang (angle cen spnt))
 (setq eang (angle cen epnt))
 (setq dpang (angle cen dpnt))
-(setq sdsgn (/ (abs (dang sang dpang)) (dang sang dpang))) ;ë°©í–¥ì„ êµ¬í•¨
+(setq sdsgn (/ (abs (dang sang dpang)) (dang sang dpang))) ;¹æÇâÀ» ±¸ÇÔ
 
-(setq pang (+ (- (* 2 pi) sang) eang)) ;ì‹œìž‘ì ~ëì ì˜ ì–‘ì˜ ë°©í–¥ê°
+(setq pang (+ (- (* 2 pi) sang) eang)) ;½ÃÀÛÁ¡~³¡Á¡ÀÇ ¾çÀÇ ¹æÇâ°¢
 (if (> pang (* 2.0 pi)) (setq pang (- pang (* 2.0 pi))))
-(setq nang (- pang (* 2 pi)))          ;ì‹œìž‘ì ~ëì ì˜ ìŒì˜ ë°©í–¥ê°
+(setq nang (- pang (* 2 pi)))          ;½ÃÀÛÁ¡~³¡Á¡ÀÇ À½ÀÇ ¹æÇâ°¢
 
 (cond
   ((> sdsgn 0.0) (setq deltaa pang))

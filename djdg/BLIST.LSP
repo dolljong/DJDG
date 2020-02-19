@@ -4,7 +4,7 @@
 ;           Yi Suk-Jong
 ;           1996/2/23
 ;**************************************************
-; data fileì„ ì½ì–´ ì² ê·¼ ì¬ë£Œí‘œë¥¼ ë§Œë“¤ì–´ì¤€ë‹¤
+; data fileÀ» ÀĞ¾î Ã¶±Ù Àç·áÇ¥¸¦ ¸¸µé¾îÁØ´Ù
 ;**************************************************
 
 (defun C:BLIST(
@@ -21,68 +21,68 @@
   ); of SETERR
   (setq oer *error* *error* seterr)
 
-  (push-env)                                              ;í™˜ê²½ë³€ìˆ˜ ëŒ€í”¼
+  (push-env)                                              ;È¯°æº¯¼ö ´ëÇÇ
 
 
-  (setq llist nil)                                      ;ë¹ˆ line-list ë§Œë“¬
+  (setq llist nil)                                      ;ºó line-list ¸¸µë
 
   (initget "File Entity")
   (setq answ (getkword "\nFile/Entity <File>: "))
 
-  (if (or (= answ nil) (= answ "File"))                 ;returnì…ë ¥ì´ë‚˜ Fì…ë ¥ì‹œ
+  (if (or (= answ nil) (= answ "File"))                 ;returnÀÔ·ÂÀÌ³ª FÀÔ·Â½Ã
     (progn
-      (setq fn (getfiled "INPUT DATA" "" "DAT" 0))      ;file nameì…ë ¥
+      (setq fn (getfiled "INPUT DATA" "" "DAT" 0))      ;file nameÀÔ·Â
       (setq opf (open fn "r"))                          ;file open
-      (if opf                                           ;fileì´ ì—†ëŠ” ê²½ìš°
+      (if opf                                           ;fileÀÌ ¾ø´Â °æ¿ì
         (progn
            (setq count 1)
-           (while (setq ch (read-line opf))             ;í•œì¤„ì„ ì½ëŠ”ë‹¤
-              (princ (chr 13))                          ;ì…ë ¥ì¤‘ ë©”ì„¸ì§€ ì¶œë ¥
+           (while (setq ch (read-line opf))             ;ÇÑÁÙÀ» ÀĞ´Â´Ù
+              (princ (chr 13))                          ;ÀÔ·ÂÁß ¸Ş¼¼Áö Ãâ·Â
               (princ count)
               (princ " Line Processing...")
               (setq inline (data-in ch))
-              (setq lst (list                           ;ë¬¸ì dataë¥¼ ìˆ«ì dataë¡œ
-                           (strcase (car (sp-trunc (nth 0 inline))))   ;ì² ê·¼ë²ˆí˜¸
-                           (strcase (car (sp-trunc (nth 1 inline))))   ;ì² ê·¼ì§ê²½
-                           (atof (nth 2 inline))                       ;ì² ê·¼ê¸¸ì´
-                           (atoi (nth 3 inline))))                     ;ì² ê·¼ê°¯ìˆ˜
-              (setq llist (append llist (list lst)))                   ;llistì— ì¶”ê°€
-              (setq count (1+ count))                                  ;lineë²ˆí˜¸ ì¦ê°€
+              (setq lst (list                           ;¹®ÀÚ data¸¦ ¼ıÀÚ data·Î
+                           (strcase (car (sp-trunc (nth 0 inline))))   ;Ã¶±Ù¹øÈ£
+                           (strcase (car (sp-trunc (nth 1 inline))))   ;Ã¶±ÙÁ÷°æ
+                           (atof (nth 2 inline))                       ;Ã¶±Ù±æÀÌ
+                           (atoi (nth 3 inline))))                     ;Ã¶±Ù°¹¼ö
+              (setq llist (append llist (list lst)))                   ;llist¿¡ Ãß°¡
+              (setq count (1+ count))                                  ;line¹øÈ£ Áõ°¡
            ) ;of while
         ) ;of progn
-        (princ "\nFile not found")                          ;fileì´ ì—†ëŠ” ê²½ìš°
+        (princ "\nFile not found")                          ;fileÀÌ ¾ø´Â °æ¿ì
       ) ;of if
       (close opf)                                           ;file close
     ) ;of progn THEN
-    (progn                                                  ;Entityë¡œ ì…ë ¥í•  ê²½ìš°
-      (setq tent (ssget '((0 . "TEXT"))))                   ;textë§Œ select
-      (setq tn    (sslength tent)                           ;textê°¯ìˆ˜
-            count               0)                          ;ì²« textë¶€í„°
-      (repeat tn                                            ;textê°¯ìˆ˜ë§Œí¼ ë°˜ë³µ
-        (setq ch (cdr (assoc 1 (entget (ssname tent count)))))  ;textì¶•ì¶œ
-        (princ (chr 13))                                        ;ì‘ì—…ì¤‘ë©”ì„¸ì§€
+    (progn                                                  ;Entity·Î ÀÔ·ÂÇÒ °æ¿ì
+      (setq tent (ssget '((0 . "TEXT"))))                   ;text¸¸ select
+      (setq tn    (sslength tent)                           ;text°¹¼ö
+            count               0)                          ;Ã¹ textºÎÅÍ
+      (repeat tn                                            ;text°¹¼ö¸¸Å­ ¹İº¹
+        (setq ch (cdr (assoc 1 (entget (ssname tent count)))))  ;textÃàÃâ
+        (princ (chr 13))                                        ;ÀÛ¾÷Áß¸Ş¼¼Áö
         (princ (1+ count))
         (princ " Line Processing...")
         (setq inline (data-in ch))
-        (setq lst (list                                     ;ë¬¸ì dataë¥¼ ìˆ«ì dataë¡œ
-                     (strcase (car (sp-trunc (nth 0 inline))))   ;ì² ê·¼ë²ˆí˜¸
-                     (strcase (car (sp-trunc (nth 1 inline))))   ;ì² ê·¼ì§ê²½
-                     (atof (nth 2 inline))                       ;ì² ê·¼ê¸¸ì´
-                     (atoi (nth 3 inline))))                     ;ì² ê·¼ê°¯ìˆ˜
-        (setq llist (append llist (list lst)))                   ;llistì— ì¶”ê°€
-        (setq count (1+ count))                                  ;ë‹¤ìŒ textë¡œ
+        (setq lst (list                                     ;¹®ÀÚ data¸¦ ¼ıÀÚ data·Î
+                     (strcase (car (sp-trunc (nth 0 inline))))   ;Ã¶±Ù¹øÈ£
+                     (strcase (car (sp-trunc (nth 1 inline))))   ;Ã¶±ÙÁ÷°æ
+                     (atof (nth 2 inline))                       ;Ã¶±Ù±æÀÌ
+                     (atoi (nth 3 inline))))                     ;Ã¶±Ù°¹¼ö
+        (setq llist (append llist (list lst)))                   ;llist¿¡ Ãß°¡
+        (setq count (1+ count))                                  ;´ÙÀ½ text·Î
       ) ;of repeat
     ) ;of progn ELSE
   ) ;of IF
 
-  (setq ipnt (getpoint "\nInsert point: "))             ;ì‚½ì…ì  ì…ë ¥ë°›ìŒ
+  (setq ipnt (getpoint "\nInsert point: "))             ;»ğÀÔÁ¡ ÀÔ·Â¹ŞÀ½
   (setq scl  (getdist "\nScale factor: "))
 
-  (bar_list llist ipnt scl)                             ;bar listê·¸ë¦¬ê¸°
+  (bar_list llist ipnt scl)                             ;bar list±×¸®±â
 
-  (pop-env)                                             ;í™˜ê²½ë³€ìˆ˜ ë³µê·€
+  (pop-env)                                             ;È¯°æº¯¼ö º¹±Í
 
-  (princ "\nNormal terminated")                         ;ì •ìƒì ìœ¼ë¡œ ëë‚¨ í‘œì‹œ
+  (princ "\nNormal terminated")                         ;Á¤»óÀûÀ¸·Î ³¡³² Ç¥½Ã
   (setq *error* oer seterr nil)
   (princ)
 
@@ -95,8 +95,8 @@
 ;                Jong-Suk Yi
 ;                1995. 2. 8
 ;******************************************************************
-; ì´ í•¨ìˆ˜ëŠ” ,ë¡œ ë¶ˆë¦¬ëœ dataë¥¼ ë‚˜ëˆ„ì–´ í•œê°œì˜ listì— ë¬¶ì–´ì¤€ë‹¤.
-; ì´ë•Œ í˜•ë³€í™˜ ì—†ì´ ëª¨ë“  dataëŠ” ë¬¸ìì—´ë¡œ returnëœë‹¤.
+; ÀÌ ÇÔ¼ö´Â ,·Î ºÒ¸®µÈ data¸¦ ³ª´©¾î ÇÑ°³ÀÇ list¿¡ ¹­¾îÁØ´Ù.
+; ÀÌ¶§ Çüº¯È¯ ¾øÀÌ ¸ğµç data´Â ¹®ÀÚ¿­·Î returnµÈ´Ù.
 ;******************************************************************
 
 (defun DATA-IN(arg1
@@ -104,31 +104,31 @@
               lst    rslt
 )
 ;(setq oer *error* *error* seterr)   ;Store AutoLISP error routine
-   (setq str arg1)                              ;ë„˜ì–´ì˜¨ ë¬¸ìì—´
-   (setq strl (strlen arg1))                    ;ë„˜ì–´ì˜¨ ë¬¸ìì—´ì˜ ê¸¸ì´
+   (setq str arg1)                              ;³Ñ¾î¿Â ¹®ÀÚ¿­
+   (setq strl (strlen arg1))                    ;³Ñ¾î¿Â ¹®ÀÚ¿­ÀÇ ±æÀÌ
    (setq count 1)
    (setq num 1)
-   (setq strt 1)                                ;ì¶”ì¶œì‹œì‘ ìœ„ì¹˜
-   (setq nchr 1)                                ;ì¶”ì¶œë¬¸ì ê°¯ìˆ˜
+   (setq strt 1)                                ;ÃßÃâ½ÃÀÛ À§Ä¡
+   (setq nchr 1)                                ;ÃßÃâ¹®ÀÚ °¹¼ö
    (repeat (+ strl 1)
-      (setq subs (substr str count 1))          ;ë¬¸ì í•œê°œ
-      (if (or (= subs ",") (= subs ""))         ;í˜„ì¬ ë¬¸ìê°€ ,ì´ê±°ë‚˜ ëì¼ë•Œ
+      (setq subs (substr str count 1))          ;¹®ÀÚ ÇÑ°³
+      (if (or (= subs ",") (= subs ""))         ;ÇöÀç ¹®ÀÚ°¡ ,ÀÌ°Å³ª ³¡ÀÏ¶§
          (progn
-            (setq lst (substr str strt (- nchr 1)))    ;ì‹œì‘ìœ„ì¹˜ë¶€í„°
+            (setq lst (substr str strt (- nchr 1)))    ;½ÃÀÛÀ§Ä¡ºÎÅÍ
             (if (= rslt nil)
-               (setq rslt (list lst))                  ;ëŒë¦¼ê°’ì´ ë¹„ì—ˆì„ë•Œ
-               (setq rslt (append rslt (list lst)))    ;ëŒë¦¼ê°’ì—ë‹¤ ì¶”ê°€
+               (setq rslt (list lst))                  ;µ¹¸²°ªÀÌ ºñ¾úÀ»¶§
+               (setq rslt (append rslt (list lst)))    ;µ¹¸²°ª¿¡´Ù Ãß°¡
             ) ;of if
-            (setq nchr 0)                       ;ì¶”ì¶œê°¯ìˆ˜ ë‹¤ì‹œ 0ìœ¼ë¡œ
-            (setq strt (1+ count))              ;ë‹¤ìŒ ì¶”ì¶œì‹œì‘ì„ ë‹¤ìŒë¬¸ìë¡œ
+            (setq nchr 0)                       ;ÃßÃâ°¹¼ö ´Ù½Ã 0À¸·Î
+            (setq strt (1+ count))              ;´ÙÀ½ ÃßÃâ½ÃÀÛÀ» ´ÙÀ½¹®ÀÚ·Î
          ) ;of progn
          nil
       ) ;of if
-      (setq count (1+ count))                   ;ë‹¤ìŒ ë¬¸ìë¡œ
+      (setq count (1+ count))                   ;´ÙÀ½ ¹®ÀÚ·Î
       (setq num (1+ num))                       ;
-      (setq nchr (1+ nchr))                     ;ë¬¸ì ê°¯ìˆ˜ í•œê°œ ì¦ê°€
+      (setq nchr (1+ nchr))                     ;¹®ÀÚ °¹¼ö ÇÑ°³ Áõ°¡
    ) ;of repeat
-   (setq arg1 rslt)                             ;ëŒë¦¼ê°’ ëŒë¦¼
+   (setq arg1 rslt)                             ;µ¹¸²°ª µ¹¸²
 ;(setq *error* oer seterr nil)                  ; Restore previous error handler
 ) ;of defun STRLOC
 
@@ -139,12 +139,12 @@
 ;            By Suk-Jong Yi
 ;            1995/6/1
 ;**************************************************************************
-; ì…ë ¥ë¬¸ìì—´ì˜ ì•,ë’¤ì— ìˆëŠ” ë¹ˆì¹¸ì„ ì§¤ë¼ë‚¸ë‹¤.
-; ë¦¬í„´ê°’ì€
-; (ì§¤ë¼ë‚¸ ë¬¸ìì—´,
-;  ì²« ë¬¸ì ë‚˜ì˜¤ëŠ” ìœ„ì¹˜,
-;  ë§ˆì§€ë§‰ ë¬¸ì ë‚˜ì˜¤ëŠ” ìœ„ì¹˜,
-;  ìˆ«ìì¸ê°€?)
+; ÀÔ·Â¹®ÀÚ¿­ÀÇ ¾Õ,µÚ¿¡ ÀÖ´Â ºóÄ­À» Â©¶ó³½´Ù.
+; ¸®ÅÏ°ªÀº
+; (Â©¶ó³½ ¹®ÀÚ¿­,
+;  Ã¹ ¹®ÀÚ ³ª¿À´Â À§Ä¡,
+;  ¸¶Áö¸· ¹®ÀÚ ³ª¿À´Â À§Ä¡,
+;  ¼ıÀÚÀÎ°¡?)
 ;***************************************************************************
 
 (defun SP-TRUNC(txt
@@ -174,7 +174,7 @@
 ;            By Suk-Jong Yi
 ;            1996/2/23
 ;************************************
-; ë¬¸ìì—´ì´ ìˆ«ìì¸ê°€?ë¥¼ íŒë‹¨í•´ì¤€ë‹¤.
+; ¹®ÀÚ¿­ÀÌ ¼ıÀÚÀÎ°¡?¸¦ ÆÇ´ÜÇØÁØ´Ù.
 ;************************************
 
 (defun IS-NUM(str
@@ -203,12 +203,12 @@
 ;           Yi Suk-Jong
 ;           1996/2/23
 ;******************************************************
-; listë¥¼ sortí•´ì¤€ë‹¤.
-; ë„˜ì–´ì˜¤ëŠ” ê°’
-;     ALIST : SORTë˜ì–´ì•¼í•  LIST
-;      AIDX : ê¸°ì¤€ì´ ë˜ëŠ” sub list (ì²« sub list = 0)
-; ë„˜ê²¨ì§€ëŠ” ê°’
-;             SORTëœ LIST
+; list¸¦ sortÇØÁØ´Ù.
+; ³Ñ¾î¿À´Â °ª
+;     ALIST : SORTµÇ¾î¾ßÇÒ LIST
+;      AIDX : ±âÁØÀÌ µÇ´Â sub list (Ã¹ sub list = 0)
+; ³Ñ°ÜÁö´Â °ª
+;             SORTµÈ LIST
 ;******************************************************
 
 (defun SORT_LIST(alist aidx
@@ -216,31 +216,31 @@
         min_th      count1   c_list      c_val        aidx
 )
 
-  (setq nl (length alist))                  ;listì˜ ê°¯ìˆ˜
+  (setq nl (length alist))                  ;listÀÇ °¹¼ö
 
-  (setq slist nil)                          ;ë¹ˆ sortëœ listë§Œë“¬
-  (setq rlist alist)                        ;ìµœëŒ€ê°’ì„ ì¶•ì¶œí•œ ë‚˜ë¨¸ì§€ list
+  (setq slist nil)                          ;ºó sortµÈ list¸¸µë
+  (setq rlist alist)                        ;ÃÖ´ë°ªÀ» ÃàÃâÇÑ ³ª¸ÓÁö list
 
-  (setq count nl)                           ;list ê°¯ìˆ˜ë¶€í„° í•œê°œì”© ë¹¼ë©´ì„œ ë°˜ë³µ
+  (setq count nl)                           ;list °¹¼öºÎÅÍ ÇÑ°³¾¿ »©¸é¼­ ¹İº¹
 
-  (repeat nl                                        ;listê°¯ìˆ˜ë§Œí¼
-    (setq min (nth aidx (nth 0 rlist)))             ;ì²«ë²ˆì§¸ listë¥¼ ì‘ì€ ê°’ìœ¼ë¡œ
-    (setq min_th 0)                                 ;ìµœì†Œê°’ì˜ ìœ„ì¹˜ë¥¼ ì²˜ìŒìœ¼ë¡œ
-    (setq count1 1)                                 ;ë‘ë²ˆì§¸ listë¶€í„°
+  (repeat nl                                        ;list°¹¼ö¸¸Å­
+    (setq min (nth aidx (nth 0 rlist)))             ;Ã¹¹øÂ° list¸¦ ÀÛÀº °ªÀ¸·Î
+    (setq min_th 0)                                 ;ÃÖ¼Ò°ªÀÇ À§Ä¡¸¦ Ã³À½À¸·Î
+    (setq count1 1)                                 ;µÎ¹øÂ° listºÎÅÍ
     (repeat (1- count)
-      (setq c_list (nth count1 rlist))              ;í˜„ì¬ list
-      (setq c_val (nth aidx (nth count1 rlist)))    ;í˜„ì¬ ê°’
-      (if (lt c_val min)                             ;í˜„ì¬ ê°’ì´ minë³´ë‹¤ ì‘ì„ë•Œ
+      (setq c_list (nth count1 rlist))              ;ÇöÀç list
+      (setq c_val (nth aidx (nth count1 rlist)))    ;ÇöÀç °ª
+      (if (lt c_val min)                             ;ÇöÀç °ªÀÌ minº¸´Ù ÀÛÀ»¶§
         (progn
-          (setq min_th count1)                      ;ìµœì†Œê°’ìœ„ì¹˜ë¥¼ í˜„ì¬ ìœ„ì¹˜ë¡œ
-          (setq min c_val)                          ;ìµœì†Œê°’ì„ í˜„ì¬ ê°’ìœ¼ë¡œ
+          (setq min_th count1)                      ;ÃÖ¼Ò°ªÀ§Ä¡¸¦ ÇöÀç À§Ä¡·Î
+          (setq min c_val)                          ;ÃÖ¼Ò°ªÀ» ÇöÀç °ªÀ¸·Î
         ) ;of progn
       ) ;of if
-      (setq count1 (1+ count1))                     ;ë‹¤ìŒ listë¡œ
+      (setq count1 (1+ count1))                     ;´ÙÀ½ list·Î
     ) ;of repeat
-    (setq slist (append slist (list (nth min_th rlist)))) ;ìµœì†Œê°’ì„ sortëœ listì— ì¶”ê°€
-    (setq rlist (del_atom rlist min_th))            ;ë‚¨ì€listì—ì„œ ìµœì†Œ list ì œê±°
-    (setq count (1- count))                         ;í•œê°œ ì¤„ì—¬ì„œ
+    (setq slist (append slist (list (nth min_th rlist)))) ;ÃÖ¼Ò°ªÀ» sortµÈ list¿¡ Ãß°¡
+    (setq rlist (del_atom rlist min_th))            ;³²Àºlist¿¡¼­ ÃÖ¼Ò list Á¦°Å
+    (setq count (1- count))                         ;ÇÑ°³ ÁÙ¿©¼­
   ) ;of repeat
   (setq slist slist)
 ) ;of defun
@@ -252,13 +252,13 @@
 ;           Yi Suk-Jong
 ;           1996/2/27
 ;************************************************
-; ì¸ìˆ˜-1ì´ ì¸ìˆ˜-2ë³´ë‹¤ ì‘ì€ê°€ë¥¼ íŒë‹¨í•´ì¤€ë‹¤.
-; ë„˜ì–´ì˜¤ëŠ” ê°’:
-;       ARG1 : ì¸ìˆ˜-1
-;       ARG2 : ì¸ìˆ˜-2
-; ë„˜ì–´ê°€ëŠ” ê°’:
-;       T    : ì¸ìˆ˜-1ì´ ì¸ìˆ˜-2ë³´ë‹¤ ì‘ì„ ë•Œ
-;       nil  : ì¸ìˆ˜-1ì´ ì¸ìˆ˜-2ë³´ë‹¤ ì‘ì§€ ì•Šì„ë•Œ
+; ÀÎ¼ö-1ÀÌ ÀÎ¼ö-2º¸´Ù ÀÛÀº°¡¸¦ ÆÇ´ÜÇØÁØ´Ù.
+; ³Ñ¾î¿À´Â °ª:
+;       ARG1 : ÀÎ¼ö-1
+;       ARG2 : ÀÎ¼ö-2
+; ³Ñ¾î°¡´Â °ª:
+;       T    : ÀÎ¼ö-1ÀÌ ÀÎ¼ö-2º¸´Ù ÀÛÀ» ¶§
+;       nil  : ÀÎ¼ö-1ÀÌ ÀÎ¼ö-2º¸´Ù ÀÛÁö ¾ÊÀ»¶§
 ;************************************************
 
 (defun LT(arg1 arg2)
@@ -275,26 +275,26 @@
 ;           Yi Suk-Jong
 ;           1996/2/23
 ;************************************************
-; listì—ì„œ íŠ¹ì • atomì„ ì§€ìš´ë‹¤
-; ë„˜ì–´ì˜¤ëŠ” ê°’
-;             b_list : ì¶•ì¶œì „ list
-;               anth : ì¶•ì¶œë˜ì•¼í•  atomì˜ ìœ„ì¹˜
-; ë„˜ê²¨ê°€ëŠ” ê°’
-;                    : ì¶•ì¶œí›„ list
+; list¿¡¼­ Æ¯Á¤ atomÀ» Áö¿î´Ù
+; ³Ñ¾î¿À´Â °ª
+;             b_list : ÃàÃâÀü list
+;               anth : ÃàÃâµÇ¾ßÇÒ atomÀÇ À§Ä¡
+; ³Ñ°Ü°¡´Â °ª
+;                    : ÃàÃâÈÄ list
 ;************************************************
 
 (defun DEL_ATOM(b_list anth
-/       b_list      mlist       a_list      count   ;ì§€ì—­ë³€ìˆ˜
+/       b_list      mlist       a_list      count   ;Áö¿ªº¯¼ö
 )
 
-  (setq nlist (length b_list))                      ;listì˜ ê°¯ìˆ˜
+  (setq nlist (length b_list))                      ;listÀÇ °¹¼ö
 
-  (setq a_list nil)                                 ;ë¹ˆ listìƒì„±
-  (setq count 0)                                    ;ì²«ë²ˆì§¸ listë¶€í„°
+  (setq a_list nil)                                 ;ºó list»ı¼º
+  (setq count 0)                                    ;Ã¹¹øÂ° listºÎÅÍ
 
-  (repeat nlist                                     ;listê°¯ìˆ˜ë§Œí¼ ë°˜ë³µ
-    (if (/= count anth)                             ;ì§€ì •ëœ atomì´ ì•„ë‹Œê²½ìš°ë§Œ
-      (setq a_list (append a_list (list (nth count b_list))))   ;listì—ë‹¤ ì¶”ê°€
+  (repeat nlist                                     ;list°¹¼ö¸¸Å­ ¹İº¹
+    (if (/= count anth)                             ;ÁöÁ¤µÈ atomÀÌ ¾Æ´Ñ°æ¿ì¸¸
+      (setq a_list (append a_list (list (nth count b_list))))   ;list¿¡´Ù Ãß°¡
     ) ;of if
     (setq count (1+ count))
   ) ;of repeat
@@ -310,8 +310,8 @@
 ;            Yi Suk-Jong
 ;            1996/2/26
 ;*******************************************
-; ì£¼ì–´ì§„ bar dataë¡œ bar listë¥¼ ê·¸ë¦¼
-; ë„˜ì–´ì˜¤ëŠ” ê°’:
+; ÁÖ¾îÁø bar data·Î bar list¸¦ ±×¸²
+; ³Ñ¾î¿À´Â °ª:
 ;      BLIST : bar data
 ;      IPNT  : insert point
 ;      S     : Scale factor
@@ -327,17 +327,17 @@
 )
 
 
-  (setq th (getvar "DIMTXT))                    ;ê¸€ì í¬ê¸°
-  (setq lh 7)                                   ;í•œ lineì˜ ë†’ì´
+  (setq th (getvar "DIMTXT))                    ;±ÛÀÚ Å©±â
+  (setq lh 7)                                   ;ÇÑ lineÀÇ ³ôÀÌ
 
-  (setq th (* th s))                            ;ê¸€ìí¬ê¸° scaleëŒ€ë¡œ
-  (setq lh (* lh s))                            ;ì¤„ë†’ì´ scaleëŒ€ë¡œ
+  (setq th (* th s))                            ;±ÛÀÚÅ©±â scale´ë·Î
+  (setq lh (* lh s))                            ;ÁÙ³ôÀÌ scale´ë·Î
 
-  (setq ln (length blist))                      ;ì² ê·¼ data ê°¯ìˆ˜
+  (setq ln (length blist))                      ;Ã¶±Ù data °¹¼ö
 
-  (setq blist (reverse (sort_list blist 1)))    ;ì² ê·¼ ì§ê²½ì„ ê¸°ì¤€ìœ¼ë¡œ sort
+  (setq blist (reverse (sort_list blist 1)))    ;Ã¶±Ù Á÷°æÀ» ±âÁØÀ¸·Î sort
 
-  (setq fdia (nth 1 (nth 0 blist)))             ;ì²« ì² ê·¼ ì§ê²½
+  (setq fdia (nth 1 (nth 0 blist)))             ;Ã¹ Ã¶±Ù Á÷°æ
 
   (setq ix   (car ipnt)
         iy   (cadr ipnt)
@@ -353,13 +353,13 @@
   (setq slist nil                               ;sub list
         tlist nil)                              ;total list
 
-  (setq tl   0.0                                ;ê°™ì€ ì² ê·¼ ê¸¸ì´ í•©
-        tw   0.0)                               ;ì´ ì¤‘ëŸ‰
+  (setq tl   0.0                                ;°°Àº Ã¶±Ù ±æÀÌ ÇÕ
+        tw   0.0)                               ;ÃÑ Áß·®
 
-  (setq count 0)                                ;ë‘ë²ˆì§¸ ì² ê·¼ë¶€í„°
-  (repeat ln                                    ;ëê¹Œì§€ ë°˜ë³µ
-    (setq cdia (nth 1 (nth count blist)))       ;í˜„ì¬ì˜ ì² ê·¼ì§ê²½
-    (if (= fdia cdia)                           ;í˜„ì¬ì§ê²½ì´ ì´ì „ì§ê²½ê³¼ ê°™ì„ ë•Œ
+  (setq count 0)                                ;µÎ¹øÂ° Ã¶±ÙºÎÅÍ
+  (repeat ln                                    ;³¡±îÁö ¹İº¹
+    (setq cdia (nth 1 (nth count blist)))       ;ÇöÀçÀÇ Ã¶±ÙÁ÷°æ
+    (if (= fdia cdia)                           ;ÇöÀçÁ÷°æÀÌ ÀÌÀüÁ÷°æ°ú °°À» ¶§
       (setq slist (append slist (list (nth count blist))))
       (progn
         (setq tlist (append tlist (list slist)))
@@ -367,12 +367,12 @@
         (setq fdia cdia)
       ) ;of progn ELSE
     ) ;of if
-    (setq count (1+ count))                         ;ë‹¤ìŒ ì² ê·¼ìœ¼ë¡œ
+    (setq count (1+ count))                         ;´ÙÀ½ Ã¶±ÙÀ¸·Î
   ) ;of repeat
 
-  (setq tlist (append tlist (list slist)))          ;ë§ˆì§€ë§‰ ì² ê·¼ë¬¶ìŒ ì¶”ê°€
+  (setq tlist (append tlist (list slist)))          ;¸¶Áö¸· Ã¶±Ù¹­À½ Ãß°¡
 
-  (setq hy (- iy (/ lh 2.0)))                 ;Headerì˜ yìœ„ì¹˜
+  (setq hy (- iy (/ lh 2.0)))                 ;HeaderÀÇ yÀ§Ä¡
   (command "TEXT" "M" (list (+ ix (* 100.0 s)) (+ iy (* th 5)))
                   (* 6.0 s) "0.0" "B A R  L I S T")
   (command "TEXT" "M" (list (+ ix (*  10.0 S)) hy) th "0.0" "MARK")
@@ -385,11 +385,11 @@
   (command "TEXT" "M" (list (+ ix (* 185.0 S)) hy) th "0.0" "REMARKS")
   (command "TEXT" "M" (list (+ ix (* 185.0 s)) (- hy lh)) th "0.0" "ADD 3%")
 
-  (setq ly (- hy  (/ lh 2.0)))                                  ;line yì¢Œí‘œ
+  (setq ly (- hy  (/ lh 2.0)))                                  ;line yÁÂÇ¥
   (setq oldc (getvar "CECOLOR")) (setvar "CECOLOR" "WHITE")
-  (command "LINE" (list ix iy) (list (+ ix (* 200 s)) iy) "")   ;ìœ—lineê·¸ë¦¬ê¸°
+  (command "LINE" (list ix iy) (list (+ ix (* 200 s)) iy) "")   ;À­line±×¸®±â
   (setvar "CECOLOR" "RED")
-  (command "LINE" (list ix ly) (list (+ ix (* 200 s)) ly) "")   ;ì•„ë˜lineê·¸ë¦¬ê¸°
+  (command "LINE" (list ix ly) (list (+ ix (* 200 s)) ly) "")   ;¾Æ·¡line±×¸®±â
   (setvar "CECOLOR" "WHITE")
   (command "LINE" (list (+ ix (*   0 s)) iy) (list (+ ix (*   0 s)) (- iy lh)) "")
   (setvar "CECOLOR" "RED")
@@ -404,51 +404,51 @@
   (command "LINE" (list (+ ix (* 200 s)) iy) (list (+ ix (* 200 S)) (- iy lh)) "")
   (setvar "CECOLOR" oldc)
 
-  (setq iy (- iy (* 1.5 lh)))                       ;ìƒˆë¡œìš´ insert point
-  (setq ndia (length tlist))                        ;ì§ê²½ ê°¯ìˆ˜
+  (setq iy (- iy (* 1.5 lh)))                       ;»õ·Î¿î insert point
+  (setq ndia (length tlist))                        ;Á÷°æ °¹¼ö
 
-  (setq cl 0                                        ;í˜„ì¬ lineë²ˆí˜¸
+  (setq cl 0                                        ;ÇöÀç line¹øÈ£
         gtw 0.0                                     ;Grand total weight
         gtwa 0.0)
 
   (setq dcount 0)                                   ;DIA count
 
-  (repeat ndia                                      ;DIAê°¯ìˆ˜ë§Œí¼ ë°˜ë³µ
-    (setq dlist (sort_list (nth dcount tlist) 0))   ;DIAë³„ ë¬¶ìŒ
-    (setq cdia (nth 1 (nth 0 dlist)))               ;í˜„ì¬ ì§ê²½
-    (setq sbn (length dlist))                       ;ë¬¶ìŒë‚´ ê°¯ìˆ˜
+  (repeat ndia                                      ;DIA°¹¼ö¸¸Å­ ¹İº¹
+    (setq dlist (sort_list (nth dcount tlist) 0))   ;DIAº° ¹­À½
+    (setq cdia (nth 1 (nth 0 dlist)))               ;ÇöÀç Á÷°æ
+    (setq sbn (length dlist))                       ;¹­À½³» °¹¼ö
     (setq stl 0.0)                                  ;Sub total length
     (setq vy1 cl)
 
     (setq sbcount 0)                                ;Sub bar count
-    (repeat sbn                                     ;ì² ê·¼ ê°¯ìˆ˜ë§Œí¼ë°˜ë³µ
-      (setq bn (nth 0 (nth sbcount dlist))          ;ì² ê·¼ë²ˆí˜¸
-            bd (nth 1 (nth sbcount dlist))          ;ì² ê·¼ì§ê²½
-            bl (nth 2 (nth sbcount dlist))          ;ì² ê·¼ê¸¸ì´
-            nb (nth 3 (nth sbcount dlist)))         ;ì² ê·¼ê°¯ìˆ˜
-      (if (/= sbcount 0) (setq bd (chr 34)))        ;ì²˜ìŒê²ƒì´ ì•„ë‹ˆë©´ ê°™ìŒ í‘œì‹œ
+    (repeat sbn                                     ;Ã¶±Ù °¹¼ö¸¸Å­¹İº¹
+      (setq bn (nth 0 (nth sbcount dlist))          ;Ã¶±Ù¹øÈ£
+            bd (nth 1 (nth sbcount dlist))          ;Ã¶±ÙÁ÷°æ
+            bl (nth 2 (nth sbcount dlist))          ;Ã¶±Ù±æÀÌ
+            nb (nth 3 (nth sbcount dlist)))         ;Ã¶±Ù°¹¼ö
+      (if (/= sbcount 0) (setq bd (chr 34)))        ;Ã³À½°ÍÀÌ ¾Æ´Ï¸é °°À½ Ç¥½Ã
       (if (< bl 1.0)
         (setq blt (rtos (* bl 1000.0) 2 0))
         (setq blt (rtos bl 2 3))
       ) ;of if
-      (setq tl  (* bl nb)                           ;ê¸¸ì´*ê°¯ìˆ˜
-            stl (+ stl tl))                         ;ì†Œê³„ê¸¸ì´
+      (setq tl  (* bl nb)                           ;±æÀÌ*°¹¼ö
+            stl (+ stl tl))                         ;¼Ò°è±æÀÌ
 
-      (setq y    (- iy (* cl lh)))                  ;í˜„ì¬ line yìœ„ì¹˜
+      (setq y    (- iy (* cl lh)))                  ;ÇöÀç line yÀ§Ä¡
 
-      (command "TEXT" "M" (list bnx y) th "0.0" bn)              ;ë²ˆí˜¸
-      (command "TEXT" "M" (list bdx y) th "0.0" bd)              ;ì§ê²½
-      (command "TEXT" "MR" (list blx y) th "0.0" blt)            ;ê¸¸ì´
-      (command "TEXT" "MR" (list nbx y) th "0.0" (itoa nb))  ;ê°¯ìˆ˜
-      (command "TEXT" "MR" (list tlx y) th "0.0" (rtos tl 2 3))  ;ì´ê¸¸ì´
+      (command "TEXT" "M" (list bnx y) th "0.0" bn)              ;¹øÈ£
+      (command "TEXT" "M" (list bdx y) th "0.0" bd)              ;Á÷°æ
+      (command "TEXT" "MR" (list blx y) th "0.0" blt)            ;±æÀÌ
+      (command "TEXT" "MR" (list nbx y) th "0.0" (itoa nb))  ;°¹¼ö
+      (command "TEXT" "MR" (list tlx y) th "0.0" (rtos tl 2 3))  ;ÃÑ±æÀÌ
 
-      (setq ly (- y (/ lh 2.0)))                                    ;line yì¢Œí‘œ
+      (setq ly (- y (/ lh 2.0)))                                    ;line yÁÂÇ¥
       (setq oldc (getvar "CECOLOR")) (setvar "CECOLOR" "RED")
-      (command "LINE" (list ix ly) (list (+ ix (* 200 s)) ly) "")      ;lineê·¸ë¦¬ê¸°
+      (command "LINE" (list ix ly) (list (+ ix (* 200 s)) ly) "")      ;line±×¸®±â
       (setvar "CECOLOR" oldc)
 
-      (setq sbcount (1+ sbcount))                                   ;ë‹¤ìŒì² ê·¼
-      (setq cl (+ cl 1))                                            ;í˜„ì¬ line
+      (setq sbcount (1+ sbcount))                                   ;´ÙÀ½Ã¶±Ù
+      (setq cl (+ cl 1))                                            ;ÇöÀç line
     ) ;of repeat
 
     (cond
@@ -470,54 +470,54 @@
       ((= cdia "H32") (setq uw 6.230))
     ) ;of cond
 
-    (setq tw (* stl uw 0.001)                                   ;ì´ì¤‘ëŸ‰
+    (setq tw (* stl uw 0.001)                                   ;ÃÑÁß·®
           twt (rtos tw 2 3)
           tw (atof twt)
-          twa (* tw 1.03)                                       ;ì´ì¤‘ëŸ‰(ê°€ì‚°)
+          twa (* tw 1.03)                                       ;ÃÑÁß·®(°¡»ê)
           twat (rtos twa 2 3)
           twa (atof twat)
           gtw (+ gtw tw)
-          gtwa (+ gtwa twa))                                    ;ì „ì²´ì¤‘ëŸ‰
+          gtwa (+ gtwa twa))                                    ;ÀüÃ¼Áß·®
 
-    (setq    y  (- iy (* lh cl)))                               ;í˜„ì¬ line yì¢Œí‘œ
+    (setq    y  (- iy (* lh cl)))                               ;ÇöÀç line yÁÂÇ¥
 
     (command "TEXT" "M" (list (/ (+ ix nbx) 2.0) y) th "0.0" "S U B  T O T A L")
-    (command "TEXT" "MR" (list tlx y) th "0.0" (rtos stl 2 3))  ;ì´ê¸¸ì´ ì†Œê³„
-    (command "TEXT" "MR" (list uwx y) th "0.0" (rtos uw 2 3))   ;ë‹¨ìœ„ì¤‘ëŸ‰
-    (command "TEXT" "MR" (list twx y) th "0.0" twt)   ;ì´ì¤‘ëŸ‰ì†Œê³„
-    (command "TEXT" "MR" (list twax y) th "0.0" twat) ;ì´ì¤‘ëŸ‰ì†Œê³„(ê°€ì‚°)
+    (command "TEXT" "MR" (list tlx y) th "0.0" (rtos stl 2 3))  ;ÃÑ±æÀÌ ¼Ò°è
+    (command "TEXT" "MR" (list uwx y) th "0.0" (rtos uw 2 3))   ;´ÜÀ§Áß·®
+    (command "TEXT" "MR" (list twx y) th "0.0" twt)   ;ÃÑÁß·®¼Ò°è
+    (command "TEXT" "MR" (list twax y) th "0.0" twat) ;ÃÑÁß·®¼Ò°è(°¡»ê)
 
-    (setq ly (- y (/ lh 2.0)))                                    ;line yì¢Œí‘œ
+    (setq ly (- y (/ lh 2.0)))                                    ;line yÁÂÇ¥
 
     (setq vy1 (- iy (* vy1 lh) (/ lh -2.0))
           vy2 (- iy (* cl lh) (/ lh -2.0)))
 
     (setq oldc (getvar "CECOLOR"))  (setvar "CECOLOR" "RED")
-    (command "LINE" (list ix ly) (list (+ ix (* 200 s)) ly) "")      ;lineê·¸ë¦¬ê¸°
+    (command "LINE" (list ix ly) (list (+ ix (* 200 s)) ly) "")      ;line±×¸®±â
     (command "LINE" (list (+ ix (*  20 s)) vy1) (list (+ ix (*  20 S)) vy2) "")
     (command "LINE" (list (+ ix (*  40 s)) vy1) (list (+ ix (*  40 S)) vy2) "")
     (command "LINE" (list (+ ix (*  70 s)) vy1) (list (+ ix (*  70 S)) vy2) "")
     (setvar "CECOLOR" oldc)
 
-    (setq cl (1+ cl))                                           ;í˜„ì¬ lineë²ˆí˜¸
-    (setq dcount (1+ dcount))                                   ;ë‹¤ìŒ ì§ê²½ìœ¼ë¡œ
+    (setq cl (1+ cl))                                           ;ÇöÀç line¹øÈ£
+    (setq dcount (1+ dcount))                                   ;´ÙÀ½ Á÷°æÀ¸·Î
   ) ;of repeat
 
-  (setq y (- iy (* lh cl)))                                 ;yì¢Œí‘œ
+  (setq y (- iy (* lh cl)))                                 ;yÁÂÇ¥
 
   (command "TEXT" "M" (list (/ (+ ix nbx) 2.0) y) th "0.0" "G R A N D  T O T A L")
-  (command "TEXT" "MR" (list twx y) th "0.0" (rtos gtw 2 3))    ;ì²œì²´ì¤‘ëŸ‰
-  (command "TEXT" "MR" (list twax y) th "0.0" (rtos gtwa 2 3))  ;ì²œì²´ì¤‘ëŸ‰(ê°€ì‚°)
+  (command "TEXT" "MR" (list twx y) th "0.0" (rtos gtw 2 3))    ;ÃµÃ¼Áß·®
+  (command "TEXT" "MR" (list twax y) th "0.0" (rtos gtwa 2 3))  ;ÃµÃ¼Áß·®(°¡»ê)
   (command "TEXT" "M" (list (- twx (* th 3)) (+ y (/ th 2.0))) th "0.0" "T")
   (command "TEXT" "M" (list (- twax (* th 3)) (+ y (/ th 2.0))) th "0.0" "T")
 
-  (setq ly (- y (/ lh 2.0)))                                    ;line yì¢Œí‘œ
+  (setq ly (- y (/ lh 2.0)))                                    ;line yÁÂÇ¥
 
   (setq vy1 (+ iy (/ lh 2.0))
         vy2 (- iy (* (1+ cl) lh) (/ lh -2.0)))
 
   (setq oldc (getvar "CECOLOR")) (setvar "CECOLOR" "WHITE")
-  (command "LINE" (list ix ly) (list (+ ix (* 200 s)) ly) "")      ;lineê·¸ë¦¬ê¸°
+  (command "LINE" (list ix ly) (list (+ ix (* 200 s)) ly) "")      ;line±×¸®±â
   (command "LINE" (list ix vy1) (list ix vy2) "")
   (setvar "CECOLOR" "RED")
   (command "LINE" (list (+ ix (* 90 s)) vy1) (list (+ ix (* 90 s)) vy2) "")

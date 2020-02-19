@@ -4,12 +4,12 @@
 ;           By Suk-Jong Yi
 ;           1996/6/24
 ;****************************************************************************
-; ë„ë©´ë‚´ì— ìˆëŠ” ëª¨ë“  Borderë¥¼ ì¶œë ¥ (A1ìš©)
-; Device  : ëª…ë ¹ë‚´ë¦¬ê¸° ì „ì— ë¯¸ë¦¬ ì„ íƒ
-; Scale   : Fit / Factor ë‘ê°€ì§€ ì˜µì…˜
-;           (Factorë¥¼ ì„ íƒí–ˆì„ ë•Œ DIMSCALE ë³€ìˆ˜ìë™ì¸ì‹)
-; pltì´ë¦„ : Borderê°€ í•œê°œì¸ ê²½ìš° - DWG nameê³¼ ê°™ê²Œ
-;           Borderê°€ ë‘ê°œ ì´ìƒì¸ ê²½ìš° - DWGíŒŒì¼ ì´ë¦„ì˜ ë§ˆì§€ë§‰ ë‘ìë¥¼ ë²ˆí˜¸ë¡œ
+; µµ¸é³»¿¡ ÀÖ´Â ¸ğµç Border¸¦ Ãâ·Â (A1¿ë)
+; Device  : ¸í·É³»¸®±â Àü¿¡ ¹Ì¸® ¼±ÅÃ
+; Scale   : Fit / Factor µÎ°¡Áö ¿É¼Ç
+;           (Factor¸¦ ¼±ÅÃÇßÀ» ¶§ DIMSCALE º¯¼öÀÚµ¿ÀÎ½Ä)
+; pltÀÌ¸§ : Border°¡ ÇÑ°³ÀÎ °æ¿ì - DWG name°ú °°°Ô
+;           Border°¡ µÎ°³ ÀÌ»óÀÎ °æ¿ì - DWGÆÄÀÏ ÀÌ¸§ÀÇ ¸¶Áö¸· µÎÀÚ¸¦ ¹øÈ£·Î
 ;****************************************************************************
 
 (defun C:PLTA1( /
@@ -18,23 +18,23 @@
                                                               low_right
 )
 
-  (setq fn (getfiled "INPUT DATA" "" "DAT" 0))      ;file nameì…ë ¥
+  (setq fn (getfiled "INPUT DATA" "" "DAT" 0))      ;file nameÀÔ·Â
   (setq opf (open fn "r"))                          ;file open
   (if opf
     (progn
       (setq count 1)
       (while (setq dwgn (read-line opf))
         (command "OPEN" dwgn)
-;        (PUSH-ENV)                                        ;í™˜ê²½ë³€ìˆ˜ ë³µê·€
-        (setq ds (getvar "DIMSCALE"))                     ;scale ê°’êµ¬í•¨
+;        (PUSH-ENV)                                        ;È¯°æº¯¼ö º¹±Í
+        (setq ds (getvar "DIMSCALE"))                     ;scale °ª±¸ÇÔ
 
 ;        (setq dwgn (getvar "DWGNAME"))
         (setq f_list (list (cons 0 "INSERT") (cons 2 "BORDER*")))  ;filter list
-        (setq ss_lst (ssget "X" f_list))                          ;entity ì„ íƒ
-        (setq ss_num (sslength ss_lst))                   ;ì„ íƒëœ entityê°¯ìˆ˜
+        (setq ss_lst (ssget "X" f_list))                          ;entity ¼±ÅÃ
+        (setq ss_num (sslength ss_lst))                   ;¼±ÅÃµÈ entity°¹¼ö
 
         (setq index 0)
-        (repeat ss_num                        ;ì„ íƒëœ border ê°¯ìˆ˜ë§Œí¼ ë°˜ë³µ
+        (repeat ss_num                        ;¼±ÅÃµÈ border °¹¼ö¸¸Å­ ¹İº¹
           (if (= index 0)
             (setq pltn dwgn)
             (progn
@@ -49,12 +49,12 @@
               ) ;of IF
             ) ;of progn
           ) ;of IF
-          (setq bdr_ent (entget (ssname ss_lst index)))   ;border entityì •ë³´
-          (setq ipnt (cdr (assoc 10 bdr_ent)))            ;borderì˜ insert point
-          (setq i_scale (cdr (assoc 41 bdr_ent)))         ;borderì˜ scale factor
-          (setq up_left (list (- (car ipnt) (* 5 i_scale))        ;borderì˜ ì¢Œì¸¡ ìœ—ì 
+          (setq bdr_ent (entget (ssname ss_lst index)))   ;border entityÁ¤º¸
+          (setq ipnt (cdr (assoc 10 bdr_ent)))            ;borderÀÇ insert point
+          (setq i_scale (cdr (assoc 41 bdr_ent)))         ;borderÀÇ scale factor
+          (setq up_left (list (- (car ipnt) (* 5 i_scale))        ;borderÀÇ ÁÂÃø À­Á¡
                               (+ (cadr ipnt) (* 570 i_scale))))
-          (setq low_right (list (+ (car ipnt) (* 800 i_scale))    ;borderì˜ ìš°ì¸¡ ì•„ë«ì 
+          (setq low_right (list (+ (car ipnt) (* 800 i_scale))    ;borderÀÇ ¿ìÃø ¾Æ·§Á¡
                                 (- (cadr ipnt) (* 5 i_scale))))
           (setvar "CMDDIA" 0)                                     ;command echo OFF
           (if (= index 0)
@@ -82,13 +82,13 @@
           ) ;of IF
           (setvar "CMDDIA" 1)                                     ;command echo ON
           (princ pltn) (princ " is Plotted") (terpri)
-          (setq index (1+ index))                                 ;ë‹¤ìŒ borderë¡œ
+          (setq index (1+ index))                                 ;´ÙÀ½ border·Î
         ) ;of repeat
       ) ;of WHILE
     ) ;progn
   ) ;of IF
 
-  (POP-ENV)                                                 ;í™˜ê²½ë³€ìˆ˜ ë³µê·€
+  (POP-ENV)                                                 ;È¯°æº¯¼ö º¹±Í
   (princ)
 ) ;of defun
 

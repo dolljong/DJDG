@@ -4,7 +4,7 @@
 ;           By Suk-Jong Yi
 ;           1995/5/27
 ;********************************
-; Textì¬ì •ë ¬ (ìˆ˜ì§ì •ë ¬)
+; TextÀçÁ¤·Ä (¼öÁ÷Á¤·Ä)
 
 (defun C:TAV(/
 ents nent ans w72 xpnt count ent
@@ -40,14 +40,14 @@ old10 old11 old72 new10 new11 new72
   (setq ent (entget (ssname ents count)))
   (if (= "TEXT" (cdr (assoc 0 ent)))
     (progn
-      (setq old10 (assoc 10 ent))                 ;ì‹œì‘ì 
-      (setq old11 (assoc 11 ent))                 ;ì‚½ì…ì 
-      (setq old72 (assoc 72 ent))                 ;ì •ë ¬ë°©ì‹
+      (setq old10 (assoc 10 ent))                 ;½ÃÀÛÁ¡
+      (setq old11 (assoc 11 ent))                 ;»ğÀÔÁ¡
+      (setq old72 (assoc 72 ent))                 ;Á¤·Ä¹æ½Ä
       (setq new10 (cons 10 (list (car xpnt) (cadr (cdr old10)))))
       (setq new11 (cons 11 (list (car xpnt) (cadr (cdr old11)))))
       (setq new72 (cons 72 w72))
       (if (= (cdr old72) 0)
-        (progn                                    ; leftì •ë ¬ì¸ ê²½ìš°
+        (progn                                    ; leftÁ¤·ÄÀÎ °æ¿ì
           (if (= w72 0)
               (setq ent (subst new10 old10 ent))
             (progn
@@ -57,7 +57,7 @@ old10 old11 old72 new10 new11 new72
           ) ;of if
           (setq ent (subst new72 old72 ent))
         ) ;of progn
-        (progn                                           ; leftì •ë ¬ì´ ì•„ë‹Œ ê²½ìš°
+        (progn                                           ; leftÁ¤·ÄÀÌ ¾Æ´Ñ °æ¿ì
           (if (= w72 0)
              (setq ent (subst new10 old10 ent))
              (setq ent (subst new11 old11 ent))

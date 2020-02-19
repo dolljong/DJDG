@@ -12,50 +12,50 @@
 ;tang txtpnt txtxy ltxt
 )
 
-  (push-env)                                                ;í™˜ê²½ë³€ìˆ˜ ëŒ€í”¼
+  (push-env)                                                ;È¯°æº¯¼ö ´ëÇÇ
 
-  (setq dim_gap 10.0                            ;ì¹˜ìˆ˜ì„ ì´ êµ¬ì¡°ë¬¼ì—ì„œ ë–¨ì–´ì§„ ê±°ë¦¬
+  (setq dim_gap 10.0                            ;Ä¡¼ö¼±ÀÌ ±¸Á¶¹°¿¡¼­ ¶³¾îÁø °Å¸®
         ds (getvar "DIMSCALE")
         th (getvar "DIMTXT"))
 
   ;(setvar "cmdecho" 1)
 
-  (setq elst (entget (car (entsel "Select Arc or Circle: "))))  ;ê¸¸ì´ì˜ ê¸°ì¤€í˜¸
-  (setq cen (cdr (assoc 10 elst))                               ;ì¤‘ì‹¬
-        rc  (cdr (assoc 40 elst)))                              ;ë°˜ì§€ë¦„
-  (setq sp (getpoint "Pick start point: "))                     ;ì‹œì‘ì ì…ë ¥
+  (setq elst (entget (car (entsel "Select Arc or Circle: "))))  ;±æÀÌÀÇ ±âÁØÈ£
+  (setq cen (cdr (assoc 10 elst))                               ;Áß½É
+        rc  (cdr (assoc 40 elst)))                              ;¹İÁö¸§
+  (setq sp (getpoint "Pick start point: "))                     ;½ÃÀÛÁ¡ÀÔ·Â
   (setq sang (angle cen sp))
   (setq ep (getpoint "Pick end point: "))
   (setq eang (angle cen ep))
   (setq seang (abs (dang sang eang)))
 
   (princ (dang sang eang))
-  (setq cl (/ (* 2 pi rc seang) (* 2 pi)))                    ;Arcì˜ ê¸¸ì´
+  (setq cl (/ (* 2 pi rc seang) (* 2 pi)))                    ;ArcÀÇ ±æÀÌ
   (if (> cl 1000.0)
     (setq txt (rtos (* cl 0.001) 2 3))
     (setq txt (rtos cl 2 0))
   ) ;of if
 
-  (setq dlst (entget (car (entsel "Select baseline circle: ")))) ;ì¹˜ìˆ˜ì„  ê¸°ì¤€ Arc
-  (setq dcen (cdr (assoc 10 dlst))                    ;ì¹˜ìˆ˜ì„  ê¸°ì¤€ Arcì˜ ì¤‘ì‹¬
-        rd   (cdr (assoc 40 dlst)))                   ;ì¹˜ìˆ˜ì„  ê¸°ì¤€ Arcì˜ ë°˜ì§€ë¦„
-  (setq dsp (polar cen sang rd)                       ;ì¹˜ìˆ˜ë³´ì¡°ì„  ì‹œì‘ì 
-        dep (polar cen eang rd))                      ;ì¹˜ìˆ˜ë³´ì¡°ì„  ëì 
+  (setq dlst (entget (car (entsel "Select baseline circle: ")))) ;Ä¡¼ö¼± ±âÁØ Arc
+  (setq dcen (cdr (assoc 10 dlst))                    ;Ä¡¼ö¼± ±âÁØ ArcÀÇ Áß½É
+        rd   (cdr (assoc 40 dlst)))                   ;Ä¡¼ö¼± ±âÁØ ArcÀÇ ¹İÁö¸§
+  (setq dsp (polar cen sang rd)                       ;Ä¡¼öº¸Á¶¼± ½ÃÀÛÁ¡
+        dep (polar cen eang rd))                      ;Ä¡¼öº¸Á¶¼± ³¡Á¡
 
-  (setq sgnpnt (getpoint "\nPick Side: "))            ;ì¹˜ìˆ˜ì„ ì˜ ìœ„ì¹˜ (ìœ„,ì•„ë˜?)
-  (setq sgnr (distance cen sgnpnt))                   ;ì¹˜ìˆ˜ì„  ìœ„ì¹˜ ë¶€í˜¸
+  (setq sgnpnt (getpoint "\nPick Side: "))            ;Ä¡¼ö¼±ÀÇ À§Ä¡ (À§,¾Æ·¡?)
+  (setq sgnr (distance cen sgnpnt))                   ;Ä¡¼ö¼± À§Ä¡ ºÎÈ£
   (if (> sgnr rd)
     (setq sgn 1)
     (setq sgn -1)
   ) ;of if
 
-  ; ì¹˜ìˆ˜ì„ ì˜ ìœ„ì¹˜
+  ; Ä¡¼ö¼±ÀÇ À§Ä¡
   (setq dlevel (getint "\nDim Line level <1>: "))
   (if (= dlevel nil) (setq dlevel 1))
-  (setq mang (/ (+ sang eang) 2.0))                   ;ì‹œì‘ê°ê³¼ ëê°ì˜ ì¤‘ê°„ê°
-  ;(setq mang (- sang (/ (dang sang eang) 2.0)))                   ;ì‹œì‘ê°ê³¼ ëê°ì˜ ì¤‘ê°„ê°
+  (setq mang (/ (+ sang eang) 2.0))                   ;½ÃÀÛ°¢°ú ³¡°¢ÀÇ Áß°£°¢
+  ;(setq mang (- sang (/ (dang sang eang) 2.0)))                   ;½ÃÀÛ°¢°ú ³¡°¢ÀÇ Áß°£°¢
   (setq dpnt (polar cen mang (+ rd (* 20 ds sgn) (* (- dlevel 1) dim_gap ds sgn))))
-                                                      ;Dimension lineì˜ ìœ„ì¹˜
+                                                      ;Dimension lineÀÇ À§Ä¡
 
   (setq wh4 (which4 mang))
   ;(setq wh4 (which4 (angle dsp dep)))
@@ -64,8 +64,8 @@
       (setq tsgn -1)
   ) ;of if
   (setq tang (rtod (+ mang (* (/ PI 2.0) tsgn -1))))
-  (setq txtpnt (polar dpnt mang (* th ds tsgn)))      ;textìœ„ì¹˜ (X,Y,Z)
-  (setq txtxy (list (car txtpnt) (cadr txtpnt)))      ;textìœ„ì¹˜ (X,Y)
+  (setq txtpnt (polar dpnt mang (* th ds tsgn)))      ;textÀ§Ä¡ (X,Y,Z)
+  (setq txtxy (list (car txtpnt) (cadr txtpnt)))      ;textÀ§Ä¡ (X,Y)
   (princ "\nText=<")
   (princ txt)
   (setq ltxt (getstring ">: "))

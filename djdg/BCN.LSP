@@ -17,12 +17,12 @@
     (princ)
   ); of SETERR
 
-  (setq oer *error* *error* seterr)                 ;ë‚´ì¥ì—ëŸ¬ë£¨í‹´ ê°€ë™
+  (setq oer *error* *error* seterr)                 ;³»Àå¿¡·¯·çÆ¾ °¡µ¿
 
   (setvar "cmdecho" 0)
-  (setq sn (getint "\nStart Number : "))            ;ì‹œì‘ìˆ«ì
+  (setq sn (getint "\nStart Number : "))            ;½ÃÀÛ¼ıÀÚ
   ;(setq sn 1)
-  (setq addnum (getint "\nAdd Number: "))           ;ì¦ë¶„ìˆ«ì
+  (setq addnum (getint "\nAdd Number: "))           ;ÁõºĞ¼ıÀÚ
 
   (initget "Box Circle None")
   (setq cbn (getkword "\nBox/Circle/<None>: "))
@@ -65,8 +65,8 @@
                       ) ;of progn
                   ) ;of cond cbn="Box"
               ) ;of cond
-;              (setq num (+ num 1))                 ;1ë§Œí¼ ë”í•¨
-              (setq num (+ num addnum))             ;ì¦ë¶„ë§Œí¼ ë”í•¨
+;              (setq num (+ num 1))                 ;1¸¸Å­ ´õÇÔ
+              (setq num (+ num addnum))             ;ÁõºĞ¸¸Å­ ´õÇÔ
           ) ;of progn
       ) ;of if pnt="Change"
       (princ "\nNumber")
@@ -74,7 +74,7 @@
       (initget "Change")
   ) ; of while
 
-  (setq *error* oer seterr nil)                     ;ì—ëŸ¬ë£¨í‹´ ë³µê·€
+  (setq *error* oer seterr nil)                     ;¿¡·¯·çÆ¾ º¹±Í
 
   (princ)
 );;; End of program

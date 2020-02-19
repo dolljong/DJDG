@@ -21,43 +21,43 @@
 
   (push-env)
 
-  (setq ent (entsel "\nSelect Arc or Circle: "))    ;ì›ì´ë‚˜ í˜¸ì„ íƒ
+  (setq ent (entsel "\nSelect Arc or Circle: "))    ;¿øÀÌ³ª È£¼±ÅÃ
 
   (setq elist (entget (car ent)))
-  (setq cen (cdr (assoc 10 elist)))                 ;ì¤‘ì‹¬ì¢Œí‘œ
-  (setq ra (cdr (assoc 40 elist)))                  ;ë°˜ê²½
+  (setq cen (cdr (assoc 10 elist)))                 ;Áß½ÉÁÂÇ¥
+  (setq ra (cdr (assoc 40 elist)))                  ;¹İ°æ
 
-  (setq sp (getpoint "\nPick start point: "))       ;array ì‹œì‘ì 
-  (setq ep (getpoint "\nPick End point: "))         ;array ëì 
+  (setq sp (getpoint "\nPick start point: "))       ;array ½ÃÀÛÁ¡
+  (setq ep (getpoint "\nPick End point: "))         ;array ³¡Á¡
 
-  (setq sang (angle cen sp))                        ;ì‹œì‘ì  ì ˆëŒ€ê°
+  (setq sang (angle cen sp))                        ;½ÃÀÛÁ¡ Àı´ë°¢
   (princ "\nstart angle") (princ (rtod sang))
 
-  (setq eang (angle cen ep))                        ;ëì  ì ˆëŒ€ê°
+  (setq eang (angle cen ep))                        ;³¡Á¡ Àı´ë°¢
   (princ "\nend angle") (princ (rtod eang))
 
-  (setq seang (- eang sang))                        ;ì‹œì‘ì ê³¼ ëì ì˜ ì°¨
+  (setq seang (- eang sang))                        ;½ÃÀÛÁ¡°ú ³¡Á¡ÀÇ Â÷
   (princ "\nseangle: ") (princ (rtod seang))
 
-  (setq angsgn (/ seang (abs seang)))               ;ì‹œì‘ì ê³¼ ëì ì˜ ì°¨ì˜ ë¶€í˜¸
+  (setq angsgn (/ seang (abs seang)))               ;½ÃÀÛÁ¡°ú ³¡Á¡ÀÇ Â÷ÀÇ ºÎÈ£
   (princ "\nSign of angle: ") (princ angsgn)
 
-  (setq cl (/ (* 2 pi ra seang) (* 2 pi)))          ;í˜¸ì˜ ê¸¸ì´
+  (setq cl (/ (* 2 pi ra seang) (* 2 pi)))          ;È£ÀÇ ±æÀÌ
   (princ "\nCurve length: ")
-  (princ (rtos cl 2 (getvar "LUPREC")))             ;í˜¸ì˜ ê¸¸ì´ í‘œì‹œ
+  (princ (rtos cl 2 (getvar "LUPREC")))             ;È£ÀÇ ±æÀÌ Ç¥½Ã
 
-  (setq delta (getreal "\nEnter Delta: "))          ;delta L ì…ë ¥
-  (setq num (abs (fix (/ cl delta))))               ;array ê°¯ìˆ˜ êµ¬í•¨
+  (setq delta (getreal "\nEnter Delta: "))          ;delta L ÀÔ·Â
+  (setq num (abs (fix (/ cl delta))))               ;array °¹¼ö ±¸ÇÔ
   (princ "\nNumber: ") (princ num)
 
-  (setq rmd (rem cl delta))                         ;ë‚˜ë¨¸ì§€
+  (setq rmd (rem cl delta))                         ;³ª¸ÓÁö
   (princ "\nRemand: ") (princ rmd)
 
   ;(setq rmdst (* rmd delta))
   (setq rmdst rmd)
   (princ "\nRemaind dist: ") (princ rmdst)
 
-  (setq rmang (* (/ (* 360.0 rmdst) (* 2.0 pi ra)) angsgn))  ;ë‚˜ë¨¸ì§€ ê°
+  (setq rmang (* (/ (* 360.0 rmdst) (* 2.0 pi ra)) angsgn))  ;³ª¸ÓÁö °¢
 
   (princ "\nradius: ") (princ ra)
   (princ "\nremaind ang: ") (princ rmang)
@@ -66,11 +66,11 @@
   (princ "\nEnd angle: ") (princ (rtod eang))
   (princ "\nNew angle: ") (princ nang)
 
-  (setq arent (ssget))           ;arrayí•  entityì„ íƒ
+  (setq arent (ssget))           ;arrayÇÒ entity¼±ÅÃ
 
-  (setq nnum (abs (+ num 1)))                                ;arrayê°¯ìˆ˜
+  (setq nnum (abs (+ num 1)))                                ;array°¹¼ö
 
-  (command "array" arent "" "p" cen nnum nang "y")           ;arrayëª…ë ¹ ìˆ˜í–‰
+  (command "array" arent "" "p" cen nnum nang "y")           ;array¸í·É ¼öÇà
 
   (pop-env)
   (setq *error* oer seterr nil)

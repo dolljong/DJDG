@@ -4,7 +4,7 @@
 ;           Suk-Jong Yi
 ;           96/5/21
 ;********************************
-; ë¼ìš´ë“œì² ê·¼ì„ ì ì„ ìœ¼ë¡œ í‘œì‹œ
+; ¶ó¿îµåÃ¶±ÙÀ» Á¡¼±À¸·Î Ç¥½Ã
 ;********************************
 
 (defun C:RBAR(/
@@ -22,44 +22,44 @@
   ); of SETERR
   (setq oer *error* *error* seterr)
 
-  (push-env)                                                    ;í™˜ê²½ë³€ìˆ˜ ëŒ€í”¼
+  (push-env)                                                    ;È¯°æº¯¼ö ´ëÇÇ
 
-  (setq fp1 (getpoint "\nStart point: "))                       ;fanceë¼ì¸ ì²«ì 
-  (setq fp2 (getpoint fp1 "\nEnd point: "))                     ;fanceë¼ì¸ ëì 
-  (setq sslst (ssget "F" (list fp1 fp2) '((0 . "LINE"))))       ;fanceë¡œ ë¼ì¸ë§Œ ì„ íƒ
-  (setq nss (sslength sslst))                                   ;ë¼ì¸ ê°¯ìˆ˜
+  (setq fp1 (getpoint "\nStart point: "))                       ;fance¶óÀÎ Ã¹Á¡
+  (setq fp2 (getpoint fp1 "\nEnd point: "))                     ;fance¶óÀÎ ³¡Á¡
+  (setq sslst (ssget "F" (list fp1 fp2) '((0 . "LINE"))))       ;fance·Î ¶óÀÎ¸¸ ¼±ÅÃ
+  (setq nss (sslength sslst))                                   ;¶óÀÎ °¹¼ö
 
   (setq count 0)
   (repeat nss
-    (redraw (ssname sslst count) 3)                             ;ì„ íƒëœ ì—”í‹°í‹° ê°•ì¡°
-    (setq count (1+ count))                                     ;ë‹¤ìŒ ì—”í‹°í‹°ë¡œ
+    (redraw (ssname sslst count) 3)                             ;¼±ÅÃµÈ ¿£Æ¼Æ¼ °­Á¶
+    (setq count (1+ count))                                     ;´ÙÀ½ ¿£Æ¼Æ¼·Î
   ) ;of repeat
 
   (princ nss)
-  (princ " LINES found")                                        ;ì„ íƒëœ ì„ ìˆ˜ í‘œì‹œ
+  (princ " LINES found")                                        ;¼±ÅÃµÈ ¼±¼ö Ç¥½Ã
 
-  (setq rlen (getdist "\nRound length: "))                      ;roundê¸¸ì´
+  (setq rlen (getdist "\nRound length: "))                      ;round±æÀÌ
   (setq fl (list fp1 fp2))
 
 
-  (if (= (tblsearch "LTYPE" "HIDDEN2") nil)                     ;hidden2ê°€ ì—†ì„ ë•Œ load
+  (if (= (tblsearch "LTYPE" "HIDDEN2") nil)                     ;hidden2°¡ ¾øÀ» ¶§ load
     (command "LINETYPE" "L" "HIDDEN2" "ACAD" ""))
-  (setq oldlt (getvar "CELTYPE"))                               ;í˜„ì¬ ë¼ì¸íƒ€ì…ëŒ€í”¼
-  (setvar "CELTYPE" "HIDDEN2")                                   ;ë¼ì¸íƒ€ì…ì„ íˆë“ ìœ¼ë¡œ
+  (setq oldlt (getvar "CELTYPE"))                               ;ÇöÀç ¶óÀÎÅ¸ÀÔ´ëÇÇ
+  (setvar "CELTYPE" "HIDDEN2")                                   ;¶óÀÎÅ¸ÀÔÀ» È÷µçÀ¸·Î
 
-  (setq count 0)                                                ;ì²«ë²ˆì§¸ ë¼ì¸ë¶€í„°
+  (setq count 0)                                                ;Ã¹¹øÂ° ¶óÀÎºÎÅÍ
 
   (repeat nss
-    (setq ename (ssname sslst count))                           ;ì—”í‹°í‹° ì´ë¦„
-    (setq lent (entget ename))                                  ;ë¼ì¸ì—”í‹°í‹° ì •ë³´
+    (setq ename (ssname sslst count))                           ;¿£Æ¼Æ¼ ÀÌ¸§
+    (setq lent (entget ename))                                  ;¶óÀÎ¿£Æ¼Æ¼ Á¤º¸
 
-    (setq spnt (cdr (assoc 10 lent))                            ;ë¼ì¸ ì‹œì‘ì 
-          epnt (cdr (assoc 11 lent))                            ;ë¼ì¸ ëì 
-          leng (distance spnt epnt))                            ;ë¼ì¸ì˜ ê¸¸ì´
+    (setq spnt (cdr (assoc 10 lent))                            ;¶óÀÎ ½ÃÀÛÁ¡
+          epnt (cdr (assoc 11 lent))                            ;¶óÀÎ ³¡Á¡
+          leng (distance spnt epnt))                            ;¶óÀÎÀÇ ±æÀÌ
 
-    (setq crsp (inters spnt epnt fp1 fp2)                       ;fanceì™€ì˜ êµì°¨ì 
-          dst1 (distance spnt crsp)                             ;êµì°¨ì ê³¼ ì‹œì‘ì ê±°ë¦¬
-          dst2 (distance epnt crsp))                            ;êµì°¨ì ê³¼ ëì ê±°ë¦¬
+    (setq crsp (inters spnt epnt fp1 fp2)                       ;fance¿ÍÀÇ ±³Â÷Á¡
+          dst1 (distance spnt crsp)                             ;±³Â÷Á¡°ú ½ÃÀÛÁ¡°Å¸®
+          dst2 (distance epnt crsp))                            ;±³Â÷Á¡°ú ³¡Á¡°Å¸®
 
     (if (< dst1 dst2)
       (setq epnt1 (polar epnt (angle epnt spnt) (- leng rlen))  ;break point
@@ -69,14 +69,14 @@
             spnt1 spnt
             epnt2 epnt)
     ) ;of if
-    (setq lent (subst (cons 10 spnt1) (assoc 10 lent) lent))    ;ì‹œì‘ì  ë°”ê¾¸ê¸°
-    (setq lent (subst (cons 11 epnt1) (assoc 11 lent) lent))    ;ëì  ë°”ê¾¸ê¸°
-    (entmod lent)                                               ;ì—”í‹°í‹° ìˆ˜ì •
-    (command "LINE" epnt1 epnt2 "")                             ;ì ì„  ê·¸ë¦¬ê¸°
-    (setq count (1+ count))                                     ;ë‹¤ìŒ ë¼ì¸ìœ¼ë¡œ
+    (setq lent (subst (cons 10 spnt1) (assoc 10 lent) lent))    ;½ÃÀÛÁ¡ ¹Ù²Ù±â
+    (setq lent (subst (cons 11 epnt1) (assoc 11 lent) lent))    ;³¡Á¡ ¹Ù²Ù±â
+    (entmod lent)                                               ;¿£Æ¼Æ¼ ¼öÁ¤
+    (command "LINE" epnt1 epnt2 "")                             ;Á¡¼± ±×¸®±â
+    (setq count (1+ count))                                     ;´ÙÀ½ ¶óÀÎÀ¸·Î
   ) ;of repeat
 
-  (setvar "CELTYPE" oldlt)                                      ;ì›ë˜ ë¼ì¸íƒ€ì… ë³µê·€
+  (setvar "CELTYPE" oldlt)                                      ;¿ø·¡ ¶óÀÎÅ¸ÀÔ º¹±Í
 
   (pop-env)
   (setq *error* oer seterr nil)

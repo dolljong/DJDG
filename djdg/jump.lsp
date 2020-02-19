@@ -1,11 +1,11 @@
 ;***************************************************************
 ; Program : JUMP
-;           êµëŒ€ ì ê²€ìš© ê³„ë‹¨ í‰ë©´ë„
+;           ±³´ë Á¡°Ë¿ë °è´Ü Æò¸éµµ
 ;           Yi Suk-Jong
 ;           1999/7/13
 ;***************************************************************
-; í˜„í™©ì˜ ìƒ‰ë“¤ì„ ë°”ê¾¸ì–´ì¤€ë‹¤
-; layerì— ì˜í•´ì„œ ìƒ‰ì´ ì§€ì •ëœ ê²½ìš°ì—ë„ ìƒ‰ì„ ë°”ê¾¸ì–´ì¤€ë‹¤.
+; ÇöÈ²ÀÇ »öµéÀ» ¹Ù²Ù¾îÁØ´Ù
+; layer¿¡ ÀÇÇØ¼­ »öÀÌ ÁöÁ¤µÈ °æ¿ì¿¡µµ »öÀ» ¹Ù²Ù¾îÁØ´Ù.
 ;***************************************************************
 
 (defun C:JUMP(
@@ -13,7 +13,7 @@
 
 )
 
-  (defun SETERR(s)                                          ;ë‚´ì¥ì—ëŸ¬ë£¨í‹´ ì •ì˜
+  (defun SETERR(s)                                          ;³»Àå¿¡·¯·çÆ¾ Á¤ÀÇ
     (if (/= s "Function cancelled")
         (princ (strcat "\nError: " s))
     ); of If
@@ -21,7 +21,7 @@
     (princ)
   ); of SETERR
 
-;  (setq oer *error* *error* seterr)                         ;ì—ëŸ¬ë£¨í‹´ ê°€ë™
+;  (setq oer *error* *error* seterr)                         ;¿¡·¯·çÆ¾ °¡µ¿
 
   (push-env)
 
@@ -44,9 +44,9 @@
 ;/ s_point e_point width gap
  )
 
-  (setq l (distance pnts pnte))              ;ì ê²€ë¡œ í‰ë©´ ê¸¸ì´
-  (setq n (fix (/ l gap)))                                  ;ì ê²€ë¡œ ë¸”ë¡ ê°¯ìˆ˜
-  (setq ang (angle pnts pnte))                  ;ì‹œì‘ì -ëì ê°ë„
+  (setq l (distance pnts pnte))              ;Á¡°Ë·Î Æò¸é ±æÀÌ
+  (setq n (fix (/ l gap)))                                  ;Á¡°Ë·Î ºí·Ï °¹¼ö
+  (setq ang (angle pnts pnte))                  ;½ÃÀÛÁ¡-³¡Á¡°¢µµ
   (setq angp90 (+ ang (* 0.5 pi)))
   (setq angm90 (- ang (* 0.5 pi)))
   (setq half_width (* 0.5 width))

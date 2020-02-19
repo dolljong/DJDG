@@ -4,16 +4,16 @@
 ;           Suk-Jong Yi
 ;           96/7/18
 ;************************************
-; êµê° ì¼ë°˜ë„ ê·¸ë¦¬ê¸°
+; ±³°¢ ÀÏ¹İµµ ±×¸®±â
 ;************************************
 
 (defun C:PIER(/
 )
 
       ;;
-      ;; ë‚´ì¥ error routine
+      ;; ³»Àå error routine
       ;;
-      (defun SETERR(s)                                      ;ë‚´ì¥ ì—ëŸ¬ë£¨í‹´ ì •ì˜
+      (defun SETERR(s)                                      ;³»Àå ¿¡·¯·çÆ¾ Á¤ÀÇ
       ;If an error (CTRL-C) occurs when this command is active.
         (if (/= s "Function cancelled")
           (if (= s "quit / exit abort")
@@ -28,15 +28,15 @@
 
 
       ;;
-      ;; Function: SPLICE_DIALOG (Dialog boxë¡œ ì…ë ¥ë°›ê¸°)
+      ;; Function: SPLICE_DIALOG (Dialog box·Î ÀÔ·Â¹Ş±â)
       ;;
       (defun SPLICE_DIALOG (/
                            dcl_id
       )
-        (setq dcl_id (load_dialog "DJDG"))                ;dialogí˜¸ì¶œ
+        (setq dcl_id (load_dialog "DJDG"))                ;dialogÈ£Ãâ
         (if (not (new_dialog "PIER" dcl_id)) (exit))
 
-        (start_image "dd_pier")                           ;image ë³´ì´ê¸°
+        (start_image "dd_pier")                           ;image º¸ÀÌ±â
         (princ (dimx_tile "dd_pier"))
         (princ (dimy_tile "dd_pier"))
         (slide_image
@@ -46,8 +46,8 @@
         )
         (end_image)
 
-        (if (= #BC nil) (setq #BC 2.5))                       ;ì´ˆê¸°ì¹˜ ì„¤ì •
-        (if (= #C1 nil) (setq #C1 2.5))                       ;ì´ˆê¸°ì¹˜ ì„¤ì •
+        (if (= #BC nil) (setq #BC 2.5))                       ;ÃÊ±âÄ¡ ¼³Á¤
+        (if (= #C1 nil) (setq #C1 2.5))                       ;ÃÊ±âÄ¡ ¼³Á¤
         (if (= #C2 nil) (setq #C2 1.5))
         (if (= #PD nil) (setq #PD 2.5))
         (if (= #PL nil) (setq #PL 5.0))
@@ -57,8 +57,8 @@
         (if (= #SCOPING nil) (setq #SCOPING 3))
         (if (= #RCOPING nil) (setq #RCOPING "0"))
 
-        (set_tile "bc"  (rtos #BC 2 3))                      ;ì´ˆê¸°ì¹˜ë¡œ edit box setting
-        (set_tile "c1"  (rtos #C1 2 3))                      ;ì´ˆê¸°ì¹˜ë¡œ edit box setting
+        (set_tile "bc"  (rtos #BC 2 3))                      ;ÃÊ±âÄ¡·Î edit box setting
+        (set_tile "c1"  (rtos #C1 2 3))                      ;ÃÊ±âÄ¡·Î edit box setting
         (set_tile "c2"  (rtos #C2 2 3))
         (set_tile "pd"  (rtos #PD 2 3))
         (set_tile "pl"  (rtos #PL 2 3))
@@ -91,12 +91,12 @@
       ) ;of defun SPLICE_DIALOG
 
       ;;
-      ;; FUNCTION : SET_C1 (c1ê°’ ì…ë ¥)
+      ;; FUNCTION : SET_C1 (c1°ª ÀÔ·Â)
       ;;
-      (defun SET_C1 (/ in value)              ;n1 edit_boxì— ì…ë ¥ì´ ë“¤ì–´ì™”ì„ ë•Œ
+      (defun SET_C1 (/ in value)              ;n1 edit_box¿¡ ÀÔ·ÂÀÌ µé¾î¿ÔÀ» ¶§
         (setq in (get_tile "c1"))
-        (setq value (atof in))                ;stringì„ ê°’ìœ¼ë¡œ
-        (if (= value 0)                            ;0ì´ ì…ë ¥ë˜ë©´
+        (setq value (atof in))                ;stringÀ» °ªÀ¸·Î
+        (if (= value 0)                            ;0ÀÌ ÀÔ·ÂµÇ¸é
           (progn
             (do_error "c1" in)
             nil
@@ -110,12 +110,12 @@
        ) ;of defun
 
       ;;
-      ;; FUNCTION : SET_BC (bcê°’ ì…ë ¥)
+      ;; FUNCTION : SET_BC (bc°ª ÀÔ·Â)
       ;;
-      (defun SET_BC (/ in value)              ;bc edit_boxì— ì…ë ¥ì´ ë“¤ì–´ì™”ì„ ë•Œ
+      (defun SET_BC (/ in value)              ;bc edit_box¿¡ ÀÔ·ÂÀÌ µé¾î¿ÔÀ» ¶§
         (setq in (get_tile "bc"))
-        (setq value (atof in))                ;stringì„ ê°’ìœ¼ë¡œ
-        (if (= value 0)                            ;0ì´ ì…ë ¥ë˜ë©´
+        (setq value (atof in))                ;stringÀ» °ªÀ¸·Î
+        (if (= value 0)                            ;0ÀÌ ÀÔ·ÂµÇ¸é
           (progn
             (do_error "bc" in)
             nil
@@ -129,12 +129,12 @@
        ) ;of defun
 
       ;;
-      ;; FUNCTION : SET_C2 (c2ê°’ ì…ë ¥)
+      ;; FUNCTION : SET_C2 (c2°ª ÀÔ·Â)
       ;;
-      (defun SET_C2(/ in value)              ;p1 edit_boxì— ì…ë ¥ì´ ë“¤ì–´ì™”ì„ ë•Œ
+      (defun SET_C2(/ in value)              ;p1 edit_box¿¡ ÀÔ·ÂÀÌ µé¾î¿ÔÀ» ¶§
         (setq in (get_tile "c2"))
-        (setq value (atof in))              ;stringì„ ê°’ìœ¼ë¡œ
-        (if (= value 0)                     ;ê°’ì´ 0ì¸ ê²½ìš°
+        (setq value (atof in))              ;stringÀ» °ªÀ¸·Î
+        (if (= value 0)                     ;°ªÀÌ 0ÀÎ °æ¿ì
           (progn
             (do_error "c2" in)
             nil
@@ -148,9 +148,9 @@
        ) ;of defun
 
       ;;
-      ;; FUNCTION : SET_E1 (e1ê°’ ì…ë ¥)
+      ;; FUNCTION : SET_E1 (e1°ª ÀÔ·Â)
       ;;
-      (defun SET_PD(/ in value)              ;e1 edit_boxì— ì…ë ¥ì´ ë“¤ì–´ì™”ì„ ë•Œ
+      (defun SET_PD(/ in value)              ;e1 edit_box¿¡ ÀÔ·ÂÀÌ µé¾î¿ÔÀ» ¶§
         (setq in (get_tile "pd"))
         (setq value (atof in))
         (if (= vlaue 0)
@@ -167,9 +167,9 @@
        ) ;of defun
 
       ;;
-      ;; FUNCTION : SET_PL2 (plê°’ ì…ë ¥)
+      ;; FUNCTION : SET_PL2 (pl°ª ÀÔ·Â)
       ;;
-      (defun SET_PL(/ in value)              ;n2 edit_boxì— ì…ë ¥ì´ ë“¤ì–´ì™”ì„ ë•Œ
+      (defun SET_PL(/ in value)              ;n2 edit_box¿¡ ÀÔ·ÂÀÌ µé¾î¿ÔÀ» ¶§
         (setq in (get_tile "pl"))
         (setq value (atof in))
         (if (= value 0)
@@ -186,9 +186,9 @@
        ) ;of defun
 
       ;;
-      ;; FUNCTION : SET_FB (FBê°’ ì…ë ¥)
+      ;; FUNCTION : SET_FB (FB°ª ÀÔ·Â)
       ;;
-      (defun SET_FB(/ n vlaue)              ;p2 edit_boxì— ì…ë ¥ì´ ë“¤ì–´ì™”ì„ ë•Œ
+      (defun SET_FB(/ n vlaue)              ;p2 edit_box¿¡ ÀÔ·ÂÀÌ µé¾î¿ÔÀ» ¶§
         (setq in (get_tile "fb"))
         (setq value (atof in))
         (if (= value 0)
@@ -205,9 +205,9 @@
        ) ;of defun
 
       ;;
-      ;; FUNCTION : SET_FH (e2ê°’ ì…ë ¥)
+      ;; FUNCTION : SET_FH (e2°ª ÀÔ·Â)
       ;;
-      (defun SET_FH(/ n value)              ;e2 edit_boxì— ì…ë ¥ì´ ë“¤ì–´ì™”ì„ ë•Œ
+      (defun SET_FH(/ n value)              ;e2 edit_box¿¡ ÀÔ·ÂÀÌ µé¾î¿ÔÀ» ¶§
         (setq in (get_tile "fh"))
         (setq value (atof in))
         (if (= value 0)
@@ -224,9 +224,9 @@
        ) ;of defun
 
       ;;
-      ;; FUNCTION : SET_YS (ysê°’ ì…ë ¥)
+      ;; FUNCTION : SET_YS (ys°ª ÀÔ·Â)
       ;;
-      (defun SET_YS(/ n value)              ;ys edit_boxì— ì…ë ¥ì´ ë“¤ì–´ì™”ì„ ë•Œ
+      (defun SET_YS(/ n value)              ;ys edit_box¿¡ ÀÔ·ÂÀÌ µé¾î¿ÔÀ» ¶§
         (setq in (get_tile "ys"))
         (setq value (atof in))
         (if (= value 0)
@@ -243,9 +243,9 @@
        ) ;of defun
 
       ;;
-      ;; FUNCTION : SET_SCOPING (scopingê°’ ì…ë ¥)
+      ;; FUNCTION : SET_SCOPING (scoping°ª ÀÔ·Â)
       ;;
-      (defun SET_SCOPING(/ n value)              ;scoping edit_boxì— ì…ë ¥ì´ ë“¤ì–´ì™”ì„ ë•Œ
+      (defun SET_SCOPING(/ n value)              ;scoping edit_box¿¡ ÀÔ·ÂÀÌ µé¾î¿ÔÀ» ¶§
         (setq in (get_tile "scoping"))
         (setq value (atof in))
         (if (= value 0)
@@ -262,7 +262,7 @@
        ) ;of defun
 
       ;;
-      ;;round copingì˜µì…˜ì„ ì„ íƒí–ˆì„ ê²½ìš°
+      ;;round coping¿É¼ÇÀ» ¼±ÅÃÇßÀ» °æ¿ì
       ;;
       (defun set_rcoping( / in )
         (setq in (get_tile "rcoping"))
@@ -274,7 +274,7 @@
       ) ;of defun SET-RCOPING
 
       ;;
-      ;;dimì˜µì…˜ì„ ì„ íƒí–ˆì„ ê²½ìš°
+      ;;dim¿É¼ÇÀ» ¼±ÅÃÇßÀ» °æ¿ì
       ;;
       (defun set_dim( / in )
         (mode_tile "dim" 2)
@@ -283,9 +283,9 @@
       ) ;of defun SET-DIM
 
       ;;;
-      ;;; okë²„íŠ¼ì„ ëˆ„ë €ì„ ë•Œ
+      ;;; ok¹öÆ°À» ´©·¶À» ¶§
       ;;;
-      (defun do_accept()           ;dialog boxë¥¼ ëë‚´ê¸° ì „ì— ëª¨ë“  ì…ë ¥ ë°ì´íƒ€ í™•ì¸
+      (defun do_accept()           ;dialog box¸¦ ³¡³»±â Àü¿¡ ¸ğµç ÀÔ·Â µ¥ÀÌÅ¸ È®ÀÎ
         (if (and (set_c1) (set_c2) (set_pd) (set_pl) (set_fb) (set_fh))
           (done_dialog)
         ) ;of IF
@@ -293,10 +293,10 @@
 
 
       ;;;
-      ;;; ì˜ëª»ëœ ê°’ì´ ì…ë ¥ë¬ì„ ë•Œ
+      ;;; Àß¸øµÈ °ªÀÌ ÀÔ·Â?À» ¶§
       ;;;
       (defun do_error(tile value)
-        (set_tile "error" "Invalid input")            ;error massageì°½ì— ì—ëŸ¬í‘œì‹œ
+        (set_tile "error" "Invalid input")            ;error massageÃ¢¿¡ ¿¡·¯Ç¥½Ã
         (cond
           ((or (= tile "c1") (= tile "c2"))
             (progn
@@ -315,7 +315,7 @@
 
 
       ;;;
-      ;;; Cancel ë²„íŠ¼ì„ ëˆŒë €ì„ ê²½ìš°
+      ;;; Cancel ¹öÆ°À» ´­·¶À» °æ¿ì
       ;;;
       (defun do_cancel()
         (done_dialog)
@@ -327,23 +327,23 @@
       ;; MAIN ROUTINE
       ;;
 
-      (setq oer *error* *error* seterr)                 ;ë‚´ì¥errorë£¨í‹´ ê°€ë™
+      (setq oer *error* *error* seterr)                 ;³»Àåerror·çÆ¾ °¡µ¿
 
-      (push-env)                                        ;í™˜ê²½ë³€ìˆ˜ ëŒ€í”¼
+      (push-env)                                        ;È¯°æº¯¼ö ´ëÇÇ
 
-      (setq ds (getvar "DIMSCALE"))                     ;ìŠ¤ì¼€ì¼ê°’
+      (setq ds (getvar "DIMSCALE"))                     ;½ºÄÉÀÏ°ª
 
       (graphscr)
 
-      (splice_dialog )                                    ;dialogë¡œ ì…ë ¥ë°›ìŒ
+      (splice_dialog )                                    ;dialog·Î ÀÔ·Â¹ŞÀ½
 
-      (setq ipnt (getpoint "\nPick first point: "))       ;ì²«ì  ì…ë ¥
-      (setq ix (car ipnt)                                 ;ì‚½ì…ì  xì¢Œí‘œ
-            iy (cadr ipnt))                               ;ì‚½ì…ì  yì¢Œí‘œ
+      (setq ipnt (getpoint "\nPick first point: "))       ;Ã¹Á¡ ÀÔ·Â
+      (setq ix (car ipnt)                                 ;»ğÀÔÁ¡ xÁÂÇ¥
+            iy (cadr ipnt))                               ;»ğÀÔÁ¡ yÁÂÇ¥
 
-      (pier_side ipnt #BC #C1 #C2 #PD #PL #FB #FH #YS #SCOPING)            ;pierê·¸ë¦¬ê¸°
+      (pier_side ipnt #BC #C1 #C2 #PD #PL #FB #FH #YS #SCOPING)            ;pier±×¸®±â
 
-      (pop-env)                                           ;í™˜ê²½ë³€ìˆ˜ ë³µê·€
+      (pop-env)                                           ;È¯°æº¯¼ö º¹±Í
 
       (setq *error* oer seterr nil)
 
@@ -359,14 +359,14 @@
 ;            Suk-Jong Yi
 ;            96/7/18
 ;************************************
-; pierì˜ ì¸¡ë©´ë„ ê·¸ë¦¬ê¸°
+; pierÀÇ Ãø¸éµµ ±×¸®±â
 ; IP : Insert Point
-; C1 : Coping ì¤‘ì•™ì˜ ë†’ì´
-; C2 : Coping ëë‹¨ì˜ ë†’ì´
+; C1 : Coping Áß¾ÓÀÇ ³ôÀÌ
+; C2 : Coping ³¡´ÜÀÇ ³ôÀÌ
 ; PD : POST DIA
 ; PL : POST LENGTH
-; FB : Footing í­
-; FH : Footing ë†’ì´
+; FB : Footing Æø
+; FH : Footing ³ôÀÌ
 ; YS : Y-Scale
 ;************************************
 
@@ -381,40 +381,40 @@
         PL (* PL YS 1000)
         FB (* FB 1000)
         FH (* FH YS 1000)
-        BH (* 100 YS)              ;base Con'c ë‘ê»˜
-        BE  100                    ;base Con'c ì—¬ìœ í­
+        BH (* 100 YS)              ;base Con'c µÎ²²
+        BE  100                    ;base Con'c ¿©À¯Æø
         SCOPING (* SCOPING YS))
 
-  (if (>= bc pd)                    ;ì½”í•‘í­ê³¼ í¬ìŠ¤íŠ¸ì§€ë¦„ì¤‘ í°ê°’ì„ ìƒë©´í­ìœ¼ë¡œ
+  (if (>= bc pd)                    ;ÄÚÇÎÆø°ú Æ÷½ºÆ®Áö¸§Áß Å«°ªÀ» »ó¸éÆøÀ¸·Î
     (setq bt bc)
     (setq bt pd)
   ) ;of if
   (command "LINE" (list (- (car ip) (/ bt 2.0)) (cadr ip))
                   (list (+ (car ip) (/ bt 2.0)) (cadr ip)) "")
 
-  (if (= #RCOPING "1") (copingr ip BC c1 c2 SCOPING)  ;coping ê·¸ë¦¬ê¸°
+  (if (= #RCOPING "1") (copingr ip BC c1 c2 SCOPING)  ;coping ±×¸®±â
                        (coping  ip BC c1 c2))
   (if (>= bc pd)
-    (post (list ix (- iy c1)) pd pl)                  ;post ê·¸ë¦¬ê¸°
-    (progn                                            ;postê°€ ì½”í•‘ë³´ë‹¤ ë„“ì„ ë•Œ
-      ; ê¸°ë‘¥ì„ ê·¸ë¦¬ê¸°
-      (command "LINE" (list (- ix (/ pd 2.0)) iy)               ;ê¸°ë‘¥ì¢Œì¸¡ì„ 
+    (post (list ix (- iy c1)) pd pl)                  ;post ±×¸®±â
+    (progn                                            ;post°¡ ÄÚÇÎº¸´Ù ³ĞÀ» ¶§
+      ; ±âµÕ¼±±×¸®±â
+      (command "LINE" (list (- ix (/ pd 2.0)) iy)               ;±âµÕÁÂÃø¼±
                       (list (- ix (/ pd 2.0)) (- iy c1 pl)) "")
-      (command "LINE" (list (+ ix (/ pd 2.0)) iy)               ;ê¸°ë‘¥ìš°ì¸¡ì„ 
+      (command "LINE" (list (+ ix (/ pd 2.0)) iy)               ;±âµÕ¿ìÃø¼±
                       (list (+ ix (/ pd 2.0)) (- iy c1 pl)) "")
-      ;ê¸°ë‘¥ì¤‘ì‹¬ì„ 
+      ;±âµÕÁß½É¼±
       (setvar "CECOLOR" "RED")
       (setvar "CELTYPE" "CENTER")
       (command "LINE" (list ix (- iy c1))
                       (list ix (- iy c1 pl)) "")
       (setvar "CECOLOR" "BYLAYER")
       (setvar "CELTYPE" "BYLAYER")
-      ;ê¸°ë‘¥ë¼ìš´ë“œí‘œí˜„
+      ;±âµÕ¶ó¿îµåÇ¥Çö
       (setvar "CECOLOR" "GREEN")
       (setq xsgn 1)
-      (repeat 2                                     ;ì¢Œìš°ë¡œ ë‘ë²ˆ ì‹¤í–‰
+      (repeat 2                                     ;ÁÂ¿ì·Î µÎ¹ø ½ÇÇà
         (setq xsgn (* xsgn -1)
-              dx   (/ pd 2.0)                       ;postì˜ ë°˜ì§€ë¦„
+              dx   (/ pd 2.0)                       ;postÀÇ ¹İÁö¸§
               x    ix)
         (while (>= dx (* ds 0.5))
           (setq dx (/ dx 2.0)
@@ -431,8 +431,8 @@
       (setvar "CECOLOR" "BYLAYER")
     ) ;of progn
   ) ;of if
-  ; í‘¸íŒ…ê·¸ë¦¬ê¸°
-  (footing (list ix (- iy c1 pl)) FB FH BH BE)      ;footing ê·¸ë¦¬ê¸°
+  ; ÇªÆÃ±×¸®±â
+  (footing (list ix (- iy c1 pl)) FB FH BH BE)      ;footing ±×¸®±â
 
 ) ;of defun
 
@@ -445,9 +445,9 @@
 ;---------------------------------------------------------
 ; COPING(IP BC H1 H2)
 ;        IP            : insert point
-;           BC         : coping í­
-;              H1      : ê°€ìš´ë° ë†’ì´
-;                 H2   : ë ë†’ì´
+;           BC         : coping Æø
+;              H1      : °¡¿îµ¥ ³ôÀÌ
+;                 H2   : ³¡ ³ôÀÌ
 ;---------------------------------------------------------
 (defun COPING(IP BC H1 H2
               / IP BC H1 H2 ix iy bc2 p1 p2 p3 p4 oldc dy count y
@@ -455,15 +455,15 @@
 
   (setq ix (car ip)
         iy (cadr ip)
-        bc2 (/ bc 2.0)                          ; ì½”í•‘í­ì˜ ë°˜
-        p1 (list (- ix bc2) iy)                ;ìƒë‹¨ì¢Œì¸¡
-        p2 (list (car p1) (- iy h1))           ;í•˜ë‹¨ì¢Œì¸¡
-        p3 (list (+ ix bc2) (cadr p2))         ;í•˜ë‹¨ìš°ì¸¡
-        p4 (list (car p3) iy))                 ;ìƒë‹¨ìš°ì¸¡
+        bc2 (/ bc 2.0)                          ; ÄÚÇÎÆøÀÇ ¹İ
+        p1 (list (- ix bc2) iy)                ;»ó´ÜÁÂÃø
+        p2 (list (car p1) (- iy h1))           ;ÇÏ´ÜÁÂÃø
+        p3 (list (+ ix bc2) (cadr p2))         ;ÇÏ´Ü¿ìÃø
+        p4 (list (car p3) iy))                 ;»ó´Ü¿ìÃø
 
   (command "LINE" p1 p2 p3 p4 "")
 
-  (command "LINE" (list (car p1) (- iy h2))      ;ì½”í•‘ëë‹¨ì„ 
+  (command "LINE" (list (car p1) (- iy h2))      ;ÄÚÇÎ³¡´Ü¼±
                   (list (car p4) (- iy h2)) "")
 
   (setq oldc (getvar "CECOLOR"))
@@ -490,10 +490,10 @@
 ;---------------------------------------------------------
 ; COPINGR(IP BC H1 H2 S)
 ;        IP            : insert point
-;           BC         : coping í­
-;              H1      : ê°€ìš´ë° ë†’ì´
-;                 H2   : ë ë†’ì´
-;                    S : ì½”í•‘ê²½ì‚¬(L/H)
+;           BC         : coping Æø
+;              H1      : °¡¿îµ¥ ³ôÀÌ
+;                 H2   : ³¡ ³ôÀÌ
+;                    S : ÄÚÇÎ°æ»ç(L/H)
 ;---------------------------------------------------------
 (defun COPINGR(IP BC H1 H2 S
              / IP BC H1 H2 S ix iy bc2 p1 p2 p3 p4 h3 ap1 ap2
@@ -502,20 +502,20 @@
 
   (setq ix (car ip)
         iy (cadr ip)
-        bc2 (/ bc 2.0)                          ;ì½”í•‘í­ì˜ ë°˜=ë¼ìš´ë“œ R
-        p1 (list (- ix bc2) iy)                 ;ìƒë‹¨ì¢Œì¸¡
-        p2 (list (car p1) (- iy h1))            ;í•˜ë‹¨ì¢Œì¸¡
-        p3 (list (+ ix bc2) (cadr p2))          ;í•˜ë‹¨ìš°ì¸¡
-        p4 (list (car p3) iy)                   ;ìƒë‹¨ìš°ì¸¡
-        h3 (/ bc2 s))                           ;ì½”í•‘ëë‹¨ ~ roundëë‹¨
+        bc2 (/ bc 2.0)                          ;ÄÚÇÎÆøÀÇ ¹İ=¶ó¿îµå R
+        p1 (list (- ix bc2) iy)                 ;»ó´ÜÁÂÃø
+        p2 (list (car p1) (- iy h1))            ;ÇÏ´ÜÁÂÃø
+        p3 (list (+ ix bc2) (cadr p2))          ;ÇÏ´Ü¿ìÃø
+        p4 (list (car p3) iy)                   ;»ó´Ü¿ìÃø
+        h3 (/ bc2 s))                           ;ÄÚÇÎ³¡´Ü ~ round³¡´Ü
 
-  (command "LINE" p1 p2 p3 p4 "")               ;ì½”í•‘4ê°í˜•
+  (command "LINE" p1 p2 p3 p4 "")               ;ÄÚÇÎ4°¢Çü
 
-  (setq ap1 (list (+ ix bc2) (- iy h2 h3))      ;Arcì  1
-        ap2 (list ix (- iy h2))                 ;Arcì  2
-        ap3 (list (- ix bc2) (cadr ap1)))       ;Arcì  3
+  (setq ap1 (list (+ ix bc2) (- iy h2 h3))      ;ArcÁ¡ 1
+        ap2 (list ix (- iy h2))                 ;ArcÁ¡ 2
+        ap3 (list (- ix bc2) (cadr ap1)))       ;ArcÁ¡ 3
   (command "ARC" ap1 ap2 ap3)
-  (setq aent (entget (entlast)))                ;Arc ì •ë³´
+  (setq aent (entget (entlast)))                ;Arc Á¤º¸
 
   (setvar "CELTYPE" "CENTER")
   (setvar "CECOLOR" "RED")
@@ -524,11 +524,11 @@
   (setvar "CECOLOR" "BYLAYER")
 
   ;--------------------
-  ; ì½”í•‘ì˜ ë¼ìš´ë“œ í‘œí˜„
+  ; ÄÚÇÎÀÇ ¶ó¿îµå Ç¥Çö
   ;--------------------
   (setvar "CECOLOR" "GREEN")
   (setq xsgn 1)
-  (repeat 2                                     ;ì¢Œìš°ë¡œ ë‘ë²ˆ
+  (repeat 2                                     ;ÁÂ¿ì·Î µÎ¹ø
     (setq xsgn (* xsgn -1)
           dx   bc2
           x    ix)
@@ -543,7 +543,7 @@
   ) ;of repeat
 
   ;------------------------------
-  ; coping slopë©´ í‘œí˜„
+  ; coping slop¸é Ç¥Çö
   ;------------------------------
 
   (setq dy (/ (- h1 h2) 6)
@@ -571,15 +571,15 @@
 ;            Suk-Jong Yi
 ;            96/7/18
 ;************************************
-; pierì˜ ì •ë©´ë„ ê·¸ë¦¬ê¸°
+; pierÀÇ Á¤¸éµµ ±×¸®±â
 ; IP : Insert Point
-; CL : Coping ê¸¸ì´
-; C1 : Coping ì¤‘ì•™ì˜ ë†’ì´
-; C2 : Coping ëë‹¨ì˜ ë†’ì´
+; CL : Coping ±æÀÌ
+; C1 : Coping Áß¾ÓÀÇ ³ôÀÌ
+; C2 : Coping ³¡´ÜÀÇ ³ôÀÌ
 ; PD : POST DIA
 ; PL : POST LENGTH
-; FB : Footing í­
-; FH : Footing ë†’ì´
+; FB : Footing Æø
+; FH : Footing ³ôÀÌ
 ;************************************
 (defun PIER_FRONT(IP CL C1 C2 PD PL FB FH
                 / IP CL C1 C2 PD PL FB FH
@@ -599,8 +599,8 @@
            (list (- ix cl2) (- iy c2))
            "C")
 
-  (post (list ix (- iy c1)) pd pl)   ;post ê·¸ë¦¬ê¸°
-  (footing (list ix (- iy c1 pl)) FB FH BH BE)   ;footing ê·¸ë¦¬ê¸°
+  (post (list ix (- iy c1)) pd pl)   ;post ±×¸®±â
+  (footing (list ix (- iy c1 pl)) FB FH BH BE)   ;footing ±×¸®±â
 
 ) ;of defun
 
@@ -610,12 +610,12 @@
 ;            Suk-Jong Yi
 ;            96/7/19
 ;*********************************
-; footingì„ ê·¸ë ¤ì¤€ë‹¤
+; footingÀ» ±×·ÁÁØ´Ù
 ; IP : Insert Point
-; B  : í­
-; H  : ë†’ì´
-; BH : Base con'c ë†’ì´
-; BE : Base con'c í­
+; B  : Æø
+; H  : ³ôÀÌ
+; BH : Base con'c ³ôÀÌ
+; BE : Base con'c Æø
 ;*********************************
 (defun FOOTING(IP B H BH BE
              / IP B H BH BE
@@ -685,15 +685,15 @@
 ;            1995. 3. 16
 ;**************************************
 
-(defun HROUND(p1s p1e p2s p2e /             ;ë°˜ ë¼ìš´ë”©ì„ í•´ì£¼ëŠ” Function
-sdst edst lpnts lpnte ds p1s p1e oldclr     ;ArgumentëŠ” ë‘ì„ ì˜ ì‹œì‘ì ê³¼ ëì 
+(defun HROUND(p1s p1e p2s p2e /             ;¹İ ¶ó¿îµùÀ» ÇØÁÖ´Â Function
+sdst edst lpnts lpnte ds p1s p1e oldclr     ;Argument´Â µÎ¼±ÀÇ ½ÃÀÛÁ¡°ú ³¡Á¡
 )
 
-(setq ds (getvar "DIMSCALE"))         ;DIMSCALEì„ ì•Œì•„ë‚¸ë‹¤.
+(setq ds (getvar "DIMSCALE"))         ;DIMSCALEÀ» ¾Ë¾Æ³½´Ù.
 
-(setq ssdst (distance p1s p2s))     ;ì²«ë¼ì¸ì˜ ì‹œì‘ì ì—ì„œ ë‘ì§¸ë¼ì¸ì˜ ì‹œì‘ì ê±°ë¦¬
-(setq sedst (distance p1s p2e))     ;ì²«ë¼ì¸ì˜ ì‹œì‘ì ì—ì„œ ë‘ì§¸ë¼ì¸ì˜ ëì ê±°ë¦¬
-(if (< sedst ssdst)                 ;ìœ„ì˜ ë‘ ê±°ë¦¬ì¤‘ ê°€ê¹Œìš´ìª½ì´ ì‹œì‘ì ì´ ëœë‹¤
+(setq ssdst (distance p1s p2s))     ;Ã¹¶óÀÎÀÇ ½ÃÀÛÁ¡¿¡¼­ µÎÂ°¶óÀÎÀÇ ½ÃÀÛÁ¡°Å¸®
+(setq sedst (distance p1s p2e))     ;Ã¹¶óÀÎÀÇ ½ÃÀÛÁ¡¿¡¼­ µÎÂ°¶óÀÎÀÇ ³¡Á¡°Å¸®
+(if (< sedst ssdst)                 ;À§ÀÇ µÎ °Å¸®Áß °¡±î¿îÂÊÀÌ ½ÃÀÛÁ¡ÀÌ µÈ´Ù
   (progn
     (setq tmp p2s)
     (setq p2s p2e)
@@ -701,22 +701,22 @@ sdst edst lpnts lpnte ds p1s p1e oldclr     ;ArgumentëŠ” ë‘ì„ ì˜ ì‹œì‘ì ê³¼ 
   ) ;of progn
 ) ; of if
 
-(setq sdst (distance p1s p2s))    ;ì²«ì§¸ë¼ì¸ ì‹œì‘ì ì—ì„œ ë‘˜ì§¸ë¼ì¸ ì‹œì‘ì ê¹Œì§€ ê±°ë¦¬
-(setq edst (distance p1e p2e))    ;ì²«ì§¸ë¼ì¸ ëì ì—ì„œ ë‘˜ì§¸ë¼ì¸ ëì ê¹Œì§€ ê±°ë¦¬
+(setq sdst (distance p1s p2s))    ;Ã¹Â°¶óÀÎ ½ÃÀÛÁ¡¿¡¼­ µÑÂ°¶óÀÎ ½ÃÀÛÁ¡±îÁö °Å¸®
+(setq edst (distance p1e p2e))    ;Ã¹Â°¶óÀÎ ³¡Á¡¿¡¼­ µÑÂ°¶óÀÎ ³¡Á¡±îÁö °Å¸®
 
-             ;ë‘ ì„ ê°„ì˜ ê±°ë¦¬ê°€ 2ë¯¸ë¦¬ì´ìƒ ì¼ë•Œë§Œ ë‘ ì„ ì˜ ì¤‘ê°„ì—ë‹¤ ì„ ì„ ê·¸ë¦°ë‹¤
+             ;µÎ ¼±°£ÀÇ °Å¸®°¡ 2¹Ì¸®ÀÌ»ó ÀÏ¶§¸¸ µÎ ¼±ÀÇ Áß°£¿¡´Ù ¼±À» ±×¸°´Ù
 (setq oldclr (getvar "CECOLOR"))
 (setvar "CECOLOR" "GREEN")
 (while (or (> sdst (* ds 1.0)) (> edst (* ds 1.0)))
-  (setq lpnts (list (/ (+ (car p1s) (car p2s)) 2.0)      ;ë‘ ì‹œì‘ì ì˜ ì¤‘ê°„ì  X
+  (setq lpnts (list (/ (+ (car p1s) (car p2s)) 2.0)      ;µÎ ½ÃÀÛÁ¡ÀÇ Áß°£Á¡ X
                     (/ (+ (cadr p1s) (cadr p2s)) 2.0)))  ;                   Y
-  (setq lpnte (list (/ (+ (car p1e) (car p2e)) 2.0)      ;ë‘ ëì ì˜ ì¤‘ê°„ì    X
+  (setq lpnte (list (/ (+ (car p1e) (car p2e)) 2.0)      ;µÎ ³¡Á¡ÀÇ Áß°£Á¡   X
                     (/ (+ (cadr p1e) (cadr p2e)) 2.0)))  ;                   Y
-  (command "LINE" lpnts lpnte "")     ; ì¤‘ê°„ì„ ì„ ê·¸ë¦°ë‹¤
-  (setq p1s lpnts)             ;ì¤‘ê°„ì„ ì˜ ì‹œì‘ì ì„ ì²«ì§¸ì„ ì˜ ì‹œì‘ì ìœ¼ë¡œ ë°”ê¾¼ë‹¤
-  (setq p1e lpnte)             ;ì¤‘ê°„ì„ ì˜ ëì ì„ ì²«ì§¸ì„ ì˜ ëì ìœ¼ë¡œ ë°”ê¾¼ë‹¤
-  (setq sdst (distance lpnts p2s))  ;ë‘ ì‹œì‘ì ê°„ì˜ ê±°ë¦¬ë¥¼ êµ¬í•œë‹¤
-  (setq edst (distance lpnte p2e))  ;ë‘ ëì ê°„ì˜ ê±°ë¦¬ë¥¼ êµ¬í•œë‹¤
+  (command "LINE" lpnts lpnte "")     ; Áß°£¼±À» ±×¸°´Ù
+  (setq p1s lpnts)             ;Áß°£¼±ÀÇ ½ÃÀÛÁ¡À» Ã¹Â°¼±ÀÇ ½ÃÀÛÁ¡À¸·Î ¹Ù²Û´Ù
+  (setq p1e lpnte)             ;Áß°£¼±ÀÇ ³¡Á¡À» Ã¹Â°¼±ÀÇ ³¡Á¡À¸·Î ¹Ù²Û´Ù
+  (setq sdst (distance lpnts p2s))  ;µÎ ½ÃÀÛÁ¡°£ÀÇ °Å¸®¸¦ ±¸ÇÑ´Ù
+  (setq edst (distance lpnte p2e))  ;µÎ ³¡Á¡°£ÀÇ °Å¸®¸¦ ±¸ÇÑ´Ù
 ) ;of while
 (setvar "CECOLOR" oldclr)
 ) ;of defun HROUND
@@ -727,43 +727,43 @@ sdst edst lpnts lpnte ds p1s p1e oldclr     ;ArgumentëŠ” ë‘ì„ ì˜ ì‹œì‘ì ê³¼ 
 ;            CROSS point of line & circle
 ;-----------------------------------------
 ; CROSS(aent lent)
-;       aent             : Arc entityì •ë³´
-;            lent        : Line entityì •ë³´
+;       aent             : Arc entityÁ¤º¸
+;            lent        : Line entityÁ¤º¸
 ;-----------------------------------------------
 (defun CROSS(aent line_p1 line_p2 /
              a b r sa ea x1 x2 y1 y2 dx dy a1 b1 c1 ang1 ang2 crsp
 )
 
-  (setq a (car (cdr (assoc 10 aent))))      ;arc ì›ì ì˜ xì¢Œí‘œ
-  (setq b (cadr (cdr (assoc 10 aent))))     ;arc ì›ì ì˜ yì¢Œí‘œ
-  (setq r (cdr (assoc 40 aent)))            ;arcì˜ r
-  (setq sa (cdr (assoc 50 aent)))           ;arcì˜ ì‹œì‘ê°
-  (setq ea (cdr (assoc 51 aent)))           ;arcì˜ ëê°
+  (setq a (car (cdr (assoc 10 aent))))      ;arc ¿øÁ¡ÀÇ xÁÂÇ¥
+  (setq b (cadr (cdr (assoc 10 aent))))     ;arc ¿øÁ¡ÀÇ yÁÂÇ¥
+  (setq r (cdr (assoc 40 aent)))            ;arcÀÇ r
+  (setq sa (cdr (assoc 50 aent)))           ;arcÀÇ ½ÃÀÛ°¢
+  (setq ea (cdr (assoc 51 aent)))           ;arcÀÇ ³¡°¢
 
-  (setq x1 (car line_p1)                    ;lineì˜ ì²«ì  xì¢Œí‘œ
-        x2 (car line_p2)                    ;lineì˜ ëì  xì¢Œí‘œ
-        y1 (cadr line_p1)                   ;lineì˜ ì²«ì  yì¢Œí‘œ
-        y2 (cadr line_p2))                  ;lineì˜ ëì  yì¢Œí‘œ
+  (setq x1 (car line_p1)                    ;lineÀÇ Ã¹Á¡ xÁÂÇ¥
+        x2 (car line_p2)                    ;lineÀÇ ³¡Á¡ xÁÂÇ¥
+        y1 (cadr line_p1)                   ;lineÀÇ Ã¹Á¡ yÁÂÇ¥
+        y2 (cadr line_p2))                  ;lineÀÇ ³¡Á¡ yÁÂÇ¥
 
-  (setq dx (- x1 x2)                        ;xì°¨
-        dy (- y1 y2))                       ;yì°¨
+  (setq dx (- x1 x2)                        ;xÂ÷
+        dy (- y1 y2))                       ;yÂ÷
 
   (cond
-    ((= dx 0)                               ;lineì´ yì¶•ì— í‰í–‰í•œ ê²½ìš°
+    ((= dx 0)                               ;lineÀÌ yÃà¿¡ ÆòÇàÇÑ °æ¿ì
       (setq a1 1.0
             b1 (* -1.0 2.0 b)
             c1 (+ (- (expt (- x1 a) 2) (expt r 2)) (expt b 2))
             y1 (/ (+ (* -1 b1) (sqrt (- (* b1 b1) (* 4 a1 c1)))) (* 2 a1))
             y2 (/ (- (* -1 b1) (sqrt (- (* b1 b1) (* 4 a1 c1)))) (* 2 a1)))
     ) ;of dx=0
-    ((= dy 0)                               ;lineì˜ xì¶•ì— í‰í–‰í•œê²½ìš°
+    ((= dy 0)                               ;lineÀÇ xÃà¿¡ ÆòÇàÇÑ°æ¿ì
       (setq a1 1.0
             b1 (* -1.0 2.0 a)
             c1 (+ (- (expt (- y1 b) 2) (expt r 2)) (expt a 2))
             x1 (/ (+ (* -1 b1) (sqrt (- (* b1 b1) (* 4 a1 c1)))) (* 2 a1))
             x2 (/ (- (* -1 b1) (sqrt (- (* b1 b1) (* 4 a1 c1)))) (* 2 a1)))
     ) ;of dy=0
-    ( T                                     ;lineì´ ì„ì˜ì˜ ê¸°ìš¸ê¸°ë¥¼ ê°€ì§„ ê²½ìš°
+    ( T                                     ;lineÀÌ ÀÓÀÇÀÇ ±â¿ï±â¸¦ °¡Áø °æ¿ì
       (setq c (/ (- y1 y2) (- x1 x2)))
       (setq d (- y2 (* c x2)))
 

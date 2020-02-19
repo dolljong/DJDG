@@ -8,9 +8,9 @@
 (defun c:rref()
   (princ "\nSelect objects: ")
   (setq ent (ssget))                            ;Select objects:
-  (setq bp (getpoint "\nBase point: "))         ;쐑촺초
-  (setq ra (getangle "\nReference angle: "))    ;쐑촺쌱옷
-  (setq na (getangle "\nNew angle: "))          ;»õ쌱옷
+  (setq bp (getpoint "\nBase point: "))         ;
+  (setq ra (getangle "\nReference angle: "))    ;
+  (setq na (getangle "\nNew angle: "))          ;
 
   (command "ROTATE"                                 ;Rotate command
            ent                                      ;select objects

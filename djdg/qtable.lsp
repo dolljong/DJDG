@@ -4,11 +4,11 @@
 ;           By Suk-Jong Yi
 ;           1995/5/31
 ;***********************************
-; Qpro ì˜ íŒŒì¼ì„ ìºë“œë¡œ ë¶ˆëŸ¬ì˜¨ë‹¤.
-; ì¿¼íŠ¸ë¡œì—ì„œ ì‘ì—…í›„ ì¶œë ¥ì„ íŒŒì¼ë¡œ í•œë‹¤.
-; ì´ í”„ë¡œê·¸ë¨ì€ ê·¸ íŒŒì¼ì„ ë¶ˆëŸ¬ì˜¨ë‹¤.
-; boxì•ˆì˜ ë‚´ìš©ì´ ë¬¸ìì´ë©´ ì™¼ìª½ ì •ë ¬,
-; ìˆ«ìì´ë©´ ì˜¤ë¥¸ ì •ë ¬ì„ í•œë‹¤.
+; Qpro ÀÇ ÆÄÀÏÀ» Ä³µå·Î ºÒ·¯¿Â´Ù.
+; ÄõÆ®·Î¿¡¼­ ÀÛ¾÷ÈÄ Ãâ·ÂÀ» ÆÄÀÏ·Î ÇÑ´Ù.
+; ÀÌ ÇÁ·Î±×·¥Àº ±× ÆÄÀÏÀ» ºÒ·¯¿Â´Ù.
+; box¾ÈÀÇ ³»¿ëÀÌ ¹®ÀÚÀÌ¸é ¿ŞÂÊ Á¤·Ä,
+; ¼ıÀÚÀÌ¸é ¿À¸¥ Á¤·ÄÀ» ÇÑ´Ù.
 
 (defun C:QTABLE(/
 dsc     ipnt    ipx     ipy     th      th2     rgap    rgap2   fn      in-f
@@ -25,46 +25,46 @@ txt     rslt    txt1    fspn    bspn    num     txtpnt  tr-il
   ); of SETERR
   (setq oer *error* *error* seterr)
 
-(push-env)                                          ;í™˜ê²½ë³€ìˆ˜ ëŒ€í”¼
+(push-env)                                          ;È¯°æº¯¼ö ´ëÇÇ
 
-(setq dsc (getvar "DIMSCALE")                       ; dimscaleê°’
-      th (getvar "DIMTXT"))                         ; textí¬ê¸°
+(setq dsc (getvar "DIMSCALE")                       ; dimscale°ª
+      th (getvar "DIMTXT"))                         ; textÅ©±â
 
-(setq ipnt (getpoint "\nPick insert point: "))      ;tableì˜ insert point ì…ë ¥
-(setq ipx (car ipnt)                                ;insert point x,yê°’
+(setq ipnt (getpoint "\nPick insert point: "))      ;tableÀÇ insert point ÀÔ·Â
+(setq ipx (car ipnt)                                ;insert point x,y°ª
       ipy (cadr ipnt))
 
-(setq th (* th dsc)                                ;text ë†’ì´ë¥¼ dimtxt
-      th2 (/ th 2.0))                               ;textë†’ì´ì˜ ë°˜
-(setq rgap (* 7.0 dsc)                              ;lineê°„ê²©ì„ 7.0mmë¡œ
-      rgap2 (/ rgap -2.0))                          ;lineê°„ê²©ì˜ ë°˜
+(setq th (* th dsc)                                ;text ³ôÀÌ¸¦ dimtxt
+      th2 (/ th 2.0))                               ;text³ôÀÌÀÇ ¹İ
+(setq rgap (* 7.0 dsc)                              ;line°£°İÀ» 7.0mm·Î
+      rgap2 (/ rgap -2.0))                          ;line°£°İÀÇ ¹İ
 
-(setq fn (getfiled "Input" "" "prn" 0))         ;íŒŒì¼ì´ë¦„ ì…ë ¥
+(setq fn (getfiled "Input" "" "prn" 0))         ;ÆÄÀÏÀÌ¸§ ÀÔ·Â
 (setq in-f (open fn "r"))                       ;file open
-(setq row 0)                                    ; ì¤„ë²ˆí˜¸
+(setq row 0)                                    ; ÁÙ¹øÈ£
 
 (while (setq il (read-line in-f))               ;input line
-  (setq clm 1)                                  ; ì—´ë²ˆí˜¸
-  (setq strl (strlen il))                       ;ë¬¸ìì—´ì˜ ë¬¸ì ê°¯ìˆ˜
+  (setq clm 1)                                  ; ¿­¹øÈ£
+  (setq strl (strlen il))                       ;¹®ÀÚ¿­ÀÇ ¹®ÀÚ °¹¼ö
   (setq pflag 0                                 ; + flag
         ploc  0)                                ; + location
   (setq vflag 0                                 ; | flag
         vloc  0)                                ; | location
-  (repeat strl                                  ;ë¬¸ì ê°¯ìˆ˜ë§Œí¼ ë°˜ë³µ
-    (setq ch (substr il clm 1))                 ;ë¬¸ìí•œê°œ ë½‘ì•„ëƒ„
+  (repeat strl                                  ;¹®ÀÚ °¹¼ö¸¸Å­ ¹İº¹
+    (setq ch (substr il clm 1))                 ;¹®ÀÚÇÑ°³ »Ì¾Æ³¿
     (cond
-      ((= ch "+")                               ; + ê¸°í˜¸ë¥¼ ë§Œë‚¬ì„ ê²½ìš°
-;        (if (= (substr il (- clm 1) 1) "-")    ; -+ ì²˜ìŒì´ë©´ ë¼ì¸ì„ ì•ˆê·¸ë¦¼
+      ((= ch "+")                               ; + ±âÈ£¸¦ ¸¸³µÀ» °æ¿ì
+;        (if (= (substr il (- clm 1) 1) "-")    ; -+ Ã³À½ÀÌ¸é ¶óÀÎÀ» ¾È±×¸²
         (if (>= clm 2)                            ;ADD
         (if (and (= (substr il (- clm 1) 1) "-")  ;ADD
                  (>= clm) 2)                      ;ADD
           (progn
             (setq p1 (list (+ ipx (* ploc th))
-                           (+ ipy (* row rgap2))))   ;ë¼ì¸ ì²«ì 
+                           (+ ipy (* row rgap2))))   ;¶óÀÎ Ã¹Á¡
             (setq p2 (list (+ ipx (* clm th))
-                           (+ ipy (* row rgap2))))       ;ë¼ì¸ ëì 
+                           (+ ipy (* row rgap2))))       ;¶óÀÎ ³¡Á¡
             (setvar "CECOLOR" "RED")
-            (command "LINE" p1 p2 "")                    ;ë¼ì¸ ê·¸ë¦¼
+            (command "LINE" p1 p2 "")                    ;¶óÀÎ ±×¸²
             (setvar "CECOLOR" "BYLAYER")
             (setq pflag 1)
             (setq ploc clm)
@@ -76,7 +76,7 @@ txt     rslt    txt1    fspn    bspn    num     txtpnt  tr-il
                 ploc clm)
         ) ;of if
       ) ;of cond ch="+"
-      ((= ch "|")                               ; | ê¸°í˜¸ë¥¼ ë§Œë‚¬ì„ ê²½ìš°
+      ((= ch "|")                               ; | ±âÈ£¸¦ ¸¸³µÀ» °æ¿ì
         (setq p1 (list (+ ipx (* clm th))
                        (+ ipy (* (- row 1) rgap2)))
               p2 (list (+ ipx (* clm th))
@@ -84,11 +84,11 @@ txt     rslt    txt1    fspn    bspn    num     txtpnt  tr-il
         (setvar "CECOLOR" "RED")
         (command "LINE" p1 p2 "")
         (setvar "CECOLOR" "BYLAYER")
-        (if (= vflag 0)                 ; ì²˜ìŒì´ë©´ ìˆ˜ì§ì„  ì‚¬ì´ì˜
-          (setq vflag 1                 ; ê¸€ì ë½‘ì•„ë‚´ì§€ ì•ŠìŒ
+        (if (= vflag 0)                 ; Ã³À½ÀÌ¸é ¼öÁ÷¼± »çÀÌÀÇ
+          (setq vflag 1                 ; ±ÛÀÚ »Ì¾Æ³»Áö ¾ÊÀ½
                 vloc clm)
-          (progn                        ;ë‘ë²ˆì§¸ ì´ë©´ ê¸€ì ë½‘ì•„ëƒ„
-            (setq txt (substr il (+ vloc 1) (- clm vloc 1)))  ;ê¸€ì
+          (progn                        ;µÎ¹øÂ° ÀÌ¸é ±ÛÀÚ »Ì¾Æ³¿
+            (setq txt (substr il (+ vloc 1) (- clm vloc 1)))  ;±ÛÀÚ
             (setq rslt (sp-trunc txt))
             (setq txt1 (car rslt))
             (if (/= txt1 nil)
@@ -98,17 +98,17 @@ txt     rslt    txt1    fspn    bspn    num     txtpnt  tr-il
                        num (cadddr rslt))
                 (if num
                   (progn
-                    (setq txtpnt (list (+ ipx (- (* (- clm bspn) th) th2))   ;ê¸€ììœ„ì¹˜
+                    (setq txtpnt (list (+ ipx (- (* (- clm bspn) th) th2))   ;±ÛÀÚÀ§Ä¡
                                        (+ ipy (- (* row rgap2) th2))))
                     (setvar "CECOLOR" "WHITE")
-                    (command "TEXT" "R" txtpnt th "0" txt1)             ;ê¸€ì ì”€
+                    (command "TEXT" "R" txtpnt th "0" txt1)             ;±ÛÀÚ ¾¸
                     (setvar "CECOLOR" "BYLAYER")
                   ) ;of progn THEN
                   (progn
-                    (setq txtpnt (list (+ ipx (+ (* (+ vloc fspn) th) th2))   ;ê¸€ììœ„ì¹˜
+                    (setq txtpnt (list (+ ipx (+ (* (+ vloc fspn) th) th2))   ;±ÛÀÚÀ§Ä¡
                                        (+ ipy (- (* row rgap2) th2))))
                     (setvar "CECOLOR" "WHITE")
-                    (command "TEXT" txtpnt th "0" txt1)             ;ê¸€ì ì”€
+                    (command "TEXT" txtpnt th "0" txt1)             ;±ÛÀÚ ¾¸
                     (setvar "CECOLOR" "BYLAYER")
                   ) ;of progn ELSE
                 ) ;of if num?
@@ -120,7 +120,7 @@ txt     rslt    txt1    fspn    bspn    num     txtpnt  tr-il
         (setq vloc clm)
       ) ;of cond ch="|"
     ) ;of cond
-    (setq clm (+ clm 1))                            ; ë‹¤ìŒ ì¹¼ëŸ¼ìœ¼ë¡œ
+    (setq clm (+ clm 1))                            ; ´ÙÀ½ Ä®·³À¸·Î
   ) ;of repeat charactor
   (if (and (= vflag 0) (= pflag 0) (/= strl 0))
     (progn
@@ -132,12 +132,12 @@ txt     rslt    txt1    fspn    bspn    num     txtpnt  tr-il
       (command "TEXT" txtpnt th "0" txt)
     ) ;of progn
   ) ;of if
-  (setq row (+ row 1))                              ; ë‹¤ìŒ ì¤„ë¡œ
+  (setq row (+ row 1))                              ; ´ÙÀ½ ÁÙ·Î
 ) ;of while read line
 
-(close in-f)                                        ; íŒŒì¼ ë‹«ìŒ
+(close in-f)                                        ; ÆÄÀÏ ´İÀ½
 
-(pop-env)                                           ; í™˜ê²½ë³€ìˆ˜ê°’ ë³µê·€
+(pop-env)                                           ; È¯°æº¯¼ö°ª º¹±Í
 
 (princ)
   (setq *error* oer seterr nil)
@@ -150,9 +150,9 @@ txt     rslt    txt1    fspn    bspn    num     txtpnt  tr-il
 ;            By Suk-Jong Yi
 ;            1995/6/1
 ;************************************
-; ì…ë ¥ë¬¸ìì—´ì˜ ì•,ë’¤ì— ìˆëŠ” ë¹ˆì¹¸ì„ ì§¤ë¼ë‚¸ë‹¤.
-; ë¦¬í„´ê°’ì€
-; (ì§¤ë¼ë‚¸ ë¬¸ìì—´, ì²« ë¬¸ì ë‚˜ì˜¤ëŠ” ìœ„ì¹˜, ë§ˆì§€ë§‰ ë¬¸ì ë‚˜ì˜¤ëŠ” ìœ„ì¹˜, ìˆ«ìì¸ê°€?)
+; ÀÔ·Â¹®ÀÚ¿­ÀÇ ¾Õ,µÚ¿¡ ÀÖ´Â ºóÄ­À» Â©¶ó³½´Ù.
+; ¸®ÅÏ°ªÀº
+; (Â©¶ó³½ ¹®ÀÚ¿­, Ã¹ ¹®ÀÚ ³ª¿À´Â À§Ä¡, ¸¶Áö¸· ¹®ÀÚ ³ª¿À´Â À§Ä¡, ¼ıÀÚÀÎ°¡?)
 
 (defun SP-TRUNC(txt /
 txtl frntn backn txt1
@@ -181,7 +181,7 @@ txtl frntn backn txt1
 ;            By Suk-Jong Yi
 ;            1995/6/1
 ;************************************
-; ë¬¸ìì—´ì´ ìˆ«ìì¸ê°€?ë¥¼ íŒë‹¨í•´ì¤€ë‹¤.
+; ¹®ÀÚ¿­ÀÌ ¼ıÀÚÀÎ°¡?¸¦ ÆÇ´ÜÇØÁØ´Ù.
 
 (defun IS-NUM(str
 / str strl count ch )

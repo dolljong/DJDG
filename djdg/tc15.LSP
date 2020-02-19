@@ -4,10 +4,10 @@
 ;           Suk-Jong Yi
 ;           96/5/9
 ;***********************************
-; ê°•ì¬ì˜ ë‘ê»˜ê°€ ë³€í™” í‘œì‹œë¥¼ í•´ì¤€ë‹¤.
+; °­ÀçÀÇ µÎ²²°¡ º¯È­ Ç¥½Ã¸¦ ÇØÁØ´Ù.
 ;***********************************
 
-(defun C:TC15(/                                     ;ì§€ì—­ë³€ìˆ˜ì •ì˜
+(defun C:TC15(/                                     ;Áö¿ªº¯¼öÁ¤ÀÇ
 ang     ang2        bp      bp2     bpnt        cp          dist        dist1
 dist2   distc       ds      ea      entype1     entype2     len         len2
 p1      p2          po      r       sa          thick       thicke      thickep
@@ -24,112 +24,112 @@ thinsp  tl          tp      wh4
   ); of SETERR
   (setq oer *error* *error* seterr)
 
-  (push-env)                                        ;í™˜ê²½ë³€ìˆ˜ ëŒ€í”¼
-  (setq ds (getvar "DIMSCALE")                      ;ìŠ¤ì¼€ì¼ê°’
+  (push-env)                                        ;È¯°æº¯¼ö ´ëÇÇ
+  (setq ds (getvar "DIMSCALE")                      ;½ºÄÉÀÏ°ª
         th (getvar "DIMTXT"))
 
-  (setq thin (entsel "\nSelect thin plate: "))      ;ì–‡ì€ íŒ ì„ íƒ
-  (setq thick (entsel "\nSelect thick plate: "))    ;ë‘êº¼ìš´ íŒ ì„ íƒ
+  (setq thin (entsel "\nSelect thin plate: "))      ;¾ãÀº ÆÇ ¼±ÅÃ
+  (setq thick (entsel "\nSelect thick plate: "))    ;µÎ²¨¿î ÆÇ ¼±ÅÃ
 
-  (setq thinp (cadr thin)                           ;ì–‡ì€ íŒ ì„ íƒì 
-        thine (entget (car thin))                   ;ì–‡ì€ íŒ entityì •ë³´
+  (setq thinp (cadr thin)                           ;¾ãÀº ÆÇ ¼±ÅÃÁ¡
+        thine (entget (car thin))                   ;¾ãÀº ÆÇ entityÁ¤º¸
         entype1 (cdr (assoc 0 thine)))              ;entity type
   (cond
-    ((= entype1 "LINE")                             ;entityê°€ ì§ì„ ì¸ ê²½ìš°
-      (setq thinsp (cdr (assoc 10 thine))           ;ì–‡ì€ íŒ ì‹œì‘ì 
-            thinep (cdr (assoc 11 thine)))          ;ì–‡ì€ íŒ ëì 
+    ((= entype1 "LINE")                             ;entity°¡ Á÷¼±ÀÎ °æ¿ì
+      (setq thinsp (cdr (assoc 10 thine))           ;¾ãÀº ÆÇ ½ÃÀÛÁ¡
+            thinep (cdr (assoc 11 thine)))          ;¾ãÀº ÆÇ ³¡Á¡
     )
-    ((= entype1 "ARC")                              ;entityê°€ í˜¸ì¸ê²½ìš°
-      (setq r (cdr (assoc 40 thine))                ;í˜¸ì˜ ë°˜ì§€ë¦„
-            cp (cdr (assoc 10 thine))               ;í˜¸ì˜ ì¤‘ì‹¬ì 
-            sa (cdr (assoc 50 thine))               ;í˜¸ì˜ ì‹œì‘ê°
-            ea (cdr (assoc 51 thine))               ;í˜¸ì˜ ëê°
-            thinsp (polar cp sa r)                  ;ì–‡ì€ íŒ ì‹œì‘ì 
-            thinep (polar cp ea r))                 ;ì–‡ì€ íŒ ëì 
+    ((= entype1 "ARC")                              ;entity°¡ È£ÀÎ°æ¿ì
+      (setq r (cdr (assoc 40 thine))                ;È£ÀÇ ¹İÁö¸§
+            cp (cdr (assoc 10 thine))               ;È£ÀÇ Áß½ÉÁ¡
+            sa (cdr (assoc 50 thine))               ;È£ÀÇ ½ÃÀÛ°¢
+            ea (cdr (assoc 51 thine))               ;È£ÀÇ ³¡°¢
+            thinsp (polar cp sa r)                  ;¾ãÀº ÆÇ ½ÃÀÛÁ¡
+            thinep (polar cp ea r))                 ;¾ãÀº ÆÇ ³¡Á¡
     )
   ) ;of COND
-  (setq dist1 (distance thinp thinsp)               ;ì„ íƒì ì—ì„œ ì‹œì‘ì ê¹Œì§€ ê±°ë¦¬
-        dist2 (distance thinp thinep))              ;ì„ íƒì ì—ì„œ ëì ê¹Œì§€ ê±°ë¦¬
-  (if (< dist1 dist2)                               ;ì„ íƒì ì—ì„œ ê°€ê¹Œìš´ìª½ì„ ì²«ì ìœ¼ë¡œ
+  (setq dist1 (distance thinp thinsp)               ;¼±ÅÃÁ¡¿¡¼­ ½ÃÀÛÁ¡±îÁö °Å¸®
+        dist2 (distance thinp thinep))              ;¼±ÅÃÁ¡¿¡¼­ ³¡Á¡±îÁö °Å¸®
+  (if (< dist1 dist2)                               ;¼±ÅÃÁ¡¿¡¼­ °¡±î¿îÂÊÀ» Ã¹Á¡À¸·Î
     (setq p1 thinsp)
     (setq p1 thinep))
 
-  (setq thickp (cadr thick)                         ;ë‘êº¼ìš´ íŒ ì„ íƒì 
-        thicke (entget (car thick))                 ;ë‘êº¼ìš´ íŒ entity ì •ë³´
+  (setq thickp (cadr thick)                         ;µÎ²¨¿î ÆÇ ¼±ÅÃÁ¡
+        thicke (entget (car thick))                 ;µÎ²¨¿î ÆÇ entity Á¤º¸
         entype2 (cdr (assoc 0 thicke)))             ;entity type
   (cond
-    ((= entype2 "LINE")                             ;entityê°€ ì§ì„ ì¸ ê²½ìš°
-      (setq thicksp (cdr (assoc 10 thicke))         ;ì–‡ì€ íŒ ì‹œì‘ì 
-            thickep (cdr (assoc 11 thicke)))        ;ì–‡ì€ íŒ ëì 
-      (setq dist1 (distance thickp thicksp)         ;ì„ íƒì ì—ì„œ ì‹œì‘ì ê¹Œì§€ ê±°ë¦¬
-            dist2 (distance thickp thickep))        ;ì„ íƒì ì—ì„œ ëì ê¹Œì§€ ê±°ë¦¬
-      (if (< dist1 dist2)                           ;ì„ íƒì ì—ì„œ ê°€ê¹Œìš´ìª½ì„ ë‘˜ì§¸ì ìœ¼ë¡œ
+    ((= entype2 "LINE")                             ;entity°¡ Á÷¼±ÀÎ °æ¿ì
+      (setq thicksp (cdr (assoc 10 thicke))         ;¾ãÀº ÆÇ ½ÃÀÛÁ¡
+            thickep (cdr (assoc 11 thicke)))        ;¾ãÀº ÆÇ ³¡Á¡
+      (setq dist1 (distance thickp thicksp)         ;¼±ÅÃÁ¡¿¡¼­ ½ÃÀÛÁ¡±îÁö °Å¸®
+            dist2 (distance thickp thickep))        ;¼±ÅÃÁ¡¿¡¼­ ³¡Á¡±îÁö °Å¸®
+      (if (< dist1 dist2)                           ;¼±ÅÃÁ¡¿¡¼­ °¡±î¿îÂÊÀ» µÑÂ°Á¡À¸·Î
         (setq p2 thicksp
               po thickep)
         (setq p2 thickep
               po thicksp)
       ) ;of IF
-      (setq dist (distance p1 p2))                      ;ì²«ì ì—ì„œ ëì ê¹Œì§€ ê±°ë¦¬
-      (setq distc (* dist 5.0))                         ;chamfer ê±°ë¦¬
+      (setq dist (distance p1 p2))                      ;Ã¹Á¡¿¡¼­ ³¡Á¡±îÁö °Å¸®
+      (setq distc (* dist 5.0))                         ;chamfer °Å¸®
 
-      (setq ang (angle po p2)                           ;ì²«ì ì—ì„œ ëì ìœ¼ë¡œì˜ ê°ë„
-            len (distance p2 po)                        ;ë‘êº¼ìš´ íŒì˜ ê¸¸ì´
-            len2 (- len distc)                          ;ë‘êº¼ìš´ ìƒˆë¡œìš´ ê¸¸ì´
+      (setq ang (angle po p2)                           ;Ã¹Á¡¿¡¼­ ³¡Á¡À¸·ÎÀÇ °¢µµ
+            len (distance p2 po)                        ;µÎ²¨¿î ÆÇÀÇ ±æÀÌ
+            len2 (- len distc)                          ;µÎ²¨¿î »õ·Î¿î ±æÀÌ
             bpnt (polar po ang len2))                   ;break point
     ) ;of LINE
-    ((= entype2 "ARC")                                  ;entityê°€ í˜¸ì¸ê²½ìš°
-      (setq r (cdr (assoc 40 thicke))                   ;í˜¸ì˜ ë°˜ì§€ë¦„
-            cp (cdr (assoc 10 thicke))                  ;í˜¸ì˜ ì¤‘ì‹¬ì 
-            sa (cdr (assoc 50 thicke))                  ;í˜¸ì˜ ì‹œì‘ê°
-            ea (cdr (assoc 51 thicke))                  ;í˜¸ì˜ ëê°
-            thicksp (polar cp sa r)                     ;ì–‡ì€ íŒ ì‹œì‘ì 
-            thickep (polar cp ea r))                    ;ì–‡ì€ íŒ ëì 
-      (setq dist1 (distance thickp thicksp)             ;ì„ íƒì ì—ì„œ ì‹œì‘ì ê¹Œì§€ ê±°ë¦¬
-            dist2 (distance thickp thickep))            ;ì„ íƒì ì—ì„œ ëì ê¹Œì§€ ê±°ë¦¬
-      (if (< dist1 dist2)                               ;ì„ íƒì ì—ì„œ ê°€ê¹Œìš´ìª½ì„ ë‘˜ì§¸ì ìœ¼ë¡œ
+    ((= entype2 "ARC")                                  ;entity°¡ È£ÀÎ°æ¿ì
+      (setq r (cdr (assoc 40 thicke))                   ;È£ÀÇ ¹İÁö¸§
+            cp (cdr (assoc 10 thicke))                  ;È£ÀÇ Áß½ÉÁ¡
+            sa (cdr (assoc 50 thicke))                  ;È£ÀÇ ½ÃÀÛ°¢
+            ea (cdr (assoc 51 thicke))                  ;È£ÀÇ ³¡°¢
+            thicksp (polar cp sa r)                     ;¾ãÀº ÆÇ ½ÃÀÛÁ¡
+            thickep (polar cp ea r))                    ;¾ãÀº ÆÇ ³¡Á¡
+      (setq dist1 (distance thickp thicksp)             ;¼±ÅÃÁ¡¿¡¼­ ½ÃÀÛÁ¡±îÁö °Å¸®
+            dist2 (distance thickp thickep))            ;¼±ÅÃÁ¡¿¡¼­ ³¡Á¡±îÁö °Å¸®
+      (if (< dist1 dist2)                               ;¼±ÅÃÁ¡¿¡¼­ °¡±î¿îÂÊÀ» µÑÂ°Á¡À¸·Î
         (setq p2 thicksp
-              dist (distance p1 p2)                     ;ì²«ì ì—ì„œ ëì ê¹Œì§€ ê±°ë¦¬
-              distc (* dist 5.0)                        ;chamfer ê±°ë¦¬
+              dist (distance p1 p2)                     ;Ã¹Á¡¿¡¼­ ³¡Á¡±îÁö °Å¸®
+              distc (* dist 5.0)                        ;chamfer °Å¸®
               bpnt (polar cp (+ sa (/ distc r)) r))     ;Break point
         (setq p2 thickep
-              dist (distance p1 p2)                     ;ì²«ì ì—ì„œ ëì ê¹Œì§€ ê±°ë¦¬
-              distc (* dist 5.0)                        ;chamfer ê±°ë¦¬
+              dist (distance p1 p2)                     ;Ã¹Á¡¿¡¼­ ³¡Á¡±îÁö °Å¸®
+              distc (* dist 5.0)                        ;chamfer °Å¸®
               bpnt (polar cp (- ea (/ distc r)) r))     ;Break point
       ) ;of IF
     ) ;of ARC
   ) ;of COND
 
 
-  (command "BREAK" thick "F" p2 bpnt)                   ;taperêµ¬ê°„ ì˜ë¼ë‚´ê¸°
-  (command "LINE" p1 bpnt "")                           ;ê²½ì‚¬ì„  ê·¸ë¦¬ê¸°
+  (command "BREAK" thick "F" p2 bpnt)                   ;taper±¸°£ Àß¶ó³»±â
+  (command "LINE" p1 bpnt "")                           ;°æ»ç¼± ±×¸®±â
 
-  (setq ang (angle p1 bpnt)                             ;ê²½ì‚¬ì„ ì˜ ê°ë„
-        tl (* ds th 5)                                 ;textê¸¸ì´
-        bp (polar bpnt ang tl)                          ;base lineëì 
-        bp2 (polar bpnt ang (/ tl 2.0)))                ;base line ì¤‘ê°„ì 
+  (setq ang (angle p1 bpnt)                             ;°æ»ç¼±ÀÇ °¢µµ
+        tl (* ds th 5)                                 ;text±æÀÌ
+        bp (polar bpnt ang tl)                          ;base line³¡Á¡
+        bp2 (polar bpnt ang (/ tl 2.0)))                ;base line Áß°£Á¡
 
-  (setq wh4 (which4 ang))                               ;ëª‡ì‚¬ë¶„ë©´ì— ìˆëŠ”ê°€?
+  (setq wh4 (which4 ang))                               ;¸î»çºĞ¸é¿¡ ÀÖ´Â°¡?
 
-  (cond                                                 ;1~4ì‚¬ë¶„ë©´ì— ìˆì„ ë•Œ
-     ((= wh4 1)                                         ;1ì‚¬ë¶„ë©´ì— ìˆì„ ë•Œ
+  (cond                                                 ;1~4»çºĞ¸é¿¡ ÀÖÀ» ¶§
+     ((= wh4 1)                                         ;1»çºĞ¸é¿¡ ÀÖÀ» ¶§
        (progn
          (setq ang2 ang)
          (setq tp (polar bp2 (+ ang (/ pi 2.0)) (* ds th)))
        );of PROGN
      )
-     ((= wh4 2)                                        ;2ì‚¬ë¶„ë©´ì— ìˆì„ ë•Œ
+     ((= wh4 2)                                        ;2»çºĞ¸é¿¡ ÀÖÀ» ¶§
        (progn
          (setq ang2 (- ang pi))
          (setq tp (polar bp2 (- ang (/ pi 2.0)) (* ds th)))
        ) ;of PROGN
      )
-     ((= wh4 3)                                        ;3ì‚¬ë¶„ë©´ì— ìˆì„ ë•Œ
+     ((= wh4 3)                                        ;3»çºĞ¸é¿¡ ÀÖÀ» ¶§
        (progn
          (setq ang2 (- ang pi))
          (setq tp (polar bp2 (+ ang (/ pi 2.0)) (* ds th)))
        ) ;of PROGN
      )
-     ((= wh4 4)                                        ;4ì‚¬ë¶„ë©´ì— ìˆì„ë•Œ
+     ((= wh4 4)                                        ;4»çºĞ¸é¿¡ ÀÖÀ»¶§
        (progn
          (setq ang2 (- ang (* 2 pi)))
          (setq tp (polar bp2 (- ang (/ pi 2.0)) (* ds th)))
@@ -137,10 +137,10 @@ thinsp  tl          tp      wh4
      )
   );of cond
 
-  (command "TEXT" "M" tp (* ds th) (rtod ang2) "1:5")      ;1:5ì“°ê¸°
-  (setvar "CECOLOR" "RED")                                  ;ë¹¨ê°„ìƒ‰ìœ¼ë¡œ
-  (command "LINE" bpnt bp "")                               ;base lineê·¸ë¦¬ê¸°
-  (setvar "CECOLOR" "BYLAYER")                              ;ì›ë˜ ìƒ‰ìœ¼ë¡œ
+  (command "TEXT" "M" tp (* ds th) (rtod ang2) "1:5")      ;1:5¾²±â
+  (setvar "CECOLOR" "RED")                                  ;»¡°£»öÀ¸·Î
+  (command "LINE" bpnt bp "")                               ;base line±×¸®±â
+  (setvar "CECOLOR" "BYLAYER")                              ;¿ø·¡ »öÀ¸·Î
 
   (pop-env)
   (setq *error* oer seterr nil)

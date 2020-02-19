@@ -4,13 +4,13 @@
 ;           By Suk-Jong Yi
 ;           1997/1/8
 ;**************************************************************
-; 1. ìë™ ì¶œë ¥í”„ë¡œê·¸ë¨ì¸ PLOTBDR.LSPì„ ìœ„í•œ í”„ë¡œê·¸ë¨ìœ¼ë¡œì„œ
-;    borderë¥¼ ë§Œë“¤ì–´ì¤€ë‹¤. borderëŠ” plotì‹œ windowë¥¼ ì§€ì •í•  ë•Œ
-;    í•„ìš”í•œ ë‘ê°œì˜ ì (point entity)ê³¼ boxë¡œ ì´ë£¨ì–´ì ¸ìˆë‹¤.
-; 2. borderë¥¼ ë§Œë“¤ë•Œë§ˆë‹¤ blockìœ¼ë¡œ ë§Œë“¤ì–´ì£¼ëŠ”ë° blockì˜ ì´ë¦„ì€
-;    ì°¨ë¡€ë¡œ BDR$1, BDR$2 ì™€ ê°™ì´ BDR$ì— ë¶™ì—¬ì„œ ë§Œë“¤ì–´ì§„ë‹¤.
-;    ì‚¬ìš©ìê°€ ë§Œë“  blockì´ë¦„ê³¼ ê²¹ì¹˜ëŠ” ê²ƒì„ ë°©ì§€í•˜ê¸° ìœ„í•´ $ê¸°í˜¸
-;    ë¥¼ ì‚¬ìš©í•˜ì˜€ë‹¤.
+; 1. ÀÚµ¿ Ãâ·ÂÇÁ·Î±×·¥ÀÎ PLOTBDR.LSPÀ» À§ÇÑ ÇÁ·Î±×·¥À¸·Î¼­
+;    border¸¦ ¸¸µé¾îÁØ´Ù. border´Â plot½Ã window¸¦ ÁöÁ¤ÇÒ ¶§
+;    ÇÊ¿äÇÑ µÎ°³ÀÇ Á¡(point entity)°ú box·Î ÀÌ·ç¾îÁ®ÀÖ´Ù.
+; 2. border¸¦ ¸¸µé¶§¸¶´Ù blockÀ¸·Î ¸¸µé¾îÁÖ´Âµ¥ blockÀÇ ÀÌ¸§Àº
+;    Â÷·Ê·Î BDR$1, BDR$2 ¿Í °°ÀÌ BDR$¿¡ ºÙ¿©¼­ ¸¸µé¾îÁø´Ù.
+;    »ç¿ëÀÚ°¡ ¸¸µç blockÀÌ¸§°ú °ãÄ¡´Â °ÍÀ» ¹æÁöÇÏ±â À§ÇØ $±âÈ£
+;    ¸¦ »ç¿ëÇÏ¿´´Ù.
 ;**************************************************************
 
 (defun C:MKBDR(/
@@ -27,20 +27,20 @@
   ); of SETERR
   (setq oer *error* *error* seterr)
 
-  ;*** ë‘ ì  ì…ë ¥
-  (setq p1 (getpoint "\nPick point: "))                 ; ì²«ì 
-  (setq p2 (getcorner p1 "\nPick Second point: "))      ; ëì 
+  ;*** µÎ Á¡ ÀÔ·Â
+  (setq p1 (getpoint "\nPick point: "))                 ; Ã¹Á¡
+  (setq p2 (getcorner p1 "\nPick Second point: "))      ; ³¡Á¡
 
-  (setq dx (- (car p2) (car p1))                        ;X ê¸¸ì´
-        dy (- (cadr p2) (cadr p1)))                     ;Y ê¸¸ì´
+  (setq dx (- (car p2) (car p1))                        ;X ±æÀÌ
+        dy (- (cadr p2) (cadr p1)))                     ;Y ±æÀÌ
 
-  (if (< dx 0) (setq xsgn -1)                           ;Xë¶€í˜¸
+  (if (< dx 0) (setq xsgn -1)                           ;XºÎÈ£
                (setq xsgn 1))
 
-  (if (< dy 0) (setq ysgn -1)                           ;Yë¶€í˜¸
+  (if (< dy 0) (setq ysgn -1)                           ;YºÎÈ£
                (setq ysgn 1))
 
-  (if (< (abs dx) (abs dy)) (setq dst (abs (/ dx 10.0)));ì‘ì€ê¸¸ì´ì˜ 1/10
+  (if (< (abs dx) (abs dy)) (setq dst (abs (/ dx 10.0)));ÀÛÀº±æÀÌÀÇ 1/10
                             (setq dst (abs (/ dy 10.0))))
 
   (setq p11 (list (- (car p1) (* dst xsgn))
@@ -50,8 +50,8 @@
         p12 (list (car p14) (cadr p11) 0)
         p13 (list (car p11) (cadr p14) 0))
 
-  ;ê¸°ì¡´ block listë¥¼ ë§Œë“ ë‹¤.
-  (setq bk1h (tblnext "BLOCK" T))                    ;ì²«ë²ˆì§¸ ë¸”ëŸ­ table header
+  ;±âÁ¸ block list¸¦ ¸¸µç´Ù.
+  (setq bk1h (tblnext "BLOCK" T))                    ;Ã¹¹øÂ° ºí·° table header
   (if (/= bk1h nil)
     (if (= (strcase (substr (cdr (assoc 2 bk1h)) 1 4)) "BDR$")
       (setq bkh_lst (list bk1h))
@@ -71,57 +71,57 @@
   ) ;of if
 
   (setq header (list '(0 . "BLOCK") (cons 2 bdr_nm) '(70 . 64) (cons 10 p1)))
-  (entmake header)                                      ;ë¸”ëŸ­ì‹œì‘
+  (entmake header)                                      ;ºí·°½ÃÀÛ
 
-  (setq pent (list '(0 . "POINT")                       ;ì²«ë²ˆì§¸ì 
-                      (cons 10 p1)))                    ;ì‚½ì…ì 
-  (setq subent (entmake pent))                          ;block tableì— ê¸€ì ë“±ë¡
+  (setq pent (list '(0 . "POINT")                       ;Ã¹¹øÂ°Á¡
+                      (cons 10 p1)))                    ;»ğÀÔÁ¡
+  (setq subent (entmake pent))                          ;block table¿¡ ±ÛÀÚ µî·Ï
 
-  (setq pent (list '(0 . "POINT")                       ;ë‘˜ì§¸ì 
-                      (cons 10 p2)))                    ;ì‚½ì…ì 
-  (setq subent (entmake pent))                          ;block tableì— ê¸€ì ë“±ë¡
+  (setq pent (list '(0 . "POINT")                       ;µÑÂ°Á¡
+                      (cons 10 p2)))                    ;»ğÀÔÁ¡
+  (setq subent (entmake pent))                          ;block table¿¡ ±ÛÀÚ µî·Ï
 
-  (setq lent (list '(0 . "LINE")                        ;ì²«ì box ìˆ˜ì§ì„ 
-                    (cons 10 p1)                        ;ì‹œì‘ì 
-                    (cons 11 (list (car p1) (cadr p11) 0)))) ;ëì 
-  (setq subent (entmake lent))                          ;block tableì— ê¸€ì ë“±ë¡
+  (setq lent (list '(0 . "LINE")                        ;Ã¹Á¡box ¼öÁ÷¼±
+                    (cons 10 p1)                        ;½ÃÀÛÁ¡
+                    (cons 11 (list (car p1) (cadr p11) 0)))) ;³¡Á¡
+  (setq subent (entmake lent))                          ;block table¿¡ ±ÛÀÚ µî·Ï
 
-  (setq lent (list '(0 . "LINE")                        ;ì²«ì box ìˆ˜í‰ì„ 
-                    (cons 10 p1)                        ;ì‹œì‘ì 
-                    (cons 11 (list (car p11) (cadr p1) 0)))) ;ëì 
-  (setq subent (entmake lent))                          ;block tableì— ê¸€ì ë“±ë¡
+  (setq lent (list '(0 . "LINE")                        ;Ã¹Á¡box ¼öÆò¼±
+                    (cons 10 p1)                        ;½ÃÀÛÁ¡
+                    (cons 11 (list (car p11) (cadr p1) 0)))) ;³¡Á¡
+  (setq subent (entmake lent))                          ;block table¿¡ ±ÛÀÚ µî·Ï
 
-  (setq lent (list '(0 . "LINE")                        ;ë‘˜ì§¸ì box ìˆ˜ì§ì„ 
-                    (cons 10 p2)                        ;ì‹œì‘ì 
-                    (cons 11 (list (car p2) (cadr p14) 0)))) ;ëì 
-  (setq subent (entmake lent))                          ;block tableì— ê¸€ì ë“±ë¡
+  (setq lent (list '(0 . "LINE")                        ;µÑÂ°Á¡box ¼öÁ÷¼±
+                    (cons 10 p2)                        ;½ÃÀÛÁ¡
+                    (cons 11 (list (car p2) (cadr p14) 0)))) ;³¡Á¡
+  (setq subent (entmake lent))                          ;block table¿¡ ±ÛÀÚ µî·Ï
 
-  (setq lent (list '(0 . "LINE")                        ;ë‘˜ì§¸ì box ìˆ˜í‰ì„ 
-                    (cons 10 p2)                        ;ì‹œì‘ì 
-                    (cons 11 (list (car p14) (cadr p2) 0)))) ;ëì 
-  (setq subent (entmake lent))                          ;block tableì— ê¸€ì ë“±ë¡
+  (setq lent (list '(0 . "LINE")                        ;µÑÂ°Á¡box ¼öÆò¼±
+                    (cons 10 p2)                        ;½ÃÀÛÁ¡
+                    (cons 11 (list (car p14) (cadr p2) 0)))) ;³¡Á¡
+  (setq subent (entmake lent))                          ;block table¿¡ ±ÛÀÚ µî·Ï
 
-  (setq lent (list '(0 . "LINE")                        ;ì „ì²´ box ìœ„ ìˆ˜ì§ì„ 
-                    (cons 10 p11)                       ;ì‹œì‘ì 
-                    (cons 11 p12)))                     ;ëì 
-  (setq subent (entmake lent))                          ;block tableì— ë“±ë¡
+  (setq lent (list '(0 . "LINE")                        ;ÀüÃ¼ box À§ ¼öÁ÷¼±
+                    (cons 10 p11)                       ;½ÃÀÛÁ¡
+                    (cons 11 p12)))                     ;³¡Á¡
+  (setq subent (entmake lent))                          ;block table¿¡ µî·Ï
 
-  (setq lent (list '(0 . "LINE")                        ;ì „ì²´ box ì˜¤ë¥¸ìª½ ìˆ˜ì§ì„ 
-                    (cons 10 p12)                       ;ì‹œì‘ì 
-                    (cons 11 p14)))                     ;ëì 
-  (setq subent (entmake lent))                          ;block tableì— ë“±ë¡
+  (setq lent (list '(0 . "LINE")                        ;ÀüÃ¼ box ¿À¸¥ÂÊ ¼öÁ÷¼±
+                    (cons 10 p12)                       ;½ÃÀÛÁ¡
+                    (cons 11 p14)))                     ;³¡Á¡
+  (setq subent (entmake lent))                          ;block table¿¡ µî·Ï
 
-  (setq lent (list '(0 . "LINE")                        ;ì „ì²´ box ì•„ë˜ ìˆ˜í‰ì„ 
-                    (cons 10 p14)                       ;ì‹œì‘ì 
-                    (cons 11 p13)))                     ;ëì 
-  (setq subent (entmake lent))                          ;block tableì— ë“±ë¡
+  (setq lent (list '(0 . "LINE")                        ;ÀüÃ¼ box ¾Æ·¡ ¼öÆò¼±
+                    (cons 10 p14)                       ;½ÃÀÛÁ¡
+                    (cons 11 p13)))                     ;³¡Á¡
+  (setq subent (entmake lent))                          ;block table¿¡ µî·Ï
 
-  (setq lent (list '(0 . "LINE")                        ;ì „ì²´ box ì™¼ìª½ ìˆ˜í‰ì„ 
-                    (cons 10 p13)                       ;ì‹œì‘ì 
-                    (cons 11 p11)))                     ;ëì 
-  (setq subent (entmake lent))                          ;block tableì— ë“±ë¡
+  (setq lent (list '(0 . "LINE")                        ;ÀüÃ¼ box ¿ŞÂÊ ¼öÆò¼±
+                    (cons 10 p13)                       ;½ÃÀÛÁ¡
+                    (cons 11 p11)))                     ;³¡Á¡
+  (setq subent (entmake lent))                          ;block table¿¡ µî·Ï
 
-  (setq blknm (entmake '((0 . "ENDBLK"))))              ;ë¸”ëŸ­ë
+  (setq blknm (entmake '((0 . "ENDBLK"))))              ;ºí·°³¡
 
   (entmake (list '(0 . "INSERT") (cons 2 blknm) (cons 10 p1)))
 

@@ -4,16 +4,16 @@
 ;           By Suk-Jong Yi
 ;           1995/8/14
 ;*************************************
-; ì¹˜ìˆ˜ì„ ì˜ ì¹˜ìˆ˜ë¥¼ ìœ„/ì•„ë˜ë¡œ ì¡°ì •
+; Ä¡¼ö¼±ÀÇ Ä¡¼ö¸¦ À§/¾Æ·¡·Î Á¶Á¤
 
 (defun C:DUD (/
                 ss_ent     ans     old_tvp     old_tad    new_tvp
 )
 
   ;;
-  ;; ë‚´ì¥ error routine
+  ;; ³»Àå error routine
   ;;
-  (defun SETERR(s)                                      ;ë‚´ì¥ ì—ëŸ¬ë£¨í‹´ ì •ì˜
+  (defun SETERR(s)                                      ;³»Àå ¿¡·¯·çÆ¾ Á¤ÀÇ
   ;If an error (CTRL-C) occurs when this command is active.
     (if (/= s "Function cancelled")
       (if (= s "quit / exit abort")
@@ -28,31 +28,31 @@
 
   (setq oer *error* *error* seterr)
 
-  (push-env)                               ;í™˜ê²½ë³€ìˆ˜ ëŒ€í”¼
+  (push-env)                               ;È¯°æº¯¼ö ´ëÇÇ
 
-  (setq ss_ent (ssget))                    ;DIM entityì„ íƒ
+  (setq ss_ent (ssget))                    ;DIM entity¼±ÅÃ
 
-  (setq old_tvp (getvar "DIMTVP")        ; ì˜› DIMë³€ìˆ˜ ëŒ€í”¼
+  (setq old_tvp (getvar "DIMTVP")        ; ¿¾ DIMº¯¼ö ´ëÇÇ
         old_tad (getvar "DIMTAD"))
 
-  (while (/= ss_ent nil)                   ;ë°˜ë³µ ìˆ˜í–‰
+  (while (/= ss_ent nil)                   ;¹İº¹ ¼öÇà
     (initget "Up Down")                    ;
-    (setq ans (getkword "\nUp/<Down>: "))    ; Up/Down ì„ íƒ
-    (if (= ans nil) (setq ans "Down"))      ; ë¦¬í„´ ì…ë ¥ì‹œ Downìœ¼ë¡œ ê°„ì£¼
+    (setq ans (getkword "\nUp/<Down>: "))    ; Up/Down ¼±ÅÃ
+    (if (= ans nil) (setq ans "Down"))      ; ¸®ÅÏ ÀÔ·Â½Ã DownÀ¸·Î °£ÁÖ
     (cond
-      ((= ans "Up") (setq new_tvp 1))      ; UP/Downì— ë”°ë¼ DIMTVPê°’ ì„¤ì •
+      ((= ans "Up") (setq new_tvp 1))      ; UP/Down¿¡ µû¶ó DIMTVP°ª ¼³Á¤
       ((= ans "Down") (setq new_tvp -1))
     ) ;of cond
 
-    (setvar "DIMTAD" 0)                    ; ìƒˆ DIMë³€ìˆ˜ ì„¤ì •
+    (setvar "DIMTAD" 0)                    ; »õ DIMº¯¼ö ¼³Á¤
     (setvar "DIMTVP" new_tvp)
-    (command "DIM1" "UPDATE" ss_ent "")    ; UPDATEëª…ë ¹ ìˆ˜í–‰
-    (setvar "DIMTVP" old_tvp)              ; ì˜› DIMë³€ìˆ˜ ë³µê·€
+    (command "DIM1" "UPDATE" ss_ent "")    ; UPDATE¸í·É ¼öÇà
+    (setvar "DIMTVP" old_tvp)              ; ¿¾ DIMº¯¼ö º¹±Í
     (setvar "DIMTAD" old_tad)
-    (setq ss_ent (ssget))                  ; ë‹¤ìŒ selection set ì„ íƒ
+    (setq ss_ent (ssget))                  ; ´ÙÀ½ selection set ¼±ÅÃ
   ) ;of while
 
-  (pop-env)                                ;í™˜ê²½ë³€ìˆ˜ ë³µê·€
+  (pop-env)                                ;È¯°æº¯¼ö º¹±Í
   (princ)
 
   (setq *error* oer seterr nil)

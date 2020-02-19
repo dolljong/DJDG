@@ -5,17 +5,17 @@
 ;           95/5/26
 ;***************************************
 
-; ë³´í†µ ê°•ì¬ë„ë©´ì„ ê·¸ë¦´ë•Œ centerì„ ì„ ê·¸ë ¤ë†“ê³  ì–‘ìª½ìœ¼ë¡œ offsetì‹œí‚¨ë‹¤.
-; í•˜ì§€ë§Œ ë‚˜ì¤‘ì— centerì„ ì„ ì§€ìš°ëŠ” ê²ƒë„ ë§Œë§Œì¹˜ ì•Šì€ ì‘ì—…ì´ë‹¤.
-; ì´ í”„ë¡œê·¸ë¨ì€ entityë¥¼ offsetì‹œí‚¤ë˜ í˜„ì¬ì˜ layerë¡œ offsetì‹œí‚¨ë‹¤.
-; ì¦‰ center lineì„ ìœ„í•œ layerì™€ êµ¬ì¡°ë¬¼ì„ ìœ„í•œ layerë¥¼ ë§Œë“ í›„
-; center line layerì— center lineë“¤ì„ ê·¸ë¦¬ê³  Current layerë¥¼ êµ¬ì¡°ë¬¼
-; layerë¡œ ë°”ê¾¸ê³  offsetì„ í•œë‹¤. ë‚˜ì¤‘ì— ì¶œë ¥í•  ë•Œ center line layerëŠ”
-; offset ì‹œí‚¨í›„ì— printí•œë‹¤.
-; ëª¨ë“  optionì€ ì›ë˜ offsetëª…ë ¹ê³¼ ê°™ë‹¤.
+; º¸Åë °­Àçµµ¸éÀ» ±×¸±¶§ center¼±À» ±×·Á³õ°í ¾çÂÊÀ¸·Î offset½ÃÅ²´Ù.
+; ÇÏÁö¸¸ ³ªÁß¿¡ center¼±À» Áö¿ì´Â °Íµµ ¸¸¸¸Ä¡ ¾ÊÀº ÀÛ¾÷ÀÌ´Ù.
+; ÀÌ ÇÁ·Î±×·¥Àº entity¸¦ offset½ÃÅ°µÇ ÇöÀçÀÇ layer·Î offset½ÃÅ²´Ù.
+; Áï center lineÀ» À§ÇÑ layer¿Í ±¸Á¶¹°À» À§ÇÑ layer¸¦ ¸¸µçÈÄ
+; center line layer¿¡ center lineµéÀ» ±×¸®°í Current layer¸¦ ±¸Á¶¹°
+; layer·Î ¹Ù²Ù°í offsetÀ» ÇÑ´Ù. ³ªÁß¿¡ Ãâ·ÂÇÒ ¶§ center line layer´Â
+; offset ½ÃÅ²ÈÄ¿¡ printÇÑ´Ù.
+; ¸ğµç optionÀº ¿ø·¡ offset¸í·É°ú °°´Ù.
 
 (defun C:FFL(/
-ffdst ans ffpnt ent oldl newl                          ;ì§€ì—­ë³€ìˆ˜ ì •ì˜
+ffdst ans ffpnt ent oldl newl                          ;Áö¿ªº¯¼ö Á¤ÀÇ
 )
   (defun SETERR(s)
     (if (/= s "Function cancelled")
@@ -25,13 +25,13 @@ ffdst ans ffpnt ent oldl newl                          ;ì§€ì—­ë³€ìˆ˜ ì •ì˜
     (princ)
   ); of SETERR
   (setq oer *error* *error* seterr)
-(if (< (setq ffdst (getvar "OFFSETDIST")) 0)           ;í™˜ê²½ë³€ìˆ˜ê°’ êµ¬í•¨
- (progn                                   ;í™˜ê²½ë³€ìˆ˜ OFFSETDISTê°€ ìŒìˆ˜ì¼ ê²½ìš°
+(if (< (setq ffdst (getvar "OFFSETDIST")) 0)           ;È¯°æº¯¼ö°ª ±¸ÇÔ
+ (progn                                   ;È¯°æº¯¼ö OFFSETDIST°¡ À½¼öÀÏ °æ¿ì
    (initget "Trough")
    (setq ans (getreal "\nOffset distance or Throgh <Trough>: "))
    (if (= ans nil) (setq ans "T"))
  ) ;of progn
- (progn                                   ;í™˜ê²½ë³€ìˆ˜ OFFSETDISTê°€ ì–‘ìˆ˜ì¼ ê²½ìš°
+ (progn                                   ;È¯°æº¯¼ö OFFSETDIST°¡ ¾ç¼öÀÏ °æ¿ì
    (princ "\nOffset distance or Through <")
    (princ ffdst)
    (initget "Through")
@@ -39,13 +39,13 @@ ffdst ans ffpnt ent oldl newl                          ;ì§€ì—­ë³€ìˆ˜ ì •ì˜
    (if (= ans nil) (setq ans ffdst))
  ) ;of progn
 ) ;of if
-(while (setq ents (entsel "\nSelect object: "))        ;offset ë°˜ë³µ
+(while (setq ents (entsel "\nSelect object: "))        ;offset ¹İº¹
   (setq ffpnt (getpoint "\nPick side: "))
-  (command "OFFSET" ans ents ffpnt "")                 ;offset ì‹¤í–‰
+  (command "OFFSET" ans ents ffpnt "")                 ;offset ½ÇÇà
   (setq ent (entget (entlast)))
   (setq oldl (assoc 8 ent))
-  (setq newl (cons 8 (getvar "CLAYER")))    ; offsetëœ entityì˜ layerë¥¼-
-  (setq ent (subst newl oldl ent))          ; í˜„ì¬ layerë¡œ ë³€ê²½
+  (setq newl (cons 8 (getvar "CLAYER")))    ; offsetµÈ entityÀÇ layer¸¦-
+  (setq ent (subst newl oldl ent))          ; ÇöÀç layer·Î º¯°æ
   (entmod ent)
 ) ;of while
   (setq *error* oer seterr nil)

@@ -4,73 +4,73 @@
 ;           By Suk-Jong Yi
 ;           1995/7/21, 7/24
 ;***********************************
-; ¬åÈ‚–E border Ÿi Â‰b
+; ¼±ÅÃµÈ border ¸¦ Ãâ·Â
 ;***********************************
 
 (defun C:APLOT( /
                 name_lst
 )
 
-  (setq bdr_B 815                                   ;border· Í¢
-        bdr_H 570                                   ;border· ‘¼·¡
-        bn    "BORDER"                             ;§iœâ ·¡Ÿq
+  (setq bdr_B 815                                   ;borderÀÇ Æø
+        bdr_H 570                                   ;borderÀÇ ³ôÀÌ
+        bn    "BORDER"                             ;ºí·° ÀÌ¸§
         xg    -15                                    ;x gap
         yg    -5)                                   ;y gap
 
-  (setq ds (getvar "DIMSCALE"))                     ;scale ˆtŠÐq
+  (setq ds (getvar "DIMSCALE"))                     ;scale °ª±¸ÇÔ
 
-  (setq ss_lst (ssget))                             ;entity ¬åÈ‚
-  (setq ss_num (sslength ss_lst))                   ;¬åÈ‚–E entityˆ•®
+  (setq ss_lst (ssget))                             ;entity ¼±ÅÃ
+  (setq ss_num (sslength ss_lst))                   ;¼±ÅÃµÈ entity°¹¼ö
 
   (setq index 0)
   (setq bdr_num 0)
 
-  (repeat ss_num                                    ;entityˆ•® eÇq ¤e¥¢
-    (setq ent (entget (ssname ss_lst index)))         ;entity ¸÷¥¡
-    (if (and (= (cdr (assoc 0 ent)) "INSERT")         ;border·¥ ‰w¶
+  (repeat ss_num                                    ;entity°¹¼ö¸¸Å­ ¹Ýº¹
+    (setq ent (entget (ssname ss_lst index)))         ;entity Á¤º¸
+    (if (and (= (cdr (assoc 0 ent)) "INSERT")         ;borderÀÎ °æ¿ì
              (= (substr (cdr (assoc 2 ent)) 1 (strlen bn)) bn))
       (progn
-        (redraw (ssname ss_lst index) 3)              ;border¤e¸å
-        (setq plt_name (getstring "\nPLT filename(No extension): ")) ;plt name ·³b(ÑÂ¸w¸a ´ô·q)
-        (setq plt_name (strcat plt_name ".PLT"))                     ;·³b nameµA”a ÑÂ¸w¸a Âˆa
+        (redraw (ssname ss_lst index) 3)              ;border¹ÝÀü
+        (setq plt_name (getstring "\nPLT filename(No extension): ")) ;plt name ÀÔ·Â(È®ÀåÀÚ ¾øÀ½)
+        (setq plt_name (strcat plt_name ".PLT"))                     ;ÀÔ·Â name¿¡´Ù È®ÀåÀÚ Ãß°¡
         (while (or (/= (findfile (strcat (getvar "DWGPREFIX") plt_name)) nil)
-                   (is_member plt_name name_lst))     ;—¡BÉ¡Ÿ¡µÁ plt name listµA •··© ·¡Ÿq ¹¥¸ ÑÂ·¥
+                   (is_member plt_name name_lst))     ;µð·ºÅä¸®¿Í plt name list¿¡ µ¿ÀÏ ÀÌ¸§ Á¸Àç È®ÀÎ
           (princ "File ") (princ plt_name) (princ " is already exist ")
           (setq plt_name (getstring "PLT filename(No extension): "))
           (setq plt_name (strcat plt_name ".PLT"))
-        ) ;of WHILE                                   ;•··©·¡Ÿq ¹¥¸¯¡ ‰­¢ ¤e¥¢
+        ) ;of WHILE                                   ;µ¿ÀÏÀÌ¸§ Á¸Àç½Ã °è¼Ó ¹Ýº¹
         (if (= bdr_num 0)
-          (progn                                      ;Àõ border·¥ ‰w¶
-            (setq index_lst (list index))               ;¡y¤å¼ entity·¥ˆaŸi ‹¡´â
-            (setq name_lst (list plt_name))             ;plt ·¡Ÿq·e ¢¥ˆaŸi ‹¡´â
+          (progn                                      ;Ã¹ borderÀÎ °æ¿ì
+            (setq index_lst (list index))               ;¸î¹øÂ° entityÀÎ°¡¸¦ ±â¾ï
+            (setq name_lst (list plt_name))             ;plt ÀÌ¸§Àº ¹º°¡¸¦ ±â¾ï
           ) ;of THEN
-          (progn                                      ;Àõ borderˆa ´a“¥‰w¶
+          (progn                                      ;Ã¹ border°¡ ¾Æ´Ñ°æ¿ì
             (setq index_lst (append index_lst (list index)))
             (setq name_lst (append name_lst (list plt_name)))
           ) ;of THEN
         ) ;of IF
         (setq bdr_num (1+ bdr_num))
-        (redraw (ssname ss_lst index) 4)              ;¤e¸å–E borderŸi ¸÷¬w·a¡
+        (redraw (ssname ss_lst index) 4)              ;¹ÝÀüµÈ border¸¦ Á¤»óÀ¸·Î
       ) ;of progn
     ) ;of IF
-    (setq index (1+ index))                           ;”a·q entity¡
+    (setq index (1+ index))                           ;´ÙÀ½ entity·Î
   ) ;of repeat
-  (princ bdr_num) (princ " Border(s) found")        ;¡yˆ· borderˆa ¬åÈ‚–V“e»¡ Îa¯¡
+  (princ bdr_num) (princ " Border(s) found")        ;¸î°³ÀÇ border°¡ ¼±ÅÃ‰ç´ÂÁö Ç¥½Ã
 
   (setq index 0)
-  (repeat (length index_lst)                        ;¬åÈ‚–E border ˆ•® eÇq ¤e¥¢
-    (setq bdr_ent (entget (ssname ss_lst (nth index index_lst))))  ;border entity¸÷¥¡
-    (setq ipnt (cdr (assoc 10 bdr_ent)))            ;border· insert point
-    (setq i_scale (cdr (assoc 41 bdr_ent)))         ;border· scale factor
-    (setq low_left (list (+ (car ipnt) (* xg i_scale))        ;border· ¹ÁÃb ´aœ
+  (repeat (length index_lst)                        ;¼±ÅÃµÈ border °¹¼ö¸¸Å­ ¹Ýº¹
+    (setq bdr_ent (entget (ssname ss_lst (nth index index_lst))))  ;border entityÁ¤º¸
+    (setq ipnt (cdr (assoc 10 bdr_ent)))            ;borderÀÇ insert point
+    (setq i_scale (cdr (assoc 41 bdr_ent)))         ;borderÀÇ scale factor
+    (setq low_left (list (+ (car ipnt) (* xg i_scale))        ;borderÀÇ ÁÂÃø ¾Æ·¡
                          (+ (cadr ipnt) (* yg i_scale))))
-    (setq up_right (list (+ (car ipnt) (* bdr_B i_scale))    ;border· ¶Ãb ¶á
+    (setq up_right (list (+ (car ipnt) (* bdr_B i_scale))    ;borderÀÇ ¿ìÃø À§
                          (+ (cadr ipnt) (* bdr_H i_scale))))
     (setvar "CMDDIA" 0)                                     ;command echo OFF
-    (command "PLOT" "W" low_left up_right "N" "N" (nth index name_lst))  ;plot¡ww
+    (command "PLOT" "W" low_left up_right "N" "N" (nth index name_lst))  ;plot¸í·É
     (setvar "CMDDIA" 1)                                     ;command echo ON
     (princ (nth index name_lst)) (princ " is Plotted") (terpri)
-    (setq index (1+ index))                                 ;”a·q border¡
+    (setq index (1+ index))                                 ;´ÙÀ½ border·Î
   ) ;of repeat
 
   (princ)
@@ -79,7 +79,7 @@
 
 
 ;;
-;; atom·¡ list· ¶¥­¡·¥ˆa?
+;; atomÀÌ listÀÇ ¿ø¼ÒÀÎ°¡?
 ;;
 (defun is_member(a lst / count)
   (setq count 0)

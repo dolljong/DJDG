@@ -4,7 +4,7 @@
 ;           Yi Suk-Jong
 ;           98/10/1
 ;*******************************
-; textê°„ê²©ì„ ìˆ˜ì •í•´ì¤€ë‹¤.
+; text°£°İÀ» ¼öÁ¤ÇØÁØ´Ù.
 ;*******************************
 
 (defun C:TXTGAP(/
@@ -12,7 +12,7 @@
 ;                tlst ipnt txtim oldxy newxy newent
 )
 
-  (defun SETERR(s)                                          ;ë‚´ì¥ì—ëŸ¬ë£¨í‹´ ì •ì˜
+  (defun SETERR(s)                                          ;³»Àå¿¡·¯·çÆ¾ Á¤ÀÇ
     (if (/= s "Function cancelled")
         (princ (strcat "\nError: " s))
     ); of If
@@ -20,50 +20,50 @@
     (princ)
   ); of SETERR
 
-  (setq oer *error* *error* seterr)                         ;ë‚´ì¥ì—ëŸ¬ë£¨í‹´ ê°€ë™
+  (setq oer *error* *error* seterr)                         ;³»Àå¿¡·¯·çÆ¾ °¡µ¿
 
-  (push-env)                                                ;í™˜ê²½ë³€ìˆ˜ ëŒ€í”¼
+  (push-env)                                                ;È¯°æº¯¼ö ´ëÇÇ
 
-  (setq index 3)                                        ;ìˆ˜ì§ë°©í–¥ìœ¼ë¡œ ì •ë ¬
+  (setq index 3)                                        ;¼öÁ÷¹æÇâÀ¸·Î Á¤·Ä
 
-  (setq sslst (ssget '((0 . "TEXT"))))                  ;text entityë§Œ ì„ íƒ
-  (setq numss (sslength sslst))                         ;ss-listì˜ ê°¯ìˆ˜
+  (setq sslst (ssget '((0 . "TEXT"))))                  ;text entity¸¸ ¼±ÅÃ
+  (setq numss (sslength sslst))                         ;ss-listÀÇ °¹¼ö
   (princ numss)
-  (princ " text found\n")                               ;ì„ íƒëœ textê°¯ìˆ˜
+  (princ " text found\n")                               ;¼±ÅÃµÈ text°¹¼ö
 
-  (setq ip (getpoint "\nPick insert point: "))           ;textì‚½ì…ì 
-  (setq tgap (getdist "\nText Gap: "))                   ;textê°„ê²© ì…ë ¥
+  (setq ip (getpoint "\nPick insert point: "))           ;text»ğÀÔÁ¡
+  (setq tgap (getdist "\nText Gap: "))                   ;text°£°İ ÀÔ·Â
 
-  (setq count 0                                         ;ì²« textë¶€í„°
+  (setq count 0                                         ;Ã¹ textºÎÅÍ
         tlst nil)
 
-  (repeat numss                                             ;textê°¯ìˆ˜ë§Œí¼
-    (setq ipnt (assoc 10 (entget (ssname sslst count))))    ;ì‚½ì…ì 
-;    (setq ipnt (assoc 11 (entget (ssname sslst count))))    ;ì‚½ì…ì 
-    (setq txtim (cons (ssname sslst count) ipnt))           ;ì—”í‹°í‹°ì´ë¦„ê³¼ ì‚½ì…ì ìœ¼ë¡œ listë§Œë“¬
-    (setq tlst (append tlst (list txtim)))                  ;text listì— ì¶”ê°€
-    (setq count (1+ count))                                 ;ë‹¤ìŒ textë¡œ
+  (repeat numss                                             ;text°¹¼ö¸¸Å­
+    (setq ipnt (assoc 10 (entget (ssname sslst count))))    ;»ğÀÔÁ¡
+;    (setq ipnt (assoc 11 (entget (ssname sslst count))))    ;»ğÀÔÁ¡
+    (setq txtim (cons (ssname sslst count) ipnt))           ;¿£Æ¼Æ¼ÀÌ¸§°ú »ğÀÔÁ¡À¸·Î list¸¸µë
+    (setq tlst (append tlst (list txtim)))                  ;text list¿¡ Ãß°¡
+    (setq count (1+ count))                                 ;´ÙÀ½ text·Î
   ) ;of repeat
 
-  (setq tlst (reverse (sort_list tlst index)))            ;ìˆ˜í‰ë°©í–¥ì¼ ê²½ìš° xê°’ì„ ê¸°ì¤€ìœ¼ë¡œ
+  (setq tlst (reverse (sort_list tlst index)))            ;¼öÆò¹æÇâÀÏ °æ¿ì x°ªÀ» ±âÁØÀ¸·Î
 
   (setq count 0)
   (repeat numss
-    (setq ent (entget (nth 0 (nth count tlst))))        ;text entityì •ë³´
-    (setq old10 (assoc 10 ent))                         ;êµ¬ì¢Œí‘œ
-    (setq old11 (assoc 11 ent))                         ;êµ¬ì¢Œí‘œ
-    (setq new10 (cons 10                                ;ìƒˆì¢Œí‘œ
+    (setq ent (entget (nth 0 (nth count tlst))))        ;text entityÁ¤º¸
+    (setq old10 (assoc 10 ent))                         ;±¸ÁÂÇ¥
+    (setq old11 (assoc 11 ent))                         ;±¸ÁÂÇ¥
+    (setq new10 (cons 10                                ;»õÁÂÇ¥
                       (list (cadr old10)                    ; x
                             (- (cadr ip) (* count tgap)))))     ; y
-    (setq new11 (cons 11                                ;ìƒˆì¢Œí‘œ
+    (setq new11 (cons 11                                ;»õÁÂÇ¥
                       (list (cadr old11)                    ; x
                             (- (cadr ip) (* count tgap)))))     ; y
-    (setq ent (entmod (subst new10 old10 ent)))         ;ì‚½ì…ì (10) ê°±ì‹ 
-    (setq ent (entmod (subst new11 old11 ent)))         ;ì‚½ì…ì (11) ê°±ì‹ 
-    (setq count (1+ count))                             ;ë‹¤ìŒ textë¡œ
+    (setq ent (entmod (subst new10 old10 ent)))         ;»ğÀÔÁ¡(10) °»½Å
+    (setq ent (entmod (subst new11 old11 ent)))         ;»ğÀÔÁ¡(11) °»½Å
+    (setq count (1+ count))                             ;´ÙÀ½ text·Î
   ) ;of repeat
 
-  (pop-env)                                             ;í™˜ê²½ë³€ìˆ˜ ë³µê·€
+  (pop-env)                                             ;È¯°æº¯¼ö º¹±Í
 
   (setq *error* oer seterr nil)
 
@@ -77,12 +77,12 @@
 ;           Yi Suk-Jong
 ;           1996/2/23
 ;******************************************************
-; listë¥¼ sortí•´ì¤€ë‹¤.
-; ë„˜ì–´ì˜¤ëŠ” ê°’
-;     ALIST : SORTë˜ì–´ì•¼í•  LIST
-;      AIDX : ê¸°ì¤€ì´ ë˜ëŠ” sub list (ì²« sub list = 0)
-; ë„˜ê²¨ì§€ëŠ” ê°’
-;             SORTëœ LIST
+; list¸¦ sortÇØÁØ´Ù.
+; ³Ñ¾î¿À´Â °ª
+;     ALIST : SORTµÇ¾î¾ßÇÒ LIST
+;      AIDX : ±âÁØÀÌ µÇ´Â sub list (Ã¹ sub list = 0)
+; ³Ñ°ÜÁö´Â °ª
+;             SORTµÈ LIST
 ;******************************************************
 
 (defun SORT_LIST(alist aidx
@@ -90,31 +90,31 @@
         min_th      count1   c_list      c_val        aidx
 )
 
-  (setq nl (length alist))                  ;listì˜ ê°¯ìˆ˜
+  (setq nl (length alist))                  ;listÀÇ °¹¼ö
 
-  (setq slist nil)                          ;ë¹ˆ sortëœ listë§Œë“¬
-  (setq rlist alist)                        ;ìµœëŒ€ê°’ì„ ì¶•ì¶œí•œ ë‚˜ë¨¸ì§€ list
+  (setq slist nil)                          ;ºó sortµÈ list¸¸µë
+  (setq rlist alist)                        ;ÃÖ´ë°ªÀ» ÃàÃâÇÑ ³ª¸ÓÁö list
 
-  (setq count nl)                           ;list ê°¯ìˆ˜ë¶€í„° í•œê°œì”© ë¹¼ë©´ì„œ ë°˜ë³µ
+  (setq count nl)                           ;list °¹¼öºÎÅÍ ÇÑ°³¾¿ »©¸é¼­ ¹İº¹
 
-  (repeat nl                                        ;listê°¯ìˆ˜ë§Œí¼
-    (setq min (nth aidx (nth 0 rlist)))             ;ì²«ë²ˆì§¸ listë¥¼ ì‘ì€ ê°’ìœ¼ë¡œ
-    (setq min_th 0)                                 ;ìµœì†Œê°’ì˜ ìœ„ì¹˜ë¥¼ ì²˜ìŒìœ¼ë¡œ
-    (setq count1 1)                                 ;ë‘ë²ˆì§¸ listë¶€í„°
+  (repeat nl                                        ;list°¹¼ö¸¸Å­
+    (setq min (nth aidx (nth 0 rlist)))             ;Ã¹¹øÂ° list¸¦ ÀÛÀº °ªÀ¸·Î
+    (setq min_th 0)                                 ;ÃÖ¼Ò°ªÀÇ À§Ä¡¸¦ Ã³À½À¸·Î
+    (setq count1 1)                                 ;µÎ¹øÂ° listºÎÅÍ
     (repeat (1- count)
-      (setq c_list (nth count1 rlist))              ;í˜„ì¬ list
-      (setq c_val (nth aidx (nth count1 rlist)))    ;í˜„ì¬ ê°’
-      (if (< c_val min)                             ;í˜„ì¬ ê°’ì´ minë³´ë‹¤ ì‘ì„ë•Œ
+      (setq c_list (nth count1 rlist))              ;ÇöÀç list
+      (setq c_val (nth aidx (nth count1 rlist)))    ;ÇöÀç °ª
+      (if (< c_val min)                             ;ÇöÀç °ªÀÌ minº¸´Ù ÀÛÀ»¶§
         (progn
-          (setq min_th count1)                      ;ìµœì†Œê°’ìœ„ì¹˜ë¥¼ í˜„ì¬ ìœ„ì¹˜ë¡œ
-          (setq min c_val)                          ;ìµœì†Œê°’ì„ í˜„ì¬ ê°’ìœ¼ë¡œ
+          (setq min_th count1)                      ;ÃÖ¼Ò°ªÀ§Ä¡¸¦ ÇöÀç À§Ä¡·Î
+          (setq min c_val)                          ;ÃÖ¼Ò°ªÀ» ÇöÀç °ªÀ¸·Î
         ) ;of progn
       ) ;of if
-      (setq count1 (1+ count1))                     ;ë‹¤ìŒ listë¡œ
+      (setq count1 (1+ count1))                     ;´ÙÀ½ list·Î
     ) ;of repeat
-    (setq slist (append slist (list (nth min_th rlist)))) ;ìµœì†Œê°’ì„ sortëœ listì— ì¶”ê°€
-    (setq rlist (del_atom rlist min_th))            ;ë‚¨ì€listì—ì„œ ìµœì†Œ list ì œê±°
-    (setq count (1- count))                         ;í•œê°œ ì¤„ì—¬ì„œ
+    (setq slist (append slist (list (nth min_th rlist)))) ;ÃÖ¼Ò°ªÀ» sortµÈ list¿¡ Ãß°¡
+    (setq rlist (del_atom rlist min_th))            ;³²Àºlist¿¡¼­ ÃÖ¼Ò list Á¦°Å
+    (setq count (1- count))                         ;ÇÑ°³ ÁÙ¿©¼­
   ) ;of repeat
   (setq slist slist)
 ) ;of defun
@@ -126,26 +126,26 @@
 ;           Yi Suk-Jong
 ;           1996/2/23
 ;************************************************
-; listì—ì„œ íŠ¹ì • atomì„ ì§€ìš´ë‹¤
-; ë„˜ì–´ì˜¤ëŠ” ê°’
-;             b_list : ì¶•ì¶œì „ list
-;               anth : ì¶•ì¶œë˜ì•¼í•  atomì˜ ìœ„ì¹˜
-; ë„˜ê²¨ê°€ëŠ” ê°’
-;                    : ì¶•ì¶œí›„ list
+; list¿¡¼­ Æ¯Á¤ atomÀ» Áö¿î´Ù
+; ³Ñ¾î¿À´Â °ª
+;             b_list : ÃàÃâÀü list
+;               anth : ÃàÃâµÇ¾ßÇÒ atomÀÇ À§Ä¡
+; ³Ñ°Ü°¡´Â °ª
+;                    : ÃàÃâÈÄ list
 ;************************************************
 
 (defun DEL_ATOM(b_list anth
-/       b_list      mlist       a_list      count   ;ì§€ì—­ë³€ìˆ˜
+/       b_list      mlist       a_list      count   ;Áö¿ªº¯¼ö
 )
 
-  (setq nlist (length b_list))                      ;listì˜ ê°¯ìˆ˜
+  (setq nlist (length b_list))                      ;listÀÇ °¹¼ö
 
-  (setq a_list nil)                                 ;ë¹ˆ listìƒì„±
-  (setq count 0)                                    ;ì²«ë²ˆì§¸ listë¶€í„°
+  (setq a_list nil)                                 ;ºó list»ı¼º
+  (setq count 0)                                    ;Ã¹¹øÂ° listºÎÅÍ
 
-  (repeat nlist                                     ;listê°¯ìˆ˜ë§Œí¼ ë°˜ë³µ
-    (if (/= count anth)                             ;ì§€ì •ëœ atomì´ ì•„ë‹Œê²½ìš°ë§Œ
-      (setq a_list (append a_list (list (nth count b_list))))   ;listì—ë‹¤ ì¶”ê°€
+  (repeat nlist                                     ;list°¹¼ö¸¸Å­ ¹İº¹
+    (if (/= count anth)                             ;ÁöÁ¤µÈ atomÀÌ ¾Æ´Ñ°æ¿ì¸¸
+      (setq a_list (append a_list (list (nth count b_list))))   ;list¿¡´Ù Ãß°¡
     ) ;of if
     (setq count (1+ count))
   ) ;of repeat

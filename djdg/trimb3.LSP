@@ -4,7 +4,7 @@
 ;           By Suk-Jong Yi
 ;           1995/7/25
 ;*******************************
-; ë‘ì„ ì˜ ëì„ ì¼ì • ê¸¸ì´ë§Œí¼ ì¤„ì´ê³  ë‘ ëì„ ì´ì–´ì¤€ë‹¤
+; µÎ¼±ÀÇ ³¡À» ÀÏÁ¤ ±æÀÌ¸¸Å­ ÁÙÀÌ°í µÎ ³¡À» ÀÌ¾îÁØ´Ù
 
 (defun C:TRIMB3( / off_dst   offdst_old  pnt1      pnt2      ss_ent    index
                    spnt      epnt        crs_pnt   dst_spnt  dst_epnt

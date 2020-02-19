@@ -22,11 +22,11 @@
   ); of SETERR
   (setq oer *error* *error* seterr)
 
-  (push-env)                               ;í™˜ê²½ë³€ìˆ˜ ëŒ€í”¼
+  (push-env)                               ;È¯°æº¯¼ö ´ëÇÇ
 
-  (setq ffd (getvar "OFFSETDIST"))         ;offset ê±°ë¦¬ ì·¨í•¨
+  (setq ffd (getvar "OFFSETDIST"))         ;offset °Å¸® ÃëÇÔ
 
-  (princ "\nOffset distance<")             ;offset ê±°ë¦¬ ë¬¼ì–´ë´„
+  (princ "\nOffset distance<")             ;offset °Å¸® ¹°¾îº½
   (princ ffd)
   (princ ">: ")
   (setq ff_dst (getdist))
@@ -34,36 +34,36 @@
     (setq ff_dst ffd)
   )
 
-  (setq newc (getint "\nColor number<7>: "))   ;ìƒˆë¡œìš´ ìƒ‰ê¹” ë¬¼ì–´ë´„
+  (setq newc (getint "\nColor number<7>: "))   ;»õ·Î¿î »ö±ò ¹°¾îº½
   (if (= newc nil) (setq newc 7))              ;default = 7 (white)
 
   (initget "Continuous Hidden Center Dashed")
   (setq newlt (getkword "\nContinuous/Hidden/CEnter/Dashed<Continuous>: "))
-  (if (= newlt nil) (setq newlt "Continuous"))  ;ìƒˆë¡œìš´ line-type
+  (if (= newlt nil) (setq newlt "Continuous"))  ;»õ·Î¿î line-type
                                                 ;default = continuous
-  (setq ss_lst (ssget))                         ;entityì„ íƒ
-  (setq ss_num (sslength ss_lst))               ;entityê°¯ìˆ˜
+  (setq ss_lst (ssget))                         ;entity¼±ÅÃ
+  (setq ss_num (sslength ss_lst))               ;entity°¹¼ö
 
   (setq index 0)
 
-  (repeat ss_num                                ;entityê°¯ìˆ˜ë§Œí¼ ë°˜ë³µ
-    (setq entl (entget (ssname ss_lst index)))  ;entityê·¸ë£¹ì¤‘ì— í•œê°œ ì·¨í•¨
+  (repeat ss_num                                ;entity°¹¼ö¸¸Å­ ¹İº¹
+    (setq entl (entget (ssname ss_lst index)))  ;entity±×·ìÁß¿¡ ÇÑ°³ ÃëÇÔ
     (setq entype (cdr (assoc 0 entl)))          ;entity Type
     (cond
-      ((= entype "LINE")                        ;eneityê°€ LINEì¼ ê²½ìš°
-        (setq s_pnt (cdr (assoc 10 entl))       ;lineì˜ ì‹œì‘ì 
-              e_pnt (cdr (assoc 11 entl)))      ;lineì˜ ëì 
-        (setq ang (angle s_pnt e_pnt))          ;lineì´ ì´ë£¨ëŠ” ê°
-        (setq mid_pnt (mid-point s_pnt e_pnt))  ;ë¼ì¸ì˜ ì¤‘ê°„ì 
-        (setq ff_pnt1 (polar mid_pnt (+ ang (* pi 0.5)) ff_dst))   ;offsetì -1
-        (setq ff_pnt2 (polar mid_pnt (- ang (* pi 0.5)) ff_dst))   ;offsetì -2
-        (setq pick_pnt (list (cdr (assoc -1 entl)) mid_pnt))       ;ì„ íƒì 
-        (command "OFFSET" ff_dst pick_pnt ff_pnt1 "")   ;offsetëª…ë ¹-1
-        (setq last_ent (entget (entlast)))              ;offsetëœ entityì˜
-        (modi_clt last_ent newc newlt)                  ;ìƒ‰ê³¼ linetypeë³€ê²½
-        (command "OFFSET" ff_dst pick_pnt ff_pnt2 "")   ;offsetëª…ë ¹-2
-        (setq last_ent (entget (entlast)))              ;offsetëœ entityì˜
-        (modi_clt last_ent newc newlt)                  ;ìƒ‰ê³¼ linetypeë³€ê²½
+      ((= entype "LINE")                        ;eneity°¡ LINEÀÏ °æ¿ì
+        (setq s_pnt (cdr (assoc 10 entl))       ;lineÀÇ ½ÃÀÛÁ¡
+              e_pnt (cdr (assoc 11 entl)))      ;lineÀÇ ³¡Á¡
+        (setq ang (angle s_pnt e_pnt))          ;lineÀÌ ÀÌ·ç´Â °¢
+        (setq mid_pnt (mid-point s_pnt e_pnt))  ;¶óÀÎÀÇ Áß°£Á¡
+        (setq ff_pnt1 (polar mid_pnt (+ ang (* pi 0.5)) ff_dst))   ;offsetÁ¡-1
+        (setq ff_pnt2 (polar mid_pnt (- ang (* pi 0.5)) ff_dst))   ;offsetÁ¡-2
+        (setq pick_pnt (list (cdr (assoc -1 entl)) mid_pnt))       ;¼±ÅÃÁ¡
+        (command "OFFSET" ff_dst pick_pnt ff_pnt1 "")   ;offset¸í·É-1
+        (setq last_ent (entget (entlast)))              ;offsetµÈ entityÀÇ
+        (modi_clt last_ent newc newlt)                  ;»ö°ú linetypeº¯°æ
+        (command "OFFSET" ff_dst pick_pnt ff_pnt2 "")   ;offset¸í·É-2
+        (setq last_ent (entget (entlast)))              ;offsetµÈ entityÀÇ
+        (modi_clt last_ent newc newlt)                  ;»ö°ú linetypeº¯°æ
       )
       ((= entype "ARC")
         (setq cen_pnt (cdr (assoc 10 entl)))

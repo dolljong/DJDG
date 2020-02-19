@@ -4,7 +4,7 @@
 ;           By Suk-Jong Yi
 ;           1995/7/21
 ;*******************************************
-; ë„ê°ì„ ë°”ê¿”ì¤€ë‹¤ ( Border0 <--> Border )
+; µµ°¢À» ¹Ù²ãÁØ´Ù ( Border0 <--> Border )
 ;*******************************************
 
 (defun C:CHBDR( /
@@ -12,41 +12,41 @@
                 new_name    ipnt        x_scl       insert_type
 )
 
-  (setq ent_lst (ssget))                        ;entityì„ íƒ
-  (setq ssnum (sslength ent_lst))               ;ì„ íƒëœ entity ê°¯ìˆ˜
+  (setq ent_lst (ssget))                        ;entity¼±ÅÃ
+  (setq ssnum (sslength ent_lst))               ;¼±ÅÃµÈ entity °¹¼ö
 
   (setq index 0)
-  (repeat ssnum                                 ;ì„ íƒëœ entityê°¯ìˆ˜ë§Œí¼ ë°˜ë³µ
-    (setq ent (entget (ssname ent_lst index)))  ;entity ì •ë³´
-    (if (= (cdr (assoc 0 ent)) "INSERT")        ;entityê°€ ë¸”ëŸ­ì¸ê²½ìš°
+  (repeat ssnum                                 ;¼±ÅÃµÈ entity°¹¼ö¸¸Å­ ¹İº¹
+    (setq ent (entget (ssname ent_lst index)))  ;entity Á¤º¸
+    (if (= (cdr (assoc 0 ent)) "INSERT")        ;entity°¡ ºí·°ÀÎ°æ¿ì
       (progn
-        (setq blk_name (cdr (assoc 2 ent)))     ;ë¸”ëŸ­ì´ë¦„
+        (setq blk_name (cdr (assoc 2 ent)))     ;ºí·°ÀÌ¸§
         (setq insert_type (cdr (assoc 70 (tblsearch "BLOCK" blk_name)))) ;insert type(insert/xref)
         (cond
-          ((= blk_name "BORDER")                                ;borderì¸ê²½ìš°
-            (setq new_name (strcat (prefix) "blocks/border0"))  ;ìƒˆë¡œìš´ ì´ë¦„ì„ border0ë¡œ
+          ((= blk_name "BORDER")                                ;borderÀÎ°æ¿ì
+            (setq new_name (strcat (prefix) "blocks/border0"))  ;»õ·Î¿î ÀÌ¸§À» border0·Î
             (setq ipnt (cdr (assoc 10 ent)))                    ;insert point
             (setq x_scl (cdr (assoc 41 ent)))                   ;scale factor
-            (command "ERASE" (ssname ent_lst index) "")         ;ì›ë˜ borderì§€ìš°ê¸°
-            (if (or (= insert_type 4) (= insert_type 100))      ;insert/xrefí˜•ì‹ì— ë”°ë¼
-              (command "XREF" "" new_name ipnt x_scl "" "")       ;xref ëª…ë ¹ìˆ˜í–‰
-              (command "INSERT" new_name ipnt x_scl "" "")        ;insertëª…ë ¹ìˆ˜í–‰
+            (command "ERASE" (ssname ent_lst index) "")         ;¿ø·¡ borderÁö¿ì±â
+            (if (or (= insert_type 4) (= insert_type 100))      ;insert/xrefÇü½Ä¿¡ µû¶ó
+              (command "XREF" "" new_name ipnt x_scl "" "")       ;xref ¸í·É¼öÇà
+              (command "INSERT" new_name ipnt x_scl "" "")        ;insert¸í·É¼öÇà
             ) ;of IF
           )
-          ((= blk_name "BORDER0")                               ;border0ì¸ ê²½ìš°
-            (setq new_name (strcat (prefix) "blocks/border"))   ;ìƒˆë¡œìš´ ì´ë¦„ì„ borderë¡œ
+          ((= blk_name "BORDER0")                               ;border0ÀÎ °æ¿ì
+            (setq new_name (strcat (prefix) "blocks/border"))   ;»õ·Î¿î ÀÌ¸§À» border·Î
             (setq ipnt (cdr (assoc 10 ent)))                    ;insert point
             (setq x_scl (cdr (assoc 41 ent)))                   ;scale factor
-            (command "ERASE" (ssname ent_lst index) "")         ;ì›ë˜ borderì§€ìš°ê¸°
-            (if (or (= insert_type 4) (= insert_type 100))      ;insert/xrefí˜•ì‹ì— ë”°ë¼
-              (command "XREF" "" new_name ipnt x_scl "" "")       ;xref ëª…ë ¹ ìˆ˜í–‰
-              (command "INSERT" new_name ipnt x_scl "" "")        ;insert ëª…ë ¹ ìˆ˜í–‰
+            (command "ERASE" (ssname ent_lst index) "")         ;¿ø·¡ borderÁö¿ì±â
+            (if (or (= insert_type 4) (= insert_type 100))      ;insert/xrefÇü½Ä¿¡ µû¶ó
+              (command "XREF" "" new_name ipnt x_scl "" "")       ;xref ¸í·É ¼öÇà
+              (command "INSERT" new_name ipnt x_scl "" "")        ;insert ¸í·É ¼öÇà
             ) ;of IF
           )
         ) ;of COND
       ) ;of THEN
     ) ;of IF
-    (setq index (1+ index))                                     ;ë‹¤ìŒ ì—”í‹°í‹°ë¡œ
+    (setq index (1+ index))                                     ;´ÙÀ½ ¿£Æ¼Æ¼·Î
   ) ;of REPEAT
 
   (princ)

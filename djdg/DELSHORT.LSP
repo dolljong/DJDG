@@ -6,7 +6,7 @@
 ;****************************************
 
 (defun C:DELSHORT()
-  (defun SETERR(s)                      ;ë‚´ì¥ì—ëŸ¬ë£¨í‹´ ì •ì˜
+  (defun SETERR(s)                      ;³»Àå¿¡·¯·çÆ¾ Á¤ÀÇ
     (if (/= s "Function cancelled")
         (princ (strcat "\nError: " s))
     ); of If
@@ -14,22 +14,22 @@
     (princ)
   ); of SETERR
 
-;  (setq oer *error* *error* seterr)         ;ë‚´ì¥ì—ëŸ¬ë£¨í‹´ ê°€ë™
+;  (setq oer *error* *error* seterr)         ;³»Àå¿¡·¯·çÆ¾ °¡µ¿
 
    (initget "All Select")
    (setq ans (getkword "\nAll/<Select>: "))
 
    (cond
-       ((or (= ans nil) (= ans "Select"))           ;selectì„ íƒì‹œ
+       ((or (= ans nil) (= ans "Select"))           ;select¼±ÅÃ½Ã
            (princ "\nSelect Lines: ")
            (setq ss1 (ssget))
        ) ;of ans=nil
        ((= ans "All")
-           (setq ss1 (ssget "X" '((0 . "LINE"))))   ; ëª¨ë“  linesì„ íƒ
+           (setq ss1 (ssget "X" '((0 . "LINE"))))   ; ¸ğµç lines¼±ÅÃ
        ) ;of ans=All
    ); of cond
 
-   (setq num (sslength ss1))                    ;ì„ íƒëœ lineì˜ ê°¯ìˆ˜
+   (setq num (sslength ss1))                    ;¼±ÅÃµÈ lineÀÇ °¹¼ö
 
    (princ num)
    (princ " Line found")
@@ -37,24 +37,24 @@
    (setq len (getdist "\nEnter Length: "))
 
    (setq index 0)
-   (setq dnum 0)                                ;ì§€ìš´ê°¯ìˆ˜
-   (repeat num                                  ;ì„ íƒëœ entityê°¯ìˆ˜ë§Œí¼ ë°˜ë³µ
+   (setq dnum 0)                                ;Áö¿î°¹¼ö
+   (repeat num                                  ;¼±ÅÃµÈ entity°¹¼ö¸¸Å­ ¹İº¹
      (setq entl (entget (ssname ss1 index)))
      (setq ass (cdr (assoc 0 entl)))
      (if (= ass "LINE")
        (progn
-         (setq ass10 (cdr (assoc 10 entl))            ;ì‹œì‘ì ì¢Œí‘œ
-               ass11 (cdr (assoc 11 entl))            ;ëì  ì¢Œí‘œ
-               l (distance ass11 ass10))        ;lineê¸¸ì´
+         (setq ass10 (cdr (assoc 10 entl))            ;½ÃÀÛÁ¡ÁÂÇ¥
+               ass11 (cdr (assoc 11 entl))            ;³¡Á¡ ÁÂÇ¥
+               l (distance ass11 ass10))        ;line±æÀÌ
          (if (< l len)
            (progn
-             (entdel (ssname ss1 index))           ;lineì§€ìš°ê¸°
-             (setq dnum (1+ dnum))                 ;ì§€ìš´ ê°¯ìˆ˜ ì¶”ê°€
+             (entdel (ssname ss1 index))           ;lineÁö¿ì±â
+             (setq dnum (1+ dnum))                 ;Áö¿î °¹¼ö Ãß°¡
            );progn
          );if
        );progn
      );if
-     (setq index (1+ index))                        ;ë‹¤ìŒ lineìœ¼ë¡œ
+     (setq index (1+ index))                        ;´ÙÀ½ lineÀ¸·Î
    ) ;of repeat
 
    (princ dnum)

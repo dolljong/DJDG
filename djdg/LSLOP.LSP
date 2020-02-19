@@ -4,7 +4,7 @@
 ;           Suk-Jong Yi
 ;           97/10/14
 ;********************************************
-; ì§€ì •í•œ slopë¥¼ ê°€ì§„ lineì„ ê·¸ë ¤ì¤€ë‹¤.
+; ÁöÁ¤ÇÑ slop¸¦ °¡Áø lineÀ» ±×·ÁÁØ´Ù.
 ;********************************************
 
 (defun C:LSLOP()
@@ -19,21 +19,21 @@
 
   (setq oer *error* *error* seterr)
 
-  (setq ipnt (getpoint "\nStart point: "))      ;ì‹œì‘ì 
-  (setq dpnt (getpoint ipnt "\nDirection point: "))  ;ë°©í–¥ì 
-  (setq dx (getreal "\nX Distance: "))          ;x ê±°ë¦¬
-  (setq slp (getreal "\nSlop(%): "))           ;Slopì…ë ¥
+  (setq ipnt (getpoint "\nStart point: "))      ;½ÃÀÛÁ¡
+  (setq dpnt (getpoint ipnt "\nDirection point: "))  ;¹æÇâÁ¡
+  (setq dx (getreal "\nX Distance: "))          ;x °Å¸®
+  (setq slp (getreal "\nSlop(%): "))           ;SlopÀÔ·Â
 
-  (if (< (- (car dpnt) (car ipnt)) 0)             ;x ë¶€í˜¸
+  (if (< (- (car dpnt) (car ipnt)) 0)             ;x ºÎÈ£
     (setq xsgn -1)
     (setq xsgn 1))
 
-  (setq epnt (list (+ (car ipnt) (* dx xsgn))   ;ëì  êµ¬í•˜ê¸°
+  (setq epnt (list (+ (car ipnt) (* dx xsgn))   ;³¡Á¡ ±¸ÇÏ±â
                    (+ (cadr ipnt) (* dx slp 0.01))))
 
-  (command "LINE" ipnt epnt "")                             ;LINEê·¸ë¦¬ê¸°
+  (command "LINE" ipnt epnt "")                             ;LINE±×¸®±â
 
-  (setq slpnt (getpoint "\nInsert point of Slop mark: "))   ;slop markì‚½ì…ì 
+  (setq slpnt (getpoint "\nInsert point of Slop mark: "))   ;slop mark»ğÀÔÁ¡
 
   (f_slop slpnt xsgn slp)                                   ;slop mark
 
@@ -51,11 +51,11 @@
 ;           Suk-Jong Yi
 ;           96/7/3
 ;***********************************
-;ë…¸ë©´ì˜ slopì„ í‘œì‹œí•´ì¤€ë‹¤. (%)
-; ë„˜ì–´ì˜¤ëŠ” ê°’
-;     MP : Mid Point í™”ì‚´í‘œì˜ ì¤‘ê°„ì 
-;   SGNX : (í™”ì‚´í‘œì˜ ì§„í–‰ë°©í–¥)
-;     SL : SLopê°’ (%)
+;³ë¸éÀÇ slopÀ» Ç¥½ÃÇØÁØ´Ù. (%)
+; ³Ñ¾î¿À´Â °ª
+;     MP : Mid Point È­»ìÇ¥ÀÇ Áß°£Á¡
+;   SGNX : (È­»ìÇ¥ÀÇ ÁøÇà¹æÇâ)
+;     SL : SLop°ª (%)
 ;***********************************
 
 (defun F_SLOP(MP SGNX SL
@@ -67,48 +67,48 @@
 )
 
   (setq ds (getvar "DIMSCALE")
-        th (getvar "DIMTXT"))                ;ê¸€ì”¨í¬ê¸°
+        th (getvar "DIMTXT"))                ;±Û¾¾Å©±â
 
   (setq ang (atan (/ sl 100.0)))
-  (cond                                    ;í™”ì‚´í‘œê°€ ì™¼ìª½ìœ¼ë¡œ ê°€ëŠ”ê°€ ì˜¤ë¥¸ìª½ìœ¼ë¡œ
-    ((= sgnx -1) (setq angl (- pi ang)))   ;ê°€ëŠ”ê°€ì— ë”°ë¼ì„œ ë¼ì¸ì˜ ê°ë„ë¥¼ ê³„ì‚°
-    ((= sgnx 1) (setq angl (+ 0.0 ang)))   ;ì™¼ìª½ìœ¼ë¡œ ê°ˆ ê²½ìš° 180+ang
-  ) ;of cond                               ;ì˜¤ë¥¸ìª½ìœ¼ë¡œ ê°ˆ ê²½ìš° 0+ang
+  (cond                                    ;È­»ìÇ¥°¡ ¿ŞÂÊÀ¸·Î °¡´Â°¡ ¿À¸¥ÂÊÀ¸·Î
+    ((= sgnx -1) (setq angl (- pi ang)))   ;°¡´Â°¡¿¡ µû¶ó¼­ ¶óÀÎÀÇ °¢µµ¸¦ °è»ê
+    ((= sgnx 1) (setq angl (+ 0.0 ang)))   ;¿ŞÂÊÀ¸·Î °¥ °æ¿ì 180+ang
+  ) ;of cond                               ;¿À¸¥ÂÊÀ¸·Î °¥ °æ¿ì 0+ang
 
 
-;ê¸°ìš¸ê¸°ì˜ ë¶€í˜¸ë¥¼ ìŠ¤íŠ¸ë§ìœ¼ë¡œ ë§Œë“ ë‹¤
+;±â¿ï±âÀÇ ºÎÈ£¸¦ ½ºÆ®¸µÀ¸·Î ¸¸µç´Ù
   (if (> sl 0.0)
     (setq sgnt "S=+")
     (setq sgnt "S=")
-  )               ;ì–‘ì˜ slopì¸ ê²½ìš° +ê¸°í˜¸ ì¶”ê°€
+  )               ;¾çÀÇ slopÀÎ °æ¿ì +±âÈ£ Ãß°¡
 
   (if (> (abs (rem sl 1)) 0)
     (setq slt (rtos sl 2 3))
     (setq slt (rtos (float sl) 2 1))
   ) ;of if
-  (setq sltxt (strcat sgnt slt "%"))   ;ë¶€í˜¸ + slop + "%"
+  (setq sltxt (strcat sgnt slt "%"))   ;ºÎÈ£ + slop + "%"
   (setq lsttxt sltxt)
-  (setq txtlen (* (strlen lsttxt) th ds))                    ;ì „ì²´ textì˜ ê¸¸ì´
-  (setq txtl (+ txtlen (* ds 2 th)))  ;textê¸¸ì´ì—ë‹¤ 2ê°œì˜ ê¸€ìë¥¼ ì¶”ê°€í•œ ê¸¸ì´
+  (setq txtlen (* (strlen lsttxt) th ds))                    ;ÀüÃ¼ textÀÇ ±æÀÌ
+  (setq txtl (+ txtlen (* ds 2 th)))  ;text±æÀÌ¿¡´Ù 2°³ÀÇ ±ÛÀÚ¸¦ Ãß°¡ÇÑ ±æÀÌ
 
-;í™”ì‚´í‘œ ë² ì´ìŠ¤ë¼ì¸ì˜ ì‹œì‘ì ê³¼ ëì ì„ êµ¬í•œë‹¤
+;È­»ìÇ¥ º£ÀÌ½º¶óÀÎÀÇ ½ÃÀÛÁ¡°ú ³¡Á¡À» ±¸ÇÑ´Ù
   (setq blsp (polar mp (- angl pi) (/ txtl 2.0)))
-  (setq blep (polar mp    angl     (+ (/ txtl 2.0) (* ds th)))) ;í™”ì‚´í‘œìª½ì„ ê¸¸ê²Œ
+  (setq blep (polar mp    angl     (+ (/ txtl 2.0) (* ds th)))) ;È­»ìÇ¥ÂÊÀ» ±æ°Ô
   (setq ap1ang (+ angl pi (* (dtor 15.0) sgnx -1)))
-  (setq ap1 (polar blep ap1ang (* ds 2.0)))     ;í™”ì‚´í‘œ ì‚¬ê¸¸ì´ëŠ” 2.0mm
+  (setq ap1 (polar blep ap1ang (* ds 2.0)))     ;È­»ìÇ¥ »ç±æÀÌ´Â 2.0mm
   (setq ap2ang (+ ap1ang (* (dtor 105.0) sgnx)))
   (setq ap2 (polar ap1 ap2ang (* (sin (dtor 15.0)) (* ds 2.0))))
 
 
-  (setq txtp (polar mp (* (+ angl (/ pi 2.0)) sgnx) (* ds th)))  ;í…ìŠ¤íŠ¸ì˜ insert point
+  (setq txtp (polar mp (* (+ angl (/ pi 2.0)) sgnx) (* ds th)))  ;ÅØ½ºÆ®ÀÇ insert point
   (if (< sgnx 0)
-    (setq txtang (- angl pi))          ;ì™¼ìª½ë°©í–¥ì¼ ê²½ìš° textê° êµ¬í•¨
-    (setq txtang angl)                 ;ì˜¤ë¥¸ìª½ ë°©í–¥ì¼ ê²½ìš° ë² ì´ìŠ¤ë¼ì¸ ê°ê³¼ ê°™ë‹¤
+    (setq txtang (- angl pi))          ;¿ŞÂÊ¹æÇâÀÏ °æ¿ì text°¢ ±¸ÇÔ
+    (setq txtang angl)                 ;¿À¸¥ÂÊ ¹æÇâÀÏ °æ¿ì º£ÀÌ½º¶óÀÎ °¢°ú °°´Ù
   )
   (setq clr (getvar "CECOLOR"))
   (setvar "CECOLOR" "RED")
-  (command "PLINE" blsp blep ap1 ap2 "")                      ;í™”ì‚´í‘œ ê·¸ë¦¬ê¸°
+  (command "PLINE" blsp blep ap1 ap2 "")                      ;È­»ìÇ¥ ±×¸®±â
   (setvar "CECOLOR" clr)
-  (command "TEXT" "J" "M" txtp (* ds th) (rtod txtang) lsttxt) ;í…ìŠ¤íŠ¸ ì“°ê¸°
+  (command "TEXT" "J" "M" txtp (* ds th) (rtod txtang) lsttxt) ;ÅØ½ºÆ® ¾²±â
 
 ) ;of defun

@@ -10,9 +10,9 @@
 )
 
   ;;
-  ;; ë‚´ì¥ error routine
+  ;; ³»Àå error routine
   ;;
-  (defun SETERR(s)                                      ;ë‚´ì¥ ì—ëŸ¬ë£¨í‹´ ì •ì˜
+  (defun SETERR(s)                                      ;³»Àå ¿¡·¯·çÆ¾ Á¤ÀÇ
   ;If an error (CTRL-C) occurs when this command is active.
     (if (/= s "Function cancelled")
       (if (= s "quit / exit abort")
@@ -27,15 +27,15 @@
 
 
   ;;
-  ;; Function: SPLICE_DIALOG (Dialog boxë¡œ ì…ë ¥ë°›ê¸°)
+  ;; Function: SPLICE_DIALOG (Dialog box·Î ÀÔ·Â¹Ş±â)
   ;;
   (defun SPLICE_DIALOG (/
                        dcl_id
   )
-    (setq dcl_id (load_dialog "DJDG"))                ;dialogí˜¸ì¶œ
+    (setq dcl_id (load_dialog "DJDG"))                ;dialogÈ£Ãâ
     (if (not (new_dialog "SPLICE" dcl_id)) (exit))
 
-    (start_image "dd_splice")                           ;image ë³´ì´ê¸°
+    (start_image "dd_splice")                           ;image º¸ÀÌ±â
     (slide_image
                  0 0
                  (dimx_tile "dd_splice") (dimy_tile "dd_splice")
@@ -43,7 +43,7 @@
     )
     (end_image)
 
-    (if (= #N1 nil) (setq #N1 2))                       ;ì´ˆê¸°ì¹˜ ì„¤ì •
+    (if (= #N1 nil) (setq #N1 2))                       ;ÃÊ±âÄ¡ ¼³Á¤
     (if (= #P1 nil) (setq #P1 85))
     (if (= #E1 nil) (setq #E1 60))
     (if (= #N2 nil) (setq #N2 2))
@@ -51,7 +51,7 @@
     (if (= #E2 nil) (setq #E2 60))
     (if (= #G nil) (setq  #G 100))
 
-    (set_tile "n1" (itoa #N1))                          ;ì´ˆê¸°ì¹˜ë¡œ edit box setting
+    (set_tile "n1" (itoa #N1))                          ;ÃÊ±âÄ¡·Î edit box setting
     (set_tile "p1" (rtos #P1 2 1))
     (set_tile "e1" (rtos #E1 2 1))
     (set_tile "n2" (itoa #N2))
@@ -77,9 +77,9 @@
   ) ;of defun SPLICE_DIALOG
 
   ;;
-  ;; FUNCTION : SET_N1 (n1ê°’ ì…ë ¥)
+  ;; FUNCTION : SET_N1 (n1°ª ÀÔ·Â)
   ;;
-  (defun SET_N1 (/ in value)              ;n1 edit_boxì— ì…ë ¥ì´ ë“¤ì–´ì™”ì„ ë•Œ
+  (defun SET_N1 (/ in value)              ;n1 edit_box¿¡ ÀÔ·ÂÀÌ µé¾î¿ÔÀ» ¶§
     (setq in (get_tile "n1"))
     (setq value (atoi in))
     (if (= value 0)
@@ -97,9 +97,9 @@
    ) ;of defun
 
   ;;
-  ;; FUNCTION : SET_P1 (p1ê°’ ì…ë ¥)
+  ;; FUNCTION : SET_P1 (p1°ª ÀÔ·Â)
   ;;
-  (defun SET_P1(/ in value)              ;p1 edit_boxì— ì…ë ¥ì´ ë“¤ì–´ì™”ì„ ë•Œ
+  (defun SET_P1(/ in value)              ;p1 edit_box¿¡ ÀÔ·ÂÀÌ µé¾î¿ÔÀ» ¶§
     (setq in (get_tile "p1"))
     (setq value (atof in))
     (if (= value 0)
@@ -117,9 +117,9 @@
    ) ;of defun
 
   ;;
-  ;; FUNCTION : SET_E1 (e1ê°’ ì…ë ¥)
+  ;; FUNCTION : SET_E1 (e1°ª ÀÔ·Â)
   ;;
-  (defun SET_E1(/ in value)              ;e1 edit_boxì— ì…ë ¥ì´ ë“¤ì–´ì™”ì„ ë•Œ
+  (defun SET_E1(/ in value)              ;e1 edit_box¿¡ ÀÔ·ÂÀÌ µé¾î¿ÔÀ» ¶§
     (setq in (get_tile "e1"))
     (setq value (atoi in))
     (if (= vlaue 0)
@@ -137,9 +137,9 @@
    ) ;of defun
 
   ;;
-  ;; FUNCTION : SET_N2 (n2ê°’ ì…ë ¥)
+  ;; FUNCTION : SET_N2 (n2°ª ÀÔ·Â)
   ;;
-  (defun SET_N2(/ in value)              ;n2 edit_boxì— ì…ë ¥ì´ ë“¤ì–´ì™”ì„ ë•Œ
+  (defun SET_N2(/ in value)              ;n2 edit_box¿¡ ÀÔ·ÂÀÌ µé¾î¿ÔÀ» ¶§
     (setq in (get_tile "n2"))
     (setq value (atoi in))
     (if (= value 0)
@@ -157,9 +157,9 @@
    ) ;of defun
 
   ;;
-  ;; FUNCTION : SET_P2 (P2ê°’ ì…ë ¥)
+  ;; FUNCTION : SET_P2 (P2°ª ÀÔ·Â)
   ;;
-  (defun SET_P2(/ n vlaue)              ;p2 edit_boxì— ì…ë ¥ì´ ë“¤ì–´ì™”ì„ ë•Œ
+  (defun SET_P2(/ n vlaue)              ;p2 edit_box¿¡ ÀÔ·ÂÀÌ µé¾î¿ÔÀ» ¶§
     (setq in (get_tile "p2"))
     (setq value (atof in))
     (if (= value 0)
@@ -177,9 +177,9 @@
    ) ;of defun
 
   ;;
-  ;; FUNCTION : SET_E2 (e2ê°’ ì…ë ¥)
+  ;; FUNCTION : SET_E2 (e2°ª ÀÔ·Â)
   ;;
-  (defun SET_E2(/ n value)              ;e2 edit_boxì— ì…ë ¥ì´ ë“¤ì–´ì™”ì„ ë•Œ
+  (defun SET_E2(/ n value)              ;e2 edit_box¿¡ ÀÔ·ÂÀÌ µé¾î¿ÔÀ» ¶§
     (setq in (get_tile "e2"))
     (setq value (atoi in))
     (if (= value 0)
@@ -197,9 +197,9 @@
    ) ;of defun
 
   ;;
-  ;; FUNCTION : SET_G (gê°’ ì…ë ¥)
+  ;; FUNCTION : SET_G (g°ª ÀÔ·Â)
   ;;
-  (defun SET_G(/ n value)              ;g  edit_boxì— ì…ë ¥ì´ ë“¤ì–´ì™”ì„ ë•Œ
+  (defun SET_G(/ n value)              ;g  edit_box¿¡ ÀÔ·ÂÀÌ µé¾î¿ÔÀ» ¶§
     (setq in (get_tile "g"))
     (setq value (atoi in))
     (if (= value 0)
@@ -217,9 +217,9 @@
    ) ;of defun
 
   ;;;
-  ;;; okë²„íŠ¼ì„ ëˆ„ë €ì„ ë•Œ
+  ;;; ok¹öÆ°À» ´©·¶À» ¶§
   ;;;
-  (defun do_accept()           ;dialog boxë¥¼ ëë‚´ê¸° ì „ì— ëª¨ë“  ì…ë ¥ ë°ì´íƒ€ í™•ì¸
+  (defun do_accept()           ;dialog box¸¦ ³¡³»±â Àü¿¡ ¸ğµç ÀÔ·Â µ¥ÀÌÅ¸ È®ÀÎ
     (if (and (set_n1) (set_p1) (set_e1) (set_n2) (set_p2) (set_e2))
       (done_dialog)
     ) ;of IF
@@ -227,10 +227,10 @@
 
 
   ;;;
-  ;;; ì˜ëª»ëœ ê°’ì´ ì…ë ¥ë¬ì„ ë•Œ
+  ;;; Àß¸øµÈ °ªÀÌ ÀÔ·Â?À» ¶§
   ;;;
   (defun do_error(tile value)
-    (set_tile "error" "Invalid input")            ;error massageì°½ì— ì—ëŸ¬í‘œì‹œ
+    (set_tile "error" "Invalid input")            ;error massageÃ¢¿¡ ¿¡·¯Ç¥½Ã
 
     (cond
       ((or (= tile "n1") (= tile "n2"))
@@ -250,7 +250,7 @@
 
 
   ;;;
-  ;;; Cancel ë²„íŠ¼ì„ ëˆŒë €ì„ ê²½ìš°
+  ;;; Cancel ¹öÆ°À» ´­·¶À» °æ¿ì
   ;;;
   (defun do_cancel()
     (done_dialog)
@@ -259,34 +259,34 @@
 
 
   ;;;
-  ;;; spliceê·¸ë¦¬ê¸°
+  ;;; splice±×¸®±â
   ;;;
   (defun draw_splice ( ipnt ang num1 pitch1 end1 num2 pitch2 end2 gap /
                      ipnt     ang     num1    pitch1
                      end1     num2    pitch2  end2    gap
   )
 
-    (setq tot1 (+ (/ gap 2.0) (* num1 pitch1) end1)  ;splice íŒ ì „ì²´ ê¸¸ì´ êµ¬í•¨
+    (setq tot1 (+ (/ gap 2.0) (* num1 pitch1) end1)  ;splice ÆÇ ÀüÃ¼ ±æÀÌ ±¸ÇÔ
           tot2 (+ (* num2 pitch2) (* end2 2.0))
     )
 
-    (setq count_lr 0)                                ;ì–‘ìª½ ëŒ€ì¹­ êµ¬ì¡°ë¬¼ flag
+    (setq count_lr 0)                                ;¾çÂÊ ´ëÄª ±¸Á¶¹° flag
 
-    (repeat 2                                           ;ì™¼ìª½ ì˜¤ë¥¸ìª½ ë‘ë²ˆ ê·¸ë¦¼
+    (repeat 2                                           ;¿ŞÂÊ ¿À¸¥ÂÊ µÎ¹ø ±×¸²
 
-      (setq ang90 (+ ang (* pi 0.5) (* count_lr -1 pi)))   ;ì™¼ìª½,ì˜¤ë¥¸ìª½ ê° ê³„ì‚°
+      (setq ang90 (+ ang (* pi 0.5) (* count_lr -1 pi)))   ;¿ŞÂÊ,¿À¸¥ÂÊ °¢ °è»ê
 
-      (setq pur (polar ipnt ang90 tot1)                    ;spliceíŒ
+      (setq pur (polar ipnt ang90 tot1)                    ;spliceÆÇ
             plr (polar pur  ang   tot2)
             pll (polar  ipnt ang   tot2)
       )
-      (command "LINE" ipnt pur plr pll "")            ;spliceíŒ ê·¸ë¦¬ê¸°
+      (command "LINE" ipnt pur plr pll "")            ;spliceÆÇ ±×¸®±â
 
-      (setq oldc (getvar "CECOLOR"))                  ;í˜„ì¬ìƒ‰ ëŒ€í”¼
-      (setvar "CECOLOR" "GREEN")                      ;ë…¹ìƒ‰ìœ¼ë¡œ setting
+      (setq oldc (getvar "CECOLOR"))                  ;ÇöÀç»ö ´ëÇÇ
+      (setvar "CECOLOR" "GREEN")                      ;³ì»öÀ¸·Î setting
 
-      (setq count1 0)                                 ;boltì„  ê·¸ë¦¬ê¸°
-      (repeat (1+ num1)                                 ;ìˆ˜ì§ì„ 
+      (setq count1 0)                                 ;bolt¼± ±×¸®±â
+      (repeat (1+ num1)                                 ;¼öÁ÷¼±
         (setq bolt_pnt (polar (polar ipnt ang90 (+ (* gap 0.5) (* count1 pitch1)))
                               ang end2)
         )
@@ -295,7 +295,7 @@
       ) ;of repeat
 
       (setq count2 0)
-      (repeat (1+ num2)                                 ;ìˆ˜í‰ì„ 
+      (repeat (1+ num2)                                 ;¼öÆò¼±
         (setq bolt_pnt (polar (polar ipnt ang (+ end2 (* count2 pitch2)))
                               ang90 (* 0.5 gap))
         )
@@ -303,10 +303,10 @@
         (setq count2 (1+ count2))
       ) ;of repeat
 
-      (setvar "CECOLOR" oldc)                           ;ìƒ‰ê¹”ë³µê·€
+      (setvar "CECOLOR" oldc)                           ;»ö±òº¹±Í
 
 
-      (setq count1 0)                                ;; ë³¼íŠ¸êµ¬ë© ê·¸ë¦¬ê¸°
+      (setq count1 0)                                ;; º¼Æ®±¸¸Û ±×¸®±â
 
       (repeat (+ num1 1)
         (setq bolt_pnt (polar (polar ipnt ang90 (+ (* gap 0.5) (* count1 pitch1)))
@@ -314,16 +314,16 @@
         )
         (setq count2 0)
         (repeat (+ num2 1)
-          (command "CIRCLE"                               ;ì›ê·¸ë¦¬ê¸°
-                   (polar bolt_pnt ang (* count2 pitch2))   ;ì› ì¤‘ì‹¬
-                   "11"                                     ;ì› ë°˜ì§€ë¦„
+          (command "CIRCLE"                               ;¿ø±×¸®±â
+                   (polar bolt_pnt ang (* count2 pitch2))   ;¿ø Áß½É
+                   "11"                                     ;¿ø ¹İÁö¸§
           )
           (setq count2 (1+ count2))
-        ) ;of repeat                                 ;ìˆ˜ì§ìœ¼ë¡œ ë°˜ë³µ
+        ) ;of repeat                                 ;¼öÁ÷À¸·Î ¹İº¹
         (setq count1 (1+ count1))
-      ) ;of repeat                                   ;ìˆ˜í‰ìœ¼ë¡œ ë°˜ë³µ
+      ) ;of repeat                                   ;¼öÆòÀ¸·Î ¹İº¹
       (setq count_lr (1+ count_lr))
-    ) ;of repeat 2                                   ;ì™¼ìª½, ì˜¤ë¥¸ìª½ ë°˜ë³µ
+    ) ;of repeat 2                                   ;¿ŞÂÊ, ¿À¸¥ÂÊ ¹İº¹
   ) ;of defun function draw_splice
 
 
@@ -333,26 +333,26 @@
 
   (setq oer *error* *error* seterr)
 
-  (push-env)                                          ;í™˜ê²½ë³€ìˆ˜ ëŒ€í”¼
+  (push-env)                                          ;È¯°æº¯¼ö ´ëÇÇ
 
   (graphscr)
-  (setq ipnt (getpoint "\nPick first point: "))       ;ì²«ì  ì…ë ¥
-  (setq 2pnt (getpoint ipnt "\npick second point: ")) ;ë‘˜ì§¸ì  ì…ë ¥
+  (setq ipnt (getpoint "\nPick first point: "))       ;Ã¹Á¡ ÀÔ·Â
+  (setq 2pnt (getpoint ipnt "\npick second point: ")) ;µÑÂ°Á¡ ÀÔ·Â
 
-  (setq ang (angle ipnt 2pnt)                         ;ë‘ì ì˜ ê° êµ¬í•¨
-        #DST (distance ipnt 2pnt)                     ;ë‘ì ì˜ ê±°ë¦¬ êµ¬í•¨
+  (setq ang (angle ipnt 2pnt)                         ;µÎÁ¡ÀÇ °¢ ±¸ÇÔ
+        #DST (distance ipnt 2pnt)                     ;µÎÁ¡ÀÇ °Å¸® ±¸ÇÔ
   )
 
-  (splice_dialog )                                    ;dialogë¡œ ì…ë ¥ë°›ìŒ
+  (splice_dialog )                                    ;dialog·Î ÀÔ·Â¹ŞÀ½
 
-  (setq ipnt (polar (mid-point ipnt 2pnt) (+ ang pi)  ;spliceì‹œì‘ì  êµ¬í•¨
+  (setq ipnt (polar (mid-point ipnt 2pnt) (+ ang pi)  ;splice½ÃÀÛÁ¡ ±¸ÇÔ
                     (* 0.5 (+ (* #N2 #P2) (* 2 #E2))))
 
   )
 
-  (draw_splice IPNT ANG #N1 #P1 #E1 #N2 #P2 #E2 #G)   ;spliceê·¸ë¦¬ê¸° í•¨ìˆ˜ call
+  (draw_splice IPNT ANG #N1 #P1 #E1 #N2 #P2 #E2 #G)   ;splice±×¸®±â ÇÔ¼ö call
 
-  (pop-env)                                           ;í™˜ê²½ë³€ìˆ˜ ë³µê·€
+  (pop-env)                                           ;È¯°æº¯¼ö º¹±Í
 
   (setq *error* oer seterr nil)
 

@@ -4,8 +4,8 @@
 ;           Yi Suk-Jong
 ;           1999/7/13
 ;***************************************************************
-; í˜„í™©ì˜ ìƒ‰ë“¤ì„ ë°”ê¾¸ì–´ì¤€ë‹¤
-; layerì— ì˜í•´ì„œ ìƒ‰ì´ ì§€ì •ëœ ê²½ìš°ì—ë„ ìƒ‰ì„ ë°”ê¾¸ì–´ì¤€ë‹¤.
+; ÇöÈ²ÀÇ »öµéÀ» ¹Ù²Ù¾îÁØ´Ù
+; layer¿¡ ÀÇÇØ¼­ »öÀÌ ÁöÁ¤µÈ °æ¿ì¿¡µµ »öÀ» ¹Ù²Ù¾îÁØ´Ù.
 ;***************************************************************
 
 (defun C:CHCLR(
@@ -21,40 +21,40 @@
     (princ)
   ); of SETERR
 
-  (setq oer *error* *error* seterr)                         ;ì—ëŸ¬ë£¨í‹´ ê°€ë™
+  (setq oer *error* *error* seterr)                         ;¿¡·¯·çÆ¾ °¡µ¿
 
-    (setq fn (getfiled "INPUT DATA" "" "DAT" 0))            ;file nameì…ë ¥
+    (setq fn (getfiled "INPUT DATA" "" "DAT" 0))            ;file nameÀÔ·Â
     (setq opf (open fn "r"))                                ;file open
 
-    (setq llist nil)                                        ;ë¹ˆ node-list ë§Œë“¬
+    (setq llist nil)                                        ;ºó node-list ¸¸µë
 
-;*** data fileë¡œë¶€í„° DATAì…ë ¥
+;*** data file·ÎºÎÅÍ DATAÀÔ·Â
 
-    (if opf                                                 ;fileì´ ìˆëŠ” ê²½ìš°
+    (if opf                                                 ;fileÀÌ ÀÖ´Â °æ¿ì
       (progn
-         (while (setq ch (read-line opf))                   ;í•œì¤„ì„ ì½ëŠ”ë‹¤
-            (setq llist (append llist (list (strloc ch))))  ;Line listì— ì¶”ê°€
+         (while (setq ch (read-line opf))                   ;ÇÑÁÙÀ» ÀĞ´Â´Ù
+            (setq llist (append llist (list (strloc ch))))  ;Line list¿¡ Ãß°¡
          ) ;of while
       ) ;of progn
-      (princ "\nFile not found")                            ;fileì´ ì—†ëŠ” ê²½ìš°
+      (princ "\nFile not found")                            ;fileÀÌ ¾ø´Â °æ¿ì
     ) ;of if
     (close opf)                                             ;file close
 
 
-    (setq lnum (length llist))                              ;ì…ë ¥ lineì˜ ê°¯ìˆ˜
+    (setq lnum (length llist))                              ;ÀÔ·Â lineÀÇ °¹¼ö
 
-    (setq lcount 0)                                         ;ì²«ë²ˆì§¸ lineë¶€í„°
+    (setq lcount 0)                                         ;Ã¹¹øÂ° lineºÎÅÍ
 
-    (repeat lnum                                            ;lineê°¯ìˆ˜ë§Œí¼ ë°˜ë³µ
-      (setq oclr (atoi (nth 0 (nth lcount llist)))          ;ë°”ê¾¸ê¸°ì „ìƒ‰
-            nclr (nth 1 (nth lcount llist)))                ;ë°”ê¾¼í›„ìƒ‰
+    (repeat lnum                                            ;line°¹¼ö¸¸Å­ ¹İº¹
+      (setq oclr (atoi (nth 0 (nth lcount llist)))          ;¹Ù²Ù±âÀü»ö
+            nclr (nth 1 (nth lcount llist)))                ;¹Ù²ÛÈÄ»ö
       (setq f_list (list (cons 62 oclr)))   ;filter list
-      (setq ss (ssget "X" f_list))                          ;entityì„ íƒ
+      (setq ss (ssget "X" f_list))                          ;entity¼±ÅÃ
       (if (= ss nil)
-        (princ "\nNot found!")                              ;entity ì—†ì„ ë•Œ
-        (command "CHPROP" ss "" "C" nclr "")                ;entity ìˆì„ ë•Œ
+        (princ "\nNot found!")                              ;entity ¾øÀ» ¶§
+        (command "CHPROP" ss "" "C" nclr "")                ;entity ÀÖÀ» ¶§
       ) ;of if
-      (setq lcount (1+ lcount))                             ;ë‹¤ìŒ lineìœ¼ë¡œ
+      (setq lcount (1+ lcount))                             ;´ÙÀ½ lineÀ¸·Î
     ) ;of repeat
 
   (setq *error* oer seterr nil)
@@ -68,39 +68,39 @@
 ;                Jong-Suk Yi
 ;                1995. 2. 8
 ;******************************************************************
-; ì´ í•¨ìˆ˜ëŠ” ,ë¡œ ë¶ˆë¦¬ëœ dataë¥¼ ë‚˜ëˆ„ì–´ í•œê°œì˜ listì— ë¬¶ì–´ì¤€ë‹¤.
-; ì´ë•Œ í˜•ë³€í™˜ ì—†ì´ ëª¨ë“  dataëŠ” ë¬¸ìì—´ë¡œ returnëœë‹¤.
+; ÀÌ ÇÔ¼ö´Â ,·Î ºÒ¸®µÈ data¸¦ ³ª´©¾î ÇÑ°³ÀÇ list¿¡ ¹­¾îÁØ´Ù.
+; ÀÌ¶§ Çüº¯È¯ ¾øÀÌ ¸ğµç data´Â ¹®ÀÚ¿­·Î returnµÈ´Ù.
 ;******************************************************************
 (defun STRLOC(arg1
 /             srt    strl    count    num    strt    nchr    subs
               lst    rslt
 )
 ;(setq oer *error* *error* seterr)   ;Store AutoLISP error routine
-   (setq str arg1)                              ;ë„˜ì–´ì˜¨ ë¬¸ìì—´
-   (setq strl (strlen arg1))                    ;ë„˜ì–´ì˜¨ ë¬¸ìì—´ì˜ ê¸¸ì´
+   (setq str arg1)                              ;³Ñ¾î¿Â ¹®ÀÚ¿­
+   (setq strl (strlen arg1))                    ;³Ñ¾î¿Â ¹®ÀÚ¿­ÀÇ ±æÀÌ
    (setq count 1)
    (setq num 1)
-   (setq strt 1)                                ;ì¶”ì¶œì‹œì‘ ìœ„ì¹˜
-   (setq nchr 1)                                ;ì¶”ì¶œë¬¸ì ê°¯ìˆ˜
+   (setq strt 1)                                ;ÃßÃâ½ÃÀÛ À§Ä¡
+   (setq nchr 1)                                ;ÃßÃâ¹®ÀÚ °¹¼ö
    (repeat (+ strl 1)
-      (setq subs (substr str count 1))          ;ë¬¸ì í•œê°œ
-      (if (or (= subs ",") (= subs ""))         ;í˜„ì¬ ë¬¸ìê°€ ,ì´ê±°ë‚˜ ëì¼ë•Œ
+      (setq subs (substr str count 1))          ;¹®ÀÚ ÇÑ°³
+      (if (or (= subs ",") (= subs ""))         ;ÇöÀç ¹®ÀÚ°¡ ,ÀÌ°Å³ª ³¡ÀÏ¶§
          (progn
-            (setq lst (substr str strt (- nchr 1)))    ;ì‹œì‘ìœ„ì¹˜ë¶€í„°
+            (setq lst (substr str strt (- nchr 1)))    ;½ÃÀÛÀ§Ä¡ºÎÅÍ
             (if (= rslt nil)
-               (setq rslt (list lst))                  ;ëŒë¦¼ê°’ì´ ë¹„ì—ˆì„ë•Œ
-               (setq rslt (append rslt (list lst)))    ;ëŒë¦¼ê°’ì—ë‹¤ ì¶”ê°€
+               (setq rslt (list lst))                  ;µ¹¸²°ªÀÌ ºñ¾úÀ»¶§
+               (setq rslt (append rslt (list lst)))    ;µ¹¸²°ª¿¡´Ù Ãß°¡
             ) ;of if
-            (setq nchr 0)                       ;ì¶”ì¶œê°¯ìˆ˜ ë‹¤ì‹œ 0ìœ¼ë¡œ
-            (setq strt (1+ count))              ;ë‹¤ìŒ ì¶”ì¶œì‹œì‘ì„ ë‹¤ìŒë¬¸ìë¡œ
+            (setq nchr 0)                       ;ÃßÃâ°¹¼ö ´Ù½Ã 0À¸·Î
+            (setq strt (1+ count))              ;´ÙÀ½ ÃßÃâ½ÃÀÛÀ» ´ÙÀ½¹®ÀÚ·Î
          ) ;of progn
          nil
       ) ;of if
-      (setq count (1+ count))                   ;ë‹¤ìŒ ë¬¸ìë¡œ
+      (setq count (1+ count))                   ;´ÙÀ½ ¹®ÀÚ·Î
       (setq num (1+ num))                       ;
-      (setq nchr (1+ nchr))                     ;ë¬¸ì ê°¯ìˆ˜ í•œê°œ ì¦ê°€
+      (setq nchr (1+ nchr))                     ;¹®ÀÚ °¹¼ö ÇÑ°³ Áõ°¡
    ) ;of repeat
-   (setq arg1 rslt)                             ;ëŒë¦¼ê°’ ëŒë¦¼
+   (setq arg1 rslt)                             ;µ¹¸²°ª µ¹¸²
 ;(setq *error* oer seterr nil)                  ; Restore previous error handler
 ) ;of defun STRLOC
 

@@ -4,7 +4,7 @@
 ;           By Suk-Jong Yi
 ;           1995/5/23
 ;************************************
-; ë‘ì  ì‚¬ì´ì˜ ê±°ë¦¬ë¥¼ ë„ë©´ì— í‘œì‹œí•´ì¤Œ
+; µÎÁ¡ »çÀÌÀÇ °Å¸®¸¦ µµ¸é¿¡ Ç¥½ÃÇØÁÜ
 ;************************************
 
 (defun C:2PD(/
@@ -22,17 +22,17 @@
 
   (setvar "CMDECHO" 0)
 ;  (setq th (getvar "TEXTSIZE"))
-  (setq th (getvar "DIMTXT"))                 ;textì˜ í¬ê¸°ëŠ” ì¹˜ìˆ˜ì˜ í¬ê¸°ë¡œ
-  (setq pref (getstring "\nPrefix: "))        ;ë¨¸ë¦¬ê¸€ ì…ë ¥
+  (setq th (getvar "DIMTXT"))                 ;textÀÇ Å©±â´Â Ä¡¼öÀÇ Å©±â·Î
+  (setq pref (getstring "\nPrefix: "))        ;¸Ó¸®±Û ÀÔ·Â
 
-  (while (setq pnt1 (getpoint "\nPick first point: "))  ;ì²«ì  ì…ë ¥
-    (setq pnt2 (getpoint pnt1 "\nPick second point: "))      ;ë“¤ì§¸ì  ì…ë ¥
+  (while (setq pnt1 (getpoint "\nPick first point: "))  ;Ã¹Á¡ ÀÔ·Â
+    (setq pnt2 (getpoint pnt1 "\nPick second point: "))      ;µéÂ°Á¡ ÀÔ·Â
 
-    (setq ang (angle pnt1 pnt2))                        ;ë‘ì ì´ ì´ë£¨ëŠ” ê°
+    (setq ang (angle pnt1 pnt2))                        ;µÎÁ¡ÀÌ ÀÌ·ç´Â °¢
 
-    (setq wh4 (which4 ang))                             ;ëª‡ì‚¬ë¶„ë©´ì— ìˆëŠ”ê°€?
+    (setq wh4 (which4 ang))                             ;¸î»çºĞ¸é¿¡ ÀÖ´Â°¡?
 
-    (cond                                               ;1~4ì‚¬ë¶„ë©´ì— ìˆì„ ë•Œ
+    (cond                                               ;1~4»çºĞ¸é¿¡ ÀÖÀ» ¶§
        ((= wh4 1)
          (setq ta ang)
        )
@@ -47,31 +47,31 @@
        )
     );of cond
 
-    (setq dst (distance pnt1 pnt2))                    ;ë‘ì ì˜ ê±°ë¦¬ êµ¬í•˜ê¸°
+    (setq dst (distance pnt1 pnt2))                    ;µÎÁ¡ÀÇ °Å¸® ±¸ÇÏ±â
     (if (< dst 1000.0)
-      (setq txt (rtos dst 2 (getvar 0)))                          ;1000ë¯¸ë§Œì¼ ë•Œ
-      (setq txt (rtos (* dst 0.001) 2 (getvar "LUPREC")))                ;1000ì´ìƒì¼ ë•Œ
+      (setq txt (rtos dst 2 (getvar 0)))                          ;1000¹Ì¸¸ÀÏ ¶§
+      (setq txt (rtos (* dst 0.001) 2 (getvar "LUPREC")))                ;1000ÀÌ»óÀÏ ¶§
     ) ;of if(dst < 1000)
 
     (if (/= pref nil)
-      (setq txt1 (strcat pref txt))                     ;ê¸€ë¨¸ë¦¬ ë¶™ì´ê¸°
-      (setq txt1 txt)                                   ;ê¸€ë¨¸ë¦¬ ì—†ì„ ë•Œ
+      (setq txt1 (strcat pref txt))                     ;±Û¸Ó¸® ºÙÀÌ±â
+      (setq txt1 txt)                                   ;±Û¸Ó¸® ¾øÀ» ¶§
     ) ;of if
 
-    (princ "\nTEXT: ") (princ txt1)                      ;í˜„ì¬ í…ìŠ¤íŠ¸ ë³´ì—¬ì£¼ê¸°
+    (princ "\nTEXT: ") (princ txt1)                      ;ÇöÀç ÅØ½ºÆ® º¸¿©ÁÖ±â
 
     (initget "Prefix")
-    (setq tpnt (getpoint "\nChange [P]refix/<Pick point>: "))       ;ì‚½ì…ì  ì…ë ¥ ë°›ìŒ
-    (if (= tpnt "Prefix")                               ;ê¸€ë¨¸ë¦¬ ë°”ê¾¸ê³  ì‹¶ì„ ë•Œ
+    (setq tpnt (getpoint "\nChange [P]refix/<Pick point>: "))       ;»ğÀÔÁ¡ ÀÔ·Â ¹ŞÀ½
+    (if (= tpnt "Prefix")                               ;±Û¸Ó¸® ¹Ù²Ù°í ½ÍÀ» ¶§
       (progn
-        (setq pref (getstring "\nNew Prefix: "))            ;ë¨¸ë¦¬ê¸€ ì…ë ¥
-        (setq txt1 (strcat pref txt))                       ;ê¸€ë¨¸ë¦¬ ë”í•˜ê¸°
-        (princ "\nTEXT: ") (princ txt1)                     ;í˜„ì¬ í…ìŠ¤íŠ¸ ë³´ì—¬ì£¼ê¸°
-        (setq tpnt (getpoint "\nPick point: "))             ;ì‚½ì…ì  ì…ë ¥ ë°›ê¸°
+        (setq pref (getstring "\nNew Prefix: "))            ;¸Ó¸®±Û ÀÔ·Â
+        (setq txt1 (strcat pref txt))                       ;±Û¸Ó¸® ´õÇÏ±â
+        (princ "\nTEXT: ") (princ txt1)                     ;ÇöÀç ÅØ½ºÆ® º¸¿©ÁÖ±â
+        (setq tpnt (getpoint "\nPick point: "))             ;»ğÀÔÁ¡ ÀÔ·Â ¹Ş±â
       ) ;of progn
     ) ;of if
 
-    (command "TEXT" "C" tpnt th (rtod ta) txt1)                 ;í…ìŠ¤íŠ¸ ì”€
+    (command "TEXT" "C" tpnt th (rtod ta) txt1)                 ;ÅØ½ºÆ® ¾¸
   ) ;of while
   (setq *error* oer seterr nil)
 ) ;of defun

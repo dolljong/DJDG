@@ -4,13 +4,13 @@
 ;           By Yi suk jong
 ;           1998/2/4
 ;******************************************
-; ì—°ì†ìœ¼ë¡œ í˜¸ì˜ ê¸¸ì´ë¥¼ êµ¬í•´ì¤Œ
+; ¿¬¼ÓÀ¸·Î È£ÀÇ ±æÀÌ¸¦ ±¸ÇØÁÜ
 
 (defun c:MLARC(/
-ent elist cen ra sp                     ;ì§€ì—­ë³€ìˆ˜ ì •ì˜
+ent elist cen ra sp                     ;Áö¿ªº¯¼ö Á¤ÀÇ
 ep sang eang seang cl
 )
-  (defun SETERR(s)                                  ;ë‚´ì¥ ì—ëŸ¬ë£¨í‹´ ì •ì˜
+  (defun SETERR(s)                                  ;³»Àå ¿¡·¯·çÆ¾ Á¤ÀÇ
     (if (/= s "Function cancelled")
         (princ (strcat "\nError: " s))
     ); of If
@@ -19,27 +19,27 @@ ep sang eang seang cl
   ); of SETERR
   (setq oer *error* *error* seterr)
 
-  (setq ent (entsel "Select Arc or Circle: "))      ;ì›,í˜¸ ì„ íƒ
+  (setq ent (entsel "Select Arc or Circle: "))      ;¿ø,È£ ¼±ÅÃ
   (setq elist (entget (car ent)))
-  (setq cen (cdr (assoc 10 elist)))                 ;ì¤‘ì‹¬ì 
-  (setq ra (cdr (assoc 40 elist)))                  ;ë°˜ì§€ë¦„
+  (setq cen (cdr (assoc 10 elist)))                 ;Áß½ÉÁ¡
+  (setq ra (cdr (assoc 40 elist)))                  ;¹İÁö¸§
 
-  (setq sp (getpoint "Pick start point: "))         ;ì‹œì‘ì 
-  (setq sang (angle cen sp))                        ;ì‹œì‘ê°
+  (setq sp (getpoint "Pick start point: "))         ;½ÃÀÛÁ¡
+  (setq sang (angle cen sp))                        ;½ÃÀÛ°¢
 
-  (setq ep (getpoint "Pick End point: "))           ;ì²«ëì 
+  (setq ep (getpoint "Pick End point: "))           ;Ã¹³¡Á¡
 
   (while (/= ep nil)
-    (setq eang (angle cen ep))                      ;ëê°
-    (setq seang (abs (dang sang eang)))             ;ê°ì°¨
+    (setq eang (angle cen ep))                      ;³¡°¢
+    (setq seang (abs (dang sang eang)))             ;°¢Â÷
 
-    (setq cl (/ (* 2 Pi ra seang) (* 2 pi)))        ;í˜¸ê¸¸ì´
+    (setq cl (/ (* 2 Pi ra seang) (* 2 pi)))        ;È£±æÀÌ
     (princ "\nLength of ARC : ")
     (princ cl)
-    (setq ep (getpoint "Pick End point: "))         ;ëì 
+    (setq ep (getpoint "Pick End point: "))         ;³¡Á¡
   ) ;of while
 
-  (setq *error* oer seterr nil)                     ;ì—ëŸ¬ ë£¨í‹´ ë³µê·€
+  (setq *error* oer seterr nil)                     ;¿¡·¯ ·çÆ¾ º¹±Í
   (princ)
 
 );;; End if program MLARC

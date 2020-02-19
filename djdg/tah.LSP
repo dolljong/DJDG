@@ -4,7 +4,7 @@
 ;           By Suk-Jong Yi
 ;           1995/5/29
 ;********************************
-; Textì¬ì •ë ¬ (ìˆ˜í‰ì •ë ¬)
+; TextÀçÁ¤·Ä (¼öÆòÁ¤·Ä)
 
 (defun C:TAH(/
 ents nent ypnt count ent
@@ -31,10 +31,10 @@ old10 old11 old72 new10 new11
   (setq ent (entget (ssname ents count)))
   (if (= "TEXT" (cdr (assoc 0 ent)))
     (progn
-      (setq old10 (assoc 10 ent))                 ;ì‹œì‘ì 
-      (setq old11 (assoc 11 ent))                 ;ì‚½ì…ì 
-      (setq old72 (assoc 72 ent))                 ;ìˆ˜í‰ì •ë ¬ë°©ì‹
-      (setq old73 (assoc 73 ent))                 ;ìˆ˜ì§ì •ë ¬ë°©ì‹
+      (setq old10 (assoc 10 ent))                 ;½ÃÀÛÁ¡
+      (setq old11 (assoc 11 ent))                 ;»ğÀÔÁ¡
+      (setq old72 (assoc 72 ent))                 ;¼öÆòÁ¤·Ä¹æ½Ä
+      (setq old73 (assoc 73 ent))                 ;¼öÁ÷Á¤·Ä¹æ½Ä
       (setq new10 (cons 10 (list (car (cdr old10)) (cadr ypnt))))
       (setq new11 (cons 11 (list (car (cdr old11)) (cadr ypnt))))
       (if (and (= (cdr old72) 0) (= (cdr old73) 0))

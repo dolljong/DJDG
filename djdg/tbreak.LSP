@@ -5,14 +5,14 @@
 ;           1998/10/1
 ;****************************************
 
-; textë¥¼ ë‘˜ë¡œ ë‚˜ëˆ„ì–´ì¤€ë‹¤.
+; text¸¦ µÑ·Î ³ª´©¾îÁØ´Ù.
 
 (defun C:TBREAK(/
 ;ent trimx txt txt1 ip nearest count subx subdist newtxt1 newtxt2
 
 )
 
-  (defun SETERR(s)                                  ;ë‚´ì¥ì—ëŸ¬ë£¨í‹´ ì •ì˜
+  (defun SETERR(s)                                  ;³»Àå¿¡·¯·çÆ¾ Á¤ÀÇ
     (if (/= s "Function cancelled")
         (princ (strcat "\nError: " s))
     ); of If
@@ -20,61 +20,61 @@
     (princ)
   ); of SETERR
 
-;  (setq oer *error* *error* seterr)                ;ë‚´ì¥ì—ëŸ¬ë£¨í‹´ ê°€ë™
+;  (setq oer *error* *error* seterr)                ;³»Àå¿¡·¯·çÆ¾ °¡µ¿
 
-  (push-env)                                          ;í™˜ê²½ë³€ìˆ˜ ëŒ€í”¼
+  (push-env)                                          ;È¯°æº¯¼ö ´ëÇÇ
 
-  (setq ent (entget (car (entsel "\nSelect Text entity: ")))) ;entityì„ íƒ
+  (setq ent (entget (car (entsel "\nSelect Text entity: ")))) ;entity¼±ÅÃ
 
-  (setq trimx (car (getpoint "\nPick trim point: ")))         ;trimì  ì…ë ¥
+  (setq trimx (car (getpoint "\nPick trim point: ")))         ;trimÁ¡ ÀÔ·Â
 
   (setq txt  (cdr (assoc 1 ent)))                       ;string
-  (setq txtl (strlen txt))                              ;string ê¸¸ì´
-  (setq ip  (cdr (assoc 10 ent)))                        ;textì˜ insert point
+  (setq txtl (strlen txt))                              ;string ±æÀÌ
+  (setq ip  (cdr (assoc 10 ent)))                        ;textÀÇ insert point
 
-  (setq nearest (abs (- (car ip) trimx)))        ;ê°€ì¥ê°€ê¹Œìš´ì ì„ ì¸ì„œíŠ¸í¬ì¸íŠ¸ë¡œ
+  (setq nearest (abs (- (car ip) trimx)))        ;°¡Àå°¡±î¿îÁ¡À» ÀÎ¼­Æ®Æ÷ÀÎÆ®·Î
 ;  (print nearest)
 
-  (setq count 1)                                        ;ì²«ê¸€ìë¶€í„°
+  (setq count 1)                                        ;Ã¹±ÛÀÚºÎÅÍ
 
   (repeat txtl
 ;    (print (caadr (textbox (list (cons 1 (substr txt 1 count))))))
-    (setq subent (subst (cons 1 (substr txt 1 count)) (assoc 1 ent) ent)) ;subtext entityì •ë³´ë§Œë“¤ê¸°
-    (setq subx (+ (car ip) (caadr (textbox subent))))   ;í˜„ì¬ê¸€ì ëx
-;    (setq subx (+ (car ip) (caadr (textbox (list (cons 1 (substr txt 1 count))))))) ;í˜„ì¬ê¸€ì ëx
-    (setq subdist (abs (- subx trimx)))                 ;ì‚½ì…ì ~í˜„ì¬ê¸€ìë
+    (setq subent (subst (cons 1 (substr txt 1 count)) (assoc 1 ent) ent)) ;subtext entityÁ¤º¸¸¸µé±â
+    (setq subx (+ (car ip) (caadr (textbox subent))))   ;ÇöÀç±ÛÀÚ ³¡x
+;    (setq subx (+ (car ip) (caadr (textbox (list (cons 1 (substr txt 1 count))))))) ;ÇöÀç±ÛÀÚ ³¡x
+    (setq subdist (abs (- subx trimx)))                 ;»ğÀÔÁ¡~ÇöÀç±ÛÀÚ³¡
     (print subdist)
-    (if (<= subdist nearest)                             ;ì§€ì •í•œ ì ê³¼ ê°€ì¥ê°€ê¹Œìš´ ê¸€ì ì°¾ê¸°
-      (setq nearest subdist                             ;ê°€ì¥ê°€ê¹Œìš´ ê±°ë¦¬
-            trimcount count                             ;ê°€ì¥ê°€ê¹Œìš´ ê¸€ì ë²ˆí˜¸
-            trimxy (list subx (cadr ip)))               ;    "      ê¸€ì ëì 
+    (if (<= subdist nearest)                             ;ÁöÁ¤ÇÑ Á¡°ú °¡Àå°¡±î¿î ±ÛÀÚ Ã£±â
+      (setq nearest subdist                             ;°¡Àå°¡±î¿î °Å¸®
+            trimcount count                             ;°¡Àå°¡±î¿î ±ÛÀÚ ¹øÈ£
+            trimxy (list subx (cadr ip)))               ;    "      ±ÛÀÚ ³¡Á¡
     );if
 ;    (print (substr txt 1 count))
 ;    (print trimx)
-    (setq count (1+ count))                         ;ë‹¤ìŒ textê¸¸ì´ë¡œ
+    (setq count (1+ count))                         ;´ÙÀ½ text±æÀÌ·Î
   );repeat
 
-  (setq newtxt1 (subst (cons 1 (substr txt 1 trimcount)) (assoc 1 ent) ent)) ;text1ë³€ê²½
-  (setq newtxt1 (subst (cons 72 0) (assoc 72 newtxt1) newtxt1))     ;text1 ì •ë ¬ë°©ì‹ì§€ì •
+  (setq newtxt1 (subst (cons 1 (substr txt 1 trimcount)) (assoc 1 ent) ent)) ;text1º¯°æ
+  (setq newtxt1 (subst (cons 72 0) (assoc 72 newtxt1) newtxt1))     ;text1 Á¤·Ä¹æ½ÄÁöÁ¤
 
-  (entmod newtxt1)                                         ;text1ë³€ê²½
+  (entmod newtxt1)                                         ;text1º¯°æ
 
   (setq newtxt2 (subst (cons 1 (substr txt (1+ trimcount) (- txtl trimcount)))
                   (assoc 1 ent)
-                  ent))                                 ;text2ì˜ ê¸€ìë‚´ìš©ë°”ê¾¸ê¸°
+                  ent))                                 ;text2ÀÇ ±ÛÀÚ³»¿ë¹Ù²Ù±â
 
   (setq newtxt2 (subst (cons 10 trimxy)
                       (assoc 10 newtxt2)
-                     newtxt2))                          ;   "    ì‚½ì…ì  ë°”ê¾¸ê¸°
+                     newtxt2))                          ;   "    »ğÀÔÁ¡ ¹Ù²Ù±â
 
   (setq newtxt2 (subst (cons 72 0)
                       (assoc 72 ent)
-                     newtxt2))                          ;   ì •ë ¬ë°©ì‹ ë°”ê¾¸ê¸°
+                     newtxt2))                          ;   Á¤·Ä¹æ½Ä ¹Ù²Ù±â
 
-  (entmake newtxt2)                                      ;text2 ìƒì„±
+  (entmake newtxt2)                                      ;text2 »ı¼º
 
-  (pop-env)                                             ;í™˜ê²½ë³€ìˆ˜ë³µê·€
+  (pop-env)                                             ;È¯°æº¯¼öº¹±Í
 
-  (setq *error* oer seterr nil)                         ;ë‚´ì¥ì—ëŸ¬ë£¨í‹´ ë³µê·€
+  (setq *error* oer seterr nil)                         ;³»Àå¿¡·¯·çÆ¾ º¹±Í
 
 );defun

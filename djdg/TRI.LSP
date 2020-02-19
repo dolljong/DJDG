@@ -21,9 +21,9 @@
   ); of SETERR
 
 
-  (setq oer *error* *error* seterr)                     ;ë‚´ì¥ì—ëŸ¬í•¨ìˆ˜ ê°€ë™
+  (setq oer *error* *error* seterr)                     ;³»Àå¿¡·¯ÇÔ¼ö °¡µ¿
 
-  (push-env)                                            ;í™˜ê²½ë³€ìˆ˜ ëŒ€í”¼
+  (push-env)                                            ;È¯°æº¯¼ö ´ëÇÇ
 
   (setq ds (getvar "DIMSCALE")
         th (getvar "DIMTXT"))
@@ -102,7 +102,7 @@
   (command "TEXT" "J" "M" htpnt (* th ds) "0" ht)
   (command "TEXT" "J" lr vtpnt (* th ds) "0" vt)
 
-  (pop-env)                                 ;í™˜ê²½ë³€ìˆ˜ ë³µê·€
+  (pop-env)                                 ;È¯°æº¯¼ö º¹±Í
 
   (setq *error* oer seterr nil)
 

@@ -7,7 +7,7 @@
 
 (defun C:WFLOW(/)
 
-  (defun SETERR(s)                                  ;ë‚´ì¥ì—ëŸ¬ë£¨í‹´ ì •ì˜
+  (defun SETERR(s)                                  ;³»Àå¿¡·¯·çÆ¾ Á¤ÀÇ
     (if (/= s "Function cancelled")
         (princ (strcat "\nError: " s))
     ); of If
@@ -15,21 +15,21 @@
     (princ)
   ); of SETERR
 
-  (setq oer *error* *error* seterr)                 ;ë‚´ì¥ì—ëŸ¬ë£¨í‹´ ê°€ë™
+  (setq oer *error* *error* seterr)                 ;³»Àå¿¡·¯·çÆ¾ °¡µ¿
 
-  (push-env)                                        ;í™˜ê²½ë³€ìˆ˜ ëŒ€í”¼
-  (setq ds (getvar "DIMSCALE"))                     ;ìŠ¤ì¼€ì¼ê°’
+  (push-env)                                        ;È¯°æº¯¼ö ´ëÇÇ
+  (setq ds (getvar "DIMSCALE"))                     ;½ºÄÉÀÏ°ª
 
-  (setq ip (getpoint "\nInsert point :"))           ;ì‚½ì…ì 
-  (setq sp (getpoint ip "\nDirection: "))           ;ë°©í–¥ì…ë ¥
-  (setq ang (angle ip sp))                          ;ê°ë„
+  (setq ip (getpoint "\nInsert point :"))           ;»ğÀÔÁ¡
+  (setq sp (getpoint ip "\nDirection: "))           ;¹æÇâÀÔ·Â
+  (setq ang (angle ip sp))                          ;°¢µµ
 
   (command "INSERT" (strcat (prefix) "blocks/wflow") ip
-                    ds ds (rtod ang))               ;blockì‚½ì…
+                    ds ds (rtod ang))               ;block»ğÀÔ
 
-  (pop-env)                                         ;í™˜ê²½ë³€ìˆ˜ ë³µê·€
+  (pop-env)                                         ;È¯°æº¯¼ö º¹±Í
 
-  (setq *error* oer seterr nil)                     ;ì—ëŸ¬ë£¨í‹´ ë³µê·€
+  (setq *error* oer seterr nil)                     ;¿¡·¯·çÆ¾ º¹±Í
 
   (princ)
 

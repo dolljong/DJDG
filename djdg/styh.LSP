@@ -26,17 +26,17 @@
   (setq ss (ssget "X" f_list))
   (setq n_ss (sslength ss))
 
-  (setq index 0)                      ;ì„ íƒëœ entity ê°•ì¡°
+  (setq index 0)                      ;¼±ÅÃµÈ entity °­Á¶
   (repeat n_ss
     (redraw (ssname ss index) 3)
     (setq index (1+ index))
   ) ;of repeat
 
-  (princ "\n")                        ; ì„ íƒëœ ê°¯ìˆ˜ ì¶œë ¥
+  (princ "\n")                        ; ¼±ÅÃµÈ °¹¼ö Ãâ·Â
   (princ n_ss)
   (princ " Text Found")
 
-  (setq old_h (cdr (assoc 40 tent)))        ;ìƒˆë¡œìš´ height ì…ë ¥
+  (setq old_h (cdr (assoc 40 tent)))        ;»õ·Î¿î height ÀÔ·Â
   (princ "\nOld Height = ")
   (princ old_h)
   (setq new_h (getreal "\nNew height: "))
@@ -46,7 +46,7 @@
     (setq entl (entget (ssname ss index)))
     (setq new_ent (subst (cons 40 new_h) (assoc 40 entl) entl))
     (entmod new_ent)
-    (redraw (ssname ss index) 4)            ;ê°•ì¡°ëœ entity ì›ìƒë³µêµ¬
+    (redraw (ssname ss index) 4)            ;°­Á¶µÈ entity ¿ø»óº¹±¸
     (setq index (1+ index))
   ) ;of repeat
   (pop-env)

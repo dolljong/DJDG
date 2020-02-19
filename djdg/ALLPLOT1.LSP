@@ -4,12 +4,12 @@
 ;           By Suk-Jong Yi
 ;           96/6/27
 ;****************************************************************************
-; ë„ë©´ë‚´ì— ìˆëŠ” ëª¨ë“  Borderë¥¼ ì¶œë ¥ (A1ìš©)
-; Device  : ëª…ë ¹ë‚´ë¦¬ê¸° ì „ì— ë¯¸ë¦¬ ì„ íƒ
-; Scale   : Fit / Factor ë‘ê°€ì§€ ì˜µì…˜
-;           (Factorë¥¼ ì„ íƒí–ˆì„ ë•Œ DIMSCALE ë³€ìˆ˜ìë™ì¸ì‹)
-; pltì´ë¦„ : Borderê°€ í•œê°œì¸ ê²½ìš° - DWG nameê³¼ ê°™ê²Œ
-;           Borderê°€ ë‘ê°œ ì´ìƒì¸ ê²½ìš° - DWGíŒŒì¼ ì´ë¦„ì˜ ë§ˆì§€ë§‰ ë‘ìë¥¼ ë²ˆí˜¸ë¡œ
+; µµ¸é³»¿¡ ÀÖ´Â ¸ğµç Border¸¦ Ãâ·Â (A1¿ë)
+; Device  : ¸í·É³»¸®±â Àü¿¡ ¹Ì¸® ¼±ÅÃ
+; Scale   : Fit / Factor µÎ°¡Áö ¿É¼Ç
+;           (Factor¸¦ ¼±ÅÃÇßÀ» ¶§ DIMSCALE º¯¼öÀÚµ¿ÀÎ½Ä)
+; pltÀÌ¸§ : Border°¡ ÇÑ°³ÀÎ °æ¿ì - DWG name°ú °°°Ô
+;           Border°¡ µÎ°³ ÀÌ»óÀÎ °æ¿ì - DWGÆÄÀÏ ÀÌ¸§ÀÇ ¸¶Áö¸· µÎÀÚ¸¦ ¹øÈ£·Î
 ;****************************************************************************
 
 (defun C:ALLPLOT1( /
@@ -18,52 +18,52 @@
                                                               low_right
 )
 
-  (setq bdr_B 800                                   ;borderì˜ í­
-        bdr_H 570                                   ;borderì˜ ë†’ì´
-        bn    "BORDER*"                             ;ë¸”ëŸ­ ì´ë¦„
+  (setq bdr_B 800                                   ;borderÀÇ Æø
+        bdr_H 570                                   ;borderÀÇ ³ôÀÌ
+        bn    "BORDER*"                             ;ºí·° ÀÌ¸§
         xg    -5                                    ;x gap
         yg    -5)                                   ;y gap
 
-  (setq ds (getvar "DIMSCALE"))                     ;scale ê°’êµ¬í•¨
+  (setq ds (getvar "DIMSCALE"))                     ;scale °ª±¸ÇÔ
 
-  (setq dwgn (dwg_name))                            ;fileì´ë¦„ ì¸ì‹
+  (setq dwgn (dwg_name))                            ;fileÀÌ¸§ ÀÎ½Ä
   (setq dwgnl (strlen dwgn))
   (setq f_list (list (cons 0 "INSERT") (cons 2 bn)))  ;filter list
-  (setq ss_lst (ssget "X" f_list))                          ;entity ì„ íƒ
-  (setq ss_num (sslength ss_lst))                   ;ì„ íƒëœ entityê°¯ìˆ˜
+  (setq ss_lst (ssget "X" f_list))                          ;entity ¼±ÅÃ
+  (setq ss_num (sslength ss_lst))                   ;¼±ÅÃµÈ entity°¹¼ö
 
-  (if (> ss_num 9)                                  ;borderê°€ 10ê°œê°€ ë„˜ì„ ê²½ìš°
-    (if (> dwgnl 6)                                 ;íŒŒì¼ì´ë¦„ì´ 6ìê°€ ë„˜ì„ ê²½ìš°
+  (if (> ss_num 9)                                  ;border°¡ 10°³°¡ ³ÑÀ» °æ¿ì
+    (if (> dwgnl 6)                                 ;ÆÄÀÏÀÌ¸§ÀÌ 6ÀÚ°¡ ³ÑÀ» °æ¿ì
       (setq pltn1 (substr dwgn 1 6))
       (setq pltn1 dwgn)
     ) ;of if
-    (if (> dwgnl 7)                                 ;íŒŒì¼ì´ë¦„ì´ 7ìê°€ ë„˜ì„ ê²½ìš°
+    (if (> dwgnl 7)                                 ;ÆÄÀÏÀÌ¸§ÀÌ 7ÀÚ°¡ ³ÑÀ» °æ¿ì
       (setq pltn1 (substr dwgn 1 7))
       (setq pltn1 dwgn)
     ) ;of if
   ) ;of IF
 
   (setq index 0)
-  (repeat ss_num                                    ;ì„ íƒëœ border ê°¯ìˆ˜ë§Œí¼ ë°˜ë³µ
+  (repeat ss_num                                    ;¼±ÅÃµÈ border °¹¼ö¸¸Å­ ¹İº¹
     (princ "\nDWG NUMBER: ") (princ index)
     (if (= index 0)
-      (setq pltn dwgn)                              ;ì²«ë²ˆì§¸ borderì¸ ê²½ìš°
+      (setq pltn dwgn)                              ;Ã¹¹øÂ° borderÀÎ °æ¿ì
       (if (and (<= index 9) (> ss_num 9))
-        (setq pltn (strcat pltn1 "0" (itoa index))) ;ì—´ê°œì´ìƒì˜ ë³´ë”ì¤‘ 1~9ì¼ë•Œ 0ì„ ì‚½ì…
+        (setq pltn (strcat pltn1 "0" (itoa index))) ;¿­°³ÀÌ»óÀÇ º¸´õÁß 1~9ÀÏ¶§ 0À» »ğÀÔ
         (setq pltn (strcat pltn1 (itoa index)))     ;
       ) ;of IF
     ) ;of IF
-    (setq bdr_ent (entget (ssname ss_lst index)))   ;border entityì •ë³´
-    (setq ipnt (cdr (assoc 10 bdr_ent)))            ;borderì˜ insert point
-    (setq i_scale (cdr (assoc 41 bdr_ent)))         ;borderì˜ scale factor
-    (setq low_left (list (+ (car ipnt) (* xg i_scale))        ;borderì˜ ì¢Œì¸¡ ì•„ë˜
+    (setq bdr_ent (entget (ssname ss_lst index)))   ;border entityÁ¤º¸
+    (setq ipnt (cdr (assoc 10 bdr_ent)))            ;borderÀÇ insert point
+    (setq i_scale (cdr (assoc 41 bdr_ent)))         ;borderÀÇ scale factor
+    (setq low_left (list (+ (car ipnt) (* xg i_scale))        ;borderÀÇ ÁÂÃø ¾Æ·¡
                          (+ (cadr ipnt) (* yg i_scale))))
-    (setq up_right (list (+ (car ipnt) (* bdr_B i_scale))    ;borderì˜ ìš°ì¸¡ ìœ„
+    (setq up_right (list (+ (car ipnt) (* bdr_B i_scale))    ;borderÀÇ ¿ìÃø À§
                          (+ (cadr ipnt) (* bdr_H i_scale))))
     (setvar "CMDDIA" 0)                                     ;command echo OFF
     (setq pltn0 (strcat pltn ".plt"))
-    (if (findfile pltn0)                                    ; ê°™ì€ ì´ë¦„ì˜ pltíŒŒì¼ì´ ì¡´ì¬í•˜ë©´
-      (command "DEL" pltn0)                                 ;ê¸°ì¡´ pltíŒŒì¼ ì§€ìš°ê¸°
+    (if (findfile pltn0)                                    ; °°Àº ÀÌ¸§ÀÇ pltÆÄÀÏÀÌ Á¸ÀçÇÏ¸é
+      (command "DEL" pltn0)                                 ;±âÁ¸ pltÆÄÀÏ Áö¿ì±â
     ) ;of if
     (if (= index 0)
       (progn
@@ -97,13 +97,13 @@
     ) ;of IF
     (setvar "CMDDIA" 1)                                     ;command echo ON
 ;    (princ pltn) (princ " is Plotted") (terpri)
-    (setq index (1+ index))                                 ;ë‹¤ìŒ borderë¡œ
+    (setq index (1+ index))                                 ;´ÙÀ½ border·Î
   ) ;of repeat
 
   (close scr)
 
   (command "SCRIPT" "A1")
-;  (POP-ENV)                                                 ;í™˜ê²½ë³€ìˆ˜ ë³µê·€
+;  (POP-ENV)                                                 ;È¯°æº¯¼ö º¹±Í
   (princ)
 ) ;of defun
 
@@ -117,9 +117,9 @@
 
 (defun DWG_NAME(/ dn ls count ch )
 
-  (setq dn (getvar "DWGNAME"))                          ;íŒŒì¼ì´ë¦„ ì¸ì‹
-  (setq ls (strlen dn))                                 ;string ê¸¸ì´
-  (setq count ls)                                  ;ë§ˆì§€ë§‰ stringë¶€í„°
+  (setq dn (getvar "DWGNAME"))                          ;ÆÄÀÏÀÌ¸§ ÀÎ½Ä
+  (setq ls (strlen dn))                                 ;string ±æÀÌ
+  (setq count ls)                                  ;¸¶Áö¸· stringºÎÅÍ
   (while (and (/= (setq ch (substr dn count 1)) "\\")
               (> count 1))
     (setq count (1- count))

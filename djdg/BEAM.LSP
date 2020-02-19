@@ -1,11 +1,11 @@
 (defun c:beam()
 
-  (setq ent (entget (car (entsel "\nSelect CIRCLE or ARC: "))))  ;ì›ì´ë‚˜ í˜¸ì„ íƒ
-  (setq cen (assoc 10 ent))                     ;ì›ì˜ ì¤‘ì‹¬ì 
-  (setq p1 (getpoint "\nPick start point: "))          ;ì‹œì‘ì 
-  (setq p2 (getpoint "\n{ock end point: "))            ;ëì 
-  (setq ang1 (angle cen p1)                            ;ì‹œì‘ì ì˜ ê°
-        ang2 (angle cen p2))                           ;ëì ì˜ ê°
-  (setq avang (/ (+ ang1 ang2) 2.0))                ;ì‹œì‘ì  ê°ê³¼ ëì ê°ì˜ í‰ê· 
+  (setq ent (entget (car (entsel "\nSelect CIRCLE or ARC: "))))  ;¿øÀÌ³ª È£¼±ÅÃ
+  (setq cen (assoc 10 ent))                     ;¿øÀÇ Áß½ÉÁ¡
+  (setq p1 (getpoint "\nPick start point: "))          ;½ÃÀÛÁ¡
+  (setq p2 (getpoint "\n{ock end point: "))            ;³¡Á¡
+  (setq ang1 (angle cen p1)                            ;½ÃÀÛÁ¡ÀÇ °¢
+        ang2 (angle cen p2))                           ;³¡Á¡ÀÇ °¢
+  (setq avang (/ (+ ang1 ang2) 2.0))                ;½ÃÀÛÁ¡ °¢°ú ³¡Á¡°¢ÀÇ Æò±Õ
   (setq dang (
 ) ;of defun

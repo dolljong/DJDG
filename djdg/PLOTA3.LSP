@@ -4,12 +4,12 @@
 ;           By Suk-Jong Yi
 ;           1995/11/3
 ;****************************************************************************
-; ÎèÑÎ©¥ÎÇ¥Ïóê ÏûàÎäî Î™®Îì† BorderÎ•º Ï∂úÎ†• (A1Ïö©)
-; Device  : Î™ÖÎ†πÎÇ¥Î¶¨Í∏∞ Ï†ÑÏóê ÎØ∏Î¶¨ ÏÑ†ÌÉù
-; Scale   : Fit / Factor ÎëêÍ∞ÄÏßÄ ÏòµÏÖò
-;           (FactorÎ•º ÏÑ†ÌÉùÌñàÏùÑ Îïå DIMSCALE Î≥ÄÏàòÏûêÎèôÏù∏Ïãù)
-; pltÏù¥Î¶Ñ : BorderÍ∞Ä ÌïúÍ∞úÏù∏ Í≤ΩÏö∞ - DWG nameÍ≥º Í∞ôÍ≤å
-;           BorderÍ∞Ä ÎëêÍ∞ú Ïù¥ÏÉÅÏù∏ Í≤ΩÏö∞ - DWGÌååÏùº Ïù¥Î¶ÑÏùò ÎßàÏßÄÎßâ ÎëêÏûêÎ•º Î≤àÌò∏Î°ú
+; µµ∏È≥ªø° ¿÷¥¬ ∏µÁ Border∏¶ √‚∑¬ (A1øÎ)
+; Device  : ∏Ì∑…≥ª∏Æ±‚ ¿¸ø° πÃ∏Æ º±≈√
+; Scale   : Fit / Factor µŒ∞°¡ˆ ø…º«
+;           (Factor∏¶ º±≈√«ﬂ¿ª ∂ß DIMSCALE ∫Øºˆ¿⁄µø¿ŒΩƒ)
+; plt¿Ã∏ß : Border∞° «—∞≥¿Œ ∞ÊøÏ - DWG name∞˙ ∞∞∞‘
+;           Border∞° µŒ∞≥ ¿ÃªÛ¿Œ ∞ÊøÏ - DWG∆ƒ¿œ ¿Ã∏ß¿« ∏∂¡ˆ∏∑ µŒ¿⁄∏¶ π¯»£∑Œ
 ;****************************************************************************
 
 (defun C:PLOTA1( /
@@ -18,14 +18,14 @@
                                                               low_right
 )
 
-  (setq bdr_B 800                                   ;borderÏùò Ìè≠
-        bdr_H 570                                   ;borderÏùò ÎÜíÏù¥
-        bn    "BORDER*"                             ;Î∏îÎü≠ Ïù¥Î¶Ñ
+  (setq bdr_B 800                                   ;border¿« ∆¯
+        bdr_H 570                                   ;border¿« ≥Ù¿Ã
+        bn    "BORDER*"                             ;∫Ì∑∞ ¿Ã∏ß
         xg    -5                                    ;x gap
         yg    -5)                                   ;y gap
 
-;*** ÌååÏùº Î¶¨Ïä§Ìä∏ ÏùΩÍ∏∞
-;  (setq fn (getfiled "INPUT DATA" "" "DAT" 0))      ;file nameÏûÖÎ†•
+;*** ∆ƒ¿œ ∏ÆΩ∫∆Æ ¿–±‚
+;  (setq fn (getfiled "INPUT DATA" "" "DAT" 0))      ;file name¿‘∑¬
   (setq opf (open "PLT.LST" "r"))                          ;file open
   (setq dwglst nil)
   (if opf
@@ -52,20 +52,20 @@
 
   (princ dwglst)
 
-  (setq ds (getvar "DIMSCALE"))                     ;scale Í∞íÍµ¨Ìï®
+  (setq ds (getvar "DIMSCALE"))                     ;scale ∞™±∏«‘
 
   (setq dwgn (getvar "DWGNAME"))
   (setq dwgnext (car dwglst))
   (setq f_list (list (cons 0 "INSERT") (cons 2 bn)))  ;filter list
 ;  (princ f_list)
-  (setq ss_lst (ssget "X" f_list))                          ;entity ÏÑ†ÌÉù
+  (setq ss_lst (ssget "X" f_list))                          ;entity º±≈√
 
-  (if (/= ss_lst nil)                                       ;borderÍ∞Ä ÏûàÏùÑ ÎïåÎßå
+  (if (/= ss_lst nil)                                       ;border∞° ¿÷¿ª ∂ß∏∏
     (progn
-      (setq ss_num (sslength ss_lst))                   ;ÏÑ†ÌÉùÎêú entityÍ∞ØÏàò
+      (setq ss_num (sslength ss_lst))                   ;º±≈√µ» entity∞πºˆ
 
       (setq index 0)
-      (repeat ss_num                        ;ÏÑ†ÌÉùÎêú border Í∞ØÏàòÎßåÌÅº Î∞òÎ≥µ
+      (repeat ss_num                        ;º±≈√µ» border ∞πºˆ∏∏≈≠ π›∫π
         (princ "\nDWG NUMBER: ") (princ index)
         (if (= index 0)
           (setq pltn dwgn)
@@ -81,12 +81,12 @@
             ) ;of IF
           ) ;of progn
         ) ;of IF
-        (setq bdr_ent (entget (ssname ss_lst index)))   ;border entityÏ†ïÎ≥¥
-        (setq ipnt (cdr (assoc 10 bdr_ent)))            ;borderÏùò insert point
-        (setq i_scale (cdr (assoc 41 bdr_ent)))         ;borderÏùò scale factor
-        (setq low_left (list (+ (car ipnt) (* xg i_scale))        ;borderÏùò Ï¢åÏ∏° ÏïÑÎûò
+        (setq bdr_ent (entget (ssname ss_lst index)))   ;border entity¡§∫∏
+        (setq ipnt (cdr (assoc 10 bdr_ent)))            ;border¿« insert point
+        (setq i_scale (cdr (assoc 41 bdr_ent)))         ;border¿« scale factor
+        (setq low_left (list (+ (car ipnt) (* xg i_scale))        ;border¿« ¡¬√¯ æ∆∑°
                              (+ (cadr ipnt) (* yg i_scale))))
-        (setq up_right (list (+ (car ipnt) (* bdr_B i_scale))    ;borderÏùò Ïö∞Ï∏° ÏúÑ
+        (setq up_right (list (+ (car ipnt) (* bdr_B i_scale))    ;border¿« øÏ√¯ ¿ß
                              (+ (cadr ipnt) (* bdr_H i_scale))))
     ;    (setvar "CMDDIA" 0)                                     ;command echo OFF
         (if (= index 0)
@@ -122,16 +122,16 @@
         ) ;of IF
         (setvar "CMDDIA" 1)                                     ;command echo ON
     ;    (princ pltn) (princ " is Plotted") (terpri)
-        (setq index (1+ index))                                 ;Îã§Ïùå borderÎ°ú
+        (setq index (1+ index))                                 ;¥Ÿ¿Ω border∑Œ
       ) ;of repeat
 
       (if (> dwgnum 0)
         (write-line (strcat "OPEN " dwgnext " PLOTA1") scr)
       ) ;of IF
       (close scr)
-      (command "SCRIPT" scrf)                                   ;script fileÏÑ†ÌÉù
+      (command "SCRIPT" scrf)                                   ;script fileº±≈√
     ) ;of THEN
-    (progn                                                      ;borderÍ∞Ä ÏóÜÏùÑ Îïå
+    (progn                                                      ;border∞° æ¯¿ª ∂ß
       (princ "\nBORDER NOT FOUND")
       (setq scrf (strcat dwgn ".scr"))
       (setq scr (open scrf "w"))
@@ -140,7 +140,7 @@
       (command "SCRIPT" scrf)
     ) ;of ELSE
   ) ;of if
-;  (POP-ENV)                                                 ;ÌôòÍ≤ΩÎ≥ÄÏàò Î≥µÍ∑Ä
+;  (POP-ENV)                                                 ;»Ø∞Ê∫Øºˆ ∫π±Õ
   (princ)
 ) ;of defun
 

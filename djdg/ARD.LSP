@@ -4,14 +4,14 @@
 ;            By Jong-Suk Yi
 ;            1995. 2. 27
 ;*************************************
-; ì£¼ì–´ì§„ êµ¬ê°„ì„ arrayí•œë‹¤.
+; ÁÖ¾îÁø ±¸°£À» arrayÇÑ´Ù.
 ;*************************************
 
 (defun c:ARD(/
 ffd spnt epnt ang dst ffdst num
 ent ffpnt n entpnt entpp ffpnt
 )
-  (defun SETERR(s)                              ;ë‚´ìž¥ ì—ëŸ¬ë£¨í‹´ ì •ì˜
+  (defun SETERR(s)                              ;³»Àå ¿¡·¯·çÆ¾ Á¤ÀÇ
     (if (/= s "Function cancelled")
         (princ (strcat "\nError: " s))
     ); of If
@@ -19,31 +19,31 @@ ent ffpnt n entpnt entpp ffpnt
     (princ)
   ); of SETERR
 
-  (setq oer *error* *error* seterr)             ;ë‚´ìž¥ì—ëŸ¬ë£¨í‹´ ê°€ë™
+  (setq oer *error* *error* seterr)             ;³»Àå¿¡·¯·çÆ¾ °¡µ¿
 
   (setvar "CMDECHO" 0)
 
-  (setq ent (ssget))                               ;array ì—”í‹°í‹° ì„ íƒ
-  (setq spnt (getpoint "\nPick start point: "))     ;ì‹œìž‘ì  ìž…ë ¥
-  (setq epnt (getpoint spnt "\nPick end point: "))  ;ëì  ìž…ë ¥
+  (setq ent (ssget))                               ;array ¿£Æ¼Æ¼ ¼±ÅÃ
+  (setq spnt (getpoint "\nPick start point: "))     ;½ÃÀÛÁ¡ ÀÔ·Â
+  (setq epnt (getpoint spnt "\nPick end point: "))  ;³¡Á¡ ÀÔ·Â
 
-  (setq dx (- (car epnt) (car spnt)))               ;xì°¨
-  (setq dy (- (cadr epnt) (cadr spnt)))             ;yì°¨
+  (setq dx (- (car epnt) (car spnt)))               ;xÂ÷
+  (setq dy (- (cadr epnt) (cadr spnt)))             ;yÂ÷
 
-  (if (> (abs dx) (abs dy))                         ;í°ìª½ ê±°ë¦¬ í‘œì‹œ
+  (if (> (abs dx) (abs dy))                         ;Å«ÂÊ °Å¸® Ç¥½Ã
     (progn (princ "\nDistance = ") (princ dx))
     (progn (princ "\nDistance = ") (princ dy))
   ) ;of if
 
-  (setq arl (getdist "\nArray distance: "))          ;arrayê°„ê²©
+  (setq arl (getdist "\nArray distance: "))          ;array°£°Ý
 
-  (if (< dx 0) (setq dxsgn -1) (setq dxsgn 1))      ;x ë¶€í˜¸
-  (if (< dy 0) (setq dysgn -1) (setq dysgn 1))      ;y ë¶€í˜¸
+  (if (< dx 0) (setq dxsgn -1) (setq dxsgn 1))      ;x ºÎÈ£
+  (if (< dy 0) (setq dysgn -1) (setq dysgn 1))      ;y ºÎÈ£
 
-  (setq arxn (1+ (fix (abs (/ dx arl))))                 ;xê°¯ìˆ˜
-        aryn (1+ (fix (abs (/ dy arl)))))                ;yê°¯ìˆ˜
+  (setq arxn (1+ (fix (abs (/ dx arl))))                 ;x°¹¼ö
+        aryn (1+ (fix (abs (/ dy arl)))))                ;y°¹¼ö
 
-  (if (> arxn aryn)                                 ;ê°ê²© ì§€ì •
+  (if (> arxn aryn)                                 ;°¢°Ý ÁöÁ¤
     (setq ardst (* arl dxsgn)
           aryn 1
           remain (rem dx arl))
@@ -52,9 +52,9 @@ ent ffpnt n entpnt entpp ffpnt
           remain (rem dy arl))
   ) ;of if
 
-  (command "ARRAY" ent "" "R" aryn arxn ardst)      ;arrayìˆ˜í–‰
+  (command "ARRAY" ent "" "R" aryn arxn ardst)      ;array¼öÇà
 
-  (princ "\nRemainder = ") (princ remain)           ;ë‚˜ë¨¸ì§€ í‘œì‹œ
+  (princ "\nRemainder = ") (princ remain)           ;³ª¸ÓÁö Ç¥½Ã
 
   (setvar "CMDECHO" 1)
   (setq *error* oer seterr nil)
