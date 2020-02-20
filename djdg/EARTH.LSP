@@ -152,7 +152,7 @@
             (setq pp (f_dh (list x2 bty) (- b2x x2) 1 -2 nil))
             (setq w (+ w (* 2 s h)))
             (setq b (+ b 1000 (* 2 s h)))
-            (setq oldc (getvar "CECOLOR")) (setvar "CECOLOR" "RED")
+            (setq oldc (getvar "CECOLOR")) (setvar "CECOLOR" "1")
             (command "LINE" (list x1 y) (list x2 y) "")
             (setvar "CECOLOR" oldc)
             (setq pp (f_dh (list x1 bty) (- x2 x1) 1 -3
@@ -168,7 +168,7 @@
             (setq pp (f_dh (list x1 bty) (- x2 x1) 1 level
                        (strcat (rtos (* (- x2 x1) 0.001) 2 3) "X"
                                (rtos (* w 0.001) 2 3))))
-            (setq oldc (getvar "CECOLOR")) (setvar "CECOLOR" "RED")
+            (setq oldc (getvar "CECOLOR")) (setvar "CECOLOR" "1")
             (command "LINE" (list x1 y) (list x2 y) "")
             (setvar "CECOLOR" oldc)
           ) ;of progn

@@ -283,7 +283,7 @@
       (command "LINE" ipnt pur plr pll "")            ;splice판 그리기
 
       (setq oldc (getvar "CECOLOR"))                  ;현재색 대피
-      (setvar "CECOLOR" "GREEN")                      ;녹색으로 setting
+      (setvar "CECOLOR" "3")                      ;녹색으로 setting
 
       (setq count1 0)                                 ;bolt선 그리기
       (repeat (1+ num1)                                 ;수직선

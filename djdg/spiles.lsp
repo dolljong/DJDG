@@ -148,7 +148,7 @@
   (command "LINE" sl-pnto el-pnto "")   ;왼쪽 바깥선과 오른쪽 바깥선 그리기
   (command "LINE" sr-pnto er-pnto "")
   (setq cclr (getvar "CECOLOR"))
-  (setvar "CECOLOR" "RED")
+  (setvar "CECOLOR" "1")
   (setvar "CELTYPE" "CENTER")           ;라인 타입을 일점쇄선으로
   (command "LINE" s-pnt e-pnt "")       ;중심선 그리기
   (setvar "CECOLOR" cclr)
@@ -160,7 +160,7 @@
                                "S" ll-pnt2 e-pnt "")
   (setq plent (list (entlast) ll-pnt1))
 
-  (setvar "CECOLOR" "GREEN")                            ;색을 녹색으로
+  (setvar "CECOLOR" "3")                            ;색을 녹색으로
   (setq rr (/ rdo 2.0))                                 ;첫 Round Radious
   (while (>= rr (* 0.25 DS))                            ;최외측 round가 0.25보다 큰 동안만
     (setq tdsti (abs (/ (- rdo rr) (sin ang))))                 ;파일경사에 따라 변하는 파일 반지름
@@ -179,7 +179,7 @@
     (setq rr (/ rr 2.0))                                ;라운드 거리를 반으로
   ) ;of WHILE
 
-  (setvar "CECOLOR" "WHITE")                            ;색을 흰색으로
+  (setvar "CECOLOR" "7")                            ;색을 흰색으로
 
 ) ;of defun
 

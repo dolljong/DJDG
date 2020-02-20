@@ -69,7 +69,7 @@
     ((> tsgn 0) (setq crspnt (list (car dp1) (cadr dp2))))
   )
   (setq oldclr (getvar "CECOLOR"))
-  (setvar "CECOLOR" "RED")
+  (setvar "CECOLOR" "1")
   (command "PLINE" crspnt dp1 dp2 "C")
   (setvar "CECOLOR" oldclr)
 

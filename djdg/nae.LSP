@@ -48,7 +48,7 @@
                   (+ (cadr ipnt) (* ds H) -1) 0.0))         ;trim point 오른쪽상단
 
   (setq oldc (getvar "CECOLOR"))
-  (setvar "CECOLOR" "GREEN")
+  (setvar "CECOLOR" "3")
   (command "PLINE" p1 "W" "0.0" "0.0" p4 p2 p3 "C")                         ;사각형 그리기
   (setvar "CECOLOR" oldc)
 

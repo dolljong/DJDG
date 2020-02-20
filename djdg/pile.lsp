@@ -80,7 +80,7 @@ lient rient cclr plent
 (command "LINE" sr-pnti er-pnti "")
 (setq rient (list (entlast) er-pnti))
 (setq cclr (getvar "CECOLOR"))
-(setvar "CECOLOR" "RED")
+(setvar "CECOLOR" "1")
 (setvar "CELTYPE" "CENTER")           ;라인 타입을 일점쇄선으로
 (command "LINE" s-pnt e-pnt "")       ;중심선 그리기
 (setvar "CECOLOR" cclr)

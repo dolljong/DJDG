@@ -138,7 +138,7 @@ thinsp  tl          tp      wh4
   );of cond
 
   (command "TEXT" "M" tp (* ds th) (rtod ang2) "1:5")      ;1:5쓰기
-  (setvar "CECOLOR" "RED")                                  ;빨간색으로
+  (setvar "CECOLOR" "1")                                  ;빨간색으로
   (command "LINE" bpnt bp "")                               ;base line그리기
   (setvar "CECOLOR" "BYLAYER")                              ;원래 색으로
 

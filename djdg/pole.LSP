@@ -27,7 +27,7 @@
 	txtele 10)
 
   (setq oldclr (getvar "CECOLOR"))
-  (setvar "CECOLOR" "RED")
+  (setvar "CECOLOR" "1")
 
   (setq ds (getvar "DIMSCALE")
         th (getvar "DIMTXT"))

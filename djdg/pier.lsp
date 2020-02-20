@@ -403,14 +403,14 @@
       (command "LINE" (list (+ ix (/ pd 2.0)) iy)               ;기둥우측선
                       (list (+ ix (/ pd 2.0)) (- iy c1 pl)) "")
       ;기둥중심선
-      (setvar "CECOLOR" "RED")
+      (setvar "CECOLOR" "1")
       (setvar "CELTYPE" "CENTER")
       (command "LINE" (list ix (- iy c1))
                       (list ix (- iy c1 pl)) "")
       (setvar "CECOLOR" "BYLAYER")
       (setvar "CELTYPE" "BYLAYER")
       ;기둥라운드표현
-      (setvar "CECOLOR" "GREEN")
+      (setvar "CECOLOR" "3")
       (setq xsgn 1)
       (repeat 2                                     ;좌우로 두번 실행
         (setq xsgn (* xsgn -1)
@@ -467,7 +467,7 @@
                   (list (car p4) (- iy h2)) "")
 
   (setq oldc (getvar "CECOLOR"))
-  (setvar "CECOLOR" "GREEN")
+  (setvar "CECOLOR" "3")
   (setq dy (/ (- h1 h2) 6)
         count 1)
 
@@ -518,7 +518,7 @@
   (setq aent (entget (entlast)))                ;Arc 정보
 
   (setvar "CELTYPE" "CENTER")
-  (setvar "CECOLOR" "RED")
+  (setvar "CECOLOR" "1")
   (command "LINE" ip ap2 "")
   (setvar "CELTYPE" "BYLAYER")
   (setvar "CECOLOR" "BYLAYER")
@@ -526,7 +526,7 @@
   ;--------------------
   ; 코핑의 라운드 표현
   ;--------------------
-  (setvar "CECOLOR" "GREEN")
+  (setvar "CECOLOR" "3")
   (setq xsgn 1)
   (repeat 2                                     ;좌우로 두번
     (setq xsgn (* xsgn -1)
@@ -667,7 +667,7 @@
   (setq oldlt (getvar "CELTYPE"))
   (setq oldc (getvar "CECOLOR"))
   (setvar "CELTYPE" "CENTER")
-  (setvar "CECOLOR" "RED")
+  (setvar "CECOLOR" "1")
   (command "LINE" p3s p3e "")
   (setvar "CELTYPE" oldlt)
   (setvar "CECOLOR" oldc)
@@ -706,7 +706,7 @@ sdst edst lpnts lpnte ds p1s p1e oldclr     ;Argument는 두선의 시작점과 끝점
 
              ;두 선간의 거리가 2미리이상 일때만 두 선의 중간에다 선을 그린다
 (setq oldclr (getvar "CECOLOR"))
-(setvar "CECOLOR" "GREEN")
+(setvar "CECOLOR" "3")
 (while (or (> sdst (* ds 1.0)) (> edst (* ds 1.0)))
   (setq lpnts (list (/ (+ (car p1s) (car p2s)) 2.0)      ;두 시작점의 중간점 X
                     (/ (+ (cadr p1s) (cadr p2s)) 2.0)))  ;                   Y

@@ -30,7 +30,7 @@ ccen mk dia diaxy
 
   (push-env)                                    ;환경변수값 대피
 ;  (setq oldclr (getvar "CECOLOR"))
-;  (setvar "CECOLOR" "RED")
+;  (setvar "CECOLOR" "1")
 
   (setq ds (getvar "DIMSCALE")
         th (getvar "DIMTXT"))                     ;text크기
@@ -96,7 +96,7 @@ ccen mk dia diaxy
     (setq ang (angle mpnt (nth index plst)))  ;마킹원의 포인트와 점의 각을 구한다
     (if (<= ang minang) (setq minang ang))    ;최대각과 최소각 찾기
     (if (>= ang maxang) (setq maxang ang))
-    (cecolor "red")
+    (cecolor "1")
     (command "LINE" mpnt (nth index plst) "") ;포인트에서 마킹원점까지 선을그린다
     (popcolor)
     (setq index (1+ index))                   ;포인트갯수만큼 반복 다음포인트로.
@@ -125,7 +125,7 @@ ccen mk dia diaxy
   (if (> (abs dx) (abs dy))                                             ;누워있나 서있나?
     (progn
       (setq p4 (list (+ (car mpnt) (* blen xsgn)) (cadr mpnt)))
-      (cecolor "red")
+      (cecolor "1")
       (command "LINE" mpnt p4 "")
       (popcolor)
       (if (< dx 0)
@@ -139,7 +139,7 @@ ccen mk dia diaxy
     ) ;of progn
     (progn
       (setq p4 (list (car mpnt) (+ (cadr mpnt) (* blen ysgn))))
-      (cecolor "red")
+      (cecolor "1")
       (command "LINE" mpnt p4 "")
       (popcolor)
       (if (< dy 0)
@@ -154,7 +154,7 @@ ccen mk dia diaxy
   ) ;of if
 
 
-  (cecolor "red")
+  (cecolor "1")
   (command "CIRCLE" cp rc)
   (popcolor)
 
@@ -163,7 +163,7 @@ ccen mk dia diaxy
   (txtinc mk cp txtrot)
   (setq dia (getstring "\nEnter Rebar Dia: "))
 ; (command "TEXT" diaxy (* 2.5 ds) txtrot (strcase dia))
-  (cecolor "white")
+  (cecolor "7")
   (command "TEXT" diaxy (* th ds) txtrot (strcase dia))
   (popcolor)
 ;  (setvar "CECOLOR" oldclr)
@@ -205,12 +205,12 @@ ccen mk dia diaxy
         (setq count (1+ count)))
       (if (= count txtl)
 	(progn
-	  (cecolor "white")
+	  (cecolor "7")
           (command "TEXT" "M" ipnt (* th ds) TXTROT (strcase txt))
 	  (popcolor)
         );progn  
         (progn
-	  (cecolor "white")
+	  (cecolor "7")
           (command "TEXT" "C" ipnt (* th ds) TXTROT
                    (strcase (substr txt 1 (- count 1))))
           (command "TEXT" "TC" ipnt (* th ds) TXTROT
@@ -220,7 +220,7 @@ ccen mk dia diaxy
       ) ;of IF
     ) ;of PROGN
     (progn
-      (cecolor "white")
+      (cecolor "7")
       (command "TEXT" "M" ipnt (* th ds) TXTROT (strcase txt))
       (popcolor)
     );progn

@@ -38,7 +38,7 @@
   (setq fpnt (polar ipnt ang180 10))   ; point on original line
   (setq apnt (polar ipnt anganch 10))  ;point on inclined line
   
-  (push-os)(celtype "center")(cecolor "red") 
+  (push-os)(celtype "center")(cecolor "1") 
   (command "break" sel "f" endpnt ipnt)
 ;  (command "circle" endpnt "100")   ;for test
 ;  (command "circle" ipnt "100")     ;for test

@@ -506,7 +506,7 @@
   (command "LINE" pt7 pt8 "")
   (setvar "CELTYPE" "BYLAYER")
 
-  (setvar "CECOLOR" "YELLOW")                     ;색을 노란색으로..
+  (setvar "CECOLOR" "2")                     ;색을 노란색으로..
   (setq pt9  (list (+ (car pt3) x1) (- iy a1))    ;shoe block상단철근
         pt10 (list (- (car pt4) x1) (cadr pt9)))
   (command "LINE" pt9 pt10 "")
@@ -850,7 +850,7 @@
   (setvar "CMDECHO" 0)                        ;환경변수 셋팅 명령메아리 끄기
   (setvar "BLIPMODE" 0)                       ;BLIP MODE 끄기
   (setq oldclr (getvar "CECOLOR"))            ;옛색깔 기억하기
-  (setvar "CECOLOR" "RED")                    ;색깔은 빨간색으로
+  (setvar "CECOLOR" "1")                    ;색깔은 빨간색으로
   (setq ds (getvar "DIMSCALE"))               ;스케일
   (setq rc (* ds 3.5))                        ;마킹원의 반지름
 
@@ -964,7 +964,7 @@
   (command "CIRCLE" cp rc)
   (setvar "CECOLOR" oldclr)
 
-  (setvar "CECOLOR" "WHITE")
+  (setvar "CECOLOR" "7")
 ;  (setq mk (getstring "\nEnter Marking: "))
   (txtinc mk cp txtrot)
 ;  (setq dia (getstring "\nEnter Rebar Dia: "))
@@ -1004,7 +1004,7 @@
 
   (push-env)                                    ;환경변수값 대피
   (setq oldclr (getvar "CECOLOR"))
-  (setvar "CECOLOR" "RED")
+  (setvar "CECOLOR" "1")
 
   (setq ds (getvar "DIMSCALE"))
   (setq rc (* 3.5 ds))                            ;마킹원의 반지름
@@ -1127,7 +1127,7 @@
   (command "CIRCLE" cp rc)
   (setvar "CECOLOR" oldclr)
 
-  (setvar "CECOLOR" "WHITE")
+  (setvar "CECOLOR" "7")
 ;  (setq mk (getstring "\nEnter Marking: "))
   (txtinc mk cp txtrot)
 ;  (setq dia (getstring "\nEnter Rebar Dia: "))

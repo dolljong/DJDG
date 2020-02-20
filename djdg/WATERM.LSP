@@ -30,7 +30,7 @@
   );if
 
   (setq oldc (getvar "CECOLOR"))
-  (setvar "CECOLOR" "GREEN")
+  (setvar "CECOLOR" "3")
   (command "LINE" p1 (list (car p2) (cadr p1) 0.0) "")
   (setvar "CECOLOR" oldc)
 

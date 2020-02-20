@@ -31,7 +31,7 @@
 (setq pnt1 (polar mp (+ ang pi) (+ (/ txtl 2.0) (* ds th)))) ;¸¶Å©-1 »ðÀÔÁ¡
 (setq pnt2 (polar mp    ang     (+ (/ txtl 2.0) (* ds th)))) ;¸¶Å©-2 »ðÀÔÁ¡
 
-(setvar "CECOLOR" "GREEN")
+(setvar "CECOLOR" "3")
 (command "INSERT" (strcat (prefix) "blocks/plmark") pnt1 ds "" (rtod ang))
                                                                 ;¸¶Å©-1 »ðÀÔ
 (command "INSERT" (strcat (prefix) "blocks/plmark") pnt2

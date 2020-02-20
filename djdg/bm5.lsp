@@ -64,7 +64,7 @@
 (setq sp (getpoint "\nPick start point: "))         ;보조선의 첫점    
 (setq ep (getpoint sp "\nPick end point: "))        ;보조선의 끝점    
 (setq seang (angle sp ep))                          ; 보조선의 도  
-(cecolor "red")    
+(cecolor "1")    
 (command "LINE" sp ep "")                           ;보조선 그기  
 (popcolor)    
     
@@ -83,7 +83,7 @@
    ) ;of cond    
    (setq slp (polar crsxy (+ seang (* pi 0.25)) (* 1.3 ds)))    
    (setq elp (polar crsxy (+ seang (* pi 1.25)) (* 1.3 ds)))
-   (cecolor "red")
+   (cecolor "1")
    (command "LINE" slp elp "")                  ; Tick line그리기 /
    (popcolor)
    (redraw (ssname ssent index) 4)              ; 강조된 엔티티 원상복구    
@@ -93,7 +93,7 @@
   (setq cp (polar ep seang rc))                   ;마킹원 중심    
   (setq diaxy (list (+ (car cp) (* 4 ds)) (- (cadr cp) (* 4 ds)) 0.0))    
     
-  (cecolor "red")
+  (cecolor "1")
   (command "CIRCLE" cp rc)    
   (popcolor)
     

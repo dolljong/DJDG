@@ -74,10 +74,10 @@ sl-pnt0 sr-pnt0 sl-pnt sr-pnt el-pnt er-pnt
   (pado er-pnt el-pnt ulbulh ulbull)            ;울퉁불퉁 그리기(바닥)    
     
   (setvar "CELTYPE" "CENTER")             ;라인 타입을 일점쇄선으로    
-  (setvar "CECOLOR" "RED")                ;빨간색으로 바꿔서    
+  (setvar "CECOLOR" "1")                ;빨간색으로 바꿔서    
   (command "LINE" s-pnt e-pnt "")         ;중심선 그리기    
     
-  (setvar "CECOLOR" "GREEN")              ;색깔은 초록색    
+  (setvar "CECOLOR" "3")              ;색깔은 초록색    
   (setvar "CELTYPE" "BYLAYER")            ;라인타입은 실선    
 ;  (hround s-pnt e-pnt sl-pnt el-pnt)      ;왼쪽 라운딩 그리기    
 ;  (hround s-pnt e-pnt sr-pnt er-pnt)      ;오른쪽 라운딩 그리기    
@@ -120,7 +120,7 @@ oldclr
     
              ;두 선간의 거리가 2미리이상 일때만 두 선의 중간에다 선을 그린다    
 (setq oldclr (getvar "CECOLOR"))    
-(setvar "CECOLOR" "GREEN")    
+(setvar "CECOLOR" "3")    
 (while (or (> sdst (* ds 1.0)) (> edst (* ds 1.0)))    
   (setq lpnts (list (/ (+ (car p1s) (car p2s)) 2.0)      ;두 시작점의 중간점 X    
                     (/ (+ (cadr p1s) (cadr p2s)) 2.0)))  ;                   Y    

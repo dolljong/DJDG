@@ -54,7 +54,7 @@
   (setq cpl (polar cp ang90_n gap))
 
   (setq oldc (getvar "CECOLOR"))
-  (setvar "CECOLOR" "GREEN")
+  (setvar "CECOLOR" "3")
   (command "PLINE" spu "A" "A" "-90" cpu epu "")
   (setq pl1 (ssget "L"))
   (command "PLINE" spl "A" "A" "-90" cpl epl "")

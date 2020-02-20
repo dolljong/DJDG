@@ -96,7 +96,7 @@ ccen mk dia diaxy
   (setq ang (angle mpnt (nth index plst)))  ;마킹원의 포인트와 점의 각을 구한다
   (if (<= ang minang) (setq minang ang))    ;최대각과 최소각 찾기
   (if (>= ang maxang) (setq maxang ang))
-  (cecolor "red")
+  (cecolor "1")
   (command "LINE" mpnt (nth index plst) "") ;포인트에서 마킹원점까지 선을그린다
   (popcolor)
   (setq index (1+ index))                   ;포인트갯수만큼 반복
@@ -105,7 +105,7 @@ ccen mk dia diaxy
 (setq dtang (dang minang maxang))           ;최대각과 최소각의 차이
 (setq mang (+ minang (/ dtang 2.0)))        ;최대각과 최소각의 중간각
 (setq ccen (polar mpnt (+ mang pi) cr))         ;마킹원의 센타점
-(cecolor "red")
+(cecolor "1")
 (command "CIRCLE" ccen cr)                      ;마킹원을 그린다
 (popcolor)
 (setq mk (getstring "\nEnter Marking: "))               ;마킹명칭 입력

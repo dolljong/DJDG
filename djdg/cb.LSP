@@ -162,7 +162,7 @@
   (if (> (abs dx) (abs dy))                                             ;누워있나 서있나?
     (progn
       (setq p4 (list (+ (car ep) (* blen xsgn)) (cadr ep)))
-      (cecolor "red")
+      (cecolor "1")
       (command "LINE" ep p4 "")
       (popcolor)
       (if (< dx 0)
@@ -176,7 +176,7 @@
     ) ;of progn
     (progn
       (setq p4 (list (car ep) (+ (cadr ep) (* blen ysgn))))
-      (cecolor "red")
+      (cecolor "1")
       (command "LINE" ep p4 "")
       (popcolor)
       (if (< dy 0)
@@ -192,12 +192,12 @@
 
 
   (setq oldclr (getvar "CECOLOR"))
-  (setvar "CECOLOR" "red")
+  (setvar "CECOLOR" "1")
   (command "CIRCLE" cp rc)
   (setvar "CECOLOR" oldclr)
   
   (setq oldclr (getvar "CECOLOR"))
-  (setvar "CECOLOR" "WHITE")
+  (setvar "CECOLOR" "7")
   (txtinc mark cp txtrot)
   (command "TEXT" diaxy (* th ds) txtrot (strcase diatxt))
   (setvar "CECOLOR" oldclr)

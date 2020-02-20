@@ -48,7 +48,7 @@
     (command "TEXT" "MR" tip (* 2.0 ds) "0" txt)            ;깊이 text쓰기    
 ;    (rect ip (* 3.5 ds) h)                                  ;사각형 그리기    
     (rect ip (* BB ds) h)                                  ;사각형 그리기    
-    (setvar "CECOLOR" "GREEN")                              ;초록색으로    
+    (setvar "CECOLOR" "3")                              ;초록색으로    
     (command "LINE" lp1 lp2 "")                             ;1mm line그리기    
     
     (cond                                                   ;지층 종류별로..    
@@ -96,7 +96,7 @@
     ) ;of cond    
     
     (setq od edep)                                      ;현재 깊이를 old 깊이로    
-    (setvar "CECOLOR" "WHITE")    
+    (setvar "CECOLOR" "7")    
   ) ;of while                                           ;다음 지층 계속    
     
     
@@ -111,9 +111,9 @@
           nl1 (list nx1 ny)                             ;Tick    
           nl2 (list nx2 ny)    
           ntp  (list (+ nx2 (* ds 1.0)) ny))            ;N값 text삽입점    
-    (setvar "CECOLOR" "GREEN")    
+    (setvar "CECOLOR" "3")    
     (command "LINE" nl1 nl2 "")    
-    (setvar "CECOLOR" "WHITE")    
+    (setvar "CECOLOR" "7")    
     (command "TEXT" "ML" ntp (* 2.0 ds) "0.0" nv)       ;N값 표기    
     (setq count (1+ count))                             ;다음 N값으로    
     (setq txt (rtos (+ firstNy (* 1.5 count)) 2 1))    

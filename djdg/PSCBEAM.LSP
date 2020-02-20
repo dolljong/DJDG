@@ -252,7 +252,7 @@
     (setq txtang angl)                 ;오른쪽 방향일 경우 베이스라인 각과 같다
   )
   (setq clr (getvar "CECOLOR"))
-  (setvar "CECOLOR" "RED")
+  (setvar "CECOLOR" "1")
   (command "PLINE" blsp blep ap1 ap2 "")                      ;화살표 그리기
   (setvar "CECOLOR" clr)
   (command "TEXT" "J" "M" txtp (* ds th) (rtod txtang) lsttxt) ;텍스트 쓰기

@@ -86,7 +86,7 @@
   (setq txtpnt (polar (mid-point sp1 ep) tang (* th 0.5)))  ;text point
 
   (setq oldosmode (getvar "OSMODE")) (setvar "OSMODE" 0)
-  (setq oldcolor (getvar "CECOLOR")) (setvar "CECOLOR" "red")
+  (setq oldcolor (getvar "CECOLOR")) (setvar "CECOLOR" "1")
   (command "LINE" sp1 ep "")
   (setvar "CECOLOR" oldcolor)  
   (command "INSERT" (strcat (prefix) "blocks/arw1") ep ds "" (rtod ang))

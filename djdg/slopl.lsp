@@ -86,7 +86,7 @@
   (setq dt2 (/ dst2 dnum))
 
   (setq oldc (getvar "CECOLOR"))
-  (setvar "CECOLOR" "GREEN")
+  (setvar "CECOLOR" "3")
 
   (setq count 1)
   (repeat (1- dnum)

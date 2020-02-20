@@ -30,7 +30,7 @@
         diaxg 6)                                  ;원의지름부터 직경삽입점가지 x거리  
           
 ;  (setq oldclr (getvar "CECOLOR"))            
-;  (setvar "CECOLOR" "RED")            
+;  (setvar "CECOLOR" "1")            
             
   (setq entlst (ssget))                           ;마킹대상 entity선택            
   (setq nent (sslength entlst))                   ;마킹대상 엔티티갯수            
@@ -104,7 +104,7 @@
     (setq tmppnt (polar pnt ll-ang 1.0))          ;임시점            
     (setq crs-pnt (inters blpnt1 blpnt2 pnt tmppnt nil))   ;크로스포인트            
     (setq crsp-lst (append crsp-lst (list crs-pnt)))  ;크로스 포인트 리스트에 추가            
-    (cecolor "red")
+    (cecolor "1")
     (command "LINE" pnt crs-pnt "")               ;리더선 그리기            
     (popcolor)
     (setq dst (distance blpnt2 crs-pnt))          ;마킹원의 포인트와 교차점의 거리            
@@ -144,7 +144,7 @@
             
   ;* 베이스 라인 마킹원 및 철근 지름 표시            
   
-  (cecolor "red")
+  (cecolor "1")
   (command "LINE" maxpnt blpnt2 "")                    ;베이스라인 그기  
   (popcolor)            
             
@@ -173,7 +173,7 @@
   (if (> (abs dx) (abs dy))                                             ;누워있나 서있나?            
     (progn            
       (setq p4 (list (+ (car mpnt) (* blen xsgn)) (cadr mpnt)))
-      (cecolor "red")
+      (cecolor "1")
       (command "LINE" mpnt p4 "")
       (popcolor)
       (if (< dx 0)            
@@ -187,7 +187,7 @@
     ) ;of progn            
     (progn            
       (setq p4 (list (car mpnt) (+ (cadr mpnt) (* blen ysgn))))
-      (cecolor "red")
+      (cecolor "1")
       (command "LINE" mpnt p4 "")
       (popcolor)
       (if (< dy 0)            
@@ -202,12 +202,12 @@
   ) ;of if            
             
             
-  (cecolor "red")
+  (cecolor "1")
   (command "CIRCLE" cp rc)
   (popcolor)
 
             
-;  (setvar "CECOLOR" "WHITE")            
+;  (setvar "CECOLOR" "7")            
   (setq mk (getstring "\nEnter Marking: "))            
   (txtinc mk cp txtrot)            
   (setq dia (getstring "\nEnter Rebar Dia: "))

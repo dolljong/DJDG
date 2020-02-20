@@ -38,7 +38,7 @@
   (setq xe (+ xs (* cn pc ds)))                         ;수평선 끝 x좌표
 
   (setq oldc (getvar "CECOLOR"))                        ;현재색 대피
-  (setvar "CECOLOR" "RED")                              ;현재색을 붉은 색으로
+  (setvar "CECOLOR" "1")                              ;현재색을 붉은 색으로
   (setq count 0)                                        ;수직선 그리기
   (repeat (1+ cn)
     (setq x (+ xs (* count pc ds)))                     ;수직선 x좌표
@@ -46,9 +46,9 @@
     (setq epnt (list x ye 0.0))                         ;수직선 끝점
     (if (or (= count 0) (= count cn))                   ;처음과 끝선은 흰색으로
       (progn
-        (setvar "CECOLOR" "WHITE")
+        (setvar "CECOLOR" "7")
         (command "LINE" spnt epnt "")
-        (setvar "CECOLOR" "RED")
+        (setvar "CECOLOR" "1")
       ) ;of progn
       (command "LINE" spnt epnt "")                       ;line그리기
     ) ;of IF
@@ -62,9 +62,9 @@
     (setq epnt (list xe y 0.0))                         ;수평선 끝점
     (if (or (= count 0) (= count rn))                   ;처음과 끝선은 흰색으로
       (progn
-        (setvar "CECOLOR" "WHITE")
+        (setvar "CECOLOR" "7")
         (command "LINE" spnt epnt "")
-        (setvar "CECOLOR" "RED")
+        (setvar "CECOLOR" "1")
       ) ;of progn
       (command "LINE" spnt epnt "")                       ;line그리기
     ) ;of IF

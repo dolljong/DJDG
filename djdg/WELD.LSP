@@ -162,7 +162,7 @@
 
   (weld_dia)
 
-  (setvar "CECOLOR" "RED")                      ;빨간색으로 바꿈
+  (setvar "CECOLOR" "1")                      ;빨간색으로 바꿈
   (command "LINE" p1 p2 "")                     ;기선
 
   (if (= round "1")                             ;온둘레용접
@@ -234,7 +234,7 @@
   (if (/= size "0")
     (command "TEXT" "M" tp (* 2.5 ds) "0.0" size)
   ) ;
-  (setvar "CECOLOR" "RED")
+  (setvar "CECOLOR" "1")
 ) ;of defun
 
 ;-----------------------------
@@ -278,7 +278,7 @@
     (command "TEXT" "M" ap (* 2.5 ds) "0.0" (strcat ang "%%d"))
   )
 
-  (setvar "CECOLOR" "RED")
+  (setvar "CECOLOR" "1")
 
 ) of defun
 
@@ -318,7 +318,7 @@
   (if (/= ang "0")
     (command "TEXT" "M" ap (* 2.5 ds) "0.0" (strcat ang "%%d"))
   )
-  (setvar "CECOLOR" "RED")
+  (setvar "CECOLOR" "1")
 
 ) of defun
 

@@ -66,7 +66,7 @@ oldc txtgap txtang txth txtpnt1 txtpnt2
         mpnt (mid-point pnt2 pnt3))                            ;베이스라인 중간점
 
   (setq oldc (getvar "CECOLOR"))                               ;현재색 대피
-  (setvar "CECOLOR" "RED")                                     ;색을 빨간색으로
+  (setvar "CECOLOR" "1")                                     ;색을 빨간색으로
   (command "PLINE" pnt1 pnt2 pnt3 "")                          ;폴리라인 그리기
   (setvar "CECOLOR" oldc)                                      ;색깔을 옛색으로
 

@@ -68,7 +68,7 @@
 (setq sp (getpoint "\nPick start point: "))         ;보조선의 첫점    
 (setq ep (getpoint sp "\nPick end point: "))        ;보조선의 끝점    
 (setq seang (angle sp ep))                          ; 보조선의 도  
-(cecolor "red")    
+(cecolor "1")    
 (command "LINE" sp ep "")                           ;보조선 그기  
 (popcolor)    
     
@@ -104,7 +104,7 @@
   (setq cp (polar sp ang (+ dst rc)))    
   (setq diaxy (list (+ (car cp) (* 4 ds)) (- (cadr cp) (* 4 ds)) 0.0))    
     
-  (cecolor "red")
+  (cecolor "1")
   (command "LINE" sp ep "")    
   (command "CIRCLE" cp rc)    
   (popcolor)

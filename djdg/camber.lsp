@@ -388,7 +388,7 @@
   (setq xl (+ fcw (* noden cw)))                    ;x길이
 
   (setq oldc (getvar "CECOLOR"))                    ;현재 색 대피
-  (setvar "CECOLOR" "RED")                          ;table의 색을 빨간색으로
+  (setvar "CECOLOR" "1")                          ;table의 색을 빨간색으로
 
 
   ;----- 수평선 그리기

@@ -41,7 +41,7 @@ rc sp ep ang dst cp
   (setq diaxy (list (+ (car cp) (* 4 ds)) (- (cadr cp) (* 4 ds)) 0.0))    
     
   
-  (cecolor "red")
+  (cecolor "1")
   (command "LINE" sp ep "")    
   (command "CIRCLE" cp rc)    
   (popcolor)

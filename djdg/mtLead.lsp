@@ -50,7 +50,7 @@ ds p1 p2 ang w4 ys tp tbox tl p3                            ;지역변수 정의
       (setq ys (* -1 ds))                                            ;y-scale = -1
     ) ;of if
     (command "INSERT" (strcat (prefix) "blocks/arw1") p1 ds ys (rtod ang))
-    (setvar "CECOLOR" "RED")
+    (setvar "CECOLOR" "1")
     (command "LINE" p1 p2 "")                                 ;leader line 
     (setq index (1+ index))
   );repeat
@@ -61,7 +61,7 @@ ds p1 p2 ang w4 ys tp tbox tl p3                            ;지역변수 정의
   (setq mang (+ minang (/ dtang 2.0) pi))        ;최대각과 최소각의 중간각
   (setq w4  (which4 mang))
 
-  (setvar "CECOLOR" "WHITE")
+  (setvar "CECOLOR" "7")
 
   (if (or (= w4 1) (= w4 4))
     (progn                                                  ; 1, 4사분면일 때 왼쪽에서 오른쪽으로
@@ -82,7 +82,7 @@ ds p1 p2 ang w4 ys tp tbox tl p3                            ;지역변수 정의
   (setq p3 (list (+ (car p2) (* 5.0 ys) (* tl (/ (abs ys) ys)))     ;밑줄
                  (cadr p2) 0.0))
 
-  (setvar "CECOLOR" "RED")                                  ;색을 빨간색으로
+  (setvar "CECOLOR" "1")                                  ;색을 빨간색으로
   (command "LINE" p2 p3 "")                                 ;line그리기
                                   ;색을 흰색으로
 

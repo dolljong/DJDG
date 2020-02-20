@@ -104,7 +104,7 @@ plst crsp-lst
   (setq tmppnt (polar pnt ll-ang 1.0))          ;임시점    
   (setq crs-pnt (inters blpnt1 blpnt2 pnt tmppnt nil))   ;크로스포인트    
   (setq crsp-lst (append crsp-lst (list crs-pnt)))  ;크로스 포인트 리스트에 추가    
-  (cecolor "red")
+  (cecolor "1")
   (command "LINE" pnt crs-pnt "")               ;리더선 그기  
   (popcolor)  
   (setq dst (distance blpnt2 crs-pnt))          ;마킹원의 포인트와 교차점의 거리    
@@ -143,7 +143,7 @@ plst crsp-lst
 (setq ccen (polar blpnt2 (+ blang pi) cr))    
     
 ;* 베이스 라인 마킹원 및 철근 지름 표시    
-(cecolor "red")
+(cecolor "1")
 (command "LINE" maxpnt blpnt2 "")                       ;베이스라인 그리기    
 (command "CIRCLE" ccen cr)                              ;마킹원 그리기    
 (popcolor)

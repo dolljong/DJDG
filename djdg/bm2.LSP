@@ -58,7 +58,7 @@ sp ep sslst enum index enum                 ;지역변수 정의
 (setq sp (getpoint "\nPick start point: "))         ;보조선의 첫점
 (setq ep (getpoint sp "\nPick end point: "))        ;보조선의 끝점
 (setq seang (angle sp ep))                          ; 보조의  각도
-(cecolor "red")
+(cecolor "1")
 (command "LINE" sp ep "")                           ;보조선 그리기
 (popcolor)
   
@@ -77,7 +77,7 @@ sp ep sslst enum index enum                 ;지역변수 정의
    ) ;of cond
    (setq slp (polar crsxy (+ seang (* pi 0.25)) (* 1.3 (getvar "DIMSCALE"))))
    (setq elp (polar crsxy (+ seang (* pi 1.25)) (* 1.3 (getvar "DIMSCALE"))))
-   (cecolor "red")
+   (cecolor "1")
    (command "LINE" slp elp "")                  ; Tick line그리기 /
    (popcolor)
    (redraw (ssname ssent index) 4)              ; 강조된 엔티티 원상복구

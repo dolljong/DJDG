@@ -13,7 +13,7 @@
   (setq ds (getvar "DIMSCALE"))
 	
   (setq ip (getpoint "\nPick first point: "))
-  (push-os)(cecolor "red")
+  (push-os)(cecolor "1")
   (command "arc" ip pause pause )
   (setq cent (entget (entlast)))
   (command "arc" "" pause)

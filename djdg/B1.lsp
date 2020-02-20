@@ -37,8 +37,8 @@ rc sp ep ang dst cp
   (setq ep (getpoint sp "\nPick end point: "))              ;끝점
 
 ;  (setq oldclr (getvar "CECOLOR"))
-;  (setvar "CECOLOR" "RED")
-  (cecolor "red")
+;  (setvar "CECOLOR" "1")
+  (cecolor "1")
   (command "LINE" sp ep "")                                 ;지시선
   (popcolor)
   
@@ -61,7 +61,7 @@ rc sp ep ang dst cp
   (if (> (abs dx) (abs dy))                                             ;누워있나 서있나?
     (progn
       (setq p4 (list (+ (car ep) (* blen xsgn)) (cadr ep)))
-      (cecolor "red")
+      (cecolor "1")
       (command "LINE" ep p4 "")
       (popcolor)
       (if (< dx 0)
@@ -75,7 +75,7 @@ rc sp ep ang dst cp
     ) ;of progn
     (progn
       (setq p4 (list (car ep) (+ (cadr ep) (* blen ysgn))))
-      (cecolor "red")
+      (cecolor "1")
       (command "LINE" ep p4 "")
       (popcolor)
       (if (< dy 0)
@@ -89,16 +89,16 @@ rc sp ep ang dst cp
     ) ;of progn
   ) ;of if
 
-  (cecolor "red")
+  (cecolor "1")
   (command "CIRCLE" cp rc)
   (popcolor)
 
-  (setvar "CECOLOR" "WHITE")
+  (setvar "CECOLOR" "7")
   (setq mk (getstring "\nEnter Marking: "))
   (txtinc mk cp txtrot)
   (setq dia (getstring "\nEnter Rebar Dia: "))
 ;  (command "TEXT" diaxy (* 2.5 ds) txtrot (strcase dia))
-  (cecolor "white")
+  (cecolor "7")
   (command "TEXT" diaxy (* th ds) txtrot (strcase dia))
   (popcolor)
 
@@ -134,12 +134,12 @@ rc sp ep ang dst cp
         (setq count (1+ count)))
       (if (= count txtl)
 	(progn
-	  (cecolor "white")
+	  (cecolor "7")
           (command "TEXT" "M" ipnt (* th ds) TXTROT (strcase txt))
 	  (popcolor)
 	);progn  
         (progn
-	  (cecolor "white")
+	  (cecolor "7")
           (command "TEXT" "C" ipnt (* th ds) TXTROT
                    (strcase (substr txt 1 (- count 1))))
           (command "TEXT" "TC" ipnt (* th ds) TXTROT
@@ -149,7 +149,7 @@ rc sp ep ang dst cp
       ) ;of IF
     ) ;of PROGN
     (progn
-      (cecolor "white")
+      (cecolor "7")
       (command "TEXT" "M" ipnt (* th ds) TXTROT (strcase txt))
       (popcolor)
     )

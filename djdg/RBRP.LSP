@@ -4,8 +4,8 @@
 ;           By Suk-Jong Yi
 ;           96/5/23
 ;**************************************
-; ¶¥Ñw·a¡ Àé‹e·i ¤‹eÐe”a. (Íw¡e)
-; Å¥ÇaŸ¡Ëa ¬å, ›¡Àé‹eŒa»¡ ‹aaº…”a.
+; ¿øÇüÀ¸·Î Ã¶±ÙÀ» ¹è±ÙÇÑ´Ù. (Æò¸é)
+; ÄÜÅ©¸®Æ® ¼±, ¶ìÃ¶±Ù±îÁö ±×·ÁÁØ´Ù.
 ;**************************************
 
 (defun C:RBRP(/
@@ -22,76 +22,76 @@
   ); of SETERR
   (setq oer *error* *error* seterr)
 
-  (push-env)                                                    ;ÑÅ‰w¥e® ”Ï¡
+  (push-env)                                                    ;È¯°æº¯¼ö ´ëÇÇ
 
-  (setq cen (getpoint "\nPick Center point: "))                 ;Àé‹e ¤‹e· º—¯±
-  (setq pdia (* 1000 (getreal "\nPost DIA(m): ")))              ;post»¢‰w
-  (command "CIRCLE" cen "D" pdia)                               ;post‹aŸ¡‹¡
+  (setq cen (getpoint "\nPick Center point: "))                 ;Ã¶±Ù ¹è±ÙÀÇ Áß½É
+  (setq pdia (* 1000 (getreal "\nPost DIA(m): ")))              ;postÁ÷°æ
+  (command "CIRCLE" cen "D" pdia)                               ;post±×¸®±â
 
-  (setq nlay (getint "\nNumber of layer: "))                    ;¡y”e Àé‹e·¥ˆa?
+  (setq nlay (getint "\nNumber of layer: "))                    ;¸î´Ü Ã¶±ÙÀÎ°¡?
 
-  (setq count 1)                                                ;Àõ¤å¼ ”e¦Èá
+  (setq count 1)                                                ;Ã¹¹øÂ° ´ÜºÎÅÍ
   (repeat nlay
     (princ "\n*** ") (princ count) (princ " LAYER")
-    (setq cover (getreal " Cover(mm): "))                        ;”üˆ–A
-    (setq r (- (/ pdia 2) cover))                               ;ºÀé‹e ¤‹e ¤e»¡Ÿq
+    (setq cover (getreal " Cover(mm): "))                        ;µ¤°³µÎ²²
+    (setq r (- (/ pdia 2) cover))                               ;ÁÖÃ¶±Ù ¹è±Ù ¹ÝÁö¸§
 
-    ;(setq r (getreal "\nRadius: "))                            ;Àé‹e ¤‹e· ¤e»¡Ÿq
+    ;(setq r (getreal "\nRadius: "))                            ;Ã¶±Ù ¹è±ÙÀÇ ¹ÝÁö¸§
 
     (initget "Number")
-    (setq ctc (getreal "\nNumber/<C.T.C(mm)>: "))               ; ctc ·³b¤h·q
+    (setq ctc (getreal "\nNumber/<C.T.C(mm)>: "))               ; ctc ÀÔ·Â¹ÞÀ½
     (if (= ctc "Number")
-      (setq bn (getint "\nNumber of REBAR: "))                  ;Àé‹e ˆ•® »¢¸ó·³b
-      (setq bn (fix (/ (* 2.0 pi r) ctc)))                      ; Àé‹e ˆ•® ‰¬e
+      (setq bn (getint "\nNumber of REBAR: "))                  ;Ã¶±Ù °¹¼ö Á÷Á¢ÀÔ·Â
+      (setq bn (fix (/ (* 2.0 pi r) ctc)))                      ; Ã¶±Ù °¹¼ö °è»ê
     ) ;of if
-    (setq ctc (/ (* 2.0 pi r) bn))                              ; ˆ•®µA ·Ðe ctc‰¬e
+    (setq ctc (/ (* 2.0 pi r) bn))                              ; °¹¼ö¿¡ ÀÇÇÑ ctc°è»ê
 
-    (princ "\nNumber of rebar: ")                               ; Àé‹e ˆ•® ¥¡µaº‘
+    (princ "\nNumber of rebar: ")                               ; Ã¶±Ù °¹¼ö º¸¿©ÁÜ
     (princ bn)
-    (princ "  New C.T.C.(mm): ")                                ; ctc¥¡µaº‘
+    (princ "  New C.T.C.(mm): ")                                ; ctcº¸¿©ÁÜ
     (princ ctc)
 
-    (initget "Num Ctc Ok")                                      ; ®¸÷ µa¦ ¢‰´á¥±
+    (initget "Num Ctc Ok")                                      ; ¼öÁ¤ ¿©ºÎ ¹°¾îº½
     (setq loop (getkword "\nchange Number/Ctc/<Ok>: "))
     (if (= loop nil) (setq loop "Ok"))
 
-    (while (/= loop "Ok")                   ; Àé‹eˆe‰b £¹ ˆ•® ¤e¥¢  ®¸÷·³b
+    (while (/= loop "Ok")                   ; Ã¶±Ù°£°Ý ¹× °¹¼ö ¹Ýº¹  ¼öÁ¤ÀÔ·Â
       (cond
-        ((= loop "Num")                                         ; ˆ•® ®¸÷
-          (setq bn (getreal "\nNumber of Rebar: "))             ;ˆ•® ·³b
-          (setq ctc (/ (* 2.0 pi r) bn))                        ;ctc‰¬e
+        ((= loop "Num")                                         ; °¹¼ö ¼öÁ¤
+          (setq bn (getreal "\nNumber of Rebar: "))             ;°¹¼ö ÀÔ·Â
+          (setq ctc (/ (* 2.0 pi r) bn))                        ;ctc°è»ê
         ) ;of loop=Num
-        ((= loop "Ctc")                                         ; ctc®¸÷
-          (setq ctc (getreal "\nC.T.C.(mm): "))                 ;ctc·³b
-          (setq bn (fix (/ (* 2.0 pi r) ctc)))                  ;ˆ•® ‰¬e
-          (setq ctc (/ (* 2.0 pi r) bn))                        ;ˆ•®µA ·Ðe ctc‰¬e
+        ((= loop "Ctc")                                         ; ctc¼öÁ¤
+          (setq ctc (getreal "\nC.T.C.(mm): "))                 ;ctcÀÔ·Â
+          (setq bn (fix (/ (* 2.0 pi r) ctc)))                  ;°¹¼ö °è»ê
+          (setq ctc (/ (* 2.0 pi r) bn))                        ;°¹¼ö¿¡ ÀÇÇÑ ctc°è»ê
         ) ;of loop=Ctc
       ) ;of cond
-      (princ "\nNumber of rebar: ")                             ; ˆ•® Â‰b
+      (princ "\nNumber of rebar: ")                             ; °¹¼ö Ãâ·Â
       (princ bn)
-      (princ "  New C.T.C.(mm): ")                              ; ctcÂ‰b
+      (princ "  New C.T.C.(mm): ")                              ; ctcÃâ·Â
       (princ ctc)
-      (initget "Num Ctc Ok")                                    ; ”a¯¡ ®¸÷Ði ˆõ·¥ˆa?
+      (initget "Num Ctc Ok")                                    ; ´Ù½Ã ¼öÁ¤ÇÒ °ÍÀÎ°¡?
       (setq loop (getkword "\nchange Number/Ctc/Ok: "))
-      (if (= loop nil) (setq loop "Ok"))                        ; return·³b¯¡ OK¡ ¥±
+      (if (= loop nil) (setq loop "Ok"))                        ; returnÀÔ·Â½Ã OK·Î º½
     ) ;of while
 
 
-    (setq ccen (polar cen (* 1.5 pi) r))                        ;Àõ Àé‹e ¶áÃ¡(Ða”e)
+    (setq ccen (polar cen (* 1.5 pi) r))                        ;Ã¹ Ã¶±Ù À§Ä¡(ÇÏ´Ü)
 
-    (setq oldc (getvar "CECOLOR"))                              ;Ñe¸¬‚ ”Ï¡
-    (setvar "CECOLOR" "YELLOW")                                 ;¬‚·i ‘¡œe¬‚·a¡
-    (command "CIRCLE" cen "D" (- pdia (* 2 (- cover 15))))      ;›¡Àé‹e
-    (command "DONUT" "0" "30" ccen "")    ;•¡a¯a ‹aŸ¡‹¡
-    (setvar "CECOLOR" oldc)                                     ;Ñe¸¬‚ –A•©Ÿ¡‹¡
+    (setq oldc (getvar "CECOLOR"))                              ;ÇöÀç»ö ´ëÇÇ
+    (setvar "CECOLOR" "2")                                 ;»öÀ» ³ë¶õ»öÀ¸·Î
+    (command "CIRCLE" cen "D" (- pdia (* 2 (- cover 15))))      ;¶ìÃ¶±Ù
+    (command "DONUT" "0" "30" ccen "")    ;µµ³ª½º ±×¸®±â
+    (setvar "CECOLOR" oldc)                                     ;ÇöÀç»ö µÇµ¹¸®±â
 
-    (setq dent (ssget "L"))                                     ;•¡a¯a µEË¡Ë¡ ¬åÈ‚
+    (setq dent (ssget "L"))                                     ;µµ³ª½º ¿£Æ¼Æ¼ ¼±ÅÃ
     (command "ARRAY" (list (ssname dent 0) ccen) "" "P" cen (fix bn) "360" "Y")  ;array
 
-    (setq count (1+ count))                                     ;”a·q ”e·a¡
+    (setq count (1+ count))                                     ;´ÙÀ½ ´ÜÀ¸·Î
   ) ;of repeat
 
-  (pop-env)                                                     ;ÑÅ‰w¥e®ˆt –A•©Ÿ¡‹¡
+  (pop-env)                                                     ;È¯°æº¯¼ö°ª µÇµ¹¸®±â
   (setq *error* oer seterr nil)
   (prin1)
 

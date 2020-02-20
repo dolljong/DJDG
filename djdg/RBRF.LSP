@@ -38,7 +38,7 @@ ah bn mls mle oldc
     (setq mle (list (/ (+ (car l1e) (car l2e)) 2.0)
                     (/ (+ (cadr l1e) (cadr l2e)) 2.0)))
     (setq oldc (getvar "CECOLOR"))
-    (setvar "CECOLOR" "YELLOW")
+    (setvar "CECOLOR" "2")
     (command "LINE" mls mle "")
     (setvar "CECOLOR" oldc)
     (halfr mls mle l1s l1e (/ bn 2.0))
@@ -83,7 +83,7 @@ l1s l1e l2s l2e bn
 (setq da (/ pi bn))
 
 (setq oldc (getvar "CECOLOR"))
-(setvar "CECOLOR" "YELLOW")
+(setvar "CECOLOR" "2")
 (setq count 1)
 (repeat (fix (/ bn 2.0))
   (setq l1s-1 (list (+ (car l1s) (* xsgn (sin (* count da)) r)) (cadr l1s)))

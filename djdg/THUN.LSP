@@ -53,7 +53,7 @@
   (setq spnts2 (inters sp1 ep1 spnts0 slpnts))
   (setq spnte2 (inters sp2 ep2 spnte0 slpnte))
 
-  (setvar "CECOLOR" "GREEN")
+  (setvar "CECOLOR" "3")
   (command "LINE" slpnts slpnte "")
 
   (command "LINE" sp1 spnts2 "")

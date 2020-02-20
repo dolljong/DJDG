@@ -63,7 +63,7 @@
 
   (command "INSERT" blkdir ip ds (* ds vs) "")                ;화살표삽입
   (setq oldc (getvar "CECOLOR"))
-  (setvar "CECOLOR" "GREEN")
+  (setvar "CECOLOR" "3")
   (command "PLINE" ip p1 p2 "")                               ;리더선 그림
   (setvar "CECOLOR" oldc)
   (command "TEXT" "J" "M" tp (* th ds) "0" (strcase txt))    ;텍스트 씀

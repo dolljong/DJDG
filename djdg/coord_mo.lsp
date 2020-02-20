@@ -38,9 +38,9 @@ ds p1 p2 ang w4 ys tp tbox tl p3
     (setq ys (* -1 ds))                                            
   ) ;of if
   (command "INSERT" (strcat (prefix) "blocks/arw1") p1 ds ys (rtod ang))
-  (setvar "CECOLOR" "RED")
+  (setvar "CECOLOR" "1")
   (command "LINE" p1 p2 "")                                 
-  (setvar "CECOLOR" "WHITE")
+  (setvar "CECOLOR" "7")
 
   (if (or (= w4 1) (= w4 4))
     (progn                                                  
@@ -58,9 +58,9 @@ ds p1 p2 ang w4 ys tp tbox tl p3
   (setq p3 (list (+ (car p2) (* 5.0 ys) (* tl (/ (abs ys) ys)))     
                  (cadr p2) 0.0))
 
-  (setvar "CECOLOR" "RED")                                  
+  (setvar "CECOLOR" "1")                                  
   (command "LINE" p2 p3 "")                                 
-  (setvar "CECOLOR" "WHITE")                                
+  (setvar "CECOLOR" "7")                                
 
   (pop-env)                                                 
   (setq *error* oer seterr nil)

@@ -52,7 +52,7 @@
      (setq index (1+ index))
    ) ;of repeat
    (setq oldc (getvar "CECOLOR"))
-   (setvar "CECOLOR" "RED")
+   (setvar "CECOLOR" "1")
    (command "LINE" spnt epnt "")
    (setvar "CECOLOR" oldc)
   (setq *error* oer seterr nil)

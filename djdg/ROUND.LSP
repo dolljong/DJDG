@@ -51,7 +51,7 @@ ds ent1 ent2 pnt1s pnt1e pnt2s pnt2e ans mpnts mpnte
     (setq mpnte (list (/ (+ (car pnt1e) (car pnt2e)) 2.0)
                       (/ (+ (cadr pnt1e) (cadr pnt2e)) 2.0)))
     (setq oldclr (getvar "CECOLOR"))
-    (setvar "CECOLOR" "RED")
+    (setvar "CECOLOR" "1")
     (setq oldlt (getvar "CELTYPE"))
     (setvar "CELTYPE" "CENTER")
     (COMMAND "LINE"  mpnts mpnte "")
@@ -86,7 +86,7 @@ sdst edst lpnts lpnte ds p1s p1e oldclr     ;Argument는 두선의 시작점과 끝점
 
              ;두 선간의 거리가 2미리이상 일때만 두 선의 중간에다 선을 그린다
 (setq oldclr (getvar "CECOLOR"))
-(setvar "CECOLOR" "GREEN")
+(setvar "CECOLOR" "3")
 (while (or (> sdst (* ds 1.0)) (> edst (* ds 1.0)))
   (setq lpnts (list (/ (+ (car p1s) (car p2s)) 2.0)      ;두 시작점의 중간점 X
                     (/ (+ (cadr p1s) (cadr p2s)) 2.0)))  ;                   Y

@@ -310,7 +310,7 @@
         iy (cadr ip))                       ;삽입점 y
 
   ;;; 수직철근반복
-  (setvar "CECOLOR" "YELLOW")
+  (setvar "CECOLOR" "2")
   (setq n 0)
   (repeat (1+ n1)
     (command "LINE" (list (+ ix ex (* n p1)) iy)    ;시작점(위)
@@ -587,7 +587,7 @@
   (setvar "CMDECHO" 0)                        ;환경변수 셋팅 명령메아리 끄기
   (setvar "BLIPMODE" 0)                       ;BLIP MODE 끄기
   (setq oldclr (getvar "CECOLOR"))            ;옛색깔 기억하기
-  (setvar "CECOLOR" "RED")                    ;색깔은 빨간색으로
+  (setvar "CECOLOR" "1")                    ;색깔은 빨간색으로
   (setq ds (getvar "DIMSCALE"))               ;스케일
   (setq rc (* ds 3.5))                        ;마킹원의 반지름
 
@@ -701,7 +701,7 @@
   (command "CIRCLE" cp rc)
   (setvar "CECOLOR" oldclr)
 
-  (setvar "CECOLOR" "WHITE")
+  (setvar "CECOLOR" "7")
 ;  (setq mk (getstring "\nEnter Marking: "))
   (txtinc mk cp txtrot)
 ;  (setq dia (getstring "\nEnter Rebar Dia: "))

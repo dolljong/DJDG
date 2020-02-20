@@ -63,7 +63,7 @@ txt     rslt    txt1    fspn    bspn    num     txtpnt  tr-il
                            (+ ipy (* row rgap2))))   ;라인 첫점
             (setq p2 (list (+ ipx (* clm th))
                            (+ ipy (* row rgap2))))       ;라인 끝점
-            (setvar "CECOLOR" "RED")
+            (setvar "CECOLOR" "1")
             (command "LINE" p1 p2 "")                    ;라인 그림
             (setvar "CECOLOR" "BYLAYER")
             (setq pflag 1)
@@ -81,7 +81,7 @@ txt     rslt    txt1    fspn    bspn    num     txtpnt  tr-il
                        (+ ipy (* (- row 1) rgap2)))
               p2 (list (+ ipx (* clm th))
                        (+ ipy (* (+ row 1) rgap2))))
-        (setvar "CECOLOR" "RED")
+        (setvar "CECOLOR" "1")
         (command "LINE" p1 p2 "")
         (setvar "CECOLOR" "BYLAYER")
         (if (= vflag 0)                 ; 처음이면 수직선 사이의
@@ -100,14 +100,14 @@ txt     rslt    txt1    fspn    bspn    num     txtpnt  tr-il
                   (progn
                     (setq txtpnt (list (+ ipx (- (* (- clm bspn) th) th2))   ;글자위치
                                        (+ ipy (- (* row rgap2) th2))))
-                    (setvar "CECOLOR" "WHITE")
+                    (setvar "CECOLOR" "7")
                     (command "TEXT" "R" txtpnt th "0" txt1)             ;글자 씀
                     (setvar "CECOLOR" "BYLAYER")
                   ) ;of progn THEN
                   (progn
                     (setq txtpnt (list (+ ipx (+ (* (+ vloc fspn) th) th2))   ;글자위치
                                        (+ ipy (- (* row rgap2) th2))))
-                    (setvar "CECOLOR" "WHITE")
+                    (setvar "CECOLOR" "7")
                     (command "TEXT" txtpnt th "0" txt1)             ;글자 씀
                     (setvar "CECOLOR" "BYLAYER")
                   ) ;of progn ELSE

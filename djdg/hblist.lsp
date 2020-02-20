@@ -468,7 +468,7 @@
       (command "TEXT" "MR" (list tlx y) th "0.0" (rtos tl 2 3))  ;총길이
 
       (setq ly (- y (/ lh 2.0)))                                    ;line y좌표
-      (setq oldc (getvar "CECOLOR")) (setvar "CECOLOR" "RED")
+      (setq oldc (getvar "CECOLOR")) (setvar "CECOLOR" "1")
       (command "LINE" (list ix ly) (list (+ ix (* 200 s)) ly) "")      ;line그리기
       (setvar "CECOLOR" oldc)
 
@@ -520,7 +520,7 @@
     (setq vy1 (- iy (* vy1 lh) (/ lh -2.0))
           vy2 (- iy (* cl lh) (/ lh -2.0)))
 
-    (setq oldc (getvar "CECOLOR"))  (setvar "CECOLOR" "RED")
+    (setq oldc (getvar "CECOLOR"))  (setvar "CECOLOR" "1")
     (command "LINE" (list ix ly) (list (+ ix (* 200 s)) ly) "")      ;line그리기
     (command "LINE" (list (+ ix (*  20 s)) vy1) (list (+ ix (*  20 S)) vy2) "")
     (command "LINE" (list (+ ix (*  40 s)) vy1) (list (+ ix (*  40 S)) vy2) "")
@@ -547,15 +547,15 @@
   (setq vy1 (+ iy (/ lh 2.0))
         vy2 (- iy (* (1+ cl) lh) (/ lh -2.0)))
 
-  (setq oldc (getvar "CECOLOR")) (setvar "CECOLOR" "WHITE")
+  (setq oldc (getvar "CECOLOR")) (setvar "CECOLOR" "7")
   (command "LINE" (list ix ly) (list (+ ix (* 200 s)) ly) "")      ;line그리기
   (command "LINE" (list ix vy1) (list ix vy2) "")
-  (setvar "CECOLOR" "RED")
+  (setvar "CECOLOR" "1")
   (command "LINE" (list (+ ix (* 90 s)) vy1) (list (+ ix (* 90 s)) vy2) "")
   (command "LINE" (list (+ ix (* 120 s)) vy1) (list (+ ix (* 120 s)) vy2) "")
   (command "LINE" (list (+ ix (* 140 s)) vy1) (list (+ ix (* 140 s)) vy2) "")
   (command "LINE" (list (+ ix (* 170 s)) vy1) (list (+ ix (* 170 s)) vy2) "")
-  (setvar "CECOLOR" "WHITE")
+  (setvar "CECOLOR" "7")
   (command "LINE" (list (+ ix (* 200 s)) vy1) (list (+ ix (* 200 s)) vy2) "")
   (setvar "CECOLOR" oldc)
 
