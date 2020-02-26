@@ -17,7 +17,7 @@ You can get DJDG-master.zip
 # Command list
 | Command | 설명(Kor) | Description(Eng) |
 |---------|---------|----------|
-|2PD		|[두 점간의 길이 기입하기](https://gumifo.org/djdg/manual/2/2pd.htm)	|Write distance between two points|
+|2PD		|[두 점간의 길이 기입하기](http://gumifo.org/djdg/manual/2/2pd.htm)	|Write distance between two points|
 |ABUT		|교대단면그리기리			|Draw section of abutment|
 |ADDTEXT	|숫자 text에 일정값 더하기	|Plus number on number text|
 |ALL-ULT	|설계방법표시하기			|Insert Design Method(Allowable/Ultimate)|
