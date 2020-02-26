@@ -19,25 +19,25 @@ You can get DJDG-master.zip
 |---------|---------|----------|
 |2PD		|[두 점간의 길이 기입하기](http://gumifo.org/djdg/manual/8/2pd.htm)	|Write distance between two points|
 |ABUT		|[교대단면그리기리			](http://gumifo.org/djdg/manual/3/abut.htm)|Draw section of abutment|
-|ADDTEXT	|[숫자 text에 일정값 더하기	]|Plus number on number text|
+|ADDTEXT	|[숫자 text에 일정값 더하기	](http://gumifo.org/djdg/manual/7/addtext.htm)|Plus number on number text|
 |ALL-ULT	|[설계방법표시하기			](http://gumifo.org/djdg/manual/2/all-ult.htm)|Insert Design Method(Allowable/Ultimate)|
-|ALLPLOT	|[모든 도곽출력			    ]|Plot all borders|
-|APLOT		|[선택된 도곽 출력			]|Plot selected borders|
+|ALLPLOT	|[모든 도곽출력			    ](http://gumifo.org/djdg/manual/8/allplot.htm) |Plot all borders|
+|APLOT		|[선택된 도곽 출력			](http://gumifo.org/djdg/manual/8/aplot.htm) |Plot selected borders|
 |ARD		|[구간 Array	           	](http://gumifo.org/djdg/manual/4/ard.htm)|Array linear between seclected two point|
 |ARP		|[호를 따라 Array			](http://gumifo.org/djdg/manual/7/arp.htm)  |Array polar between seclected two point|
-|ARSLOP		|[기울어진 면을 따라 Array		]|Array linear referencing inclined line|
-|ASLAB		|[콘크리트포장용 접속슬래브 그리기	    ]|Draw approach slab (Concrete pavement type)|
-|B1			|[철근마킹-1(밑줄있음)			]|Rebar marking type-1(with under line)|
-|B3			|[철근마킹-3(밑줄있음)			]|Rebar marking type-2(with under line)|
-|B4			|[철근마킹-4(밑줄있음)			]|Rebar marking type-3(with under line)|
-|B5			|[철근마킹-5(밑줄있음)			]|Rebar marking type-4(with under line)|
-|B6			|[철근마킹-6(밑줄있음)			]|Rebar marking type-5(with under line)|
-|BAR		|[철근상세도로 철근재료표 만들기	]|Make rebar table using rebar details|
-|BASEC		|[Base Con'c 그리기		]|Draw base concrete|
-|BB	ENTITY 	|[한점에서 자르기				]|Break a entity at a point|
-|BC			|[철근마킹 바꾸기(밑줄없음→밑줄있음)	]|Change rebar marking type|
-|BCN		|[차례대로 숫자 쓰기				]|Write number |
-|BCROSS		|[서로만나는점에서 자르기			]|Write numbers in sequence|
+|ARSLOP		|[기울어진 면을 따라 Array		](http://gumifo.org/djdg/manual/4/arslop.htm) |Array linear referencing inclined line|
+|ASLAB		|[콘크리트포장용 접속슬래브 그리기	    ](http://gumifo.org/djdg/manual/3/aslab.htm)|Draw approach slab (Concrete pavement type)|
+|B1			|[철근마킹-1(밑줄있음)			](http://gumifo.org/djdg/manual/4/b1.htm) |Rebar marking type-1(with under line)|
+|B3			|[철근마킹-3(밑줄있음)			](http://gumifo.org/djdg/manual/4/b3.htm) |Rebar marking type-2(with under line)|
+|B4			|[철근마킹-4(밑줄있음)			](http://gumifo.org/djdg/manual/4/b4.htm)|Rebar marking type-3(with under line)|
+|B5			|[철근마킹-5(밑줄있음)			](http://gumifo.org/djdg/manual/4/b5.htm)|Rebar marking type-4(with under line)|
+|B6			|[철근마킹-6(밑줄있음)			](http://gumifo.org/djdg/manual/4/b6.htm)|Rebar marking type-5(with under line)|
+|BAR		|[철근상세도로 철근재료표 만들기	](http://gumifo.org/djdg/manual/4/bar.htm)|Make rebar table using rebar details|
+|BASEC		|[Base Con'c 그리기		](http://gumifo.org/djdg/manual/3/basec.htm)|Draw base concrete|
+|BB	ENTITY 	|[한점에서 자르기				](http://gumifo.org/djdg/manual/7/bb.htm) |Break a entity at a point|
+|BC			|[철근마킹 바꾸기(밑줄없음→밑줄있음)	](http://gumifo.org/djdg/manual/4/bc.htm)|Change rebar marking type|
+|BCN		|[차례대로 숫자 쓰기				](http://gumifo.org/djdg/manual/8/bcn.htm) |Write numbers in sequence |
+|BCROSS		|[서로만나는점에서 자르기			](http://gumifo.org/djdg/manual/8/bcross.htm)|Break all across points|
 |BDASH		|[선의 일부를 숨은선으로 고치기	]|Change a part of line to hidden line|
 |BM1		|[철근마킹-1(밑줄없음)		]|Rebar marking type-1(Only circle)|
 |BM2		|[철근마킹 보조선				]|Rebar marking type-2(Only circle)|
