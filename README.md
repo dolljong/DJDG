@@ -18,13 +18,13 @@ You can get DJDG-master.zip
 | Command | 설명(Kor) | Description(Eng) |
 |---------|---------|----------|
 |2PD		|[두 점간의 길이 기입하기](http://gumifo.org/djdg/manual/8/2pd.htm)	|Write distance between two points|
-|ABUT		|[교대단면그리기리			](http://gumifo.org/djdg/manul/3/abut.htm)|Draw section of abutment|
+|ABUT		|[교대단면그리기리			](http://gumifo.org/djdg/manual/3/abut.htm)|Draw section of abutment|
 |ADDTEXT	|[숫자 text에 일정값 더하기	]|Plus number on number text|
-|ALL-ULT	|[설계방법표시하기			](http://gumifo.org/djdg/manul/2/all-ult.htm)|Insert Design Method(Allowable/Ultimate)|
+|ALL-ULT	|[설계방법표시하기			](http://gumifo.org/djdg/manual/2/all-ult.htm)|Insert Design Method(Allowable/Ultimate)|
 |ALLPLOT	|[모든 도곽출력			    ]|Plot all borders|
 |APLOT		|[선택된 도곽 출력			]|Plot selected borders|
-|ARD		|[구간 Array	           	](http://gumifo.org/djdg/manul/4/ard.htm)|Array linear between seclected two point|
-|ARP		|[호를 따라 Array			](http://gumifo.org/djdg/manul/7/arp.htm)  |Array polar between seclected two point|
+|ARD		|[구간 Array	           	](http://gumifo.org/djdg/manual/4/ard.htm)|Array linear between seclected two point|
+|ARP		|[호를 따라 Array			](http://gumifo.org/djdg/manual/7/arp.htm)  |Array polar between seclected two point|
 |ARSLOP		|[기울어진 면을 따라 Array		]|Array linear referencing inclined line|
 |ASLAB		|[콘크리트포장용 접속슬래브 그리기	    ]|Draw approach slab (Concrete pavement type)|
 |B1			|[철근마킹-1(밑줄있음)			]|Rebar marking type-1(with under line)|
