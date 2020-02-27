@@ -35,7 +35,7 @@ You can get DJDG-master.zip
 |BAR		|[철근상세도로 철근재료표 만들기	](http://gumifo.org/djdg/manual/4/bar.htm)|Make rebar table using rebar details|
 |BASEC		|[Base Con'c 그리기		](http://gumifo.org/djdg/manual/3/basec.htm)|Draw base concrete|
 |BB	ENTITY 	|[한점에서 자르기				](http://gumifo.org/djdg/manual/7/bb.htm) |Break a entity at a point|
-|BC			|[철근마킹 바꾸기(밑줄없음→밑줄있음)	](http://gumifo.org/djdg/manual/4/cb.htm)|Change rebar marking type|
+|CB			|[철근마킹 바꾸기(밑줄없음→밑줄있음)	](http://gumifo.org/djdg/manual/4/cb.htm)|Change rebar marking type|
 |BCN		|[차례대로 숫자 쓰기				](http://gumifo.org/djdg/manual/8/bcn.htm) |Write numbers in sequence |
 |BCROSS		|[서로만나는점에서 자르기			](http://gumifo.org/djdg/manual/8/bcross.htm)|Break all across points|
 |BDASH		|[선의 일부를 숨은선으로 고치기	](http://gumifo.org/djdg/manual/7/bdash.htm)|Change a part of line to hidden line|
