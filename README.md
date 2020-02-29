@@ -26,7 +26,7 @@ You can get DJDG-master.zip
 |<img src=https://github.com/dolljong/DJDG/blob/master/manual/4/ncmar086.gif width=50> ARD		|[구간 Array	           	](http://gumifo.org/djdg/manual/4/ard.htm)|Array linear between seclected two point|
 |<img src=https://github.com/dolljong/DJDG/blob/master/manual/7/trjqh042.gif width=50> ARP		|[호를 따라 Array			](http://gumifo.org/djdg/manual/7/arp.htm)  |Array polar between seclected two point|
 |<img src=https://github.com/dolljong/DJDG/blob/master/manual/4/ncmar091.gif width=50> ARSLOP		|[기울어진 면을 따라 Array		](http://gumifo.org/djdg/manual/4/arslop.htm) |Array linear referencing inclined line|
-|<img src=https://github.com/dolljong/DJDG/blob/master/manual/4/vkocw073.gif width=50> ASLAB		|[콘크리트포장용 접속슬래브 그리기	    ](http://gumifo.org/djdg/manual/3/aslab.htm)|Draw approach slab (Concrete pavement type)|
+|<img src=https://github.com/dolljong/DJDG/blob/master/manual/3/vkocw073.gif width=50> ASLAB		|[콘크리트포장용 접속슬래브 그리기	    ](http://gumifo.org/djdg/manual/3/aslab.htm)|Draw approach slab (Concrete pavement type)|
 |<img src=https://github.com/dolljong/DJDG/blob/master/manual/4/ncmar024.gif width=50> B1			|[철근마킹-1(밑줄있음)			](http://gumifo.org/djdg/manual/4/b1.htm) |Rebar marking type-1(with under line)|
 |<img src=https://github.com/dolljong/DJDG/blob/master/manual/4/ncmar028.gif width=50> B3			|[철근마킹-3(밑줄있음)			](http://gumifo.org/djdg/manual/4/b3.htm) |Rebar marking type-2(with under line)|
 |<img src=https://github.com/dolljong/DJDG/blob/master/manual/4/ncmar031.gif width=50> B4			|[철근마킹-4(밑줄있음)			](http://gumifo.org/djdg/manual/4/b4.htm)|Rebar marking type-3(with under line)|
