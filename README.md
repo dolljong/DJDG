@@ -58,7 +58,9 @@ You can get DJDG-master.zip
 |<img src=https://github.com/dolljong/DJDG/blob/master/manual/6/fmhbs026.gif width=50> CDS		|[치수선 Scale고치기			](http://gumifo.org/djdg/manual/6/cds.htm) |Change Scale of Dimensions|
 |<img src=https://github.com/dolljong/DJDG/blob/master/manual/8/dvtuh099.gif width=50> CEH		|[Hatch경계 Entity만 hatch layer로 복사하기	](http://gumifo.org/djdg/manual/8/ceh.htm)|Copy Entities to Hatch layer|
 | CH1~CH7	|[색바꾸기					](http://gumifo.org/djdg/manual/9/chcolor.htm)|CHange CoLoR|
-| CHLAY	|[Line type바꾸기			](http://gumifo.org/djdg/manual/9/chltype.htm) |Change line type |
+| CHLAY	|[Line type바꾸기			](http://gumifo.org/djdg/manual/9/chltype.htm) |Change line type to LAYer|
+| CHCEN	|[Line type바꾸기			](http://gumifo.org/djdg/manual/9/chltype.htm) |Change line type to CENter|
+| CHHID	|[Line type바꾸기			](http://gumifo.org/djdg/manual/9/chltype.htm) |Change line type to HIDden|
 |<img src=https://github.com/dolljong/DJDG/blob/master/manual/2/vydqp118.gif width=50> CONC		|[Con'c표시하기			](http://gumifo.org/djdg/manual/2/conc.htm) |Insert concrete marking block|
 |<img src=https://github.com/dolljong/DJDG/blob/master/manual/8/dvtuh017.gif width=50> COORD2		|[CAD상의 좌표기입			](http://gumifo.org/djdg/manual/8/coord2.htm) |Write coordinate|
 |<img src=https://github.com/dolljong/DJDG/blob/master/manual/7/trjqh048.gif width=50> CRC		|[원크기 한꺼번에 바꾸기		](http://gumifo.org/djdg/manual/7/crc.htm) |Change diameter of Circle at once|
