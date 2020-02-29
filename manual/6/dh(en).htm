@@ -1,0 +1,61 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN">
+<html>
+<head>
+<title>Dimension Horizontal.</title>
+
+</head>
+
+<body bgcolor="white" text="black" link="blue" vlink="purple" alink="red">
+
+<pre><font face="±¼¸²">Dimension Horizontal.</font><br>
+&nbsp;
+<img src="fmhbs004.gif" align="middle" width="85" height="62" border="0" hspace="3"> <img src="fmhbs005.gif" align="middle" width="25" height="23" border="0" hspace="3"> <font face="±¼¸²">File name : DH.LSP</font>
+<hr size="1" align="left" noshade>
+  <font face="±¼¸²">Dimensioning works spends most times when we work drawing.
+Dimensioning works ara most important when we draw drawings.
+Because workers at site are going to reference dimensions not shape on drawing. 
+Numbers of Dimension are more important.</font> <br>  
+<br>
+&nbsp;
+  ¡ß<font face="¹ÙÅÁ"><b> </b></font><font face="µ¸¿ò"><b>Functions and Notice</b></font><font face="±¼¸²">
+      ¢¹ You can make dimension continuously. 
+      ¢¹ You can enter distance directly 
+      ¢¹ You can determine posiotion of dimension by choose level not by picking a point
+      ¢¹ You can use  @ option. If you enter @100 when program ask dimension text, then 
+        Program calulate actual length. At that time, if width of dimension is less then width of text, 
+        Program divides dimension text to '10@100' part and '=1000' part. 
+        and program writes '=1000' part under '10@100' part.
+      ¢¹ If calculation result of @ option is different from actual distance, 
+        program writes dimension text that is result of @ calculation and actual distance.
+        for example if you pick two point, distance is 1050, and you enter @100. 
+        Program calculate 1050/100, then result of calculation is 10.5. 
+        0.5 is ignored. dimention text becomes 10@100=1050</font> <br>     
+<br>
+&nbsp;
+<font face="¹ÙÅÁ"><b><u><img src="pencel.gif" border="0"> Example-1(level 1)</u></b></font>
+<font face="Courier New">Pick first point/Object:</font><font face="±¼¸²"> {p1}</font>   <font face="±¼¸²">[Pick start point of dimension]</font>
+<font face="Courier New">Pick Dimension line side:</font><font face="±¼¸²"> {p2}</font>  <font face="±¼¸²">[Pick position point(up or down)]</font>
+<font face="Courier New">Level &lt;1&gt;:</font><font face="±¼¸²"> <img src="enter.gif" border="0"></font>                            <font face="±¼¸²">[Enter dimension level(in this case level-1)]</font>
+<font face="Courier New">Distance or RETURN to Pick point:</font><font face="±¼¸²"> </font><font face="±¼¸²"><b>950</b></font><font face="±¼¸²"><img src="enter.gif" border="0"></font>  <font face="±¼¸²">[If you know distance, Enter distance]</font>
+<font face="Courier New">Dimension text &lt;950&gt;:</font><font face="±¼¸²"> <img src="enter.gif" border="0"></font>         <font face="±¼¸²">[Program show distance text, You can change text]</font>
+<font face="Courier New">Distance or RETURN to Pick point/eXit:</font><font face="±¼¸²"> <img src="enter.gif" border="0"></font>        <font face="±¼¸²">[If you don't know distance type enter key to pick point]</font>
+<font face="Courier New">Pick point:</font><font face="±¼¸²"> </font><font face="±¼¸²"><b>mid</b></font><font face="±¼¸²"><img src="enter.gif" border="0"></font>
+<font face="±¼¸²">of {p3}</font>                                 <font face="±¼¸²">[Pick a point. in this case osnap mid was used]</font>
+<font face="Courier New">Dimension text &lt;17.600&gt;:</font><font face="±¼¸²"> </font><font face="±¼¸²"><b>@2200</b></font><font face="±¼¸²"><img src="enter.gif" border="0"></font> <font face="±¼¸²">[ use @option when program shows dim text,]</font>
+<font face="Courier New">Distance or RETURN to Pick point/eXit:</font><font face="±¼¸²"> </font><font face="±¼¸²"><b>950</b></font><font face="±¼¸²"><img src="enter.gif" border="0"></font>      <font face="±¼¸²">[Enter distance that you know]</font>
+<font face="Courier New">Dimension text &lt;950&gt;:</font><font face="±¼¸²"> <img src="enter.gif" border="0"></font>         <font face="±¼¸²">[Type enter key to use the text that program shows ]</font>
+<font face="Courier New">Distance or RETURN to Pick point/eXit:</font><font face="±¼¸²"> </font><font face="±¼¸²"><b>x</b></font><font face="±¼¸²"><img src="enter.gif" border="0"></font>       <font face="±¼¸²">[Enter 'x' to finish DH command]</font><br>
+
+<font face="¹ÙÅÁ"><b><u><img src="pencel.gif" border="0"> Example-2(level 2)</u></b></font>
+<font face="¹ÙÅÁ">{Start DH}</font>                  <font face="±¼¸²">[Start DH command to draw level 2 dimension]</font>
+<font face="Courier New">Pick first point/Object:</font><font face="±¼¸²"> {p1}</font>   <font face="±¼¸²">[Pick start point, Pick node of level-1 dimension]</font>
+<font face="Courier New">Pick Dimension line side:</font><font face="±¼¸²"> {p2}</font>  <font face="±¼¸²">[Pick side point (up or down)]</font>
+<font face="Courier New">Level &lt;1&gt;:</font><font face="±¼¸²"> </font><font face="±¼¸²"><b>2</b></font><font face="±¼¸²"><img src="enter.gif" border="0"></font>                           <font face="±¼¸²">[Enter '2' to draw level-2 dimension]</font>
+<font face="Courier New">Distance or RETURN to Pick point:</font><font face="±¼¸²"> </font><font face="±¼¸²"><b>19500</b></font><font face="±¼¸²"><img src="enter.gif" border="0"></font>        <font face="±¼¸²">[Enter distance that you know]</font>
+<font face="Courier New">Dimension text &lt;19.500&gt;:</font><font face="±¼¸²"> <img src="enter.gif" border="0"></font>              <font face="±¼¸²">[Use the text that program shows. If you want to change, Enter your text]</font>
+<font face="Courier New">Distance or RETURN to Pick point/eXit:</font><font face="±¼¸²"> <img src="enter.gif" border="0"></font>        <font face="±¼¸²">[Type enter to finish DH command ]</font> <br>
+&nbsp;
+<img src="dh.gif" align="middle" width="588" height="207" border="0" hspace="3"></pre>
+</body>
+
+</html>
