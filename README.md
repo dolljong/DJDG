@@ -108,7 +108,7 @@ You can get DJDG-master.zip
 |NOTEBOX	|[Note Box그리기				](http://gumifo.org/djdg/manual/2/notebox.htm)|Draw note box|
 |NT			|[치수 고치기					](http://gumifo.org/djdg/manual/6/nt.htm) |Edit text with Dialog box In succession|
 |NUMCOOR	|[좌표list만들기				](http://gumifo.org/djdg/manual/8/numcoor.htm)|Make coordinate list of selected points|
-|OB			|[기준선에 맞춰 Oblique하기		](http://gumifo.org/djdg/manual/6/ob.htm)|Convert vertical dimension to Oblique dim|
+|OB			|[기준선에 맞춰 Oblique하기		](http://gumifo.org/djdg/manual/6/ob.htm)|Convert to Oblique dimension adjusting exist line|
 |PARA		|[포물선 그리기				](http://gumifo.org/djdg/manual/8/para.htm)|Draw Parabola|
 |PARC		|[Arc위의 임의 점 잡아내기		](http://gumifo.org/djdg/manual/9/parc.htm) |Find the point that is far from your point on the arc |
 |PIER		|[교각측면도 그리기			](http://gumifo.org/djdg/manual/3/pier.htm)|Draw pier side view using dialog box|
