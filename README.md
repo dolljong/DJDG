@@ -130,7 +130,7 @@ You can get DJDG-master.zip
 |RREF		|[Rotate referance		](http://gumifo.org/djdg/manual/7/rref.htm) |Rotate referance|
 |RTEXT		|[글자 둥글게 배열하기			](http://gumifo.org/djdg/manual/2/rtext.htm)|Write text on circle or arc|
 |RWALL		|[옹벽단면 그리기				](http://gumifo.org/djdg/manual/3/rwall.htm)|Draw retaining wall section using Dialog box|
-|<img src=https://github.com/dolljong/DJDG/blob/master/manual/2/vydqp021.gif width=100>SARW		|[단면표시 하기				](http://gumifo.org/djdg/manual/2/sarw.htm)|Insert Section arrow |
+|<img src=https://github.com/dolljong/DJDG/blob/master/manual/2/vydqp021.gif width=50>SARW		|[단면표시 하기				](http://gumifo.org/djdg/manual/2/sarw.htm)|Insert Section arrow |
 |SB			|[Split철근 그리기			](http://gumifo.org/djdg/manual/4/sb.htm) |Draw rebar that resists splitting forces|
 |SBLOCK		|[교량받침블럭 보강철근 그리기	](http://gumifo.org/djdg/manual/4/sblock.htm)|Draw bearing block|
 |SHATCH		|[간단하게 Solid Hatch하기	](http://gumifo.org/djdg/manual/8/shatch.htm) |Solid hatch|
