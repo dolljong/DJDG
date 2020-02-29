@@ -108,8 +108,8 @@ You can get DJDG-master.zip
 |NOTEBOX	|[Note Box그리기				](http://gumifo.org/djdg/manual/2/notebox.htm)|Draw note box|
 |NT			|[치수 고치기					](http://gumifo.org/djdg/manual/6/nt.htm) |Edit text with Dialog box In succession|
 |NUMCOOR	|[좌표list만들기				](http://gumifo.org/djdg/manual/8/numcoor.htm)|Make coordinate list of selected points|
-|OB			|[기준선에 맞춰 Oblique하기		](http://gumifo.org/djdg/manual/6/ob.htm)|Convert to Oblique dimension adjusting exist line|
-|PARA		|[포물선 그리기				](http://gumifo.org/djdg/manual/8/para.htm)|Draw Parabola|
+|OB			|[기준선에 맞춰 Oblique하기		](http://gumifo.org/djdg/manual/6/ob.htm)| Convert to Oblique dimension adjusting exist line|
+|PARA		|[포물선 그리기				](http://gumifo.org/djdg/manual/8/para.htm) | Draw Parabola|
 |PARC		|[Arc위의 임의 점 잡아내기		](http://gumifo.org/djdg/manual/9/parc.htm) |Find the point that is far from your point on the arc |
 |PIER		|[교각측면도 그리기			](http://gumifo.org/djdg/manual/3/pier.htm)|Draw pier side view using dialog box|
 |PILES		|[말뚝들 그리기				](http://gumifo.org/djdg/manual/3/piles.htm)|Draw piles using dialog box|
@@ -130,7 +130,7 @@ You can get DJDG-master.zip
 |RREF		|[Rotate referance		](http://gumifo.org/djdg/manual/7/rref.htm) |Rotate referance|
 |RTEXT		|[글자 둥글게 배열하기			](http://gumifo.org/djdg/manual/2/rtext.htm)|Write text on circle or arc|
 |RWALL		|[옹벽단면 그리기				](http://gumifo.org/djdg/manual/3/rwall.htm)|Draw retaining wall section using Dialog box|
-|SARW		|[단면표시 하기				](http://gumifo.org/djdg/manual/2/sarw.htm)|Insert Section arrow |
+|<img src=https://github.com/dolljong/DJDG/blob/master/manual/2/vydqp021.gif>SARW		|[단면표시 하기				](http://gumifo.org/djdg/manual/2/sarw.htm)|Insert Section arrow |
 |SB			|[Split철근 그리기			](http://gumifo.org/djdg/manual/4/sb.htm) |Draw rebar that resists splitting forces|
 |SBLOCK		|[교량받침블럭 보강철근 그리기	](http://gumifo.org/djdg/manual/4/sblock.htm)|Draw bearing block|
 |SHATCH		|[간단하게 Solid Hatch하기	](http://gumifo.org/djdg/manual/8/shatch.htm) |Solid hatch|
