@@ -1,0 +1,73 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN">
+<html>
+<head>
+<title>make data file for G-Section</title>
+
+</head>
+
+<body bgcolor="white" text="black" link="blue" vlink="purple" alink="red">
+
+<pre><font face="±¼¸²" size="4"><b>  make data file for G-Section</b></font>
+&nbsp;
+<img src="dvtuh081.gif" align="bottom" width="73" height="48" border="0"><font face="Courier New"><b> </b></font><img src="dvtuh082.gif" align="bottom" width="26" height="27" border="0"> <font face="±¼¸²">File name : gsection.lsp</font>
+<hr size="1" noshade>
+  <font face="¹ÙÅÁ">Gsection(General section)is one of the programs dedicated to civil design produced and released by DM Engineering Co., Ltd.
+and it is a program to obtain the section property values ??(section area, moment of inertia, etc.) for sections of arbitrary shape. 
+The data file of this program (* .sec) lists the x, y coordinates of each node of the single closed curve that forms the cross section. 
+If the cross section is complicated, it is not simple to find x, y coordinates one by one. 
+GSECTION.LSP of [Utility] Menu has a function to get the coordinate values ??of arbitrary section by using the picture created on the CAD 
+and make it into a data file for gsection.exe.  </font> <br>
+<br>  
+<font face="¹ÙÅÁ"><b><u><img src="pencel.gif" border="0"> </u></b></font><font face="µ¸¿ò"><b><u>Example</u></b></font><font face="¹ÙÅÁ"><b><u> </u></b></font>
+  <font face="¹ÙÅÁ">Let's get the section property of the PSC BOX section as shown below.. </font> <br>  
+<br>
+<img src="gsection1.gif" align="bottom" width="576" height="89" border="0" hspace="3"><br>
+&nbsp;
+  <font face="¹ÙÅÁ">What you should know before starting the job is 'gsection.exe can recognize only a single closed curve'
+As shown in the figure above, the hollow section is not a single closed line, so add three lines as shown below to create a single closed curve. 
+Now if you start at one point and follow the line, you will return to where you started again. You need to prepare a single closed curve. 
+Of course, if it's not hollow, you don't need this.<br>
+&nbsp;</font></pre>
+<pre><div align="left">  <img src="gsection2.gif" align="bottom" width="563" height="83" border="0" hspace="3"><br></div></pre>
+<pre>&nbsp;</pre>
+<pre><div align="left">&nbsp;</div></pre>
+<pre>  <font face="¹ÙÅÁ">Now run [DJDG] GSECTION.LSP.</font>
+<font face="Courier New">Command: </font><font face="Courier New"><b>gsection</b></font>
+<font face="Courier New">Pick point or [Select polyline]: </font><font face="Courier New"><b>{Pick p1}</b></font><font face="Courier New">  </font><font face="±¼¸²">[Pick a point in void space that is made by colosed curve]</font>
+<font face="Courier New">                       </font><font face="Courier New"><b>S</b></font><font face="Courier New"><img src="enter.gif" border="0"></font><font face="Courier New"><b>{Select s1}</b></font><font face="Courier New"> </font><font face="±¼¸²">[Enter 'S' option to select a polyline. You can select a colosed polyline aleady created.]</font>
+<font face="Courier New">40 node found                           40</font><font face="±¼¸²">[Program show number of nodes]</font>
+<font face="Courier New">Pick Original point: </font><font face="Courier New"><b>{Pick p2}       </b></font><font face="Courier New">[</font><font face="±¼¸²">Pickk origin point that will be 0,0 coordinate]</font>
+<font face="Courier New">Enter Title: </font><font face="Courier New"><b>P.S.C BOX</b></font><font face="Courier New">                [Enter title in the data of gsection.exe]</font>
+<font face="Courier New">Enter scale factor: </font><font face="Courier New"><b>0.001</b></font><font face="Courier New">            [Enter scale factor that will be applied to data of gsection.exe]</font> <br>
+<br></pre>
+<pre><div align="left"><img src="gsection3.gif" align="bottom" width="617" height="105" border="0" hspace="3"><br></div></pre>
+<pre>&nbsp;</pre>
+<pre><div align="left">&nbsp;</div></pre>
+<pre><font face="¹ÙÅÁ">Enter file name when dialog box like image below appears</font> <br>
+<br></pre>
+<pre><div align="left"><img src="gsection4.gif" align="bottom" width="575" height="298" border="0" hspace="3"> <br></div></pre>
+<pre>&nbsp;</pre>
+<pre><div align="left"><br></div></pre>
+<pre>&nbsp;</pre>
+<pre><div align="left">&nbsp;</div></pre>
+<pre><font face="¹ÙÅÁ">You can get result like below after running gsection.exe.<br></font>
+<font face="¹ÙÅÁ">&nbsp;</font></pre>
+<pre><div align="left"><img src="gsection5.gif" align="bottom" width="655" height="476" border="0" hspace="3"> <br></div></pre>
+<pre>&nbsp;</pre>
+<pre><div align="center">&nbsp;</div></pre>
+<div align="left"><table border cellpadding="2" cellspacing="0" bordercolordark="white"
+ bordercolorlight="black"><caption align="bottom"> </caption>
+    <tr>
+        <td width="100%"><pre><font face="¹ÙÅÁ"><b>BPOLY command(Autocad)</b></font></pre></td>
+    </tr>
+    <tr>
+        <td width="100%"><pre><font face="¹ÙÅÁ">BPOLY command makes polyline. If GSECTION program is terminated with &quot;Polyline must be 
+closed&quot;, You should make closed polyline with BPOLY command. 
+and Select polyline option when you running GSECTION command. <br>
+<font face="Courier New">command: </font><font face="Courier New"><b>bpoly</b></font><font face="Courier New">[Enter]</font>
+<img src="gsection6.gif" align="bottom" width="566" height="379" border="0"></pre></td>
+    </tr>
+</table></div>
+</body>
+
+</html>

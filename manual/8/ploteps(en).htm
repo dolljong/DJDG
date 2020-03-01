@@ -1,0 +1,58 @@
+<html>
+<head>
+<style>
+p, td,  dt {line-height:150%;font-size:10pt;text-align:justify}
+dd {font-family:µ¸¿òÃ¼;line-height:150%;font-size:10pt;color:navy}
+</style>
+
+<title>plot to eps file with size you want.</title>
+
+</head>
+
+<body bgcolor="white" text="black" link="blue" vlink="purple" alink="red">
+
+<font face="±¼¸²" size="4"><b>plot to eps file with size you want</b></font><br><br>
+&nbsp;
+<img src="ploteps2.gif" align="middle"  border="0" hspace="3"> <img src="ploteps1.gif" align="middle" border="0" hspace="3"> <font face="±¼¸²">Program name : PLOTEPS.LSP</font><br>
+<hr size="1" noshade>
+<p>
+If you want a figure that should have real size. You can use this program. this program make eps file that has size you want.
+</p>
+<p>
+  <font face="¹ÙÅÁ"><b><u><img src="pencel.gif" border="0"> </u></b></font><font face="µ¸¿ò"><b><u>Example</u></b></font><font face="¹ÙÅÁ"><b><u> </u></b></font><br>
+  
+<dl>
+<dt>Command: <b>ploteps</b><img src="enter.gif" border="0"><br>
+<dt>Pick lower left corner: end of <b>{P1}</b>    
+  <dd>[Pick first corner] When drawing, it is convenient to draw rectangle in advance. <br>
+  Otherwise, every time you make it, you'll get a different point and it's jagged<br>
+<dt>Pick upper right corner: end of <b>{P2}</b>   
+  <dd>[Pick other corner point]<br>
+<dt>Select name text: <b>{S1}</b>  
+  <dd>[Select name text]<br>
+<dt>Select size text: <b>{S2}</b>  
+  <dd>[Select size text, If there a no size text, type enter key, and enter figure size like '35*25']<br>
+<dt>Select printer Device Eps Printer: <b>e</b><img src="enter.gif" border="0"><br>
+  <dd>[Choose <b>p</b> option to print out using printer, to make eps file Choose <b>e</b> opetion]><br>
+</dl>
+<img src="ploteps.gif" align="middle" border="0" vspace="3" hspace="3">
+
+<p><img src="pencel.gif" border="0"><b><u>Notice</u></b><br><br>
+As you know well, you must set up PostScript printer through file / plotter manager / Add-A-Plotter Wizard. 
+<br>Normally, by default, the printer name will look like PostScript Level 2.pc3. 
+<br>You can check it in the plot command. 
+<br>ploteps will send the eps file with this printer name, so be sure to use this printer name correctly. 
+<Br>Where do you write? If you open the ploteps.lsp file, there are the following parts.
+
+<pre>  (setq epsplotter_name "PostScript Level 2.pc3"       ;setting printer name
+	printer_name    "HP LaserJet 5100 PCL 6")
+  (setq epsplotter_papersize "ISO A4 (297.00 x 210.00 MM)"
+	printer_papersize "A4")
+</pre>
+
+<p>As you may have noticed, this is the part that specifies the printer name and paper size to print on the eps file printer. 
+<Br>You can write the printer name and paper size you want.
+
+
+</body>
+</html>

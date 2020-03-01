@@ -1,0 +1,144 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN">
+<html>
+<head>
+<title>Draw camber .</title>
+
+</head>
+
+<body bgcolor="white" text="black" link="blue" vlink="purple" alink="red">
+
+<pre><font face="±¼¸²" size="4"><b>Draw camber .</b></font>
+&nbsp;
+<img src="dvtuh042.gif" align="middle" width="80" height="64" border="0" hspace="3"> <img src="dvtuh043.gif" align="middle" width="25" height="23" border="0" hspace="3"> <font face="±¼¸²">Program name : CAMBER.LSP</font>
+<hr size="1" noshade>
+  <font face="±¼¸²"> Most of the materials of the bridge are made of concrete or steel. 
+  Even if We make the bridge straight, the middle part of bride will be bended down due to its own weight. 
+  So civil engineers got one idea. When We make the upper structure, We make it bend upside in advance. 
+  Of course, the bending up height is equal to the amount sagging by its own weight. 
+  That way, the convex top becomes a straight structure due to its sag caused by its own weight. 
+  So designer draw camber drawing to tell contractors the volume rises (Camber) and the shape of the camber. 
+  this is annoying. Because we must reverse the sign of the amount of deflection due to self weight and change the unit of meter to cm (or mm) 
+.  The problem is that the aspect ratio is different. What happens if you draw an elevation with an aspect ratio of 1: 1? 
+The bridge is long and the deflection is small. Eventually the amount of rise in the picture will not be displayed. 
+That's why you must draw a few decades of deflection. And one more thing ... you need to make a Camber table. 
+I'm tired of writing numbers. Camber drawing looks simple(actually it is simple). 
+This is the best item to program. Simple repetitive work! 
+  CAMBER.LSP was born to solve this inconvenience. In other words, it reads data file and 
+draws camber and camber table. You can create data file by appropriately editing the deflection of the structural analysis ouput, 
+and then Run CAD and executes CAMBER.LSP. Let's look at an example of use ~ &nbsp;</font>
+  <font face="¹ÙÅÁ"><b><u><img src="pencel.gif" border="0"> Example</u></b></font>
+<font face="Courier New">LEFT MARGIN (mm)&lt;60&gt;:</font><font face="¹ÙÅÁ"> <img src="enter.gif" border="0"></font> <font face="±¼¸²">[Enter left margin between border and camber drawing]</font>
+<font face="Courier New">41-NODE / 2-CAMBER(S) / 1-COMBINATION(S) / 1-DRAWING(S) FOUND</font>
+                                <font face="±¼¸²">[Select data file using dialog box.]</font>
+<font face="Courier New">Column width (mm)&lt;20.0&gt;:<img src="enter.gif" border="0"></font>       <font face="±¼¸²">[Enter width of CAMBER TABLE column]</font> <br>
+<font face="Courier New">Enter Factor of Value &lt;1.0&gt:<img src="enter.gif" border="0"></font> <font face="±¼¸²">[Enter scale factor(For example data is m unit 
+                                                   and you want to use mm unit Enter 1000)]</font> 
+<font face="Courier New">Enter Precision &lt;3&gt;:<img src="enter.gif" border="0"></font> <font face="±¼¸²">[Enter number of digit of Camber value] </font>
+<br>
+  <font face="¹ÙÅÁ">- data file - </font></pre>
+<div align="left"><table border cellpadding="2" cellspacing="0" bordercolordark="white"
+ bordercolorlight="black"><caption align="bottom"> </caption>
+    <tr>
+        <td width="32%"><pre><font face="¹ÙÅÁÃ¼">- 1, 0.0,  0.00000,  0.00000,A1</font>
+<font face="¹ÙÅÁÃ¼">  2, 1.0, -0.02345, -0.02624</font>
+<font face="¹ÙÅÁÃ¼">  3, 2.0, -0.04089, -0.04574</font>
+<font face="¹ÙÅÁÃ¼">  4, 3.0, -0.04931, -0.05517</font>
+<font face="¹ÙÅÁÃ¼">  5, 4.0, -0.04830, -0.05404</font>
+<font face="¹ÙÅÁÃ¼">  6, 5.0, -0.03870, -0.04330</font>
+<font face="¹ÙÅÁÃ¼">  7, 6.0, -0.02362, -0.02642</font>
+<font face="¹ÙÅÁÃ¼">  8, 7.0, -0.00883, -0.00988</font>
+<font face="¹ÙÅÁÃ¼">- 9, 8.0,  0.00000,  0.00000,P1</font>
+<font face="¹ÙÅÁÃ¼"> 10, 9.0,  0.00037,  0.00042</font>
+<font face="¹ÙÅÁÃ¼"> 11,10.0, -0.00678, -0.00758</font>
+<font face="¹ÙÅÁÃ¼"> 12,11.0, -0.01522, -0.01703</font>
+<font face="¹ÙÅÁÃ¼"> 13,12.0, -0.01931, -0.02160</font>
+<font face="¹ÙÅÁÃ¼"> 14,13.0, -0.01713, -0.01916</font>
+<font face="¹ÙÅÁÃ¼"> 15,14.0, -0.00983, -0.01100 ¢Ö</font></pre></td>
+        <td width="32%"><pre><font face="¹ÙÅÁÃ¼"> 16,15.0, -0.00212, -0.00238</font>
+<font face="¹ÙÅÁÃ¼">+17,16.0,  0.00000,  0.00000,P2</font>
+<font face="¹ÙÅÁÃ¼"> 18,17.0, -0.00615, -0.00688</font>
+<font face="¹ÙÅÁÃ¼"> 19,18.0, -0.01752, -0.01960</font>
+<font face="¹ÙÅÁÃ¼"> 20,19.0, -0.02764, -0.03092</font>
+<font face="¹ÙÅÁÃ¼"> 21,20.0, -0.03151, -0.03525</font>
+<font face="¹ÙÅÁÃ¼"> 22,21.0, -0.02764, -0.03092</font>
+<font face="¹ÙÅÁÃ¼"> 23,22.0, -0.01751, -0.01959</font>
+<font face="¹ÙÅÁÃ¼"> 24,23.0, -0.00615, -0.00688</font>
+<font face="¹ÙÅÁÃ¼">-25,24.0,  0.00000,  0.00000,P3</font>
+<font face="¹ÙÅÁÃ¼"> 26,25.0, -0.00213, -0.00239</font>
+<font face="¹ÙÅÁÃ¼"> 27,26.0, -0.00985, -0.01102</font>
+<font face="¹ÙÅÁÃ¼"> 28,27.0, -0.01716, -0.01920</font>
+<font face="¹ÙÅÁÃ¼"> 29,28.0, -0.01935, -0.02164</font>
+<font face="¹ÙÅÁÃ¼"> 30,29.0, -0.01526, -0.01707 ¢Ö</font></pre></td>
+        <td width="34%"><pre><font face="¹ÙÅÁÃ¼"> 31,30.0, -0.00682, -0.00763</font>
+<font face="¹ÙÅÁÃ¼"> 32,31.0,  0.00035,  0.00039</font>
+<font face="¹ÙÅÁÃ¼">-33,32.0,  0.00000,  0.00000,P4</font>
+<font face="¹ÙÅÁÃ¼"> 34,33.0, -0.00880, -0.00984</font>
+<font face="¹ÙÅÁÃ¼"> 35,34.0, -0.02354, -0.02634</font>
+<font face="¹ÙÅÁÃ¼"> 36,35.0, -0.03858, -0.04316</font>
+<font face="¹ÙÅÁÃ¼"> 37,36.0, -0.04830, -0.05403</font>
+<font face="¹ÙÅÁÃ¼"> 38,37.0, -0.04962, -0.05552</font>
+<font face="¹ÙÅÁÃ¼"> 39,38.0, -0.04126, -0.04616</font>
+<font face="¹ÙÅÁÃ¼"> 40,39.0, -0.02364, -0.02645</font>
+<font face="¹ÙÅÁÃ¼">-41,40.0,  0.00000,  0.00000,A2</font>
+<font face="¹ÙÅÁÃ¼">COMB</font>
+<font face="¹ÙÅÁÃ¼">1+2</font>
+<font face="¹ÙÅÁÃ¼">draw</font>
+<font face="¹ÙÅÁÃ¼">1,2,3</font></pre></td>
+    </tr>
+</table></div>
+<pre aling="CENTER">&nbsp;</pre>
+<pre><font face="¹ÙÅÁ">¡á CAMBER data description</font>
+<font face="±¼¸²">Ã¹¹øÂ°ÁÙÀÇ</font>
+<font face="±¼¸²Ã¼">       - 1, 0.0,  0.00000,  0.00000,A1</font>
+<font face="±¼¸²Ã¼">       | |   |      |        |   +--- ¨ç Abut/Pier Number</font>
+<font face="±¼¸²Ã¼">       | |   |      |        +------- ¨è deflection value 2 (result of analysis) ¡ØNotice: Not camber</font>
+<font face="±¼¸²Ã¼">       | |   |      +---------------- ¨é deflection value 1 (result of analysis)</font>
+<font face="±¼¸²Ã¼">       | |   +----------------------- ¨ê x coordination of node</font>
+<font face="±¼¸²Ã¼">       | +--------------------------- ¨ë node number</font>
+<font face="±¼¸²Ã¼">       +----------------------------- ¨ì - : sliding bearing</font>
+<font face="±¼¸²Ã¼">                                              + : fixed bearing<br></font>
+<font face="±¼¸²Ã¼">&nbsp;</font>
+<font face="±¼¸²">after second row.. use same concept</font>
+<font face="±¼¸²">¨ç Abut/Pier Number               </font>       <font face="±¼¸²">[Mark of Abut/Pier ]</font>
+<font face="±¼¸²">¨è deflection value 2 (result of analysis)            </font>      <font face="±¼¸²">[You can enter several deflection value. for Example, before composite </font>
+<font face="±¼¸²">                                                       , after composite. </font>
+<font face="±¼¸²">¨é deflection value 1 (result of analysis)</font>          <font face="±¼¸²">  </font>      <font face="±¼¸²">[You can get this data modifying output file of analysis]</font>
+<font face="±¼¸²">¨ê nodeÀÇ X ÁÂÇ¥</font>                    <font face="±¼¸²">[                 &quot;                  ]</font>
+<font face="±¼¸²">¨ë node¹øÈ£</font>
+<font face="±¼¸²">¨ì - : °¡µ¿´Ü Ç¥½Ã                   </font>    <font face="±¼¸²">[sliding bearing(-), fixed bearing(+) should be first column] </font>
+<font face="±¼¸²">    + : °íÁ¤´Ü Ç¥½Ã          </font>          <font face="±¼¸²">[Abut/Pier number should be at the end if +/- is at the first column]</font>
+&nbsp;
+<font face="±¼¸²">¡á combination and draw command</font>
+<font face="±¼¸²">¢º COMB</font>
+  <font face="±¼¸²">You can combinate previous cases at next low of COMB command. for Example if You enter two Camber previous, 
+  combinated case that after COMB command become third case. </font>
+  <font face="Courier New">COMB</font>
+  <font face="Courier New">1+2          </font><font face="±¼¸²">¡çcase-1 plus case-2, New case become case-3</font>
+  <font face="Courier New">1+3          </font><font face="±¼¸²">¡çcase-1 plus case-3, New case become case-4. you can use case that is combined previous</font> <br>
+<br>
+&nbsp;
+<font face="±¼¸²">¢º DRAW</font>
+  <font face="±¼¸²">This command draws basic cases and combination cases. 
+  You can define one drawing per a line under the DRAW command. 
+  For example, If you define 1,2,3 on the next line of DRAW command
+  Program draws 1,2,3 cases in a drawing. If you want to draw separately,   
+  define a case per one line, The drawing drawn with the above data is shown below.</font>
+&nbsp;
+<img src="camber.gif" align="middle" border="1"> <br>
+<br></pre>
+<pre><div align="left"><img src="camber1.gif" align="bottom" width="172" height="245" border="1" vspace="1" hspace="1"><font face="¹ÙÅÁ">           </font><img src="camber2.gif" align="bottom" width="230" height="209" border="1" vspace="1" hspace="1"> <br></div></pre>
+<pre>&nbsp;</pre>
+<pre><div align="left"><img src="camber3.gif" align="bottom" width="479" height="256" border="1" vspace="1" hspace="1"><br></div></pre>
+<pre><div align="center">&nbsp;</div></pre>
+<pre><span style="font-size:15pt;"><font face="µ¸¿ò" size="4"><b>Notice</b></font></span><span style="font-size:15pt;"><font face="¹ÙÅÁ" size="4"><b> : </b></font></span>
+<span style="font-size:15pt;"><font face="¹ÙÅÁ" size="4"><b>    </b></font></span><span style="font-size:15pt;"><font face="¹ÙÅÁ">
+<b>¡ß</b></font></span><font face="±¼¸²"> X-length of camber drawing is setted to size of border.</font>
+<span style="font-size:15pt;"><font face="¹ÙÅÁ">
+<b>¡ß</b></font></span><font face="±¼¸²"> If the length of Camber table is longer then camber drawing, Table is seperate two or more number and layed upper and lower. </font>
+<font face="±¼¸²">        </font><span style="font-size:15pt;"><font face="¹ÙÅÁ">
+<b>¡ß</b></font></span><font face="±¼¸²"> Low height of Camber table is 7mm.</font>
+     <span style="font-size:15pt;"><font face="¹ÙÅÁ">
+<b>¡ß</b></font></span><font face="±¼¸²"> Height if text is 2.5mm.</font> <br></pre>
+</body>
+
+</html>
