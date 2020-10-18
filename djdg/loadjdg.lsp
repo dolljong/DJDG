@@ -258,3 +258,4 @@
 (autoload (strcat (prefix) "DJDG/chbdrtxt")    '("chbdrtxt"))
 (autoload (strcat (prefix) "DJDG/checkdate")    '("checkdate"))
 (autoload (strcat (prefix) "DJDG/ve")    '("ve"))
+(autoload (strcat (prefix) "DJDG/PREG")    '("PREG"))
