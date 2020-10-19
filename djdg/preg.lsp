@@ -4,6 +4,7 @@
 ; dolljong 201018
 ;----
 (defun c:preg( / p1 p2 p3 p4 ss)
+  (setq ss (ssadd))
   (setq p1 (getpoint "pick first point: "))
   (setq p2 (getpoint p1 "Pick 2'nd point: "))
   (grdraw p1 p2 3 1)
@@ -47,7 +48,7 @@
 ;-----
 (defun entmake_line (pt1 pt2 clr / blg lst ocs pt1 rad )
 
-   (setq ocs (trans '(0 0 1) 1 0 t))
+   ;(setq ocs (trans '(0 0 1) 1 0 t))
    (entmake
            (append
               '(   (000 . "LINE")
@@ -56,7 +57,7 @@
                )
  	       (list (cons 10 pt1))
 	       (list (cons 11 pt2))
-	       (list (cons 210 ocs))
+	       ;(list (cons 210 ocs))
 	       (list (cons 62 clr))
            )
     );entmake
