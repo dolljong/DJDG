@@ -17,7 +17,7 @@ You can get DJDG-master.zip
 # Command list
 | Command | 설명(Kor) | Description(Eng) |
 |---------|---------|----------|
-|<img src=https://github.com/dolljong/DJDG/blob/master/manual/8/dvtuh023.gif width=50> 2PD		|[두 점간의 길이 기입하기](http://gumifo.org/djdg/manual/8/2pd.htm)	|[Write distance between two points](http://gumifo.org/djdg/manual/8/2pd(en).htm)|
+|<img src=https://github.com/dolljong/DJDG/blob/master/manual/dvtuh023.gif width=50> 2PD		|[두 점간의 길이 기입하기](http://gumifo.org/djdg/manual/8/2pd.htm)	|[Write distance between two points](http://gumifo.org/djdg/manual/8/2pd(en).htm)|
 |<img src=https://github.com/dolljong/DJDG/blob/master/manual/3/vkocw022.gif width=50> ABUT		|[교대단면그리기리			](http://gumifo.org/djdg/manual/3/abut.htm)|[Draw section of abutment](http://gumifo.org/djdg/manual/3/abut(en).htm)|
 |<img src=https://github.com/dolljong/DJDG/blob/master/manual/7/trjqh068.gif width=50> ADDTEXT	|[숫자 text에 일정값 더하기	](http://gumifo.org/djdg/manual/7/addtext.htm)|[Plus number on number text](http://gumifo.org/djdg/manual/7/addtext(en).htm)|
 |<img src=https://github.com/dolljong/DJDG/blob/master/manual/2/vydqp092.gif width=50> ALL-ULT	|[설계방법표시하기			](http://gumifo.org/djdg/manual/2/all-ult.htm)|[Insert Design Method(Allowable/Ultimate)](http://gumifo.org/djdg/manual/2/all-ult(en).htm)|
