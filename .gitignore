@@ -1,3 +1,5 @@
 # djdg main folder ignore file
 manual.txt
 *._ls
+*.dwl*
+/manual/pic/

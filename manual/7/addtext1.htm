@@ -1,0 +1,30 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN">
+<html>
+<head>
+<title>숫자 text에 일정 값 더하기(구분자 이용)</title>
+
+</head>
+
+<body bgcolor="white" text="black" link="blue" vlink="purple" alink="red">
+
+<font face="굴림" size="4"><b>  숫자 text에 일정 값 더하기(구분자 이용)</b></font>
+&nbsp;
+<br><Br>
+<img src="trjqh068.gif" align="middle" width="73" height="48" border="0"><font face="굴림"> </font><img src="trjqh069.gif" align="middle" width="27" height="25" border="0"> <font face="굴림">파일명 : <b>addtext1.lsp</b></font>
+<hr size="1" noshade>
+  <font face="굴림">이미 기입된 숫자 text을 원하는 값만큼 증가시키거나 감소시키는 기능입니다. addtext와 같은 기능이지만 addtext1은 구분자를 지정할 수 있습니다. 즉 기존 텍스트가 EL=14.234이나 GL-3.456, I.L+3.543 과 같은 형태인 경우 =,-,+를 구분자(delimiter)로 지정해서 구분자 뒤쪽의 수에 대해서 값을 더하거나 빼기를 합니다.</font>
+  
+  <pre><font face="바탕"><b><u><img src="pencel.gif" border="0"> 사용예</u></b></font>
+<font face="Courier New">Command: <font face="Courier New"><b>addtext1<img src="enter.gif" border="0"></b></font>
+Decimail Precision New/&lt;Old&gt;:<img src="enter.gif">  	<font face="굴림">[New: 소수점 자리수 변경을 위해서 <b>N</b>입력, <br>									Old:원래 자리수 유지하려면 <img src="enter.gif"> 또는 <b>O</b>입력] </font>
+Enter delimiter(ex:=): <b>=</b><img src="enter.gif">		<font face="굴림">[구분자 입력]</font>
+Enter Add value: <b>1.5</b><img src="enter.gif">			<font face="굴림">[증감 값 입력]</font>
+<font face="Courier New">All/&lt;Select&gt;: </font><font face="Courier New"><b><img src="enter.gif" border="0"></b></font><font face="Courier New">      		[All: </font><font face="굴림">모든</font><font face="Courier New">text </font><font face="굴림">선택</font><font face="Courier New">, <img src="enter.gif" border="0"> </font><font face="굴림">원하는</font><font face="Courier New"> text</font><font face="굴림">만</font><font face="Courier New"> </font><font face="굴림">선택</font><font face="Courier New">]</font>
+<font face="Courier New">Select text: </font><font face="Courier New"><b>w<img src="enter.gif" border="0">{p1} {p2}</b></font><font face="Courier New"> 	[Window box</font><font face="굴림">를</font><font face="Courier New"> </font><font face="굴림">이용하여</font><font face="Courier New"> Text</font><font face="굴림">선택</font><font face="Courier New">]</font>
+<font face="Courier New">Select objects: </font><font face="Courier New"><b><img src="enter.gif" border="0"></b></font><font face="Courier New">      	[</font><font face="굴림">선택종료</font><font face="Courier New">]</font>
+2 Modified<font face="굴림">						[수정된 text개수 출력됨]</font></font>
+&nbsp;</pre>
+<div align="left">  <img src="addtext1.png" align="bottom"  border="0"></div>
+</body>
+
+</html>
