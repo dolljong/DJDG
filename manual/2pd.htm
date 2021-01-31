@@ -1,0 +1,54 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN">
+<html>
+<head>
+<title>두점간의 거리를 도면에 기입해줍니다.</title>
+
+<link rel="stylesheet" href="css/jquery.treeview.css" />
+<link rel="stylesheet" href="css/screen.css" />
+
+<script src="lib/jquery.js" type="text/javascript"></script>
+<script src="lib/jquery.cookie.js" type="text/javascript"></script>
+<script src="lib/jquery.treeview.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+		$(function() {
+			$("#tree").treeview({
+				collapsed: true,
+				animated: "medium",
+				control:"#sidetreecontrol",
+				persist: "location"
+			});
+		})
+		
+</script>
+
+</head>
+
+<body bgcolor="white" text="black" link="blue" vlink="purple" alink="red">
+
+<div id="m_left" style="float:left;"><?php include 'djdgtree.htm';?></div>
+<div id="m_right" style="float:left;">
+
+<pre><font face="굴림" size="4"><b>두점간의 거리를 도면에 기입해줍니다.</b></font>
+<br>
+<img src="dvtuh023.gif" align="middle" width="80" height="64" border="0" hspace="3"> <img src="dvtuh024.gif" align="middle" width="24" height="24" border="0" hspace="3"> <font face="굴림">Program name : 2PD.LSP</font>
+<hr size="1" noshade>
+  <font face="굴림">도면작업에서는 별로 없는 일이지만 모델링 작업등에서 가끔 두점간의 거리를 직접 도면에 기</font>
+<font face="굴림">입해야 할 때가 있습니다. <br></font>
+<font face="굴림">&nbsp;</font>
+<font face="바탕"><b><u><img src="pencel.gif" border="0"> 사용예</u></b></font>
+<font face="Courier New">Text height:</font><font face="굴림"> 150<img src="enter.gif" border="0"></font>                       <font face="굴림">[text의 크기지정]</font>
+<font face="Courier New">Text angle:</font><font face="굴림"> 0<img src="enter.gif" border="0"></font>                  <font face="굴림">[text의 회전각]</font>
+<font face="Courier New">Prefix:</font><font face="굴림"> L=<img src="enter.gif" border="0"></font>                             <font face="굴림">[두점간의 거리를 도면에 입력할 때의 머릿말]</font>
+<font face="Courier New">Pick first point:</font><font face="굴림"> {p1}</font>          <font face="굴림">[첫점]</font>
+<font face="Courier New">Pick second point:</font><font face="굴림"> {p2}</font>         <font face="굴림">[두번째점]</font>
+<font face="Courier New">Pick Text point :</font><font face="굴림"> {p3}</font>          <font face="굴림">[text가 쓰여질 위치]</font>
+<font face="Courier New">Pick first point:</font><font face="굴림"> <img src="enter.gif" border="0"></font>                     <font face="굴림">[명령을 끝내기 위해 Enter, 계속 반복할 수 있슴]<br></font>
+<font face="굴림">&nbsp;</font>
+<img src="2pd.gif" align="middle" width="334" height="153" border="0" hspace="3"></pre>
+
+</div>
+
+</body>
+
+</html>

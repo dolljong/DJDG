@@ -1,0 +1,53 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN">
+<html>
+<head>
+<title>차례대로 숫자를 써줍니다.</title>
+<link rel="stylesheet" href="css/jquery.treeview.css" />
+<link rel="stylesheet" href="css/screen.css" />
+
+<script src="lib/jquery.js" type="text/javascript"></script>
+<script src="lib/jquery.cookie.js" type="text/javascript"></script>
+<script src="lib/jquery.treeview.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+		$(function() {
+			$("#tree").treeview({
+				collapsed: true,
+				animated: "medium",
+				control:"#sidetreecontrol",
+				persist: "location"
+			});
+		})
+		
+</script>
+</head>
+
+<body bgcolor="white" text="black" link="blue" vlink="purple" alink="red">
+<div id="m_left" style="float:left;"><?php include 'djdgtree.htm';?></div>
+<div id="m_right" style="float:left;">
+<pre><font face="굴림" size="4"><b>차례대로 숫자를 써줍니다.</b></font>
+&nbsp;
+<img src="dvtuh007.gif" align="middle" width="85" height="63" border="0" hspace="3"> <img src="dvtuh008.gif" align="middle" width="25" height="23" border="0" hspace="3"> <font face="굴림">Program name : BCN.LSP</font>
+<hr size="1" noshade>
+  <font face="굴림">차례대로 번호를 매겨나갑니다. 구조계산서에서 모델링을 CAD로 그린다면 절점번호나 부재번</font>
+<font face="굴림">호를 이 기능을 이용하여 그릴 수 있으리라 생각됩니다. <br></font>
+<font face="굴림">&nbsp;</font>
+<font face="바탕"><b><u><img src="pencel.gif" border="0"> 사용예</u></b></font>
+<font face="Courier New">Box/Circle/&lt;None&gt;:</font><font face="굴림"> b<img src="enter.gif" border="0"></font>                           <font face="바탕">[box모양선택]</font>
+<font face="Courier New">Pick text/Text height&lt;13.2307&gt;:</font><font face="굴림"> 2.5<img src="enter.gif" border="0"></font>            <font face="굴림">[text높이 입력]</font>
+                                                <font face="굴림">이미 쓰여진 text의 높이를 참조하려면 &quot;P&quot;</font>
+<font face="Courier New">Number1, ChangeNum/&lt;Pick point&gt;:</font><font face="굴림"> {점찍기}</font>
+<font face="Courier New">Number2, ChangeNum/&lt;Pick point&gt;:</font><font face="굴림"> {점찍기}</font>
+<font face="Courier New">Number3, ChangeNum/&lt;Pick point&gt;:</font><font face="굴림"> {점찍기}</font>
+<font face="Courier New">Number4, ChangeNum/&lt;Pick point&gt;:</font><font face="굴림"> c<img src="enter.gif" border="0"></font>             <font face="굴림">[새로운 번호로 바꾸기 위해 &quot;c&quot;입력]</font>
+<font face="Courier New">Enter New Number:</font><font face="굴림"> 5<img src="enter.gif" border="0"></font>                            <font face="굴림">[5부터 시작함]</font>
+<font face="Courier New">Number5, ChangeNum/&lt;Pick point&gt;:</font>        <font face="굴림"> {점찍기}</font>
+<font face="Courier New">Number6, ChangeNum/&lt;Pick point&gt;:</font>        <font face="굴림"> {점찍기}</font>
+<font face="Courier New">Number7, ChangeNum/&lt;Pick point&gt;:</font>        <font face="굴림"> {점찍기}</font>
+<font face="Courier New">Number8, ChangeNum/&lt;Pick point&gt;:</font><font face="굴림"> <img src="enter.gif" border="0"></font>              <font face="바탕">[명령 끝냄]<br></font>
+<font face="바탕">&nbsp;</font>
+<img src="bcn.gif" align="middle" width="212" height="235" border="0" hspace="3"></pre>
+</div>
+</body>
+
+</html>

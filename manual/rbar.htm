@@ -1,0 +1,46 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN">
+<html>
+<head>
+<title>절곡철근을 표현해줍니다.</title>
+<link rel="stylesheet" href="css/jquery.treeview.css" />
+<link rel="stylesheet" href="css/screen.css" />
+
+<script src="lib/jquery.js" type="text/javascript"></script>
+<script src="lib/jquery.cookie.js" type="text/javascript"></script>
+<script src="lib/jquery.treeview.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+		$(function() {
+			$("#tree").treeview({
+				collapsed: true,
+				animated: "medium",
+				control:"#sidetreecontrol",
+				persist: "location"
+			});
+		})
+		
+</script>
+</head>
+
+<body bgcolor="white" text="black" link="blue" vlink="purple" alink="red">
+<div id="m_left" style="float:left;"><?php include 'djdgtree.htm';?></div>
+<div id="m_right" style="float:left;">
+<pre><font face="굴림" size="4"><b>절곡철근을 표현해줍니다.</b></font><font size="4"><b><br></b></font>
+&nbsp;
+<img src="ncmar065.gif" align="middle" width="84" height="63" border="0"> <img src="ncmar066.gif" align="middle" width="25" height="24" border="0"> <font face="굴림">Program name : RBAR.LSP</font>
+<hr size="1" align="left" noshade>
+  <font face="굴림">배근도에서 절곡된 부분은 보통 점선으로 표시해줍니다. 이 프로그램은 두점을 이용하여 그 두</font>
+<font face="굴림">점을 잇는 선과 만나는 철근의 끝을 입력된 R만큼 점선으로 바꾸어줍니다.<br></font>
+<font face="굴림">&nbsp;</font>
+  <font face="바탕"><b><img src="pencel.gif" border="0"></b></font><font face="돋움"><b><u>사용예</u></b></font><font face="바탕"><b><u> </u></b></font>
+    <font face="Courier New">Start point:</font><font face="굴림"> {p1}</font>                   <font face="굴림">[철근을 선택하기 위한 시작점]</font>
+    <font face="Courier New">End point:</font><font face="굴림"> {p2} </font><font face="Courier New">7 LINES found</font>               <font face="굴림">[철근을 선택하기 위한 끝점]</font>
+    <font face="Courier New">Round length:</font><font face="굴림"> 500<img src="enter.gif" width="16" height="16" border="0"></font>                  <font face="굴림">[점선으로 바뀔 길이]<br></font>
+<font face="굴림">&nbsp;</font>
+    <img src="rbar.gif" align="bottom" width="267" height="207" border="0" hspace="3"> <br> 
+<br> 
+<br> </pre>
+</div>
+</body>
+
+</html>

@@ -1,0 +1,47 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN">
+<html>
+<head>
+<title>여러개의 화살표를 가진 지시선을 만들어줍니다.</title>
+<link rel="stylesheet" href="css/jquery.treeview.css" />
+<link rel="stylesheet" href="css/screen.css" />
+
+<script src="lib/jquery.js" type="text/javascript"></script>
+<script src="lib/jquery.cookie.js" type="text/javascript"></script>
+<script src="lib/jquery.treeview.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+		$(function() {
+			$("#tree").treeview({
+				collapsed: true,
+				animated: "medium",
+				control:"#sidetreecontrol",
+				persist: "location"
+			});
+		})
+		
+</script>
+</head>
+
+<body bgcolor="white" text="black" link="blue" vlink="purple" alink="red">
+<div id="m_left" style="float:left;"><?php include 'djdgtree.htm';?></div>
+<div id="m_right" style="float:left;">
+<pre><font size="4"><b>  </b></font><font face="굴림" size="4"><b>여러개의 화살표를 가진 지시선을 만들어줍니다.</b></font>
+&nbsp;
+<img src="vydqp066.gif" align="middle" width="88" height="66" border="0"><font face="굴림"> </font><img src="vydqp067.gif" align="middle" width="25" height="24" border="0">  <font face="굴림">파일명 : MLEAD.LSP</font>
+<hr size="1" noshade>
+  <font face="굴림">강관파일의 제원을 표시할 때같이 여러개의 선들을 찝어서 지시선으로 뽑아낸 후, 설명을 붙일 </font>
+<font face="굴림">때 써먹을 만한 프로그램입니다. 여러개의 line을 선택하고 leader line의 두 point를 찍어주면, 프로</font>
+<font face="굴림">그램은 선택한 라인들과 leader line이 교차하는 점마다 화살표를 찍어주고(사실은 block insert) </font>
+<font face="굴림">leader line도 그려줍니다.</font>
+&nbsp;
+<font face="굴림"><b><u><img src="pencel.gif" border="0"> 사용예</u></b></font>
+<font face="Courier New">Select lines:</font><font face="굴림">[cross box로(p1,p2) 세 라인 모두 선택]</font>
+<font face="Courier New">Pick first point:</font><font face="굴림"> {p3} [leader line의 시작점을 찍어줌]</font>
+<font face="Courier New">Pick second point:</font><font face="굴림"> {p4} [leader line의 끝점을 찍어줌]</font> <br> 
+&nbsp;
+<img src="mlead.gif" align="middle" width="299" height="246" border="0"></pre>
+<p>&nbsp;</p>
+</div>
+</body>
+
+</html>

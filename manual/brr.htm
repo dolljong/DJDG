@@ -1,0 +1,46 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN">
+<html>
+<head>
+<title>방호벽(H=1,080)을 그려줍니다.</title>
+<link rel="stylesheet" href="css/jquery.treeview.css" />
+<link rel="stylesheet" href="css/screen.css" />
+
+<script src="lib/jquery.js" type="text/javascript"></script>
+<script src="lib/jquery.cookie.js" type="text/javascript"></script>
+<script src="lib/jquery.treeview.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+		$(function() {
+			$("#tree").treeview({
+				collapsed: true,
+				animated: "medium",
+				control:"#sidetreecontrol",
+				persist: "location"
+			});
+		})
+		
+</script>
+</head>
+
+<body bgcolor="white" text="black" link="blue" vlink="purple" alink="red">
+<div id="m_left" style="float:left;"><?php include 'djdgtree.htm';?></div>
+<div id="m_right" style="float:left;">
+<pre><font face="굴림" size="4"><b>방호벽(H=1,080)을 그려줍니다.</b></font>
+&nbsp;
+<img src="vkocw034.gif" align="middle" width="74" height="48" border="0"><font face="굴림"> </font><img src="vkocw035.gif" align="middle" width="25" height="26" border="0"> <font face="굴림">파일명 : BRR.LSP</font>
+<hr size="1" align="left" noshade>
+  <font face="굴림">방호벽을 그려줍니다. 여러가지의 방호벽 중 가장 일반적인 한국도로공사 표준도의 H=1080mm </font>
+<font face="굴림">단면을 그려줍니다.</font> <br>
+<br>
+  ◆<font face="굴림"> </font><font face="굴림"><b>BRR.LSP의 기능 및 제한사항</b></font>
+     <font face="굴림"> ▷ 방호벽은 연직으로 서있도록 프로그램되있습니다.</font>
+     <font face="굴림"> ▷ 상부슬라브선의 한쪽 끝을 찍어주면 기울기를 인식해서 선의 끝에서 안쪽으로 30mm떨어지</font>
+<font face="굴림">            도록 방호벽을 배치해서 그립니다.</font>
+<img src="brr.gif" align="bottom" width="226" height="174" border="0" vspace="3" hspace="3">
+     <img src="pencel.gif" width="13" height="19" border="0"><font face="바탕"><b><u> </u></b></font><font face="돋움"><b><u>사용예</u></b></font><font face="바탕"><b><u> </u></b></font>
+  <font face="Courier New">Select line:</font><font face="굴림"> [slab상단선의 한쪽 끝을 찍어준다. 오른쪽 그림에서 p1또는 p2]</font> <br></pre>
+<p>&nbsp;</p>
+</div>
+</body>
+
+</html>

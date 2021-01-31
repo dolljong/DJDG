@@ -1,0 +1,60 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN">
+<html>
+<head>
+<title>Splice를 그려줍니다.</title>
+<link rel="stylesheet" href="css/jquery.treeview.css" />
+<link rel="stylesheet" href="css/screen.css" />
+
+<script src="lib/jquery.js" type="text/javascript"></script>
+<script src="lib/jquery.cookie.js" type="text/javascript"></script>
+<script src="lib/jquery.treeview.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+		$(function() {
+			$("#tree").treeview({
+				collapsed: true,
+				animated: "medium",
+				control:"#sidetreecontrol",
+				persist: "location"
+			});
+		})
+		
+</script>
+</head>
+
+<body bgcolor="white" text="black" link="blue" vlink="purple" alink="red">
+<div id="m_left" style="float:left;"><?php include 'djdgtree.htm';?></div>
+<div id="m_right" style="float:left;">
+<pre><font face="굴림" size="4"><b>Splice를 그려줍니다.</b></font>
+&nbsp;
+<img src="dpcex004.gif" align="middle" width="89" height="62" border="0" hspace="3"> <img src="dpcex005.gif" align="middle" width="25" height="24" border="0" hspace="3"> <font face="굴림">Program name : SPLICE.LSP</font>
+<hr size="1" align="left" noshade>
+  <font face="굴림">물론 수작업보다는 편하지만 splice 의 볼트 구멍을 그리는 일은 CAD에서도 여간 짜증나는 일</font>
+<font face="굴림">이 아닙니다. array라는 좋은 기능이 있어서 다행이지만 array명령도 우리의 게으름을 충족시켜주</font>
+<font face="굴림">지 못합니다. array명령은 수평이나 수직으로 배열되어 있는 bolt구멍을 그리기엔 편하나 어떤 경</font>
+<font face="굴림">사를 가진 배열을 그리려면 일단 UCS를 기울어진 물체에다 맞추고 x와 y를 주의해서 보며 array</font>
+<font face="굴림">명령을 내려 bolt구멍을 그린후 다시 UCS를 정상으로 돌려줘야 합니다. 음.. 좀 더 편한 방법이 </font>
+<font face="굴림">있는데 나만 모르는 건가<img src="enter.gif" border="0">암튼 그러한 불편을 없애기 위해서 이 프로그램은 세상에 태어났습니</font>
+<font face="굴림">다. 이 프로그램은 몇개의 변수값을 입력받아 splice를 그려줍니다. 즉 수직과 수평방향으로 각각 </font>
+<font face="굴림">볼트갯수와 간격, 연단거리를 입력해야하며 연결되는 두 강재가 만나는 부분의 볼트간격도 입력</font>
+<font face="굴림">하여야 합니다. 이렇게 입력 변수가 많아지면 기존의 묻고 답하기식으로 입력하기가 약간 까다로</font>
+<font face="굴림">워집니다. 왜냐하면 입력사항을 모두 글로 표현하기가 힘들고 표현한다고 해도 사용자가 그것을 </font>
+<font face="굴림">정확하게 이해하기가 힘들기 때문입니다. 그래서 이 프로그램에선 dialog box를 이용하여 입력변</font>
+<font face="굴림">수가 어떤 뜻을 가지는가를 사용자가 직접 그림으로 보면서 입력함으로서 입력과정에서 발생할 </font>
+<font face="굴림">수 있는 실수를 최대한 줄일 수 있도록 했습니다. </font> <br>  
+<br>
+&nbsp;
+<font face="바탕"><b><u><img src="pencel.gif" border="0"> 사용예</u></b></font>
+  <font face="Courier New">Pick first point:</font><font face="굴림"> {p1}    [이 두점은 splice가 기울어진 각도를 입력하기 위한 것입니다.]</font>
+  <font face="Courier New">Pick second point:</font><font face="굴림"> {p2}  [또한 이 두점의 중간점이 splice의 중간점이 되도록 그려집니다.</font>
+  <font face="굴림">     </font>                 <font face="굴림">       여기까지 입력하면 아래와 같은 dialog box가 뜹니다]<br></font>
+<font face="굴림">&nbsp;</font>
+  <img src="dpcex006.gif" align="middle" width="238" height="306" border="0" vspace="3" hspace="3">
+&nbsp;
+<font face="굴림">모든 입력을 마치고 ok button을 누르면 아래와 같이 splice가 그려집니다.</font>
+<br>  
+  <img src="splice.gif" align="middle" width="451" height="313" border="0" vspace="3" hspace="3"></pre>
+</div>
+</body>
+
+</html>

@@ -1,0 +1,53 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN">
+<html>
+<head>
+<title>두께를 가진 강재가 겹치는 부분을 정리해줍니다.</title>
+<link rel="stylesheet" href="css/jquery.treeview.css" />
+<link rel="stylesheet" href="css/screen.css" />
+
+<script src="lib/jquery.js" type="text/javascript"></script>
+<script src="lib/jquery.cookie.js" type="text/javascript"></script>
+<script src="lib/jquery.treeview.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+		$(function() {
+			$("#tree").treeview({
+				collapsed: true,
+				animated: "medium",
+				control:"#sidetreecontrol",
+				persist: "location"
+			});
+		})
+		
+</script>
+</head>
+
+<body bgcolor="white" text="black" link="blue" vlink="purple" alink="red">
+<div id="m_left" style="float:left;"><?php include 'djdgtree.htm';?></div>
+<div id="m_right" style="float:left;">
+<pre><font face="굴림" size="4"><b>두께를 가진 강재가 겹치는 부분을 정리해줍니다.</b></font>
+&nbsp;
+<img src="dpcex011.gif" align="middle" width="89" height="62" border="0" hspace="3"> <img src="dpcex012.gif" align="middle" width="25" height="24" border="0" hspace="3"> <font face="굴림">Program name : TRIMB2.LSP</font>
+<hr size="1" align="left" noshade>
+  <font face="굴림">위의 TRIMB와 trim하는 기능은 같으나 TRIMB2에서는 잘라진 직선의 끝을 마무리하여줍니다. 즉 </font>
+<font face="굴림">잘라지는 선은 잘라지지 않는 선에서 일정 거리만큼 떨어진 곳에서 잘라지고, 그 잘라진 끝을 이</font>
+<font face="굴림">어줍니다. - 이하 독백 -  음.. 글로 표현하려니까 정말 어렵군... 이런땐 항상 생각나는 말이 있</font>
+<font face="굴림">지..  몇년전 작고한 신동우화백이 어느 필기구 광고에서 한 말인데... 대충 이런 뜻이었지..&quot;제가 </font>
+<font face="굴림">그림을 좋아하는 이유는 천마디의 말로 표현해야하는 것을 한장의 그림으로 나타낼 수 있기 때문</font>
+<font face="굴림">이지요&quot; - 이상 독백 -   아래 그림을 보시지요<br></font>
+<font face="굴림">&nbsp;</font>
+<font face="바탕"><b><u><img src="pencel.gif" border="0"> 사용예</u></b></font>
+<font face="Courier New">select first entity:</font><font face="굴림"> {p1}</font>               <font face="굴림">[잘라지지 않는 plate (예:steel box 수직보강재)]</font>
+<font face="Courier New">select first entity:</font><font face="굴림"> {p2}</font>       
+<font face="Courier New">Ofset distance&lt;0.0&gt;:</font><font face="굴림"> </font><font face="굴림"><b>30</b></font><font face="굴림"><img src="enter.gif" width="16" height="16" border="0"></font>                <font face="굴림">[30mm만큼 이격시킴]</font>
+<font face="Courier New">Pick first point: </font><font face="굴림">{p1}</font>          <font face="굴림">[잘라지는 plate (예:수평보강재)]</font>
+<font face="Courier New">Pick second point:</font><font face="굴림"> {p2}</font>         <font face="굴림">[{p1}과 {p2}를 연결하는 선과 만나는 선을 정리해줌]</font>
+<font face="Courier New">Pick first point:</font><font face="굴림"> {p3}</font>          <font face="굴림">[계속해서 두점을 이용하여 정리함]</font>
+<font face="Courier New">Pick second point:</font><font face="굴림"> {p4}</font>
+<font face="Courier New">Pick second point:</font><font face="굴림"> <img src="enter.gif" width="16" height="16" border="0"></font>            <font face="굴림">[명령을 끝내기 위해서 Enter입력]<br></font>
+<font face="굴림">&nbsp;</font>
+  <img src="trimb2.gif" align="middle" width="508" height="357" border="0" vspace="3" hspace="3"></pre>
+</div>
+</body>
+
+</html>

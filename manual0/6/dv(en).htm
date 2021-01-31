@@ -1,0 +1,49 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN">
+<html>
+<head>
+<title>Dimension Vertical.</title>
+
+</head>
+
+<body bgcolor="white" text="black" link="blue" vlink="purple" alink="red">
+
+<pre><font face="±¼¸²" size="4"><b>Dimension Vertical.</b></font>
+&nbsp;
+<img src="fmhbs007.gif" align="middle" width="85" height="62" border="0" hspace="3"> <img src="fmhbs008.gif" align="middle" width="25" height="23" border="0" hspace="3"> <font face="±¼¸²">File name : DV.LSP</font>
+<hr size="1" align="left" noshade>
+<font face="±¼¸²">It is similar to DH.LSP. It has @ function also. You can reference DH.LSP manual.<br></font></font>
+
+<font face="¹ÙÅÁ"><b><u><img src="pencel.gif" border="0"> Example</u></b></font>
+<font face="Courier New">Pick first point/Object:</font><font face="±¼¸²"> {p1}</font>   <font face="±¼¸²">[Pick start point of dimension]</font>
+<font face="Courier New">Pick Dimension line side:</font><font face="±¼¸²"> {p2}</font>  <font face="±¼¸²">[Pick side point (left or right)]</font>
+<font face="Courier New">Level &lt;1&gt;:</font><font face="±¼¸²"> <img src="enter.gif" border="0"></font>                            <font face="±¼¸²">[Enter level of dimension (in this case, level 1)]</font>
+<font face="Courier New">Distance or RETURN to Pick point:</font><font face="±¼¸²"> </font><font face="±¼¸²"><b>2000</b></font><font face="±¼¸²"><img src="enter.gif" border="0"></font> <font face="±¼¸²">[Enter distance that you know]</font>
+<font face="Courier New">Dimension text &lt;2.000&gt;:</font><font face="±¼¸²"> <img src="enter.gif" border="0"></font>               <font face="±¼¸²">[Program show distance text, You can change text, type Enter key to accept]</font>
+<font face="Courier New">Distance or RETURN to Pick point/eXit:</font><font face="±¼¸²"> <img src="enter.gif" border="0"></font>      <font face="±¼¸²">[If you don't know distance, type enter key to pick point]</font>
+<font face="Courier New">Pick point:</font><font face="±¼¸²"> </font><font face="±¼¸²"><b>end</b></font><font face="±¼¸²"><img src="enter.gif" border="0"></font>
+<font face="Courier New">of</font><font face="±¼¸²"> {p3}</font>                                 <font face="±¼¸²">[Pick a point, Program reference y coodinate of point that you pick]</font>
+<font face="Courier New">Dimension text &lt;16.200&gt;:</font><font face="±¼¸²"> </font><font face="±¼¸²"><b>16.200(10.000)</b></font><font face="±¼¸²"><img src="enter.gif" border="0"></font>        <font face="±¼¸²">[Enter new text. in this case I append '(10.000)' to '16.2000']</font>
+<font face="Courier New">Distance or RETURN to Pick point/eXit:</font><font face="±¼¸²"> <img src="enter.gif" border="0"></font>      <font face="±¼¸²">[Next dimension. If you don't know distance, type <img src="enter.gif" border="0">]</font>
+<font face="Courier New">Pick point:</font><font face="±¼¸²"> end {p4}</font>                    <font face="±¼¸²">[Pick a point]</font>
+<font face="Courier New">Dimension text &lt;750&gt;:</font><font face="±¼¸²"> <img src="enter.gif" border="0"></font>         <font face="±¼¸²">[Type enter key to use the text that program shows]</font>
+<font face="Courier New">Distance or RETURN to Pick point/eXit:</font><font face="±¼¸²"> <img src="enter.gif" border="0"></font>      <font face="±¼¸²">[If you don't know distance, type <img src="enter.gif" border="0">]</font>
+<font face="Courier New">Pick point:</font><font face="±¼¸²"> end {p5}</font>                            <font face="±¼¸²">[Pick a point]</font>
+<font face="Courier New">Dimension text &lt;1.102&gt;:</font><font face="±¼¸²"> <img src="enter.gif" border="0"></font>                       <font face="±¼¸²">[enter key to use the text that program shows]</font>
+<font face="Courier New">Distance or RETURN to Pick point/eXit:</font><font face="±¼¸²"> </font><font face="±¼¸²"><b>x</b></font><font face="±¼¸²"><img src="enter.gif" border="0"></font>       <font face="±¼¸²">[Enter x to finish DV command]<br></font>
+
+<font face="¹ÙÅÁ"><b><u><img src="pencel.gif" border="0"> Example-2(level 2)</u></b></font>
+<font face="¹ÙÅÁ">{Start DV}</font>                  <font face="±¼¸²">[Start DV command to draw level 2 dimension]</font>
+<font face="Courier New">Pick first point/Object:</font><font face="±¼¸²"> {p1}</font>   <font face="±¼¸²">[Pick start point, Pick node of level-1 dimension]</font>
+<font face="Courier New">Pick Dimension line side:</font><font face="±¼¸²"> {p2}</font>  <font face="±¼¸²">[Pick side point (left or right)]</font>
+<font face="Courier New">Level &lt;1&gt;:</font><font face="±¼¸²"> </font><font face="±¼¸²"><b>2</b></font><font face="±¼¸²"><img src="enter.gif" border="0"></font>                           <font face="±¼¸²">[Enter '2' to draw level-2 dimension]</font>
+<font face="Courier New">Distance or RETURN to Pick point:</font><font face="±¼¸²"> </font><font face="±¼¸²"></font><font face="±¼¸²"><img src="enter.gif" border="0"></font>        <font face="±¼¸²">[type Enter key to pick a point]</font>
+<font face="Courier New">Dimension text &lt;19.500&gt;:</font><font face="±¼¸²"> <img src="enter.gif" border="0"></font>              <font face="±¼¸²">[Use the text that program shows. If you want to change, Enter your text]</font>
+<font face="Courier New">Pick point:</font><font face="±¼¸²"> end {p5}</font><font face="±¼¸²">               [Pick end point{p5}]</font>
+<font face="Courier New">Dimension text &lt;21.052&gt;:</font> <b>21.052(14.852)</b></font><font face="±¼¸²"><img src="enter.gif" border="0"></font>               <font face="±¼¸²">[Enter your text, in this case I append '(14.853)' to original dim text '21.052']</font>
+<font face="Courier New">Distance or RETURN to Pick point/eXit:</font><font face="±¼¸²"><b>x</b> <img src="enter.gif" border="0"></font>        <font face="±¼¸²">[Enter x to finish DV command ]</font> <br>
+<font face="±¼¸²">&nbsp;</font>
+<img src="dv.gif" align="middle" width="271" height="350" border="0" hspace="3"> <br> 
+ </pre>
+</body>
+
+</html>

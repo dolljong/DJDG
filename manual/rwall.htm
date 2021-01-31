@@ -1,0 +1,47 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN">
+<html>
+<head>
+<title>옹벽의 단면을 그려줍니다.</title>
+<link rel="stylesheet" href="css/jquery.treeview.css" />
+<link rel="stylesheet" href="css/screen.css" />
+
+<script src="lib/jquery.js" type="text/javascript"></script>
+<script src="lib/jquery.cookie.js" type="text/javascript"></script>
+<script src="lib/jquery.treeview.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+		$(function() {
+			$("#tree").treeview({
+				collapsed: true,
+				animated: "medium",
+				control:"#sidetreecontrol",
+				persist: "location"
+			});
+		})
+		
+</script>
+</head>
+
+<body bgcolor="white" text="black" link="blue" vlink="purple" alink="red">
+<div id="m_left" style="float:left;"><?php include 'djdgtree.htm';?></div>
+<div id="m_right" style="float:left;">
+<pre><font face="굴림">옹벽의 단면을 그려줍니다.</font>
+&nbsp;
+<img src="vkocw028.gif" align="middle" width="74" height="48" border="0"><font face="굴림"> </font><img src="vkocw029.gif" align="middle" width="26" height="26" border="0"> <font face="굴림">파일명 : ddrwall.lsp</font>
+<hr size="1" align="left" noshade>
+  <font face="굴림">다이얼로그 박스를 통해 단면제월을 입력하면 옹벽단면을 그려주는 기능입니다. 삽입점은 옹벽</font>
+<font face="굴림">의 전면상단이고 배문교님이 만드신 rwall.exe의 입력데이터 파일을 선택하여 단면제원을 입력할 </font>
+<font face="굴림">수도 있습니다.<br>
+&nbsp;</font>
+  <img src="pencel.gif" width="13" height="19" border="0"><font face="바탕"><b><u> </u></b></font><font face="돋움"><b><u>사용예</u></b></font><font face="바탕"><b><u> </u></b></font>
+  <font face="Courier New">commad:</font><font face="굴림"> dd</font><font face="굴림"><b>rwall<img src="enter.gif" width="16" height="16" border="0"></b></font>
+  <font face="굴림"><b>{다이얼로그 박스를 통해서 옹벽제원 입력후 ok버튼 선택}</b></font>
+  <font face="Courier New">insert point: </font><font face="Courier New"><b>{p1}    </b></font><font face="Courier New">[</font><font face="굴림">옹벽전면</font><font face="Courier New"> </font><font face="굴림">상단점을</font><font face="Courier New"> </font><font face="굴림">찍어줌</font><font face="Courier New">]<br>
+&nbsp;</font>
+  <img src="vkocw032.gif" align="bottom" width="574" height="302" border="0" vspace="3" hspace="3">
+  
+  <img src="rwall.gif" width="243" height="350" border="0"></pre>
+</div>
+</body>
+
+</html>

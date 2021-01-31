@@ -1,0 +1,72 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN">
+<html>
+<head>
+<title>호 치수선을 그려줍니다.</title>
+<link rel="stylesheet" href="css/jquery.treeview.css" />
+<link rel="stylesheet" href="css/screen.css" />
+
+<script src="lib/jquery.js" type="text/javascript"></script>
+<script src="lib/jquery.cookie.js" type="text/javascript"></script>
+<script src="lib/jquery.treeview.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+		$(function() {
+			$("#tree").treeview({
+				collapsed: true,
+				animated: "medium",
+				control:"#sidetreecontrol",
+				persist: "location"
+			});
+		})
+		
+</script>
+</head>
+
+<body bgcolor="white" text="black" link="blue" vlink="purple" alink="red">
+<div id="m_left" style="float:left;"><?php include 'djdgtree.htm';?></div>
+<div id="m_right" style="float:left;">
+<pre><font face="굴림" size="4"><b>호 치수선을 그려줍니다.</b></font><br>
+&nbsp;
+<img src="fmhbs013.gif" align="middle" width="85" height="62" border="0" hspace="3"> <img src="fmhbs014.gif" align="middle" width="25" height="23" border="0" hspace="3"> <font face="굴림">Program name : DC.LSP</font>
+<hr size="1" align="left" noshade>
+  <font face="굴림">의외로 AutoCAD에 없는 기능들이 있는데, 그중 하나가 바로 호의 길이를 치수선으로 나타내는 </font>
+<font face="굴림">기능이라 하겠습니다. 그래서 호의 길이를 치수선으로 나타내기 위해서 사용자는 여러 단계를 거</font>
+<font face="굴림">쳐야하는 번거로움이 있습니다. 우선 호의 길이를 구해야 합니다. 그런데 AutoCAD에서는 이것 또</font>
+<font face="굴림">한 간단한 작업이 아닙니다. 대부분의 경우에는 호의 첫점과 끝점의 각을 측정해서 R값을 이용해</font>
+<font face="굴림">서 구합니다. 이때 물론 계산기가 필요하겠죠? 그리고 그 치수를 써주기 위해서 호를 offset시키</font>
+<font face="굴림">고 그 가운데에다 치수를 적어준다. 누구누구(?)처럼 게으른 사람에겐 무척이나 지겨운 작업일 수 </font>
+<font face="굴림">있습니다. 하지만 이 명령은 호를 선택하고 시작점과 끝점을 찍어주고(또는 호 위의 임의 점을 찍</font>
+<font face="굴림">을 수 있습니다.) 치수보조선을 어느 선을 기준으로 할 것인가를 선택해주면 호의 길이를 구하여 </font>
+<font face="굴림">치수선을 만들어줍니다. 나머지 사용법은 DH, DV 등과 같고. R 먹은(?) 교량의 작업에 유용하리라 </font>
+<font face="굴림">생각됩니다.<br></font>
+<font face="굴림">&nbsp;</font>
+<font face="바탕"><b><u><img src="pencel.gif" border="0"> 사용예</u></b></font>
+<font face="Courier New">Select Arc or Circle:</font><font face="굴림"> {p1}</font>              <font face="굴림">[호의 길이를 구할 호 또는 원을 선택]</font>
+<font face="Courier New">Select baseline circle:</font><font face="굴림"> {p2}</font>            <font face="굴림">[치수보조선이 위치할 곳을 찍어줌(호 또는 원)]</font>
+<font face="Courier New">Pick Side:</font><font face="굴림"> {p3}</font>                 <font face="굴림">[치수선이 위치할 곳을 찍어줌(안쪽 또는 바깥쪽)]</font>
+<font face="Courier New">Dim Line level &lt;1&gt;:</font><font face="굴림"> <img src="enter.gif" border="0"></font>           <font face="굴림">[치수선 단계 (여기서는 1단계)]</font>
+<font face="Courier New">Pick start point:</font><font face="굴림"> </font><font face="굴림"><b>int</b></font><font face="굴림"> of {p4}</font>           <font face="굴림">[시작점]</font>
+<font face="Courier New">Distance or RETURN to Pick point:</font><font face="굴림"> </font><font face="굴림"><b>30000</b></font><font face="굴림"><img src="enter.gif" border="0"></font>        <font face="굴림">[30m 길이(호의 길이)의 치수선 지정]</font>
+<font face="Courier New">Text=&lt;30.000&gt;:</font><font face="굴림"> <img src="enter.gif" border="0"></font>                                <font face="굴림">[text는 그대로 사용함]</font>
+<font face="Courier New">Distance or RETURN to Pick point/eXit:</font><font face="굴림"> </font><font face="굴림"><b>30000</b></font><font face="굴림"><img src="enter.gif" border="0"> [30m 길이(호의 길이)의 치수선 지정]</font>
+<font face="Courier New">Text=&lt;30.000&gt;:</font><font face="굴림"> <img src="enter.gif" border="0">                           </font>     <font face="굴림">[text는 그대로 사용함]</font>
+<font face="Courier New">Distance or RETURN to Pick point/eXit: <img src="enter.gif" border="0"></font>        <font face="굴림">[점을 찍어 지정하기 위해 Enter]</font>
+<font face="Courier New">Pick point:</font><font face="굴림"> </font><font face="굴림"><b>int</b></font><font face="굴림"> of {p5}</font>                 <font face="굴림">[끝점 지정]</font>
+<font face="Courier New">Text=&lt;30.000&gt;:</font><font face="굴림"> <img src="enter.gif" border="0"></font>                        <font face="굴림">[text는 그대로 사용함]</font>
+<font face="Courier New">Distance or RETURN to Pick point/eXit:</font><font face="굴림"> </font><font face="굴림"><b>x</b></font><font face="굴림"><img src="enter.gif" border="0"></font>       <font face="굴림">[1단 치수선 작업을 끝냄]</font>
+<font face="Courier New">Command:</font><font face="굴림"> <img src="enter.gif" border="0"></font>                              <font face="굴림">[2단 치수선 작업 시작]</font>
+<font face="Courier New">DC Select Arc or Circle:</font><font face="굴림"> {p1} </font>  <font face="굴림">[호의 길이를 구할 호 또는 원을 선택]</font>
+<font face="Courier New">Select baseline circle:</font><font face="굴림"> {p2}        [치수보조선이 위치할 곳을 찍어줌(호 또는 원)]</font>
+<font face="Courier New">Pick Side:</font><font face="굴림"> {p3}</font>                 <font face="굴림">[치수선이 위치할 곳을 찍어줌(안쪽 또는 바깥쪽)]</font>
+<font face="Courier New">Dim Line level &lt;1&gt;:</font><font face="굴림"> </font><font face="굴림"><b>2</b></font><font face="굴림"><img src="enter.gif" border="0"></font>          <font face="굴림">[2단 치수선]</font>
+<font face="Courier New">Pick start point:</font><font face="굴림"> int of {p1}</font>           <font face="굴림">[시작점]</font>
+<font face="Courier New">Distance or RETURN to Pick point:</font><font face="굴림"> <img src="enter.gif" border="0"></font>     <font face="굴림">[점을 찍어 지정하기 위해 Enter]</font>
+<font face="Courier New">Pick point:</font><font face="굴림"> int of {p5}</font>                 <font face="굴림">[끝점]</font>
+<font face="Courier New">Text=&lt;90.000&gt;:</font><font face="굴림"> <img src="enter.gif" border="0"></font>                        <font face="굴림">[text는 그대로 사용함]</font>
+<font face="Courier New">Distance or RETURN to Pick point/eXit:</font><font face="굴림"> </font><font face="굴림"><b>x</b></font><font face="굴림"><img src="enter.gif" border="0"></font>       <font face="굴림">[2단 치수선 끝냄]<br></font>
+<font face="굴림">&nbsp;</font>
+<img src="dc.gif" align="middle" width="604" height="294" border="0" hspace="3"><br></pre>
+</div>
+</body>
+
+</html>

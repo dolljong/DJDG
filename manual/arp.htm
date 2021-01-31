@@ -1,0 +1,50 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN">
+<html>
+<head>
+<title>호를 따라 array해줍니다.</title>
+<link rel="stylesheet" href="css/jquery.treeview.css" />
+<link rel="stylesheet" href="css/screen.css" />
+
+<script src="lib/jquery.js" type="text/javascript"></script>
+<script src="lib/jquery.cookie.js" type="text/javascript"></script>
+<script src="lib/jquery.treeview.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+		$(function() {
+			$("#tree").treeview({
+				collapsed: true,
+				animated: "medium",
+				control:"#sidetreecontrol",
+				persist: "location"
+			});
+		})
+		
+</script>
+</head>
+
+<body bgcolor="white" text="black" link="blue" vlink="purple" alink="red">
+<div id="m_left" style="float:left;"><?php include 'djdgtree.htm';?></div>
+<div id="m_right" style="float:left;">
+<pre><font face="굴림" size="4"><b>호를 따라 array해줍니다.</b></font>
+&nbsp;
+<img src="trjqh042.gif" align="middle" width="90" height="64" border="0" hspace="3"> <img src="trjqh043.gif" align="middle" width="25" height="23" border="0" hspace="3"> <font face="굴림">Program name : ARP.LSP</font>
+<hr size="1" noshade>
+  <font face="굴림">예를 들어 R먹은 교량의 슬라브 배근도를 그릴 때 슬라브 주철근을 배근하려면 array명령의 </font>
+<font face="굴림">polar option을 이용하여 array야합니다. 하지만 원하는 C.T.C로 배근하려면 계산기를 몇번 두드려</font>
+<font face="굴림">야 합니다. 이 프로그램을 이용하면 그런 과정 없이 시작점과 끝점을 찍어주어 array polar를 수행</font>
+<font face="굴림">합니다.<br></font>
+<font face="굴림">&nbsp;</font>
+<font face="바탕"><b><u><img src="pencel.gif" border="0"> 사용예</u></b></font>
+<font face="Courier New">Select Arc or Circle:</font><font face="굴림"> {p1}</font>              <font face="굴림">[기준이 될 호/원]</font>
+<font face="Courier New">Pick start point:</font><font face="굴림"> end of {p2}</font>           <font face="굴림">[array할 시작점]</font>
+<font face="Courier New">Pick End point:</font><font face="굴림"> end of {p3}</font>             <font face="굴림">[array할 끝점]</font>
+<font face="Courier New">Enter Delta:</font><font face="굴림"> 100<img src="enter.gif" border="0"></font>                       <font face="굴림">[array간격, 호의 길이]</font>
+<font face="Courier New">Select objects:</font><font face="굴림"> {p4} 1 found</font>            <font face="굴림">[array될 entity]</font>
+<font face="Courier New">Select objects:</font><font face="굴림"> <img src="enter.gif" border="0"></font>                       <font face="굴림">[선택 끝냄]<br></font>
+<font face="굴림">&nbsp;</font>
+  <img src="arp.gif" align="middle" width="530" height="259" border="0" hspace="3"></pre>
+</div>
+
+</body>
+
+</html>

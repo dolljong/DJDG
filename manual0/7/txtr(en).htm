@@ -1,0 +1,41 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN">
+<html>
+<head>
+<title>Rotate text referancing slop of line or circle.</title>
+
+</head>
+
+<body bgcolor="white" text="black" link="blue" vlink="purple" alink="red">
+
+<pre><font face="±¼¸²" size="4"><b>Rotate text referancing slop of line or circle.</b></font><font size="4"><b><br></b></font>
+&nbsp;
+<img src="trjqh036.gif" align="middle" width="85" height="63" border="0" hspace="3"> <img src="trjqh037.gif" align="middle" width="25" height="23" border="0" hspace="3"> <font face="±¼¸²">Program name : TXTR.LSP</font>
+<hr size="1" noshade>
+  <font face="±¼¸²">When comparing manual and CAD work, 
+I think that one of the more inconvenient of CAD work is the handling of text. 
+If you draw a drawing by hand, even though your handwriting is very poor, tracer make pretty. 
+But in CAD, You should be taken care of all creators in the drawing.
+Especially when writing slanted text, It is annoying. 
+In other words, if you need to place text parallel to a slanted line (though you can turn it around roughly 
+), you need to find out the angle of the line and then rotate the text with rotate command. 
+This program makes it easy. First select the text you want to rotate and then select the line or 
+arc you want to reference. If a line is selected, text is rotated parallel to the line. 
+. If Arc is selected, the text is returned tangentially at that point. 
+You can pick insert point to move the text to that point.</font> <br>
+&nbsp;
+<font face="¹ÙÅÁ"><b><u><img src="pencel.gif" border="0"> Example-1</u></b></font>
+<font face="Courier New">Select text:</font><font face="±¼¸²"> {p1}</font>                               <font face="±¼¸²">[Select text that you want to rotate]</font>
+<font face="Courier New">2P/&lt;Select Line, Arc or Circle&gt;:</font><font face="±¼¸²"> {p2}</font>   <font face="±¼¸²">[Select line or ARC]</font>
+<font face="Courier New">Pick insert point:</font><font face="±¼¸²"> {p3}</font>                 <font face="±¼¸²">[Pick insert point of text]<br></font>
+<font face="±¼¸²">&nbsp;</font>
+<img src="txtr.gif" align="middle" width="580" height="264" border="0" vspace="3" hspace="3"> <br> 
+&nbsp;
+<font face="¹ÙÅÁ"><b><u><img src="pencel.gif" border="0"> Example-2</u></b></font>
+<font face="Courier New">Select text:</font><font face="±¼¸²"> {p1}</font>                               <font face="±¼¸²">[Select text that you want to rotate] </font>
+<font face="Courier New">2P/&lt;Select Line, Arc or Circle&gt;:</font><font face="±¼¸²"> 2P<img src="enter.gif" width="16" height="16" border="0">   [Select 2-point option to refer to the angle of two points]</font>
+<font face="Courier New">Pick first point:</font><font face="±¼¸²"> {p2}</font>                  <font face="±¼¸²">[Pick start point]</font>
+<font face="Courier New">Pick second point:</font><font face="±¼¸²"> {p3}</font>                 <font face="±¼¸²">[Pick end point]</font>
+<font face="Courier New">Pick insert point:</font><font face="±¼¸²"> {p4}</font>                 <font face="±¼¸²">[Pick insert point of text]</font> <br> </pre>
+</body>
+
+</html>

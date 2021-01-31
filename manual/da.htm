@@ -1,0 +1,59 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN">
+<html>
+<head>
+<title>각을 가진 치수선을 그려줍니다.</title>
+<link rel="stylesheet" href="css/jquery.treeview.css" />
+<link rel="stylesheet" href="css/screen.css" />
+
+<script src="lib/jquery.js" type="text/javascript"></script>
+<script src="lib/jquery.cookie.js" type="text/javascript"></script>
+<script src="lib/jquery.treeview.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+		$(function() {
+			$("#tree").treeview({
+				collapsed: true,
+				animated: "medium",
+				control:"#sidetreecontrol",
+				persist: "location"
+			});
+		})
+		
+</script>
+</head>
+
+<body bgcolor="white" text="black" link="blue" vlink="purple" alink="red">
+<div id="m_left" style="float:left;"><?php include 'djdgtree.htm';?></div>
+<div id="m_right" style="float:left;">
+<pre><font face="굴림" size="4"><b>각을 가진 치수선을 그려줍니다. (DIM.ALIGNED)</b></font><font size="4"><b><br></b></font>
+&nbsp;
+<img src="fmhbs010.gif" align="middle" width="85" height="62" border="0" hspace="3"> <img src="fmhbs011.gif" align="middle" width="25" height="23" border="0" hspace="3"> <font face="굴림">Program name : DA.LSP</font>
+<hr size="1" align="left" noshade>
+<font face="굴림">AutoCAD에서 제공하는 치수선 명령중 ALIGNED명령의 기능과 같습니다. 즉 기울어진 치수선을 만</font>
+<font face="굴림">들어주는 것으로서 앞에서 소개한 DH, DV와 같이 연속치수선, 골뱅이(@) 등의 추가기능을 지원</font>
+<font face="굴림">합니다. </font>
+<font face="바탕"><b><u><img src="pencel.gif" border="0"> 사용예</u></b></font>
+<font face="Courier New">Pick first point/Object:</font><font face="굴림"> </font><font face="굴림"><b>cen</b></font><font face="굴림"> of {p1}</font>            <font face="굴림">[시작점(여기서는 점철근의 중심)]</font>
+<font face="Courier New">Pick second point:</font><font face="굴림"> cen of {p2}</font>          <font face="굴림">[끝점, {p1}과 {p2}로 치수선의 각이 정의됨]</font>
+<font face="Courier New">Pick Dimension line side:</font><font face="굴림"> {p3}</font>          <font face="굴림">[치수선이 위치할 방향]</font>
+<font face="Courier New">Dimension line Level &lt;1&gt;:</font><font face="굴림"> <img src="enter.gif" border="0"></font>             <font face="굴림">[1단 치수선]</font>
+<font face="Courier New">Dimension text &lt;250&gt;:</font><font face="굴림"> <img src="enter.gif" border="0"></font>                 <font face="굴림">[프로그래밍 구한 거리를 그대로 사용함]</font>
+<font face="Courier New">Distance or RETURN to Pick point/eXit:</font><font face="굴림"> <img src="enter.gif" border="0"></font>        <font face="굴림">[점을 찍어 지정하기 위해 <img src="enter.gif" width="16" height="16" border="0">r]</font>
+<font face="Courier New">Pick point:</font><font face="굴림"> cen of {p4}</font>                 <font face="굴림">[점을 찍어줌]</font>
+<font face="Courier New">Dimension text &lt;2.700&gt;:</font><font face="굴림"> </font><font face="굴림"><b>@300</b></font><font face="굴림"><img src="enter.gif" border="0"></font>           <font face="굴림">[골뱅이 옵션사용,나누는 길이는 300mm]</font>
+<font face="Courier New">Distance or RETURN to Pick point/eXit:</font><font face="굴림"> </font><font face="굴림"><b>250<img src="enter.gif" width="16" height="16" border="0"></b></font><font face="굴림"> [길이 250입력]</font>
+<font face="Courier New">Dimension text &lt;250&gt;:</font><font face="굴림"> <img src="enter.gif" border="0"></font>                 <font face="굴림">[text 그대로 사용]</font>
+<font face="Courier New">Distance or RETURN to Pick point/eXit:</font><font face="굴림"> </font><font face="굴림"><b>x<img src="enter.gif" width="16" height="16" border="0"></b></font><font face="굴림"> [1단 치수선 끝냄]</font>
+<font face="Courier New">Command:</font><font face="굴림"> </font><font face="굴림"><b>da</b></font><font face="굴림"><img src="enter.gif" border="0"></font>                                    <font face="굴림">[2단 치수선 시작]</font>
+<font face="Courier New">Pick first point/Object:</font><font face="굴림"> </font><font face="굴림"><b>cen</b></font><font face="굴림"> of {p1}</font>            <font face="굴림">[시작점]</font>
+<font face="Courier New">Pick second point:</font><font face="굴림"> </font><font face="굴림"><b>cen</b></font><font face="굴림"> of {p5}</font>          <font face="굴림">[끝점]</font>
+<font face="Courier New">Pick Dimension line side:</font><font face="굴림"> {p3}</font>          <font face="굴림">[치수선이 위치할 방향]</font>
+<font face="Courier New">Dimension line Level &lt;1&gt;:</font><font face="굴림"> </font><font face="굴림"><b>2</b></font><font face="굴림"><img src="enter.gif" border="0"></font>            <font face="굴림">[2단 치수선]</font>
+<font face="Courier New">Dimension text &lt;3.200&gt;:</font><font face="굴림"> <img src="enter.gif" border="0"></font>                       <font face="굴림">[text 기대로 사용]</font>
+<font face="Courier New">Distance or RETURN to Pick point/eXit:</font><font face="굴림"> </font><font face="굴림"><b>x</b></font><font face="굴림"><img src="enter.gif" border="0"></font>       <font face="굴림">[DA명령 끝냄]</font>
+&nbsp;
+<img src="da.gif" align="middle" width="313" height="318" border="0" hspace="3"></pre>
+</div>
+</body>
+
+</html>

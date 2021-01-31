@@ -1,0 +1,45 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN">
+<html>
+<head>
+<title>¾Æ·¡ ±×¸²°ú °°Àº Ã¶±Ù¸¶Å·º¸Á¶¼±°ú ¸¶Å·À» ÇØÁÝ´Ï´Ù.</title>
+<link rel="stylesheet" href="css/jquery.treeview.css" />
+<link rel="stylesheet" href="css/screen.css" />
+
+<script src="lib/jquery.js" type="text/javascript"></script>
+<script src="lib/jquery.cookie.js" type="text/javascript"></script>
+<script src="lib/jquery.treeview.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+		$(function() {
+			$("#tree").treeview({
+				collapsed: true,
+				animated: "medium",
+				control:"#sidetreecontrol",
+				persist: "location"
+			});
+		})
+		
+</script>
+</head>
+
+<body bgcolor="white" text="black" link="blue" vlink="purple" alink="red">
+<div id="m_left" style="float:left;"><?php include 'djdgtree.htm';?></div>
+<div id="m_right" style="float:left;">
+<pre><font face="±¼¸²" size="4"><b>¾Æ·¡ ±×¸²°ú °°Àº Ã¶±Ù¸¶Å·º¸Á¶¼±°ú ¸¶Å·À» ÇØÁÝ´Ï´Ù.</b></font>&nbsp;
+&nbsp;
+<img src="ncmar031.gif" align="middle" width="84" height="63" border="0"> <img src="ncmar032.gif" align="middle" width="25" height="24" border="0" hspace="3"> <font face="±¼¸²">Program name : B4.LSP</font>
+<hr size="1" align="left" noshade>
+     <font face="¹ÙÅÁ"><b><img src="pencel.gif" border="0"></b></font><font face="µ¸¿ò"><b><u>»ç¿ë¿¹</u></b></font><font face="¹ÙÅÁ"><b><u> </u></b></font>
+    <font face="Courier New">Select objects:</font><font face="±¼¸²"> {p1}~{p2} 5 found</font>                   <font face="±¼¸²">[Á¡Ã¶±Ù ¼±ÅÃ]</font>
+    <font face="Courier New">Select objects:</font><font face="±¼¸²"> <img src="enter.gif" width="16" height="16" border="0"></font>                           <font face="±¼¸²">[¼±ÅÃ ³¡³¿]</font>
+    <font face="Courier New">Pick base line first point:</font><font face="±¼¸²"> {p3}</font>            <font face="±¼¸²">[½ÃÀÛÁ¡]</font>
+<font face="±¼¸²">      </font><font face="Courier New">Pick base line second point:</font><font face="±¼¸²"> {p4}</font>               <font face="±¼¸²">[³¡Á¡]</font>
+    <font face="Courier New">Pick base line:</font><font face="±¼¸²"> {p5}</font>                                <font face="±¼¸²">[¹Ø¼±ÀÇ ¹æÇâ]</font>
+    <font face="Courier New">Enter Marking:</font><font face="±¼¸²"> </font><font face="±¼¸²"><b>b4</b></font><font face="±¼¸²"><img src="enter.gif" width="16" height="16" border="0"></font>                          <font face="±¼¸²">[Ã¶±ÙÀÌ¸§]</font>
+    <font face="Courier New">Enter Rebar Dia:</font><font face="±¼¸²"> </font><font face="±¼¸²"><b>d25</b></font><font face="±¼¸²"><img src="enter.gif" width="16" height="16" border="0"></font>                               <font face="±¼¸²">[Ã¶±ÙÁ¾·ù ¹× Ã¶±ÙÁö¸§]<br></font>
+<font face="±¼¸²">&nbsp;</font>
+    <img src="b4.gif" align="bottom" width="442" height="186" border="0" hspace="3"></pre>
+</div>
+</body>
+
+</html>

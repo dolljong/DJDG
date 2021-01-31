@@ -1,0 +1,45 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN">
+<html>
+<head>
+<title>도면명(File name) 기입하기</title>
+<link rel="stylesheet" href="css/jquery.treeview.css" />
+<link rel="stylesheet" href="css/screen.css" />
+
+<script src="lib/jquery.js" type="text/javascript"></script>
+<script src="lib/jquery.cookie.js" type="text/javascript"></script>
+<script src="lib/jquery.treeview.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+		$(function() {
+			$("#tree").treeview({
+				collapsed: true,
+				animated: "medium",
+				control:"#sidetreecontrol",
+				persist: "location"
+			});
+		})
+		
+</script>
+</head>
+
+<body bgcolor="white" text="black" link="blue" vlink="purple" alink="red">
+<div id="m_left" style="float:left;"><?php include 'djdgtree.htm';?></div>
+<div id="m_right" style="float:left;">
+<pre><font face="굴림" size="4"><b>도면명(File name) 기입하기</b></font>
+&nbsp;
+<img src="dvtuh055.gif" align="middle" width="85" height="60" border="0" hspace="3"> <img src="dvtuh056.gif" align="middle" width="25" height="23" border="0" hspace="3"> <font face="굴림">Program name : WDWGN.LSP</font>
+<hr size="1" noshade>
+  <font face="바탕">가끔 도면관리를 위해서 도면에다 그 도면의 파일명을 기입하는 경우가 있습니다. 이 프로그램</font>
+<font face="바탕">은 도면명을 기입하고 싶은 위치만 찍어주면 파일명을 기입해줍니다. 파일명은 DWGNAME이라</font>
+<font face="바탕">는 AutoCAD환경변수를 참조하여 구해집니다.</font> <br>
+<br>
+&nbsp;
+  <font face="바탕"><b><u><img src="pencel.gif" border="0"> </u></b></font><font face="돋움"><b><u>사용예</u></b></font><font face="바탕"><b><u> </u></b></font>
+  <font face="Courier New">Pick insert point:</font><font face="바탕"> {파일명을 기입하고 싶은 위치를 찍어줌}<br>
+<br>  
+</font><font face="바탕"><b><i>※ 참고</i></b></font>
+  <font face="바탕">파일명 text의 크기는 2mm입니다. 즉 1:50도면에서는 100의 크기를 가집니다.</font> <br></pre>
+</div>
+</body>
+
+</html>

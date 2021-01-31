@@ -1,0 +1,54 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN">
+<html>
+<head>
+<title>Wblock의 file명을 text로부터.</title>
+<link rel="stylesheet" href="css/jquery.treeview.css" />
+<link rel="stylesheet" href="css/screen.css" />
+
+<script src="lib/jquery.js" type="text/javascript"></script>
+<script src="lib/jquery.cookie.js" type="text/javascript"></script>
+<script src="lib/jquery.treeview.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+		$(function() {
+			$("#tree").treeview({
+				collapsed: true,
+				animated: "medium",
+				control:"#sidetreecontrol",
+				persist: "location"
+			});
+		})
+		
+</script>
+</head>
+
+<body bgcolor="white" text="black" link="blue" vlink="purple" alink="red">
+<div id="m_left" style="float:left;"><?php include 'djdgtree.htm';?></div>
+<div id="m_right" style="float:left;">
+<pre><font face="굴림" size="4"><b>  Wblock의 file명을 text로부터...</b></font></pre>
+<pre><div align="left">&nbsp;</div></pre>
+<pre>&nbsp;</pre>
+<pre><div align="left"><img src="dvtuh061.gif" align="bottom" width="74" height="48" border="0"><font face="굴림"> </font><img src="dvtuh062.gif" align="bottom" width="29" height="28" border="0"> <font face="굴림">파일명 : wbname.lsp</font></div></pre>
+<pre><hr size="1" noshade>
+  <font face="바탕">보통 도면작업을 할 때 한파일에 한 장의 도면을 그리는 것이 아니고 한파일 안에 여러장의 도</font>
+<font face="바탕">면을 그리는 경우가 많습니다. 하지만 CD납품을 할 때는 이렇게 한 파일에 여러장의 도면을 넣</font>
+<font face="바탕">어두어서는 안됩니다. 검색하기가 힘들기 때문이지요. 그래서 작업할 때는 여러장을 한 파일에서 </font>
+<font face="바탕">작업을 하지만 나중에 납품할 때는 따로 따로 잘라내는 작업을 해야합니다. 보통 wblock명령으로 </font>
+<font face="바탕">그러한 작업을 하게 되는데 일일이 파일이름을 입력하기 불편하고 오타의 가능성이 있기 때문입</font>
+<font face="바탕">니다. 이 프로그램은 파일이름을 도면에 있는 텍스트를 이용해서 정할 수 있기 때문에 도면에 있</font>
+<font face="바탕">는 도면번호나 도면명등을 선택하여 파일이름을 정할 수 있습니다.</font> <br>
+<br>  
+<font face="바탕"><b><u><img src="pencel.gif" border="0"> </u></b></font><font face="돋움"><b><u>사용예</u></b></font><font face="바탕"><b><u> </u></b></font>
+<font face="Courier New">Command: </font><font face="Courier New"><b>wbname</b></font>
+<font face="Courier New">Select objects: </font><font face="Courier New"><b>{Pick s1}</b></font><font face="Courier New"> 1 found  [</font><font face="굴림">파일이름이</font><font face="Courier New"> </font><font face="굴림">될</font><font face="Courier New"> text</font><font face="굴림">를</font><font face="Courier New"> </font><font face="굴림">선택함</font><font face="Courier New">]</font>
+<font face="Courier New">Select objects: </font><font face="Courier New"><b><img src="enter.gif" border="0"> </b></font>
+                         <font face="Courier New"><b>              </b></font><font face="Courier New">[</font><font face="굴림">선택을</font><font face="Courier New"> </font><font face="굴림">끝내기</font><font face="Courier New"> </font><font face="굴림">위해</font><font face="Courier New"> Enter</font><font face="굴림">침</font><font face="Courier New">, </font><font face="굴림">여러개를</font><font face="Courier New"> </font><font face="굴림">선택하면</font><font face="Courier New"> </font><font face="굴림">계속해서</font><font face="Courier New"> </font><font face="굴림">더해짐</font><font face="Courier New">]</font>
+<font face="Courier New">Insertion base point: </font><font face="Courier New"><b>{Pick p1}</b></font><font face="Courier New">  [</font><font face="굴림">삽입점</font><font face="Courier New"> </font><font face="굴림">찍어줌</font><font face="Courier New">]</font>
+<font face="Courier New">Select objects: </font><font face="Courier New"><b>{Pick p1}</b></font><font face="Courier New"> Specify opposite corner: </font><font face="Courier New"><b>{Pick P2}</b></font><font face="Courier New"> 5 found </font>
+<font face="Courier New">                                     [block</font><font face="굴림">으로</font><font face="Courier New"> </font><font face="굴림">만들</font><font face="Courier New"> </font><font face="굴림">개체를</font><font face="Courier New"> </font><font face="굴림">선택함</font><font face="Courier New">]</font> <br>
+<br>
+<img src="wbname.gif" align="bottom" width="362" height="249" border="0" hspace="3"> <br></pre>
+</div>
+</body>
+
+</html>

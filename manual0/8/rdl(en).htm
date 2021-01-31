@@ -1,0 +1,54 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN">
+<html>
+<head>
+<title>Read coordinates data file and Draw line.</title>
+
+</head>
+
+<body bgcolor="white" text="black" link="blue" vlink="purple" alink="red">
+
+<pre><font face="±¼¸²" size="4"><b>Read coordinates data file and Draw line.</b></font>
+&nbsp;
+<img src="dvtuh033.gif" align="middle" width="80" height="64" border="0" hspace="3"> <img src="dvtuh034.gif" align="middle" width="25" height="23" border="0" hspace="3"> <font face="±¼¸²">Program name : RDL.LSP</font>
+<hr size="1" noshade>
+<font face="±¼¸²">Drawing lines with certain coordinate values, such as drawing Tendon, Camber, or alignment calculations, 
+is more cumbersome than you might think. This is because you have to enter coordinate values ??manually. This program 
+reads coordinate data file and draws lines as they are. The work flow is shown below.<br></font>
+<font face="±¼¸²">&nbsp;</font>
+<font face="¹ÙÅÁ"><b><u><img src="pencel.gif" border="0"> Example</u></b></font>
+<font face="±¼¸²"> ¨ç Create a data file as shown below.</font>
+<font face="±¼¸²">   </font><font face="±¼¸²"><b>The first line</b> is also written in the drawing as the title.</font>
+<font face="±¼¸²">   </font><font face="±¼¸²"><b>The second line</b> is the coordinates. Node-number, X-coordinate, and Y-coordinate in that order.</font>
+    <font face="±¼¸²">       If non-numeric text is entered in node-number, data from the next one is recognized as data of the new line Therefore, 
+	you can put several line data in one data file.</font></pre>
+<pre><div align="center">&nbsp;</div></pre>
+<div align="left"><table border cellpadding="14" cellspacing="0" bordercolordark="white"
+ bordercolorlight="black"><caption align="bottom"> </caption>
+    <tr>
+        <td width="100%"><pre><span style="font-size:10pt;"><font face="¹ÙÅÁÃ¼" size="2">line-1</font></span>
+<span style="font-size:10pt;"><font face="¹ÙÅÁÃ¼" size="2"> 1,   40.000,    0.000</font></span>
+<span style="font-size:10pt;"><font face="¹ÙÅÁÃ¼" size="2"> 2, 1085.304,  810.527</font></span>
+<span style="font-size:10pt;"><font face="¹ÙÅÁÃ¼" size="2"> 3, 2355.591, 1253.010</font></span>
+<span style="font-size:10pt;"><font face="¹ÙÅÁÃ¼" size="2"> 4, 3725.283, 1466.762</font></span>
+<span style="font-size:10pt;"><font face="¹ÙÅÁÃ¼" size="2"> 5, 5215.884, 1468.970</font></span>
+<span style="font-size:10pt;"><font face="¹ÙÅÁÃ¼" size="2"> 6, 6734.565, 1274.062</font></span>
+<span style="font-size:10pt;"><font face="¹ÙÅÁÃ¼" size="2"> 7, 7797.277,  906.742</font></span>
+<span style="font-size:10pt;"><font face="¹ÙÅÁÃ¼" size="2"> 8, 8875.419,  127.080</font></span>
+<span style="font-size:10pt;"><font face="¹ÙÅÁÃ¼" size="2"> 9, 9975.057, -449.378</font></span>
+<span style="font-size:10pt;"><font face="¹ÙÅÁÃ¼" size="2">10,11057.900, -884.224</font></span>
+<span style="font-size:10pt;"><font face="¹ÙÅÁÃ¼" size="2">11,12197.054,-1186.411</font></span>
+<span style="font-size:10pt;"><font face="¹ÙÅÁÃ¼" size="2">12,13478.444,-1312.553</font></span>
+<span style="font-size:10pt;"><font face="¹ÙÅÁÃ¼" size="2">13,14876.123,-1278.594</font></span>
+<span style="font-size:10pt;"><font face="¹ÙÅÁÃ¼" size="2">14,16308.118,-1087.458</font></span>
+<span style="font-size:10pt;"><font face="¹ÙÅÁÃ¼" size="2">15,17898.825, -729.017</font></span>
+<span style="font-size:10pt;"><font face="¹ÙÅÁÃ¼" size="2">16,19432.219,  -92.768</font></span></pre></td>
+    </tr>
+</table></div>
+<pre aling="CENTER">&nbsp;</pre>
+<pre><font face="±¼¸²">¨è Run the program to determine the data file. Below is the result of the above data file. 
+The first line titled line-1 is shown in the drawing..<br></font>
+<font face="±¼¸²">&nbsp;</font>
+<img src="rdl1.gif" width="469" height="137" border="0"></pre>
+</body>
+
+</html>

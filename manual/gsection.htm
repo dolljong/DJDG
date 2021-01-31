@@ -1,0 +1,94 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN">
+<html>
+<head>
+<title>Gsection data 파일 만들기</title>
+<link rel="stylesheet" href="css/jquery.treeview.css" />
+<link rel="stylesheet" href="css/screen.css" />
+
+<script src="lib/jquery.js" type="text/javascript"></script>
+<script src="lib/jquery.cookie.js" type="text/javascript"></script>
+<script src="lib/jquery.treeview.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+		$(function() {
+			$("#tree").treeview({
+				collapsed: true,
+				animated: "medium",
+				control:"#sidetreecontrol",
+				persist: "location"
+			});
+		})
+		
+</script>
+</head>
+
+<body bgcolor="white" text="black" link="blue" vlink="purple" alink="red">
+<div id="m_left" style="float:left;"><?php include 'djdgtree.htm';?></div>
+<div id="m_right" style="float:left;">
+<pre><font face="굴림" size="4"><b>  Gsection data 파일 만들기</b></font>
+&nbsp;
+<img src="dvtuh081.gif" align="bottom" width="73" height="48" border="0"><font face="Courier New"><b> </b></font><img src="dvtuh082.gif" align="bottom" width="26" height="27" border="0"> <font face="굴림">파일명 : gsection.lsp</font>
+<hr size="1" noshade>
+  <font face="바탕">Gsection(General section)은</font><a href="http://www.civilkorea.co.kr">  </a><a href="http://www.civilkorea.co.kr"><font face="바탕">(주)DM엔지니어링</font></a><font face="바탕">에서 제작하여 공개한 토목설계용 전용 프로</font>
+<font face="바탕">그램 중 하나로서, 임의 형상의 단면에 대한 단면물성치(단면적, 단면2차모멘트 등)을 구해주는 </font>
+<font face="바탕">프로그램입니다. 이 프로그램의 data파일(*.sec)은 구하고자하는 단면을 이루는 단일폐곡선의  각 </font>
+<font face="바탕">node x,y 좌표값들을 나열해주는 형태인데 단면이 복잡한 경우 x,y좌표를 일일이 구하는 것도 간</font>
+<font face="바탕">단한 일이 아닙니다. [다정다감]의 gsection.lsp는 캐드상에서 작성된 그림을 이용하여 간단히 임</font>
+<font face="바탕">의 단면의 좌표값들을 구하여 gsection.exe용 data파일로 만들어주는 기능을 가지고 있습니다.</font> <br>
+<br>  
+<font face="바탕"><b><u><img src="pencel.gif" border="0"> </u></b></font><font face="돋움"><b><u>사용예</u></b></font><font face="바탕"><b><u> </u></b></font>
+  <font face="바탕">아래 그림과 같은 P.S.C BOX 단면의 section property를 구해보도록 하겠습니다. </font> <br>  
+<br>
+<img src="gsection1.gif" align="bottom" width="576" height="89" border="0" hspace="3"><br>
+&nbsp;
+  <font face="바탕">작업에 들어가기 전에 먼저 알아두어야 할 것은 </font><font face="바탕"><b>gsection.exe는 단일 폐곡선만을 인식한다</b></font><font face="바탕">는 </font>
+<font face="바탕">것입니다. 위의 그림과 같이 중공이 있는 단면은 단일 폐고선이 아니므로 단일 폐곡선으로 만들 </font>
+<font face="바탕">수 있도록 아래 그림과 같이 3개의 선을 추가해줍니다. 이제 어느 한점에서 시작해서 선을 따라</font>
+<font face="바탕">가면 다시 시작했던 점으로 돌아 올 것입니다. 이렇게 단일 폐곡으로 만들 수 있는 준비를 해줍</font>
+<font face="바탕">니다. 물론 중공단면이 아닌 경우엔 이런 작업이 필요없겠죠<br></font>
+<font face="바탕">&nbsp;</font></pre>
+<pre><div align="left">  <img src="gsection2.gif" align="bottom" width="563" height="83" border="0" hspace="3"><br></div></pre>
+<pre>&nbsp;</pre>
+<pre><div align="left">&nbsp;</div></pre>
+<pre>  <font face="바탕">이제 [다정다감] gsection을 실행시킵니다.</font>
+<font face="Courier New">Command: </font><font face="Courier New"><b>gsection</b></font>
+<font face="Courier New">Pick point or [Select polyline]: </font><font face="Courier New"><b>{Pick p1}</b></font><font face="Courier New">  [</font><font face="굴림">폐곡선</font><font face="Courier New"> </font><font face="굴림">내의</font><font face="Courier New"> </font><font face="굴림">한점을</font><font face="Courier New"> </font><font face="굴림">찍어줍니다</font><font face="Courier New">]</font>
+<font face="Courier New">                       </font><font face="Courier New"><b>S</b></font><font face="Courier New"><img src="enter.gif" border="0"></font><font face="Courier New"><b>{Select s1}</b></font><font face="Courier New"> [</font><font face="굴림">이미</font><font face="Courier New"> </font><font face="굴림">만들어져있는</font><font face="Courier New"> </font><font face="굴림">폐합</font><font face="Courier New"> polyline</font><font face="굴림">을</font><font face="Courier New"> </font><font face="굴림">선택합니다</font><font face="Courier New">.</font>
+<font face="Courier New">40 node found                           [40</font><font face="굴림">개의</font><font face="Courier New"> node</font><font face="굴림">가</font><font face="Courier New"> </font><font face="굴림">발견되었다는</font><font face="Courier New"> </font><font face="굴림">메시지</font><font face="Courier New"> </font><font face="굴림">나옴</font><font face="Courier New">]</font>
+<font face="Courier New">Pick Original point: </font><font face="Courier New"><b>{Pick p2}       </b></font><font face="Courier New">[</font><font face="굴림">기준점</font><font face="Courier New"> </font><font face="굴림">찍어줌</font><font face="Courier New">]</font>
+<font face="Courier New">Enter Title: </font><font face="Courier New"><b>P.S.C BOX</b></font><font face="Courier New">                [gsection.exe</font><font face="굴림">에서의</font><font face="Courier New"> </font><font face="굴림">제목</font><font face="Courier New"> </font><font face="굴림">입력</font><font face="Courier New">]</font>
+<font face="Courier New">Enter scale factor: </font><font face="Courier New"><b>0.001</b></font><font face="Courier New">            [gsection.exe</font><font face="굴림">로</font><font face="Courier New"> </font><font face="굴림">넘어갈</font><font face="Courier New"> </font><font face="굴림">때</font><font face="Courier New"> scale]</font> <br>
+<br></pre>
+<pre><div align="left"><img src="gsection3.gif" align="bottom" width="617" height="105" border="0" hspace="3"><br></div></pre>
+<pre>&nbsp;</pre>
+<pre><div align="left">&nbsp;</div></pre>
+<pre><font face="바탕">그러면 아래 그림과 같이 저장할 파일이름을 물어보는 box가 뜹니다. 적당한 이름을 정하여 저장</font>
+<font face="바탕">합니다.</font> <br>
+<br></pre>
+<pre><div align="left"><img src="gsection4.gif" align="bottom" width="575" height="298" border="0" hspace="3"> <br></div></pre>
+<pre>&nbsp;</pre>
+<pre><div align="left"><br></div></pre>
+<pre>&nbsp;</pre>
+<pre><div align="left">&nbsp;</div></pre>
+<pre><font face="바탕">gsection.exe를 실행시키면 아래아 같이 결은 결과를 얻을 수 있습니다.<br></font>
+<font face="바탕">&nbsp;</font></pre>
+<pre><div align="left"><img src="gsection5.gif" align="bottom" width="655" height="476" border="0" hspace="3"> <br></div></pre>
+<pre>&nbsp;</pre>
+<pre><div align="center">&nbsp;</div></pre>
+<div align="left"><table border cellpadding="2" cellspacing="0" bordercolordark="white"
+ bordercolorlight="black"><caption align="bottom"> </caption>
+    <tr>
+        <td width="100%"><pre><font face="바탕"><b>Bpoly명령사용하기</b></font></pre></td>
+    </tr>
+    <tr>
+        <td width="100%"><pre><font face="바탕">bpoly명령은 폐합 polyline을 만들어주는 명령입니다. 프로그램이 &quot;Polyline must be </font>
+<font face="바탕">closed&quot;란 에러메세지와 함께 끝난다면 bpoly를 이용하여 폐합 polyline을 만든 다음에 </font>
+<font face="바탕">gsection에서 Select polyline옵션을 사용하여 영역을 정해줄 수 있습니다.</font> <br>
+<font face="Courier New">command: </font><font face="Courier New"><b>bpoly</b></font><font face="Courier New">[Enter]</font>
+<img src="gsection6.gif" align="bottom" width="566" height="379" border="0"></pre></td>
+    </tr>
+</table></div>
+</div>
+</body>
+
+</html>

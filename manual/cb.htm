@@ -1,0 +1,45 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN">
+<html>
+<head>
+<title>철근마킹 바꾸기</title>
+<link rel="stylesheet" href="css/jquery.treeview.css" />
+<link rel="stylesheet" href="css/screen.css" />
+
+<script src="lib/jquery.js" type="text/javascript"></script>
+<script src="lib/jquery.cookie.js" type="text/javascript"></script>
+<script src="lib/jquery.treeview.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+		$(function() {
+			$("#tree").treeview({
+				collapsed: true,
+				animated: "medium",
+				control:"#sidetreecontrol",
+				persist: "location"
+			});
+		})
+		
+</script>
+</head>
+
+<body bgcolor="white" text="black" link="blue" vlink="purple" alink="red">
+<div id="m_left" style="float:left;"><?php include 'djdgtree.htm';?></div>
+<div id="m_right" style="float:left;">
+<pre><font face="바탕" size="4"><b>철근마킹 바꾸기</b></font>
+&nbsp;
+<img src="ncmar041.gif" align="middle" width="73" height="49" border="0"><font face="굴림"> </font><img src="ncmar042.gif" align="middle" width="27" height="24" border="0"> <font face="굴림">파일명 : bc.lsp</font>
+<hr size="1" align="left" noshade>
+  <font face="굴림">원만 있는 철근 마킹을 밑줄이 있는 마킹형태로 바꾸어줍니다. 개인적으로는 밑줄이 없는 마킹</font>
+<font face="굴림">이 작업하기 편한테 꼭 밑줄이 있는 것으로 해야되는 경우도 있더군요. 혹 원만 있는 마킹으로 </font>
+<font face="굴림">작업했는데 밑줄이 있는 마킹으로 바꿔야 될 경우에 손쉽게 바꿀 수 있도록 만들었습니다.</font>
+     <font face="바탕"><b><img src="pencel.gif" border="0"></b></font><font face="돋움"><b><u>사용예</u></b></font><font face="바탕"><b><u> </u></b></font>
+  <font face="Courier New">Command: cb<img src="enter.gif" width="16" height="16" border="0"></font>
+  <font face="Courier New">Select objects: </font><font face="Courier New"><b>{p1}</b></font><font face="Courier New"> </font><font face="Courier New"><b>{p2}   [</b></font><font face="굴림">마킹원과 철근직경을 선택해줌]</font>
+  <font face="Courier New">Select objects: <img src="enter.gif" width="16" height="16" border="0">     [</font><font face="굴림">선택을</font><font face="Courier New"> </font><font face="굴림">끝내기</font><font face="Courier New"> </font><font face="굴림">위해서</font><font face="Courier New"> Enter</font><font face="굴림">입력</font><font face="Courier New">]</font>
+  <font face="Courier New">Pick basepoint: end of </font><font face="Courier New"><b>{p3} </b></font><font face="Courier New">[</font><font face="굴림">밑줄의</font><font face="Courier New"> </font><font face="굴림">시작점</font><font face="Courier New"> </font><font face="굴림">찍어줌</font><font face="Courier New">]</font>
+  <font face="Courier New">Pick sidepoint: </font><font face="Courier New"><b>{P4}</b></font><font face="Courier New">         [</font><font face="굴림">밑줄의</font><font face="Courier New"> </font><font face="굴림">방향을</font><font face="Courier New"> </font><font face="굴림">찍어줌</font><font face="Courier New">]</font> <br>
+<img src="bc.gif" align="bottom" width="485" height="251" border="0" hspace="3"></pre>
+</div>
+</body>
+
+</html>

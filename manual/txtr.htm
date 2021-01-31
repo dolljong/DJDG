@@ -1,0 +1,60 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN">
+<html>
+<head>
+<title>글자를 line이나 원에 알맞게 돌려줍니다.</title>
+<link rel="stylesheet" href="css/jquery.treeview.css" />
+<link rel="stylesheet" href="css/screen.css" />
+
+<script src="lib/jquery.js" type="text/javascript"></script>
+<script src="lib/jquery.cookie.js" type="text/javascript"></script>
+<script src="lib/jquery.treeview.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+		$(function() {
+			$("#tree").treeview({
+				collapsed: true,
+				animated: "medium",
+				control:"#sidetreecontrol",
+				persist: "location"
+			});
+		})
+		
+</script>
+</head>
+
+<body bgcolor="white" text="black" link="blue" vlink="purple" alink="red">
+<div id="m_left" style="float:left;"><?php include 'djdgtree.htm';?></div>
+<div id="m_right" style="float:left;">
+<pre><font face="굴림" size="4"><b>글자를 line이나 원에 알맞게 돌려줍니다.</b></font><font size="4"><b><br></b></font>
+&nbsp;
+<img src="trjqh036.gif" align="middle" width="85" height="63" border="0" hspace="3"> <img src="trjqh037.gif" align="middle" width="25" height="23" border="0" hspace="3"> <font face="굴림">Program name : TXTR.LSP</font>
+<hr size="1" noshade>
+  <font face="굴림">수작업과 CAD작업을 비교해보았을 때 CAD가 수작업보다 불편한 점 중의 하나가 바로 TEXT의 </font>
+<font face="굴림">처리라고 생각합니다. 손으로 도면을 그린다면 개발새발(?) 써도 알아볼 수만 있다면 트레이싱 사</font>
+<font face="굴림">무실에서 아주 깨?하고 이쁜 글씨로 만들어줍니다. 하지만 CAD에서는 마지막 한자까지도 도면</font>
+<font face="굴림">작성자가 신경을 써야합니다. 특히 기울어진 text를 쓸 때는 여간 신경이 쓰이는 것이 아닙니다. </font>
+<font face="굴림">즉 어떤 기울어진 선에 평행하게 text를 배치해야 할 경우 (물론 대충 돌려서 비슷하게 맞추어도 </font>
+<font face="굴림">되지만) 그 선의 각도를 알아낸 후에 다시 rotate명령으로 text를 돌려줘야 합니다. 이 프로그램은 </font>
+<font face="굴림">그러한 작업을 쉽게 할 수 있게 해줍니다. 우선 돌려야 할 text를 선택하고 기준이 될 line이나 </font>
+<font face="굴림">Arc를 선택해줍니다. line을 선택했을 경우에는 그 line을 각도를 구해서 그 line에 평행하게 text를 </font>
+<font face="굴림">돌려주고, Arc를 선택했을 경우에는 그 점에서의 접선방향으로 text를 돌려줍니다. 그리고 나서 </font>
+<font face="굴림">insert point를 찍어주면 text를 그점으로 옮겨줍니다.</font> <br>
+<br>
+&nbsp;
+<font face="바탕"><b><u><img src="pencel.gif" border="0"> 사용예-1</u></b></font>
+<font face="Courier New">Select text:</font><font face="굴림"> {p1}</font>                               <font face="굴림">[Rotate할 text entity선택]</font>
+<font face="Courier New">2P/&lt;Select Line, Arc or Circle&gt;:</font><font face="굴림"> {p2}</font>   <font face="굴림">[line 또는 ARC를 선택]</font>
+<font face="Courier New">Pick insert point:</font><font face="굴림"> {p3}</font>                 <font face="굴림">[돌려진 text가 옮겨질 insert point를 찍어줌]<br></font>
+<font face="굴림">&nbsp;</font>
+<img src="txtr.gif" align="middle" width="580" height="264" border="0" vspace="3" hspace="3"> <br> 
+&nbsp;
+<font face="바탕"><b><u><img src="pencel.gif" border="0"> 사용예-2</u></b></font>
+<font face="Courier New">Select text:</font><font face="굴림"> {p1}</font>                               <font face="굴림">[Rotate할 Text entity선택] </font>
+<font face="Courier New">2P/&lt;Select Line, Arc or Circle&gt;:</font><font face="굴림"> 2P<img src="enter.gif" width="16" height="16" border="0">   [두점의 각을 참조하기 위한 2-point option선택]</font>
+<font face="Courier New">Pick first point:</font><font face="굴림"> {p2}</font>                  <font face="굴림">[시작점 찍어줌]</font>
+<font face="Courier New">Pick second point:</font><font face="굴림"> {p3}</font>                 <font face="굴림">[끝점 찍어줌]</font>
+<font face="Courier New">Pick insert point:</font><font face="굴림"> {p4}</font>                 <font face="굴림">[돌려진 text가 옮겨질 insert point를 찍어줌]</font> <br> </pre>
+</div>
+</body>
+
+</html>

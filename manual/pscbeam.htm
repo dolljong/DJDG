@@ -1,0 +1,53 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN">
+<html>
+<head>
+<title>P.S.C BEAM 단면 그리기</title>
+<link rel="stylesheet" href="css/jquery.treeview.css" />
+<link rel="stylesheet" href="css/screen.css" />
+
+<script src="lib/jquery.js" type="text/javascript"></script>
+<script src="lib/jquery.cookie.js" type="text/javascript"></script>
+<script src="lib/jquery.treeview.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+		$(function() {
+			$("#tree").treeview({
+				collapsed: true,
+				animated: "medium",
+				control:"#sidetreecontrol",
+				persist: "location"
+			});
+		})
+		
+</script>
+</head>
+
+<body bgcolor="white" text="black" link="blue" vlink="purple" alink="red">
+<div id="m_left" style="float:left;"><?php include 'djdgtree.htm';?></div>
+<div id="m_right" style="float:left;">
+<pre><font face="굴림" size="4"><b>P.S.C BEAM 단면 그리기</b></font>
+&nbsp;
+<img src="vkocw004.gif" align="middle" width="85" height="63" border="0"> <img src="vkocw005.gif" align="bottom" width="25" height="24" border="0"> <font face="굴림">Program name : PSCBEAM.LSP</font>
+<hr size="1" align="left" noshade>
+  <font face="굴림">P.S.C BEAM교는 정형화된 P.S.C BEAM을 이용하므로 비교적 적은 변수로 단면을 그릴 수 있</font>
+<font face="굴림">습니다. 이 프로그램에서도 입력변수는 slab폭과 두께, 포장두께, BEAM간격으로 적은 수의 변수</font>
+<font face="굴림">가 사용됩니다. </font>
+&nbsp;
+     <font face="바탕"><b><u><img src="pencel.gif" border="0"> </u></b></font><font face="돋움"><b><u>사용예</u></b></font><font face="바탕"><b><u> </u></b></font>
+  <font face="Courier New">B(m):</font><font face="굴림"> 19.5<img src="enter.gif" border="0"> </font>                          <font face="굴림">[slab 폭=교량폭]</font>
+  <font face="Courier New">Number of beam:</font><font face="굴림"> 9<img src="enter.gif" border="0"> </font>                 <font face="굴림">[P.S.C BEAM의 갯수]</font>
+  <font face="Courier New">Pitch of beam(m):</font><font face="굴림"> 2.2<img src="enter.gif" border="0"> </font>             <font face="굴림">[beam 간격]</font>
+  <font face="Courier New">Left slop(%):</font><font face="굴림"> -2<img src="enter.gif" border="0"> </font>                  <font face="굴림">[중앙선에서 왼쪽 방호벽쪽으로의 경사(%)]</font>
+  <font face="Courier New">Right slop(%):</font><font face="굴림"> 2<img src="enter.gif" border="0"> </font>                  <font face="굴림">[중앙선에서 오른쪽 방호벽쪽으로의 경사(%)]</font>
+  <font face="Courier New">Thickness of asphalt(mm):</font><font face="굴림"> 80<img src="enter.gif" border="0"> </font>    <font face="굴림">[아스팔트 포장의 두께]</font>
+  <font face="Courier New">Thickness of slab(mm):</font><font face="굴림"> 250<img src="enter.gif" border="0"> </font>      <font face="굴림">[슬라브의 두께]</font>
+  <font face="Courier New">Pick insert point:</font><font face="굴림"> </font>                <font face="굴림">[삽입점을 찍어준다. 삽입점은 아스팔트포장 중앙상단]</font></pre>
+<pre><div align="left">&nbsp;</div></pre>
+<pre>&nbsp;</pre>
+<pre><div align="left">  <img src="pscbeam.gif" align="bottom" width="504" height="268" border="0" vspace="3" hspace="3"> <br>  </div></pre>
+<pre>  </pre>
+<p>&nbsp;</p>
+</div>
+</body>
+
+</html>

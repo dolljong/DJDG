@@ -1,0 +1,55 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN">
+<html>
+<head>
+<title>글자를 둥글게 배열해줍니다.</title>
+<link rel="stylesheet" href="css/jquery.treeview.css" />
+<link rel="stylesheet" href="css/screen.css" />
+
+<script src="lib/jquery.js" type="text/javascript"></script>
+<script src="lib/jquery.cookie.js" type="text/javascript"></script>
+<script src="lib/jquery.treeview.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+		$(function() {
+			$("#tree").treeview({
+				collapsed: true,
+				animated: "medium",
+				control:"#sidetreecontrol",
+				persist: "location"
+			});
+		})
+		
+</script>
+</head>
+
+<body bgcolor="white" text="black" link="blue" vlink="purple" alink="red">
+<div id="m_left" style="float:left;"><?php include 'djdgtree.htm';?></div>
+<div id="m_right" style="float:left;">
+<pre><font face="굴림" size="4"><b>글자를 둥글게 배열해줍니다.</b></font>
+&nbsp;
+  <img src="vydqp049.gif" align="middle" width="81" height="62" border="0" hspace="3"> <img src="vydqp050.gif" align="middle" width="25" height="23" border="0" hspace="3"> <font face="굴림">파일명 : SLOPL.LSP</font>
+<hr size="1" noshade>
+  <font face="굴림">치수선 작업을 하다보면 글자를 둥글게 배열해야할 경우가 있습니다. 그러나 AutoCAD에서는 </font>
+<font face="굴림">이러한 기능을 지원하지 않습니다. 결국 글자를 둥글게 배열하려면 한글자 한글자를 따로 쓴 다</font>
+<font face="굴림">음에 그것을 둥글게 배열하는 수 밖에 없습니다. 상당히 귀찮은 일이라 하겠습니다. 설사 그러한 </font>
+<font face="굴림">작업을 했다고 해도 한글자 한글자가 별개의 entity로 되어있으므로 관리하기가 까다롭습니다. 이 </font>
+<font face="굴림">프로그램은 그러한 단점을 없애기 위해서 만들어졌습니다. 특히 이 프로그램은 둥글게 배열된 글</font>
+<font face="굴림">자를 한꺼번에 다룰 수 있습니다. 즉 만들어진 글자들은 하나의 블럭으로 움직입니다. 하지만 사</font>
+<font face="굴림">용자는 이 블럭을 도면에 insert할 수 없습니다. 왜냐하면 unnamed block이기 때문입니다. </font>
+<font face="굴림">AutoCAD내에 unnamed block이 몇가지 있습니다. Hatching과 Dimension이 바로 그것입니다. Block</font>
+<font face="굴림">과 Hatching이 선택을 하면 한꺼번에 선택이 되는 걸 보실 수 있을 것입니다. 이 프로그램의 입력</font>
+<font face="굴림">사항은 원의 중심점(p1)과 text의 가운데 위치점(p2)입니다. 물론 text height도 물어옵니다.</font>
+&nbsp;
+  <font face="바탕"><b><u><img src="pencel.gif" border="0"> 사용예</u></b></font>
+  <font face="Courier New">Pick center point:</font><font face="굴림"> {p1} </font>      <font face="굴림">[원의 중심점을 찍어줍니다]</font>
+  <font face="Courier New">Pick insert point:</font><font face="굴림"> {p2}  </font>     <font face="굴림">[삽입점을 찍어줍니다]</font>
+                                    <font face="굴림">프로그램은 원의 중심과 삽입점이 이루는 각을 인식하여 text의 회전각</font>
+                                    을 결정합니다.
+  <font face="Courier New">Text height:</font><font face="굴림"> 2.5<img src="enter.gif" width="15" height="15" border="0"></font>            <font face="굴림">[text 높이를 입력합니다]</font>
+  <font face="Courier New">TEXT: </font><font face="Courier New"><b>This is a round text</b></font><font face="굴림"><img src="enter.gif" width="15" height="15" border="0">       [text를 입력합니다]</font>
+&nbsp;
+  <img src="rtext.gif" align="middle" border="0" vspace="3" hspace="3"></pre>
+</div>
+</body>
+
+</html>

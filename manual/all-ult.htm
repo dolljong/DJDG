@@ -1,0 +1,52 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN">
+<html>
+<head>
+<title>허용응력설계법, 강도설계법 표시를 해줍니다.</title>
+<link rel="stylesheet" href="css/jquery.treeview.css" />
+<link rel="stylesheet" href="css/screen.css" />
+
+<script src="lib/jquery.js" type="text/javascript"></script>
+<script src="lib/jquery.cookie.js" type="text/javascript"></script>
+<script src="lib/jquery.treeview.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+		$(function() {
+			$("#tree").treeview({
+				collapsed: true,
+				animated: "medium",
+				control:"#sidetreecontrol",
+				persist: "location"
+			});
+		})
+		
+</script>
+</head>
+
+<body bgcolor="white" text="black" link="blue" vlink="purple" alink="red">
+<div id="m_left" style="float:left;"><?php include 'djdgtree.htm';?></div>
+<div id="m_right" style="float:left;">
+<pre><font size="4"><b>  </b></font><font face="굴림" size="4"><b>허용응력설계법, 강도설계법 표시를 해줍니다.</b></font>
+&nbsp;
+<img src="vydqp092.gif" align="middle" width="86" height="65" border="0"><font face="굴림"> </font><img src="vydqp093.gif" align="middle" width="25" height="24" border="0"> <font face="굴림">파일명 : ALL-ULT.LSP</font>
+<hr size="1" noshade>
+  <font face="굴림">아~ 사람은 과연 어디까지 게을러질 수 있을까? 이젠 이런 것까지 프로그램으로 만들다니... 여</font>
+<font face="굴림">러사람이 CAD를 사용하여 도면을 그리다보면, 통일되어야할 것들이 통일되지 못하고 분단의 쓰</font>
+<font face="굴림">라린 아픔을 간직하고 있는.. (이구구 왜 이러니) 다시.. 통일되지 못하고 각자의 개성대로 그리는 </font>
+<font face="굴림">바람에 마지막에 그것들을 수정하느라 밤을 새보신적이 없으신지요?  이럴때 가장 특효약은 프로</font>
+<font face="굴림">그램을 이용하는 것입니다. 프로그램을 고치지 않는 이상 모두다 통일된 하나가 되는 것입니다.</font>
+<font face="굴림">프로그램은 아래의 두개 파일을 각각 insert합니다.</font>
+<font face="굴림">  \BLOCKS\ALLOW.DWG : [허용응력설계법]</font>
+<font face="굴림">  \BLOCKS\ULTIM.DWG : [강도설계법]</font>
+<font face="굴림">한글폰트는 GHS.SHX(고은글)를 사용하였습니다. 만일 다른 폰트를 사용하시고 싶다면 위의 파일</font>
+<font face="굴림">에 들어가 고쳐주면 되겠습니다.</font> <br>
+&nbsp;
+  <font face="바탕"><b><u><img src="pencel.gif" border="0"> 사용예</u></b></font>
+  <font face="Courier New">Allowable/Ultimate:</font><font face="굴림"> </font><font face="굴림"><b>A</b></font><font face="굴림"><img src="enter.gif" width="16" height="16" border="0">  [허용응력설계(Allowable) 또는 강도설계(Ultimate) 중 한개를 선택]</font>
+  <font face="Courier New">Pick upper right corner:</font><font face="굴림"> </font>     <font face="굴림">[도각의 오른쪽 상단점을 찍어줍니다]</font>
+                                        <font face="굴림">프로그램이 환경변수 DIMSCALE의 값을 인식하여 알맞은 크기로 insert해줍니다.<br></font>
+<font face="굴림">&nbsp;</font></pre>
+<pre><div align="left"><img src="all-ult.gif" width="287" height="150" border="0"></div></pre>
+</div>
+</body>
+
+</html>

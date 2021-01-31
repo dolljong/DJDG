@@ -1,0 +1,31 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN">
+<html>
+<head>
+<title>Offset several times.</title>
+
+</head>
+
+<body bgcolor="white" text="black" link="blue" vlink="purple" alink="red">
+
+<pre><font face="±¼¸²" size="4"><b>Offset several times.</b></font>
+&nbsp;
+<img src="trjqh039.gif" align="middle" width="90" height="64" border="0" hspace="3"><img src="trjqh040.gif" align="middle" width="25" height="24" border="0" vspace="3" hspace="3"> <font face="±¼¸²">Program name : FFP.LSP</font>
+<hr size="1" noshade>
+  <font face="±¼¸²">When we work with curved bridge, we see that there are no commands that are likely to be in CAD. 
+Whatever the situation, in the slab reinforcement, We need to draw curved rebars from inside to outside. That rebars have different Radius. 
+I think there's a command that makes it easy to draw in CAD , But there is no command. The Array command is 
+useless in this case because it creates arcs with the same Radius. So you have to do offset command manually.
+ This program eliminates that hassle. If you Pick two points, the program calculates the distance between the two points, 
+divides it by the offset distance entered by the user, determines how many times to offset, and then offsets the number of times</font> <br>  
+<br>
+&nbsp;
+<font face="¹ÙÅÁ"><b><u><img src="pencel.gif" border="0"> Example</u></b></font>
+<font face="Courier New">Pick start point:</font><font face="±¼¸²"> end of {p1}</font>           <font face="±¼¸²">[Pick start point]</font>
+<font face="Courier New">Pick end point</font><font face="±¼¸²">: end of {p2}</font>             <font face="±¼¸²">[Pick end point]</font>
+<font face="Courier New">Offset distance&lt;2000.0&gt;:</font><font face="±¼¸²"> 200<img src="enter.gif" border="0"></font>   <font face="±¼¸²">[Enter offset distance]</font>
+<font face="Courier New">Select object:</font><font face="±¼¸²"> {p3}</font>                     <font face="¹ÙÅÁ">[Select entity offsetted]<br></font>
+<font face="¹ÙÅÁ">&nbsp;</font>
+<img src="ffp.gif" align="middle" width="415" height="185" border="0" hspace="3"></pre>
+</body>
+
+</html>

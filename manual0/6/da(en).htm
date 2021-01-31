@@ -1,0 +1,40 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN">
+<html>
+<head>
+<title>Dimension Aligned.</title>
+
+</head>
+
+<body bgcolor="white" text="black" link="blue" vlink="purple" alink="red">
+
+<pre><font face="±¼¸²" size="4"><b>Dimension Aligned. (DIM.ALIGNED)</b></font><font size="4"><b><br></b></font>
+&nbsp;
+<img src="fmhbs010.gif" align="middle" width="85" height="62" border="0" hspace="3"> <img src="fmhbs011.gif" align="middle" width="25" height="23" border="0" hspace="3"> <font face="±¼¸²">File name : DA.LSP</font>
+<hr size="1" align="left" noshade>
+<font face="±¼¸²">It is similar to DH.LSP. It has @ function also. You can reference DH.LSP and DV.LSP manual. </font>
+
+<font face="¹ÙÅÁ"><b><u><img src="pencel.gif" border="0"> Example</u></b></font>
+<font face="Courier New">Pick first point/Object:</font><font face="±¼¸²"> </font><font face="±¼¸²"><b>cen</b></font><font face="±¼¸²"> of {p1}</font>            <font face="±¼¸²">[Pick start point(in this case, center of rebar)]</font>
+<font face="Courier New">Pick second point:</font><font face="±¼¸²"> cen of {p2}</font>          <font face="±¼¸²">[Pick second point. Program determine angle of demention by referencing angle {p1} and {p2}]</font>
+<font face="Courier New">Pick Dimension line side:</font><font face="±¼¸²"> {p3}</font>          <font face="±¼¸²">[Pick side point ]</font>
+<font face="Courier New">Dimension line Level &lt;1&gt;:</font><font face="±¼¸²"> <img src="enter.gif" border="0"></font>             <font face="±¼¸²">[Enter 1 to draw level-1 dimension]</font>
+<font face="Courier New">Dimension text &lt;250&gt;:</font><font face="±¼¸²"> <img src="enter.gif" border="0"></font>                 <font face="±¼¸²">[Program shows distance, in this case type Enter to use that dim text]</font>
+<font face="Courier New">Distance or RETURN to Pick point/eXit:</font><font face="±¼¸²"> <img src="enter.gif" border="0"></font>        <font face="±¼¸²">[type enter key to pick a point <img src="enter.gif" width="16" height="16" border="0">]</font>
+<font face="Courier New">Pick point:</font><font face="±¼¸²"> cen of {p4}</font>                 <font face="±¼¸²">[Pick a point]</font>
+<font face="Courier New">Dimension text &lt;2.700&gt;:</font><font face="±¼¸²"> </font><font face="±¼¸²"><b>@300</b></font><font face="±¼¸²"><img src="enter.gif" border="0"></font>           <font face="±¼¸²">[use @ option, division distance is 300mm(c.t.c = 300)]</font>
+<font face="Courier New">Dimension text &lt;9@300=2.700&gt;:</font><font face="±¼¸²"> <img src="enter.gif" border="0"></font>                 <font face="±¼¸²">[Program shows dimension text,  Enter to use that dim text]</font>
+<font face="Courier New">Distance or RETURN to Pick point/eXit:</font><font face="±¼¸²"> </font><font face="±¼¸²"><b>250<img src="enter.gif" width="16" height="16" border="0"></b></font><font face="±¼¸²"> [Enter distance that you know(250)]</font>
+<font face="Courier New">Dimension text &lt;250&gt;:</font><font face="±¼¸²"> <img src="enter.gif" border="0"></font>                 <font face="±¼¸²">[Program shows dimension text,  Enter to use that dim text]</font>
+<font face="Courier New">Distance or RETURN to Pick point/eXit:</font><font face="±¼¸²"> </font><font face="±¼¸²"><b>x<img src="enter.gif" width="16" height="16" border="0"></b></font><font face="±¼¸²"> [enter 'x' to finish level-1 dimension]</font>
+<font face="Courier New">Command:</font><font face="±¼¸²"> </font><font face="±¼¸²"><b>da</b></font><font face="±¼¸²"><img src="enter.gif" border="0"></font>                                    <font face="±¼¸²">[Start DA command to draw level-2 dimension]</font>
+<font face="Courier New">Pick first point/Object:</font><font face="±¼¸²"> </font><font face="±¼¸²"><b>cen</b></font><font face="±¼¸²"> of {p1}</font>            <font face="±¼¸²">[Pick start point that is node of level 1 dimension]</font>
+<font face="Courier New">Pick second point:</font><font face="±¼¸²"> </font><font face="±¼¸²"><b>cen</b></font><font face="±¼¸²"> of {p5}</font>          <font face="±¼¸²">[Pick end point]</font>
+<font face="Courier New">Pick Dimension line side:</font><font face="±¼¸²"> {p3}</font>          <font face="±¼¸²">[Pick side point]</font>
+<font face="Courier New">Dimension line Level &lt;1&gt;:</font><font face="±¼¸²"> </font><font face="±¼¸²"><b>2</b></font><font face="±¼¸²"><img src="enter.gif" border="0"></font>            <font face="±¼¸²">[Enter '2' to draw level-2 dimension]</font>
+<font face="Courier New">Dimension text &lt;3.200&gt;:</font><font face="±¼¸²"> <img src="enter.gif" border="0"></font>                       <font face="±¼¸²">[Program shows dimension text,  Enter to use that dim text]</font>
+<font face="Courier New">Distance or RETURN to Pick point/eXit:</font><font face="±¼¸²"> </font><font face="±¼¸²"><b>x</b></font><font face="±¼¸²"><img src="enter.gif" border="0"></font>       <font face="±¼¸²">[Enter 'x' to finish DA command]</font>
+&nbsp;
+<img src="da.gif" align="middle" width="313" height="318" border="0" hspace="3"></pre>
+</body>
+
+</html>

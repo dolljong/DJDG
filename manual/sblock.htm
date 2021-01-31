@@ -1,0 +1,51 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN">
+<html>
+<head>
+<title>슈블럭 배근도를 그려줍니다.</title>
+<link rel="stylesheet" href="css/jquery.treeview.css" />
+<link rel="stylesheet" href="css/screen.css" />
+
+<script src="lib/jquery.js" type="text/javascript"></script>
+<script src="lib/jquery.cookie.js" type="text/javascript"></script>
+<script src="lib/jquery.treeview.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+		$(function() {
+			$("#tree").treeview({
+				collapsed: true,
+				animated: "medium",
+				control:"#sidetreecontrol",
+				persist: "location"
+			});
+		})
+		
+</script>
+</head>
+
+<body bgcolor="white" text="black" link="blue" vlink="purple" alink="red">
+<div id="m_left" style="float:left;"><?php include 'djdgtree.htm';?></div>
+<div id="m_right" style="float:left;">
+<pre><font face="굴림" size="4"><b>슈블럭 배근도를 그려줍니다.</b></font>&nbsp;
+&nbsp;
+<img src="ncmar082.gif" align="middle" width="82" height="61" border="0"> <img src="ncmar083.gif" align="middle" width="25" height="23" border="0"> <font face="굴림">Program name : SBLOCK.LSP</font>
+<hr size="1" align="left" noshade>
+  <font face="바탕">하부(교대, 교각)와 상부girder사이에 형하공간을 만들기 위하여 슈블럭을 놓는데, 그 슈블럭</font>
+<font face="바탕">배근도를 그려줍니다. 슈블럭 배근도는 슈블럭에 들어가는 철근과 그 아래에 들어가는 할렬철근</font>
+<font face="바탕">으로 이루어져있습니다. 아래그림에 보인 것과 같이 많은 변수를 사용하였지만 원하는 모양의 슈</font>
+<font face="바탕">블럭배근도가 만들어지지 않을 수도 있겠습니다. 왜냐하면 배근을 꼭 등간격으로 하지 않을 경우</font>
+<font face="바탕">도 있기 때문입니다. 프로그램이 사람이 하는 모든 것을 대신해줄 수 없다는 건 이런 사소한 배</font>
+<font face="바탕">근도 하나에서도 나타납니다. 또한 그래야 사람도 먹고살겠죠? 사용법은 특별한 것이 없고 대화</font>
+<font face="바탕">상자를 통해서 알맞은 값만 입력하면 됩니다.</font>
+&nbsp;</pre>
+<pre><div align="left"><img src="sblock1.gif" align="middle" width="462" height="259" border="0"></div></pre>
+<pre>&nbsp;</pre>
+<pre><div align="left"><img src="sblock2.gif" align="middle" width="395" height="307" border="0"></div></pre>
+<pre>&nbsp;</pre>
+<pre><div align="left">&nbsp;</div></pre>
+<pre><font face="돋움"><b><i>※ 주의사항</i></b></font>
+<font face="바탕">프로그램 실행중 마킹을 하는 과정에서 점철근들이 화면 밖에 위치하면 선택이 되지 않습니다. </font>
+<font face="바탕">될수 있으면 zoom out으로 그림이 화면안에 모두 들어오게 해놓고 프로그램을 실행시켜주십시요.</font> </pre>
+</div>
+</body>
+
+</html>

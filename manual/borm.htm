@@ -1,0 +1,40 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN">
+<html>
+<head>
+<title>시추위치 표시를 해줍니다.</title>
+<link rel="stylesheet" href="css/jquery.treeview.css" />
+<link rel="stylesheet" href="css/screen.css" />
+
+<script src="lib/jquery.js" type="text/javascript"></script>
+<script src="lib/jquery.cookie.js" type="text/javascript"></script>
+<script src="lib/jquery.treeview.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+		$(function() {
+			$("#tree").treeview({
+				collapsed: true,
+				animated: "medium",
+				control:"#sidetreecontrol",
+				persist: "location"
+			});
+		})
+		
+</script>
+</head>
+
+<body bgcolor="white" text="black" link="blue" vlink="purple" alink="red">
+<div id="m_left" style="float:left;"><?php include 'djdgtree.htm';?></div>
+<div id="m_right" style="float:left;">
+<pre><font size="4"><b>  </b></font><font face="굴림" size="4"><b>시추위치 표시를 해줍니다.</b></font>
+&nbsp;
+<img src="vydqp123.gif" align="bottom" width="85" height="63" border="0"><font face="굴림"> </font><img src="vydqp124.gif" align="bottom" width="25" height="24" border="0"> <font face="굴림">파일명 : BORM.LSP</font>
+<hr size="1" noshade>
+<font face="바탕"><b><u><img src="pencel.gif" border="0"> 사용예</u></b></font>
+<font face="Courier New">Insert point :</font><font face="굴림"> {p1}</font>     <font face="굴림">[삽입점입력, 마크의 가운데]</font>
+  <font face="굴림"> </font>             <font face="굴림">스케일은 환경변수 dimscale값참조함<br></font>
+<font face="굴림"><br></font>
+  <img src="vydqp127.gif" align="middle" border="0"></pre>
+</div>
+</body>
+
+</html>

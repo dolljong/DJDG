@@ -1,0 +1,51 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN">
+<html>
+<head>
+<title>숫자 text에 일정 값 더하기</title>
+<link rel="stylesheet" href="css/jquery.treeview.css" />
+<link rel="stylesheet" href="css/screen.css" />
+
+<script src="lib/jquery.js" type="text/javascript"></script>
+<script src="lib/jquery.cookie.js" type="text/javascript"></script>
+<script src="lib/jquery.treeview.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+		$(function() {
+			$("#tree").treeview({
+				collapsed: true,
+				animated: "medium",
+				control:"#sidetreecontrol",
+				persist: "location"
+			});
+		})
+		
+</script>
+</head>
+
+<body bgcolor="white" text="black" link="blue" vlink="purple" alink="red">
+<div id="m_left" style="float:left;"><?php include 'djdgtree.htm';?></div>
+<div id="m_right" style="float:left;">
+<pre><font face="굴림" size="4"><b>  숫자 text에 일정 값 더하기</b></font>
+&nbsp;
+<img src="trjqh068.gif" align="middle" width="73" height="48" border="0"><font face="굴림"> </font><img src="trjqh069.gif" align="middle" width="27" height="25" border="0"> <font face="굴림">파일명 : addtext.lsp</font>
+<hr size="1" noshade>
+  <font face="굴림">이미 기입된 숫자 text을 원하는 값만큼 증가시키거나 감소시키는 기능입니다. 하부 일반도 작</font>
+<font face="굴림">업이 끝난 상태에서 종단이 변경되었다면 모든 교좌면 Elevation이 일정한 값만큼 감소하거나 증</font>
+<font face="굴림">가해야 할 것입니다.  이런 경우에 사용할 수 있습니다.<br></font>
+<font face="굴림">&nbsp;</font>
+  <font face="바탕"><b><u><img src="pencel.gif" border="0"> 사용예</u></b></font>
+  <font face="Courier New">Command: <font face="Courier New"><b>addtext<img src="enter.gif" border="0"></b></font>
+  Decimail Precision New/&lt;Old&gt;:<img src="enter.gif">  	<font face="굴림">[New: 소수점 자리수 변경을 위해서 <b>N</b>입력, <br>									Old:원래 자리수 유지하려면 <img src="enter.gif"> 또는 <b>O</b>입력] </font>
+  <font face="Courier New">Enter Add value: </font><font face="Courier New"><b>0.2 <img src="enter.gif" border="0"></b></font><font face="Courier New">  [</font><font face="굴림">증감값</font><font face="Courier New"> </font><font face="굴림">입력</font><font face="Courier New">]</font>
+  <font face="Courier New">All/&lt;Select&gt;: </font><font face="Courier New"><b><img src="enter.gif" border="0"></b></font><font face="Courier New">          [All: </font><font face="굴림">모든</font><font face="Courier New">text </font><font face="굴림">선택</font><font face="Courier New">, <img src="enter.gif" border="0"> </font><font face="굴림">원하는</font><font face="Courier New"> text</font><font face="굴림">만</font><font face="Courier New"> </font><font face="굴림">선택</font><font face="Courier New">]</font>
+  <font face="Courier New">Select text: </font><font face="Courier New"><b>w<img src="enter.gif" border="0">{p1} {p2}</b></font><font face="Courier New"> [Window box</font><font face="굴림">를</font><font face="Courier New"> </font><font face="굴림">이용하여</font><font face="Courier New"> Text</font><font face="굴림">선택</font><font face="Courier New">]</font>
+  <font face="Courier New">Select objects: </font><font face="Courier New"><b><img src="enter.gif" border="0"></b></font><font face="Courier New">        [</font><font face="굴림">선택종료</font><font face="Courier New">]</font>
+  </font> <br>  
+<br>
+&nbsp;</pre>
+<pre><div align="left">  <img src="addtext.gif" align="bottom" width="735" height="120" border="0"></div></pre>
+
+</div>
+</body>
+
+</html>
