@@ -203,6 +203,7 @@
 (autoload (strcat (prefix) "DJDG/ctxt")      '("ctxt" "meq"))
 (autoload (strcat (prefix) "DJDG/delshort")  '("delshort"))
 (autoload (strcat (prefix) "DJDG/addtext")   '("addtext"))
+(autoload (strcat (prefix) "DJDG/addtext1")   '("addtext1"))
 (autoload (strcat (prefix) "DJDG/rref")      '("rref"))
 (autoload (strcat (prefix) "DJDG/mtxt")      '("mtxt"))
 (autoload (strcat (prefix) "DJDG/challsty")      '("challsty"))
