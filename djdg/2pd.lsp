@@ -8,7 +8,7 @@
 ;************************************
 
 (defun C:2PD(/
-              th    ta    pref    pnt1   pnt2    txt    tpnt
+;             th    ta    pref    pnt1   pnt2    txt    tpnt
 )
 
   (defun SETERR(s)
@@ -49,7 +49,7 @@
 
     (setq dst (distance pnt1 pnt2))                    ;두점의 거리 구하기
     (if (< dst 1000.0)
-      (setq txt (rtos dst 2 (getvar 0)))                          ;1000미만일 때
+      (setq txt (rtos dst 2 0))                          ;1000미만일 때
       (setq txt (rtos (* dst 0.001) 2 (getvar "LUPREC")))                ;1000이상일 때
     ) ;of if(dst < 1000)
 
