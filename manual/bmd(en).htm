@@ -2,11 +2,29 @@
 <html>
 <head>
 <title>Draw bending moment diagram</title>
+<link rel="stylesheet" href="css/jquery.treeview.css" />
+<link rel="stylesheet" href="css/screen.css" />
 
+<script src="lib/jquery.js" type="text/javascript"></script>
+<script src="lib/jquery.cookie.js" type="text/javascript"></script>
+<script src="lib/jquery.treeview.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+		$(function() {
+			$("#tree").treeview({
+				collapsed: true,
+				animated: "medium",
+				control:"#sidetreecontrol",
+				persist: "location"
+			});
+		})
+		
+</script>
 </head>
 
 <body bgcolor="white" text="black" link="blue" vlink="purple" alink="red">
-
+<div id="m_left" style="float:left;"><?php include 'djdgtree(en).htm';?></div>
+<div id="m_right" style="float:left;">
 <pre><font face="±¼¸²" size="4"><b>  Draw bending moment diagram</b></font>
 &nbsp;
 <img src="dvtuh057.gif" align="bottom" width="74" height="49" border="0"><font face="±¼¸²"> </font><img src="dvtuh058.gif" align="bottom" width="28" height="30" border="0"> <font face="±¼¸²">File name : bmd.lsp</font>
@@ -23,6 +41,7 @@ in combination or you can draw them individually.</font> <br>
 <font face="Courier New">l41-NODE / 2-CAMBER(S) / 1-COMBINATION(S) / 3-DRAWING(S) FOUND</font>
 <font face="Courier New">Column width (mm)&lt;20.0&gt;: </font><font face="Courier New"><b><img src="enter.gif" border="0"></b></font> <br></pre>
 <p>&nbsp;</p>
+</div>
 </body>
 
 </html>

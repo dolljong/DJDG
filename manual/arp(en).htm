@@ -2,11 +2,29 @@
 <html>
 <head>
 <title>Array polar between seclected two point</title>
+<link rel="stylesheet" href="css/jquery.treeview.css" />
+<link rel="stylesheet" href="css/screen.css" />
 
+<script src="lib/jquery.js" type="text/javascript"></script>
+<script src="lib/jquery.cookie.js" type="text/javascript"></script>
+<script src="lib/jquery.treeview.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+		$(function() {
+			$("#tree").treeview({
+				collapsed: true,
+				animated: "medium",
+				control:"#sidetreecontrol",
+				persist: "location"
+			});
+		})
+		
+</script>
 </head>
 
 <body bgcolor="white" text="black" link="blue" vlink="purple" alink="red">
-
+<div id="m_left" style="float:left;"><?php include 'djdgtree(en).htm';?></div>
+<div id="m_right" style="float:left;">
 <pre><font face="±¼¸²" size="4"><b>Array polar between seclected two point</b></font>
 &nbsp;
 <img src="trjqh042.gif" align="middle" width="90" height="64" border="0" hspace="3"> <img src="trjqh043.gif" align="middle" width="25" height="23" border="0" hspace="3"> <font face="±¼¸²">File name : ARP.LSP</font>
@@ -24,6 +42,7 @@ With this program, you can do array from start point to end point without using 
 <font face="Courier New">Select objects:</font><font face="±¼¸²"> <img src="enter.gif" border="0"></font>                       <font face="±¼¸²">[Type enter to finish selecting]<br></font>
 <font face="±¼¸²">&nbsp;</font>
   <img src="arp.gif" align="middle" width="530" height="259" border="0" hspace="3"></pre>
+</div>
 </body>
 
 </html>

@@ -2,11 +2,29 @@
 <html>
 <head>
 <title>Start point or End point of Bridge</title>
+<link rel="stylesheet" href="css/jquery.treeview.css" />
+<link rel="stylesheet" href="css/screen.css" />
 
+<script src="lib/jquery.js" type="text/javascript"></script>
+<script src="lib/jquery.cookie.js" type="text/javascript"></script>
+<script src="lib/jquery.treeview.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+		$(function() {
+			$("#tree").treeview({
+				collapsed: true,
+				animated: "medium",
+				control:"#sidetreecontrol",
+				persist: "location"
+			});
+		})
+		
+</script>
 </head>
 
 <body bgcolor="white" text="black" link="blue" vlink="purple" alink="red">
-
+<div id="m_left" style="float:left;"><?php include 'djdgtree(en).htm';?></div>
+<div id="m_right" style="float:left;">
 <pre><font size="4"><b>  </b></font><font face="±¼¸²" size="4"><b>Start point or End point of Bridge</b></font>
 &nbsp;
 <img src="vydqp102.gif" align="middle" width="85" height="63" border="0"><font face="±¼¸²"> </font><img src="vydqp103.gif" align="middle" width="25" height="24" border="0"> <font face="±¼¸²">Program file name : BSE.LSP</font>
@@ -21,6 +39,7 @@ If you right side then draw 'Bridge End point'. You can change text text as like
 <font face="Courier New">Enter STA.:</font><font face="¹ÙÅÁ"> </font><font face="¹ÙÅÁ"><b>3+150.364</b></font><font face="¹ÙÅÁ"><img src="enter.gif" width="16" height="16" border="0"></font>  <font face="¹ÙÅÁ">[Enter Station]</font>  <br>
 <br>
 <img src="vydqp106.gif" align="bottom" border="0"></pre>
+</div>
 </body>
 
 </html>

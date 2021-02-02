@@ -3,9 +3,28 @@
 <head>
 <title>trim between lines(gap one side)</title>
 
+<link rel="stylesheet" href="css/jquery.treeview.css" />
+<link rel="stylesheet" href="css/screen.css" />
+
+<script src="lib/jquery.js" type="text/javascript"></script>
+<script src="lib/jquery.cookie.js" type="text/javascript"></script>
+<script src="lib/jquery.treeview.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+		$(function() {
+			$("#tree").treeview({
+				collapsed: true,
+				animated: "medium",
+				control:"#sidetreecontrol",
+				persist: "location"
+			});
+		})
+</script>
 </head>
 
 <body bgcolor="white" text="black" link="blue" vlink="purple" alink="red">
+<div id="m_left" style="float:left;"><?php include 'djdgtree(en).htm';?></div>
+<div id="m_right" style="float:left;">
 
 <pre><font face="±¼¸²" size="4"><b>trim between lines(gap one side).</b></font>
 &nbsp;
@@ -23,6 +42,7 @@ This program make that gap. Select just two point(p1 and p2 on below image). Pro
   <font face="Courier New">Select second point:</font><font face="±¼¸²"> {p2} </font>            <font face="±¼¸²">[Pick second point]<br></font>
 <font face="±¼¸²">&nbsp;</font>
   <img src="trimb3.gif" align="middle" width="470" height="258" border="0" vspace="3" hspace="3"></pre>
+</div>
 </body>
 
 </html>

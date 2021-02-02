@@ -3,9 +3,28 @@
 <head>
 <title>Draw Stirrup rebar (tension & compression side) </title>
 
+<link rel="stylesheet" href="css/jquery.treeview.css" />
+<link rel="stylesheet" href="css/screen.css" />
+
+<script src="lib/jquery.js" type="text/javascript"></script>
+<script src="lib/jquery.cookie.js" type="text/javascript"></script>
+<script src="lib/jquery.treeview.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+		$(function() {
+			$("#tree").treeview({
+				collapsed: true,
+				animated: "medium",
+				control:"#sidetreecontrol",
+				persist: "location"
+			});
+		})
+</script>
 </head>
 
 <body bgcolor="white" text="black" link="blue" vlink="purple" alink="red">
+<div id="m_left" style="float:left;"><?php include 'djdgtree(en).htm';?></div>
+<div id="m_right" style="float:left;">
 
 <pre><font face="±¼¸²" size="4"><b>Draw Stirrup rebar (tension & compression side)</b></font><font size="4"><b><br></b></font>
 &nbsp;
@@ -21,6 +40,7 @@
 <font face="Courier New">Pick Second point:</font><font face="±¼¸²"> int of [p2}</font>  <font face="±¼¸²">[Pick End point]<br></font>
 <font face="±¼¸²">&nbsp;</font>
 <img src="strp.gif" align="bottom" width="259" height="234" border="0" hspace="3"></pre>
+</div>
 </body>
 
 </html>

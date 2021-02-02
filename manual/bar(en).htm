@@ -2,11 +2,29 @@
 <html>
 <head>
 <title>Make rebar table by using rebar details.</title>
+<link rel="stylesheet" href="css/jquery.treeview.css" />
+<link rel="stylesheet" href="css/screen.css" />
 
+<script src="lib/jquery.js" type="text/javascript"></script>
+<script src="lib/jquery.cookie.js" type="text/javascript"></script>
+<script src="lib/jquery.treeview.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+		$(function() {
+			$("#tree").treeview({
+				collapsed: true,
+				animated: "medium",
+				control:"#sidetreecontrol",
+				persist: "location"
+			});
+		})
+		
+</script>
 </head>
 
 <body bgcolor="white" text="black" link="blue" vlink="purple" alink="red">
-
+<div id="m_left" style="float:left;"><?php include 'djdgtree(en).htm';?></div>
+<div id="m_right" style="float:left;">
 <pre><font face="±¼¸²" size="4"><b>Make rebar table by using rebar details.&nbsp;</b></font>
 &nbsp;
 <img src="ncmar075.gif" align="middle" width="84" height="63" border="0"> <img src="ncmar076.gif" align="middle" width="24" height="23" border="0"> <font face="±¼¸²">File name : BAR.LSP</font>
@@ -44,6 +62,7 @@ But this program use information of bar detail in the drawing. You don't need to
        ¢¹ If L=356, Program recognize L is less then 1m. That is 356mm. 
        ¢¹ If there a no one among DIA, L, N, Error occur. Program show name of rebar that make error. </font>
           Remember the name of rebar to fix the error.</font> <br>    </pre>
+</div>
 </body>
 
 </html>

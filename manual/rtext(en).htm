@@ -3,9 +3,28 @@
 <head>
 <title>Write text on circle or arc.</title>
 
+<link rel="stylesheet" href="css/jquery.treeview.css" />
+<link rel="stylesheet" href="css/screen.css" />
+
+<script src="lib/jquery.js" type="text/javascript"></script>
+<script src="lib/jquery.cookie.js" type="text/javascript"></script>
+<script src="lib/jquery.treeview.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+		$(function() {
+			$("#tree").treeview({
+				collapsed: true,
+				animated: "medium",
+				control:"#sidetreecontrol",
+				persist: "location"
+			});
+		})
+</script>
 </head>
 
 <body bgcolor="white" text="black" link="blue" vlink="purple" alink="red">
+<div id="m_left" style="float:left;"><?php include 'djdgtree(en).htm';?></div>
+<div id="m_right" style="float:left;">
 
 <pre><font face="±¼¸²" size="4"><b>Write text on circle or arc</b></font>
 &nbsp;
@@ -24,6 +43,7 @@ This program ask center of circle (p1) and center of text(p2). and text height.<
   <font face="Courier New">TEXT: </font><font face="Courier New"><b>This is a round text</b></font><font face="±¼¸²"><img src="enter.gif" width="15" height="15" border="0">       [Enter text]</font>
 &nbsp;
   <img src="rtext.gif" align="middle" border="0" vspace="3" hspace="3"></pre>
+</div>
 </body>
 
 </html>

@@ -2,11 +2,29 @@
 <html>
 <head>
 <title>Draw camber .</title>
+<link rel="stylesheet" href="css/jquery.treeview.css" />
+<link rel="stylesheet" href="css/screen.css" />
 
+<script src="lib/jquery.js" type="text/javascript"></script>
+<script src="lib/jquery.cookie.js" type="text/javascript"></script>
+<script src="lib/jquery.treeview.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+		$(function() {
+			$("#tree").treeview({
+				collapsed: true,
+				animated: "medium",
+				control:"#sidetreecontrol",
+				persist: "location"
+			});
+		})
+		
+</script>
 </head>
 
 <body bgcolor="white" text="black" link="blue" vlink="purple" alink="red">
-
+<div id="m_left" style="float:left;"><?php include 'djdgtree(en).htm';?></div>
+<div id="m_right" style="float:left;">
 <pre><font face="±¼¸²" size="4"><b>Draw camber .</b></font>
 &nbsp;
 <img src="dvtuh042.gif" align="middle" width="80" height="64" border="0" hspace="3"> <img src="dvtuh043.gif" align="middle" width="25" height="23" border="0" hspace="3"> <font face="±¼¸²">Program name : CAMBER.LSP</font>
@@ -139,6 +157,7 @@ and then Run CAD and executes CAMBER.LSP. Let's look at an example of use ~ &nbs
 <b>¡ß</b></font></span><font face="±¼¸²"> Low height of Camber table is 7mm.</font>
      <span style="font-size:15pt;"><font face="¹ÙÅÁ">
 <b>¡ß</b></font></span><font face="±¼¸²"> Height if text is 2.5mm.</font> <br></pre>
+</div>
 </body>
 
 </html>

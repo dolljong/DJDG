@@ -2,11 +2,29 @@
 <html>
 <head>
 <title>Rebar marking type-1(with under line)</title>
+<link rel="stylesheet" href="css/jquery.treeview.css" />
+<link rel="stylesheet" href="css/screen.css" />
 
+<script src="lib/jquery.js" type="text/javascript"></script>
+<script src="lib/jquery.cookie.js" type="text/javascript"></script>
+<script src="lib/jquery.treeview.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+		$(function() {
+			$("#tree").treeview({
+				collapsed: true,
+				animated: "medium",
+				control:"#sidetreecontrol",
+				persist: "location"
+			});
+		})
+		
+</script>
 </head>
 
 <body bgcolor="white" text="black" link="blue" vlink="purple" alink="red">
-
+<div id="m_left" style="float:left;"><?php include 'djdgtree(en).htm';?></div>
+<div id="m_right" style="float:left;">
 <pre><font face="±¼¸²" size="4"><b>Rebar marking type-1(with under line)</b></font>
 &nbsp;
 <img src="ncmar024.gif" align="middle" width="84" height="63" border="0" hspace="3"> <img src="ncmar025.gif" align="middle" width="25" height="24" border="0" hspace="3"> <font face="±¼¸²">File name : B1.LSP</font>
@@ -34,6 +52,7 @@
     <font face="±¼¸²">  ¢¹ Angle of Underline can be horizontal or vertical. (0¡Æ, 90¡Æ, 180¡Æ, 270¡Æ)</font>
     <font face="±¼¸²">  ¢¹ Name and diameter of rebar will be converted to uppercase.</font>
     <font face="±¼¸²">  ¢¹ If Name of rebar has '-1' like 'B1-1' then '-1' will be divided and writed on another line.</font></pre>
+</div>
 </body>
 
 </html>
