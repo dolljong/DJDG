@@ -260,3 +260,5 @@
 (autoload (strcat (prefix) "DJDG/checkdate")    '("checkdate"))
 (autoload (strcat (prefix) "DJDG/ve")    '("ve"))
 (autoload (strcat (prefix) "DJDG/PREG")    '("PREG"))
+(autoload (strcat (prefix) "DJDG/MESH")    '("MESHM" "MESHW"))
+(autoload (strcat (prefix) "DJDG/PPL")    '("PPL"))
