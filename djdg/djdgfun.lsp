@@ -50,6 +50,8 @@
 ; djdg_angofdimline  ; 주어진 치수의 치수선(dimension line) 각도.
 ; djdg_makegoltotal  ; 주어진 개수와 간격을 이용해 전체길를 구한다.
 ;				  ex) (djdg_makegoltotal 2 1250) --> "2@1.250=2.500")
+;--- sort function
+; point-srot : sort points using base point or x, y
 
 ;------ Attribute관련
 ; djdg_attwrite	; attribute가 포함되 insert의 att를 수정해준다.
@@ -1895,3 +1897,44 @@ a1 a2 a3                            ;지역변수 정의
     );progn
   );if opf  
 );defun
+
+;--------------------------
+; function : point list를 특정 성분(x,y,z,거리)을 기준으로 sort
+; 		06/08/11
+;--------------------------
+; ptlist : point list
+; idx : assoc기준 코드..(ex: 시점이면 0:x, 1:y, 2:z 3:거리)
+; ipt : 기준점(idx가 3일때만 사용된다) nil이면 가장먼점중의 한점으로부터 거리로 sort
+;--------------------------
+(defun point-sort(plist idx ipt
+		   / return farpnt ipt pnt dstlist p dst dstplist sdstplist dp )
+;  (setq ne (length plist))
+
+  (cond
+    ((< idx 3)
+     (setq return (vl-sort plist '(lambda (s1 s2)
+				    (< (nth idx  s1) (nth idx s2)))))
+				    
+    );subcond
+    ((= idx 3)
+      (setq farpnt (farest plist))		;가장 먼 점 찾기
+      (if (= ipt nil)			;만일 기준점이 주어지지 않으면.
+        (setq pnt (car farpnt))		;가장먼 점 두개중 앞에것을 기준점으로...
+        (setq pnt ipt)			
+      );  
+      (setq dstplist nil)
+      (foreach p plist
+        (setq dst (distance pnt p))
+        (setq dstplist (append dstplist (list (list dst p))))
+      );foreach
+
+      (setq sdstplist (vl-sort dstplist '(lambda (s1 s2)	;기준점에서부터 거리로 sort
+    				(< (car  s1) (car s2)))))
+      (setq return nil)
+      (foreach dp sdstplist
+	(setq return (append return (list (cadr dp))))
+      );foreach	
+    );subcond
+    
+  );cond 
+);
