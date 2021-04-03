@@ -18,6 +18,7 @@
 ; djdg_getpoints 	: get points of entity
 ; rib_dim(str)
 ; getLwVert (vlist tmpctr )
+; entmod_color : change color of entity
 ;------ Draw 관련 -----------------------
 ; djdg_insertarw1(p1 p2) 		: insert half arrow
 ; djdg_insertblk(bname p1 p2 dimscl) 	: insert block
@@ -1938,3 +1939,28 @@ a1 a2 a3                            ;지역변수 정의
     
   );cond 
 );
+
+;-------------
+; entmod_color
+; input :
+; ssnm : ssname
+; color : number
+; return : NONE
+; usage
+; dolljong 2021/4/4
+;------------
+(defun entmod_color(ssnm color / ent color)
+    ;(setq e (ssname ss count))
+    (setq ent (entget ssnm))
+    ;(setq oldlt (assoc 6 ent))
+    (setq oldc (assoc 62 ent))
+  
+    (if (= oldc nil)
+       (setq ent (append ent (list (cons 62 color))))
+       (progn
+          (setq newc (cons 62 color))
+          (setq ent (subst newc oldc ent))
+       ) ; progn
+    ) ; if
+    (entmod ent)
+);defun
