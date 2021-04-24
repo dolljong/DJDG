@@ -1286,7 +1286,10 @@
     );if  
     (setq i (1+ i))
   );repeat
-  (setq tail (substr str (+ lastsearch lptstr) (- lstr lastsearch)))  ;마지막 부분.
+  (if (= lastsearch 0) ; no search
+    (setq tail str)
+    (setq tail (substr str (+ lastsearch lptstr) (- lstr lastsearch)))  ;마지막 부분.
+  );if
   (if (/= tail "")
     (setq return (append  return (list tail)))
   );
@@ -1964,3 +1967,4 @@ a1 a2 a3                            ;지역변수 정의
     ) ; if
     (entmod ent)
 );defun
+

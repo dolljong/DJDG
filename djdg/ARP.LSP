@@ -64,7 +64,7 @@
   (princ (rtos cl 2 (getvar "LUPREC")))             ;호의 길이 표시
 
   (initget "Distance Number")
-  (setq kword (getkword "Distance / Number <Number>: "))
+  (setq kword (getkword "\nDistance / Number <Number>: "))
   (if (= kword nil) (setq kword "Number"))
   (cond
     ((= kword "Number")
