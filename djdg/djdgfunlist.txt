@@ -1,0 +1,1408 @@
+2pd.lsp:(defun C:2PD(/
+2pd.lsp:  (defun SETERR(s)
+3cy.LSP:(defun c:m3cy()
+3cy.LSP:(defun 3cy(e d / )
+3d2d.lsp:(defun noele(dev num / olddata newdata data data1)
+3d2d.lsp:(defun chtime(data / rtcode)
+3d2d.lsp:(defun 3d2d_main(  / 
+3d2d.lsp:(defun C:3d2d() (3d2d_main))
+3dp.LSP:(defun C:3DP(
+3dp.LSP:  (defun SETERR(s)
+3dp.LSP:(defun strloc(arg1 / rslt count)
+3dp.LSP:(defun SP-TRUNC(txt
+3dp.LSP:(defun IS-NUM(str
+ABUT.LSP:(defun C:ABUT(
+ABUT.LSP:  (defun SETERR(s)                                      ;≥ª¿Â ø°∑Ø∑Á∆æ ¡§¿«
+ABUT.LSP:  (defun ABUT_DIALOG (/
+ABUT.LSP:  (defun SET_H1 (/ in value)              ;n1 edit_boxø° ¿‘∑¬¿Ã µÈæÓø‘¿ª ∂ß
+ABUT.LSP:  (defun SET_H2(/ in value)              ;p1 edit_boxø° ¿‘∑¬¿Ã µÈæÓø‘¿ª ∂ß
+ABUT.LSP:  (defun SET_H3(/ in value)              ;e1 edit_boxø° ¿‘∑¬¿Ã µÈæÓø‘¿ª ∂ß
+ABUT.LSP:  (defun SET_H4(/ in value)              ;n2 edit_boxø° ¿‘∑¬¿Ã µÈæÓø‘¿ª ∂ß
+ABUT.LSP:  (defun SET_H5(/ n vlaue)              ;p2 edit_boxø° ¿‘∑¬¿Ã µÈæÓø‘¿ª ∂ß
+ABUT.LSP:  (defun SET_H6(/ n value)              ;e2 edit_boxø° ¿‘∑¬¿Ã µÈæÓø‘¿ª ∂ß
+ABUT.LSP:  (defun SET_B1(/ n value)              ;xs edit_boxø° ¿‘∑¬¿Ã µÈæÓø‘¿ª ∂ß
+ABUT.LSP:  (defun SET_B2(/ n value)              ;xs edit_boxø° ¿‘∑¬¿Ã µÈæÓø‘¿ª ∂ß
+ABUT.LSP:  (defun SET_B3(/ n value)              ;xs edit_boxø° ¿‘∑¬¿Ã µÈæÓø‘¿ª ∂ß
+ABUT.LSP:  (defun SET_B4(/ n value)              ;xs edit_boxø° ¿‘∑¬¿Ã µÈæÓø‘¿ª ∂ß
+ABUT.LSP:  (defun SET_B5(/ n value)              ;xs edit_boxø° ¿‘∑¬¿Ã µÈæÓø‘¿ª ∂ß
+ABUT.LSP:  (defun SET_B6(/ n value)              ;xs edit_boxø° ¿‘∑¬¿Ã µÈæÓø‘¿ª ∂ß
+ABUT.LSP:  (defun SET_YS(/ n value)              ;ys edit_boxø° ¿‘∑¬¿Ã µÈæÓø‘¿ª ∂ß
+ABUT.LSP:  (defun set-dim( / in )
+ABUT.LSP:  (defun do_accept()           ;dialog box∏¶ ≥°≥ª±‚ ¿¸ø° ∏µÁ ¿‘∑¬ µ•¿Ã≈∏ »Æ¿Œ
+ABUT.LSP:  (defun do_error(tile value)
+ABUT.LSP:  (defun do_cancel()
+ABUT.LSP:(defun F_ABUT( IP H1 H2 H3 H4 H5 H6
+ABUT.LSP:(defun F_DH(SP DST N UD TXT1
+ABUT.LSP:(defun F_DV(SP DST N LR TXT1
+ad3.lsp: (defun c:ad3 ( /  ss_get _BName _DName _a1 _a2)
+ad3.lsp:(defun $att_wrt (#blk_nm #_lst2 / #_rpt #_tag #_val eea_lst #_chk #_blk)
+ad4.lsp: (defun c:ad4 ( /  ss_get _BName _DName _a1 _a2)
+ad4.lsp:(defun $att_wrt (#blk_nm #_lst2 / #_rpt #_tag #_val eea_lst #_chk #_blk)
+addsmi.LSP:(defun c:smiedit(/ iopf oopf addtime linelen strpos time line)
+addsmi.LSP:(defun str_position(str1 str2 / str1 str2 len1 len2 count )
+Addtext.lsp:(defun C:addtext(
+Addtext.lsp:  (defun SETERR(s)                          ;≥ª¿Âø°∑Ø∑Á∆æ ¡§¿«
+Addtext.lsp:(defun IS-NUM(str
+Addtext.lsp:(defun get_decnum(txt)
+Addtext.lsp:(defun str_position(str1 str2 / str1 str2 len1 len2 count )
+Addtext1.lsp:(defun C:addtext1(
+Addtext1.lsp:  (defun SETERR(s)                          ;≥ª¿Âø°∑Ø∑Á∆æ ¡§¿«
+Addtext1.lsp:(defun IS-NUM(str
+Addtext1.lsp:(defun get_decnum(txt)
+Addtext1.lsp:(defun str_position(str1 str2 / str1 str2 len1 len2 count )
+ahole.lsp:(defun c:ahole()
+alead.lsp:(defun c:ALEAD(
+alead.lsp:(defun CROSS(aent sp ep /    
+alead.lsp:(defun inang(a1 a2 a3 /             ;¿Œºˆ ¡§¿«    
+alignBar.LSP:(defun C:alignBAR( 
+alignBar.LSP:  (defun SETERR(s)					;≥ª¿Âø°∑Ø∑Á∆æ ¡§¿«
+alignBar.LSP:(defun DEL_ATOM(b_list anth
+alignBar.LSP:(defun SORT_BYASSOC(ss ass aidx
+ALL-ULT.LSP:(defun C:ALL-ULT(/
+ALL-ULT.LSP:  (defun SETERR(s)
+ALLP.LSP:(defun C:ALLPLOT( /
+ALLP.LSP:(defun SORT_XY(ss_lst
+ALLP.LSP:(defun DWG_NAME(/ dn ls count ch )
+ALLP.LSP:(defun SORT_ENT(alist ass th
+ALLP.LSP:(defun DEL_ATOM(b_list anth
+allplot.lsp:(defun C:ALLPLOT( /
+allplot.lsp:(defun SORT_XY(ss_lst
+allplot.lsp:(defun DWG_NAME(/ dn ls count ch )
+allplot.lsp:(defun SORT_ENT(alist ass th
+allplot.lsp:(defun DEL_ATOM(b_list anth
+allplot.lsp:(defun ipnt_nblk(pblkname sblkname
+ALLPLOT1.LSP:(defun C:ALLPLOT1( /
+ALLPLOT1.LSP:(defun DWG_NAME(/ dn ls count ch )
+Allplot14.lsp:(defun C:ALLPLOT( /
+Allplot14.lsp:(defun SORT_XY(ss_lst
+Allplot14.lsp:(defun DWG_NAME(/ dn ls count ch )
+Allplot14.lsp:(defun SORT_ENT(alist ass th
+Allplot14.lsp:(defun DEL_ATOM(b_list anth
+Allplot14.lsp:(defun ipnt_nblk(pblkname sblkname
+Allplota1.LSP:(defun C:ALLPLOT( /
+Allplota1.LSP:(defun SORT_XY(ss_lst
+Allplota1.LSP:(defun DWG_NAME(/ dn ls count ch )
+Allplota1.LSP:(defun SORT_ENT(alist ass th
+Allplota1.LSP:(defun DEL_ATOM(b_list anth
+Allplota1.LSP:(defun ipnt_nblk(pblkname sblkname
+allplotb.lsp:(defun C:ALLPLOTB( /
+allplotb.lsp:(defun SORT_XY(ss_lst
+allplotb.lsp:(defun DWG_NAME(/ dn ls count ch )
+allplotb.lsp:(defun SORT_ENT(alist ass th
+allplotb.lsp:(defun DEL_ATOM(b_list anth
+allplotb.lsp:(defun ipnt_nblk(pblkname sblkname
+allplotb.lsp:(defun C:AQ( /
+allplotex.LSP:(defun C:ALLPLOTEX( /
+allplotex.LSP:(defun commandplotx( printer_name printer_papersize low_left up_right offset style_name fplot pltn / )
+allplotex.LSP:(defun DWG_NAME(/ dn ls count ch )
+allplotex.LSP:(defun read-set( / setfn fn opf )
+allplotex.LSP:(defun get_wp( layer color entity
+allplotn.lsp:(defun C:ALLPLOTN( /
+allplotn.lsp:(defun commandplot ( printer_name printer_papersize low_left up_right offset style_name fplot pltn / )
+allplotn.lsp:(defun DWG_NAME(/ dn ls count ch )
+allplotn.lsp:(defun read-set( / setfn fn opf )
+allplotn.lsp:(defun get_wp( layer color entity
+allplotscr.lsp:(defun C:PLOTA3( /
+allplotscr.lsp:(defun SORT_XY(ss_lst
+allplotscr.lsp:(defun DWG_NAME(/ dn ls count ch )
+allplotscr.lsp:(defun SORT_ENT(alist ass th
+allplotscr.lsp:(defun DEL_ATOM(b_list anth
+allplotx.lsp:(defun C:ALLPLOTX( /
+allplotx.lsp:(defun DWG_NAME(/ dn ls count ch )
+anch1.lsp:(defun c:anch1(
+APLOT.LSP:(defun C:APLOT( /
+APLOT.LSP:(defun is_member(a lst / count)
+ARD.LSP:(defun c:ARD(/
+ARD.LSP:  (defun SETERR(s)                              ;≥ª¿Â ø°∑Ø∑Á∆æ ¡§¿«
+ARP.LSP:(defun c:ARP(/
+ARP.LSP:  (defun SETERR(s)
+ARSLOP.LSP:(defun c:ARSLOP(/
+ARSLOP.LSP:  (defun SETERR(s)                                          ;≥ª¿Â ø°∑Ø∑Á∆æ ¡§¿«
+aslab.LSP:(defun c:aslab(
+aslab.LSP:  (defun mk_vertlist (vname
+aslab.LSP:(defun mk_vertlistp(vname
+aslab.LSP:(defun cp_line_pline(pnt1 pnt2 plist
+aslab1.LSP:(defun c:aslab1(
+aslab1.LSP:  (defun mk_vertlist (vname
+aslab1.LSP:(defun mk_vertlistp(vname
+aslab1.LSP:(defun cp_line_pline(pnt1 pnt2 plist
+B1.lsp:(defun C:B1(/
+B1.lsp:  (defun SETERR(s)
+B1.lsp:(defun TXTINC(TXT IPNT TXTROT / th)
+B3.lsp:(defun C:B3(/
+B3.lsp:  (defun SETERR(s)
+B3.lsp:(defun TXTINC(TXT IPNT TXTROT / th ds)
+B3.lsp:  (defun getLwVert (vlist tmpctr / count tmp)
+B4.lsp:(defun C:B4(/            
+B4.lsp:  (defun SETERR(s)                              ;≥ª¿Âø°∑Ø∑Á∆æ ¡§¿«
+B4.lsp:(defun TXTINC(TXT IPNT TXTROT / th ds)
+B4.lsp:  (defun getLwVert (vlist tmpctr / count tmp)            
+b5.LSP:(defun C:B5(/                                              ;¡ˆø™∫Øºˆ ¡§¿«            
+b5.LSP:  (defun SETERR(s)            
+b5.LSP:(defun TXTINC(TXT IPNT TXTROT / th ds)
+b5.LSP:(defun CROSS(aent sp ep /            
+b5.LSP:(defun inang(a1 a2 a3 /             ;¿Œºˆ ¡§¿«    
+b6.LSP:(defun C:B6(/                                          ;¡ˆø™∫Øºˆ ¡§¿«                
+b6.LSP:  (defun SETERR(s)                             ;≥ª¿Âø°∑Ø∑Á∆æ ¡§¿«
+b6.LSP:(defun TXTINC(TXT IPNT TXTROT / th ds)
+b6.LSP:(defun CROSS(aent sp ep /                
+b6.LSP:(defun inang(a1 a2 a3 /             ;¿Œºˆ ¡§¿«    
+BAE.LSP:(defun C:BAE(/)
+BAE.LSP:  (defun SETERR(s)
+bar.lsp:(defun C:BAR( /
+bar.lsp:  (defun SETERR(s)                                      ;≥ª¿Âø°∑Ø∑Á∆æ ¡§¿«
+bar.lsp:(defun B_MARK(IP R A34 /
+bar.lsp:(defun B_MARKA(ename A34 /
+bar.lsp:(defun atof1(STR / n count dot)
+bar.lsp:(defun ATOI1( STR / n count str chr)
+bar.lsp:(defun DATA-IN(arg1
+bar.lsp:(defun SP-TRUNC(txt
+bar.lsp:(defun IS-NUM(str
+bar.lsp:(defun SORT_LIST(alist aidx
+bar.lsp:(defun LT1(arg1 arg2)
+bar.lsp:(defun DEL_ATOM(b_list anth
+bar.lsp:(defun BAR_LIST(blist add ipnt s
+bar.lsp:(defun WRITE_DATA( LLIST FN / nl count opf nl line nb)
+bar.lsp:(defun LT(arg1 arg2)
+bar.lsp:(defun str_position(str1 str2 / str1 str2 len1 len2 count )
+bar.lsp:(defun split_blist( blist idia /
+bar.lsp:(defun bardlg(/  
+bar.lsp:(defun set_tr34 ()
+bar.lsp:(defun set_addg ()
+bar.lsp:(defun set_val(key )
+bar.lsp:(defun do_cancel()
+bar.lsp:(defun do_accept()           ;dialog box∏¶ ≥°≥ª±‚ ¿¸ø° ∏µÁ ¿‘∑¬ µ•¿Ã≈∏ »Æ¿Œ
+bar.lsp:(defun djdg_lengthtxt(txt)
+bar.lsp:(defun c:test()
+bar.lsp:(defun C:BARV(
+bar.lsp:  (defun SETERR(s)
+bar.lsp:(defun findvar(tbl_list vlist varname tindex
+bar00.lsp:(defun C:BAR( / scl ans ssc nc llist count cent cc rc fn ipnt ans34)
+bar00.lsp:  (defun SETERR(s)					;≥ª¿Âø°∑Ø∑Á∆æ ¡§¿«
+bar00.lsp:(defun B_MARK(IP R A34 /
+bar00.lsp:(defun atof1(STR / n count dot)
+bar00.lsp:(defun ATOI1( STR / n count str chr)
+bar00.lsp:(defun DATA-IN(arg1
+bar00.lsp:(defun SP-TRUNC(txt
+bar00.lsp:(defun IS-NUM(str
+bar00.lsp:(defun SORT_LIST(alist aidx
+bar00.lsp:(defun LT1(arg1 arg2)
+bar00.lsp:(defun DEL_ATOM(b_list anth
+bar00.lsp:(defun BAR_LIST(blist ipnt s
+bar00.lsp:(defun WRITE_DATA( LLIST FN / nl count opf nl line nb)
+bar00.lsp:(defun LT(arg1 arg2)
+bar00.lsp:(defun str_position(str1 str2 / str1 str2 len1 len2 count )
+bar040219.lsp:(defun C:BAR( /
+bar040219.lsp:  (defun SETERR(s)                                      ;≥ª¿Âø°∑Ø∑Á∆æ ¡§¿«
+bar040219.lsp:(defun B_MARK(IP R A34 /
+bar040219.lsp:(defun atof1(STR / n count dot)
+bar040219.lsp:(defun ATOI1( STR / n count str chr)
+bar040219.lsp:(defun DATA-IN(arg1
+bar040219.lsp:(defun SP-TRUNC(txt
+bar040219.lsp:(defun IS-NUM(str
+bar040219.lsp:(defun SORT_LIST(alist aidx
+bar040219.lsp:(defun LT1(arg1 arg2)
+bar040219.lsp:(defun DEL_ATOM(b_list anth
+bar040219.lsp:(defun BAR_LIST(blist add ipnt s
+bar040219.lsp:(defun WRITE_DATA( LLIST FN / nl count opf nl line nb)
+bar040219.lsp:(defun LT(arg1 arg2)
+bar040219.lsp:(defun str_position(str1 str2 / str1 str2 len1 len2 count )
+bar040219.lsp:(defun split_blist( blist idia /
+bar040219.lsp:(defun bardlg(/  
+bar040219.lsp:(defun set_tr34 ()
+bar040219.lsp:(defun set_addg ()
+bar040219.lsp:(defun set_val(key )
+bar040219.lsp:(defun do_cancel()
+bar040219.lsp:(defun do_accept()           ;dialog box∏¶ ≥°≥ª±‚ ¿¸ø° ∏µÁ ¿‘∑¬ µ•¿Ã≈∏ »Æ¿Œ
+bar0715.lsp:(defun C:BAR( /
+bar0715.lsp:  (defun SETERR(s)                                      ;≥ª¿Âø°∑Ø∑Á∆æ ¡§¿«
+bar0715.lsp:(defun B_MARK(IP R A34 /
+bar0715.lsp:(defun atof1(STR / n count dot)
+bar0715.lsp:(defun ATOI1( STR / n count str chr)
+bar0715.lsp:(defun DATA-IN(arg1
+bar0715.lsp:(defun SP-TRUNC(txt
+bar0715.lsp:(defun IS-NUM(str
+bar0715.lsp:(defun SORT_LIST(alist aidx
+bar0715.lsp:(defun LT1(arg1 arg2)
+bar0715.lsp:(defun DEL_ATOM(b_list anth
+bar0715.lsp:(defun BAR_LIST(blist add ipnt s
+bar0715.lsp:(defun WRITE_DATA( LLIST FN / nl count opf nl line nb)
+bar0715.lsp:(defun LT(arg1 arg2)
+bar0715.lsp:(defun str_position(str1 str2 / str1 str2 len1 len2 count )
+bar0715.lsp:(defun split_blist( blist idia /
+bar0715.lsp:(defun bardlg(/  
+bar0715.lsp:(defun set_tr34 ()
+bar0715.lsp:(defun set_addg ()
+bar0715.lsp:(defun set_val(key )
+bar0715.lsp:(defun do_cancel()
+bar0715.lsp:(defun do_accept()           ;dialog box∏¶ ≥°≥ª±‚ ¿¸ø° ∏µÁ ¿‘∑¬ µ•¿Ã≈∏ »Æ¿Œ
+BARMNU.LSP:(DEFUN C:BARMNU( / os)
+BARMNU.LSP:  (defun SETERR(s)
+BARMNU.LSP: (defun icondwg( xy / x1 x2 x3 x4 x5 x6 x7 y1 y2 y3 y4 y5 y6 y7)
+Basec.lsp:(defun C:BASEC(
+BB.LSP:(defun C:BB()
+BCN.LSP:(DEFUN C:BCN(/
+BCN.LSP:  (defun SETERR(s)
+bcross.lsp:(defun C:BCROSS(/
+bcross.lsp:  (defun SETERR(s)
+bcross.lsp:(defun SORT_LIST(alist aidx
+bcross.lsp:(defun DEL_ATOM(b_list anth
+BDASH.LSP:(defun C:BDASH(/
+BDASH.LSP:  (defun SETERR(s)
+BEAM.LSP:(defun c:beam()
+bearing.lsp:(defun C:BEARING(/
+bearing.lsp:  (defun SETERR(s)
+bi.lsp:(defun c:Bi(
+bi.lsp:  (defun mk_vertlist (vname
+bi.lsp:(defun GetRebarlist( / entlst nent plst npnt index ent entype)
+bi.lsp:(defun getLwVert (vlist tmpctr / count tmp)            
+bi.lsp:(defun areaofrebar(barname unit / barname unit )
+bi.lsp:(defun rtosfw(num width dec / num width dec str1 lenstr errmsg)
+bi.lsp:(defun strcopy(str num / str num return)
+bi.lsp:(defun mkconcdata(nodelst opnt scl / vlist scl)
+BLIST.LSP:(defun C:BLIST(
+BLIST.LSP:  (defun SETERR(s)
+BLIST.LSP:(defun DATA-IN(arg1
+BLIST.LSP:(defun SP-TRUNC(txt
+BLIST.LSP:(defun IS-NUM(str
+BLIST.LSP:(defun SORT_LIST(alist aidx
+BLIST.LSP:(defun LT(arg1 arg2)
+BLIST.LSP:(defun DEL_ATOM(b_list anth
+BLIST.LSP:(defun BAR_LIST(blist ipnt s
+bm1.LSP:(defun C:BM1(/    
+bm1.LSP:  (defun SETERR(s)    
+bm1.LSP:(defun TXTINC(TXT IPNT TXTROT / th ds)
+bm2.LSP:(defun C:BM2(/
+bm2.LSP:  (defun SETERR(s)                          ;≥ª¿Âø°∑Ø«‘ºˆ¡§¿«
+bm2.LSP:(defun CROSS(aent sp ep /
+bm2.LSP:(defun inang(a1 a2 a3 /             ;¿Œºˆ ¡§¿«
+Bm3.lsp:(defun C:BM3(/
+Bm3.lsp:  (defun SETERR(s)
+Bm3.lsp:(defun TXTINC(TXT IPNT TXTROT / th ds)
+Bm3.lsp:  (defun getLwVert (vlist tmpctr / count tmp)
+Bm4.lsp:(defun C:BM4(/    
+Bm4.lsp:  (defun SETERR(s)                          ;≥ª¿Âø°∑Ø∑Á∆æ ¡§¿«
+Bm4.lsp:(defun TXTINC(TXT IPNT TXTROT / th ds)
+Bm4.lsp:  (defun getLwVert (vlist tmpctr / count tmp)    
+bm5.lsp:(defun C:BM5(/                                              ;¡ˆø™∫Øºˆ ¡§¿«    
+bm5.lsp:  (defun SETERR(s)                          ;≥ª¿Âø°∑Ø∑Á∆æ ¡§¿«
+bm5.lsp:(defun CROSS(aent sp ep /    
+bm5.lsp:(defun inang(a1 a2 a3 /             ;¿Œºˆ ¡§¿«    
+bm5.lsp:(defun TXTINC(TXT IPNT TXTROT / th ds)
+Bm6.lsp:(defun C:BM6(/                                          ;¡ˆø™∫Øºˆ ¡§¿«    
+Bm6.lsp:  (defun SETERR(s)                          ;≥ª¿Âø°∑Ø∑Á∆æ¡§¿«
+Bm6.lsp:(defun CROSS(aent sp ep /    
+Bm6.lsp:(defun inang(a1 a2 a3 /             ;¿Œºˆ ¡§¿«    
+Bm6.lsp:(defun TXTINC(TXT IPNT TXTROT / th ds)
+Bmd.lsp:(defun C:BMD(
+Bmd.lsp:  (defun SETERR(s)
+Bmd.lsp:(defun STRLOC(arg1
+Bmd.lsp:(defun CAMB_TABLE(ax ay anode1 anode2 anlist
+Bmd.lsp:(defun op(eq lst /
+Bor.lsp:(defun C:BOR( /    
+Bor.lsp:  (defun SETERR(s)    
+Bor.lsp:(defun b_1( IP H sc /    
+Bor.lsp:(defun b_2( IP H sc /    
+Bor.lsp:(defun b_3( IP H sc /    
+Bor.lsp:(defun b_4( IP H SC /    
+Bor.lsp:(defun b_5( IP H SC /    
+Bor.lsp:(defun b_6( IP H sc /    
+Bor.lsp:(defun b_7( IP H sc /    
+Bor.lsp:(defun rect( IP B H /    
+boring.LSP:(defun C:BORING(/ p1)
+boring.LSP:  (defun SETERR(s)                                          ;≥ª¿Âø°∑Ø∑Á∆æ ¡§¿«
+BP.LSP:(defun C:BP(/
+BRACKET.LSP:(defun C:BRACKET(
+BRR.LSP:(defun C:BRR(/
+BRR.LSP:  (defun SETERR(s)
+BRR.LSP:(defun BARRIER( LR ip SL / LR ip SL)
+Brr1.lsp:(defun C:BRR1(/
+Brr1.lsp:  (defun SETERR(s)
+Brr1.lsp:(defun BARRIER1( LR ip SL / LR ip SL)
+BRSE.LSP:(defun C:BRSE(/
+BRSE.LSP:  (defun SETERR(s)                                  ;≥ª¿Âø°∑Ø∑Á∆æ ¡§¿«
+BT.LSP:(DEFUN C:BT()
+BT.LSP:  (defun SETERR(s)
+CALT.LSP:(defun C:CALT(/
+CALT.LSP:  (defun SETERR(s)
+CALT.LSP:(defun IS-NUM(str
+camber.lsp:(defun C:CAMBER(
+camber.lsp:  (defun SETERR(s)
+camber.lsp:(defun STRLOC(arg1
+camber.lsp:(defun CAMB_TABLE(ax ay anode1 anode2 anlist
+camber.lsp:(defun op(eq lst /
+CAMBER0.LSP:(defun C:CAMBER(
+CAMBER0.LSP:  (defun SETERR(s)
+CAMBER0.LSP:(defun STRLOC(arg1
+CAMBER0.LSP:(defun CAMB_TABLE(ax ay anode1 anode2 anlist
+cb.LSP:(defun circle2mark(centname /
+cb.LSP:(defun c:CB(
+cb.LSP:(defun barmark(ep p3 mark diatxt /
+cb.LSP:(defun TXTINC(TXT IPNT TXTROT / th ipnt  txtl count)
+cb.LSP:(defun SP-TRUNC(txt
+cb.LSP:(defun IS-NUM(str
+cctc.lsp:(defun c:cctc()
+cctc.lsp:(defun cctc_dia()
+cctc.lsp:  (defun done-dialog()
+cctc.lsp:;(defun do-accept();
+cctc.lsp:(defun selectdimcase()
+cctc.lsp:(defun flen()
+cctc.lsp:(defun checkex()
+cctc.lsp:(defun djdg_divint(v div / v div mk rm vlst)
+cctc.lsp:(defun djdg_divdim( dst pitch div rediv / re mok dimlst rmlst rtxt1 rtxt2 mktxt mokr1 mokr2)
+cctc.lsp:(defun djdg_retxt1(rmlst div / dlist n1 n v n1 v1 num regol return ndlist nn1 nn2 splitlst regol1 regol2 )
+cctc.lsp:(defun djdg_makegoltext(gol / return n i ni v vtxt )
+cctc.lsp:(defun djdg_checkgol(dlist / dlist golist n i snum cv)
+cctc.lsp:(defun djdg_splitlist(lst idx / len n1 n2 i lst1 lst2)
+cctc.lsp:(defun djdg_strdim(spnt ang ud dstr / spnt ang ud dstr a i l ipnt)
+cdd.lsp:(defun C:CDD()
+cdd.lsp:  (defun SETERR(s)                              ;≥ª¿Âø°∑Ø∑Á∆æ ¡§¿«
+cdd.lsp:  (defun getLwVert (vlist tmpctr /
+CDS.LSP:(defun C:CDS (/
+CDS.LSP:  (defun SETERR(s)                                      ;≥ª¿Â ø°∑Ø∑Á∆æ ¡§¿«
+ceh.LSP:(defun c:ceh()
+ceh.LSP:(defun gettablelist(item / item )
+ceh.LSP:(defun c:ceh1( )
+challsty.lsp:(defun c:challsty(/
+CHB.LSP:(defun C:CHB(/
+CHB.LSP:  (defun SETERR(s)
+CHBDR.LSP:(defun C:CHBDR( /
+chbdrtxt.lsp:(defun C:CHBDRTXT( /
+CHCEN.LSP:(defun c:chcen(/ ss count e oldlt newlt)
+CHCEN.LSP:  (defun SETERR(s)
+CHCLR.LSP:(defun C:CHCLR(
+CHCLR.LSP:  (defun SETERR(s)
+CHCLR.LSP:(defun STRLOC(arg1
+CHDASH.LSP:(defun c:chdash(/ ss count e oldlt newlt)
+CHDASH.LSP:  (defun SETERR(s)
+checkdate.LSP:(defun c:checkdate ( / )
+CHELV.LSP:(defun c:chelv(
+CHELV.LSP:(defun chelv_f(plent z
+CHLAY.LSP:(defun c:chlay(/ ss count e oldlt newlt)
+CHLAY.LSP:  (defun SETERR(s)
+CHPLCLR.LSP:(defun C:CHCLR(
+CHPLCLR.LSP:  (defun SETERR(s)
+CHPLCLR.LSP:(defun STRLOC(arg1
+CHTEXT.LSP:(defun chtxt (/ sset opt ssl nsset temp unctr ct_ver cht_er cht_oe
+CHTEXT.LSP:  (defun cht_er (s)                   ; If an error (such as CTRL-C) occurs
+CHTEXT.LSP:(defun cht_ve ()
+CHTEXT.LSP:(defun cht_ol ()
+CHTEXT.LSP:(defun cht_ue ()
+CHTEXT.LSP:(defun cht_le ()
+CHTEXT.LSP:(defun cht_je ()
+CHTEXT.LSP:(defun justpt ()
+CHTEXT.LSP:(defun justpn ()
+CHTEXT.LSP:(defun cht_te ()
+CHTEXT.LSP:(defun C:CHGTEXT () (chgtext nil))
+CHTEXT.LSP:(defun chgtext (objs / last_o tot_o ent o_str n_str st s_temp 
+CHTEXT.LSP:(defun cht_pe (typ prmpt fld / temp ow nw ent tw sty w hw lw 
+CHTEXT.LSP:(defun cht_pa (/ cht_oh temp)
+CHTEXT.LSP:(defun cht_p1 ()
+CHTEXT.LSP:(defun cht_sp ()
+CHTEXT.LSP:(defun cht_pl ()
+CHTEXT.LSP:(defun cht_pi ()
+CHTEXT.LSP:(defun cht_ps ()
+CHTEXT.LSP:(defun c:cht    () (chtxt))
+CLCROSS.LSP:(defun C:CRSPOINT(/
+CLCROSS.LSP:(defun CROSS(a b r sa ea c d /
+CLCROSS.LSP:(defun inang(a1 a2 a3 /
+conarc.LSP:(defun c:conarc(
+conarc.LSP:(defun ChordOnArc(arcent spnt chordlen
+conarc.LSP:(defun asin(a / a)
+conc.LSP:(defun C:CONC(/
+conc.LSP:  (defun SETERR(s)                                          ;≥ª¿Âø°∑Ø∑Á∆æ ¡§¿«
+COORD2.LSP:(defun c:coord2()
+COORD2.LSP:  (defun SETERR(s)
+COORD3.LSP:(defun c:coord3()
+COORD3.LSP:  (defun SETERR(s)
+coord_mo.lsp:(defun C:crd(/
+coord_mo.lsp:  (defun SETERR(s)
+COPYL.LSP:(defun C:COPYL(/                    ;¡ˆø™∫Øºˆ ¡§¿«
+CRC.LSP:(defun C:CRC()
+CRC.LSP:  (defun SETERR(s)                      ;≥ª¿Âø°∑Ø∑Á∆æ ¡§¿«
+CRSP.LSP:(defun c:crsp(/ ent1 ent2 crsp)
+CSEC.LSP:(defun C:CSEC(
+CSEC.LSP:  (defun SETERR(s)                                  ;≥ª¿Âø°∑Ø∑Á∆æ ¡§¿«
+CSEC.LSP:(defun draw_csec(csec_data
+CSEC.LSP:(defun test()
+CSEC.LSP:  (defun mk_vertlist (vname
+CSEC.LSP:(defun mk_vertlistp(vname
+CSEC.LSP:(defun near_vert(vlst pnt
+CSEC.LSP:(defun PointOnPline(Plist Vllist Distfrom0
+CSEC.LSP:(defun cp_line_pline(pnt1 pnt2 plist
+CSEC.LSP:(defun SORT_plist(alist aidx
+CSEC.LSP:(defun LT(arg1 arg2)
+CSEC.LSP:(defun DEL_ATOM(b_list anth
+CSEC.LSP:(defun IS-NUM(str
+cth.lsp:(defun C:CTH()
+cth.lsp:  (defun SETERR(s)                          ;≥ª¿Âø°∑Ø∑Á∆æ ¡§¿«
+CTW.LSP:(defun C:CTW()
+CTW.LSP:  (defun SETERR(s)
+ctxt.lsp:(defun C:ctxt(
+ctxt.lsp:  (defun SETERR(s)                          ;≥ª¿Âø°∑Ø∑Á∆æ ¡§¿«
+ctxt.lsp:(defun c:meq( / sss spt  i slst en eni ipnt tb tb1 tb2 mpnt
+ctxt.lsp:(defun meq_txtopt( txt prefix postfix factor delta / )
+ctxt.lsp:(defun meq-dialog( / dcl_id lay )  
+ctxt.lsp:(defun set_val(key / val )
+ctxt.lsp:(defun do-dialog()    ;∏µÁ ∞™ ±§ø™∫Øºˆø° ≥÷±‚
+ctxt.lsp:(defun do-cancel()
+cutpipe.LSP:(defun C:cutpipe(
+cutpipe.LSP:  (defun SETERR(s)                          ;≥ª¿Âø°∑Ø∑Á∆æ ¡§¿«
+cutpipe.LSP:(defun asin(a / a)
+cutpipe1.LSP:(defun C:cutpipe1(
+cutpipe1.LSP:  (defun SETERR(s)                          ;≥ª¿Âø°∑Ø∑Á∆æ ¡§¿«
+cutpipe1.LSP:(defun asin(a / a)
+da.lsp:(defun C:DA(/    
+da.lsp:  (defun SETERR(s)    
+da.lsp:(defun rtos_dimdsep(real precision / real precision txt txtlen count)      
+da.lsp:(defun c:ldim( /
+da.lsp:(defun rto_dimtxt(l / l )
+DANG.LSP:(defun DANG(ang1 ang2 /     ; ang1, ang2 : radian
+DANG.LSP:(defun c:kk(/ a1 a2)
+db24.lsp:(defun c:db24( / nnlist)
+db24.lsp:(defun getelx(nlist elist x sele eele / nlist inode jnode elist x sele eele nmlist count x1 x2 return)
+db24.lsp:(defun drawgirder(nlist x y / nlist x y n x1 x2 count p1 p2 donutradius ipnt modelgap)
+db24.lsp:(defun getpath(fn / fn )
+db24.lsp:(defun makedb24(nlist elist sele eele /
+db24.lsp:(defun rtosfw(num width dec / num width dec str1 lenstr errmsg)
+db24.lsp:(defun strcopy(str num / str num return)
+db241.lsp:(defun c:db24( / nnlist)
+db241.lsp:(defun getelx(nlist elist x sele eele / nlist inode jnode elist x sele eele nmlist count x1 x2 return)
+db241.lsp:(defun drawgirder(nlist x y / nlist x y n x1 x2 count p1 p2 donutradius ipnt modelgap)
+db241.lsp:(defun getpath(fn / fn )
+db241.lsp:(defun makedb24(nlist elist sele eele / defaultfn nlist elist sele eele opf index firstx load1 load2 load3 )
+db241.lsp:(defun mk_nlist(nlist elist sele eele / nlist elist sele eele nnlist nele index nindex inode x)
+dc.lsp:(defun C:DC(/    
+dc.lsp:  (defun SETERR(s)    
+dc.lsp:(defun rtos_dimdsep(real precision / real precision txt txtlen count)      
+dc.lsp:(defun c:DIMA()
+DCO.LSP:(defun C:DC(/
+ddim.lsp:(defun djdg_divdim( dst pitch div rediv / )
+ddim.lsp:(defun djdg_divint(v div / v div mk rm vlst)
+ddim.lsp:(defun djdg_retxt1(rmlst div / dlist n1 n v n1 v1 num regol return ndlist nn1 nn2 splitlst regol1 regol2 )
+ddim.lsp:(defun djdg_makegoltext(gol / return n i ni v vtxt )
+ddim.lsp:(defun djdg_retxt(rmlst div)
+ddim.lsp:(defun djdg_checkgol(dlist / dlist golist n i snum cv)
+ddim.lsp:(defun djdg_splitlist(lst idx / len n1 n2 i lst1 lst2)
+ddmcht.lsp:(defun C:DDMCHT(/                                  ;¡ˆø™∫Øºˆ ¡§¿«
+ddmcht.lsp:  (defun SETERR(s)
+ddmcht.lsp:(defun SORT_LIST(alist aidx
+ddmcht.lsp:(defun DEL_ATOM(b_list anth
+ddmcht.lsp:(defun NT_DIALOG ( old_txt / dcl_id old_txt)
+ddmcht.lsp:(defun SET_TXT( / in )
+ddrect.lsp:(defun c:ddrect( / th ln p1 p2 ang p3 vang ip )
+ddrect.lsp:  (defun ddrect_DIA (
+ddscl.lsp:(defun C:DDSCL(/  
+ddscl.lsp:  (defun SETERR(s)  
+ddscl.lsp:(defun SCL-DIALOG(/  
+ddscl.lsp:(defun set-user( / in )  
+ddscl.lsp:(defun getfile(XB / bn)  
+ddscl.lsp:(defun no_bdr( )  
+ddscl.lsp:(defun set-grd( / in )  
+ddscl.lsp:(defun do-accept()  
+ddscl.lsp:(defun do-error()  
+ddscl.lsp:(defun do-cancel()  
+ddscl.lsp:(defun BDR_NAME(dn / ls count ch dn)  
+DDSCL0.LSP:(defun C:DDSCL(/
+DDSCL0.LSP:  (defun SETERR(s)
+DDSCL0.LSP:(defun SCL-DIALOG(/
+DDSCL0.LSP:(defun set-sclf(/ in)
+DDSCL0.LSP:(defun list_scl(lst / lst)
+DDSCL0.LSP:(defun set-user( / in )
+DDSCL0.LSP:(defun set-grd( / in )
+DDSCL0.LSP:(defun do-accept()
+DDSCL0.LSP:(defun do-error()
+DDSCL0.LSP:(defun do-cancel()
+DELSHORT.LSP:(defun C:DELSHORT()
+DELSHORT.LSP:  (defun SETERR(s)                      ;≥ª¿Âø°∑Ø∑Á∆æ ¡§¿«
+DETAIL.LSP:(defun deterr (S / A L)
+DETAIL.LSP:(defun sscross (/ S1 S2)
+DETAIL.LSP:(defun explode (EN / A C E I L R S E1 E2 E3 S1 S2)
+DETAIL.LSP:(defun id (E / EN ET)
+DETAIL.LSP:(defun op (EN ET)
+DETAIL.LSP:(defun trim (/ I L EN ET EA SA S1 TM E C R D90 D270)
+DETAIL.LSP:(defun C:DETAIL (/ A E I L R DT1 EN ET HL OK TM C1 C2 S1 P0 P1 P2 P3 P4 P5)
+dh.lsp:(defun C:DH(/        
+dh.lsp:  (defun SETERR(s)        
+dh.lsp:(defun C:DV(/    
+dh.lsp:  (defun SETERR(s)    
+dh.lsp:(defun C:DA(/    
+dh.lsp:  (defun SETERR(s)    
+dh.lsp:(defun rtos_dimdsep(real precision / real precision txt txtlen count)      
+dh.lsp:(defun c:ldim( /
+dh.lsp:(defun rto_dimtxt(l / l txt)
+dh.lsp:(defun C:ARWH(/)
+dh.lsp:(defun c:DSS(
+dh.lsp:(defun c:dt( / ssdim ndim index sname )
+dh.lsp:(defun djdgf_dt( sname / diment alen txt)
+dh.lsp:(defun c:dsm(
+dh.lsp:(defun djdg_stretchdim(ename pnt dst
+dh.lsp:(defun djdg_movedim(ename ang dst
+DHO.LSP:(defun C:DH(/
+Dimdot.lsp:(defun c:dimdot()
+DIMMNU.LSP:(DEFUN C:DIMMNU( / os)
+DIMMNU.LSP:  (defun SETERR(s)
+DIMMNU.LSP: (defun icondwg( xy / x1 x2 x3 x4 x5 x6 x7 y1 y2 y3 y4 y5 y6 y7)
+DIRMRK.LSP:(defun C:DIRMRK(/)
+DIRMRK.LSP:  (defun SETERR(s)
+DIVA.LSP:(defun C:DIVA(/
+DIVA.LSP:  (defun SETERR(s)
+DIVL.LSP:(defun C:DIVL(/
+DIVL.LSP:  (defun SETERR(s)
+djdgfun.lsp:(defun str_position(str1 str2
+djdgfun.lsp:(defun v_angle(p1 p2 p3
+djdgfun.lsp:(defun rib_dim(str
+djdgfun.lsp:(defun asin(a / a)
+djdgfun.lsp:(defun divide_str(arg1 arg2
+djdgfun.lsp:  (defun getLwVert (vlist tmpctr / count tmp)
+djdgfun.lsp:(defun djdg_insertarw1(p1 p2
+djdgfun.lsp:(defun djdg_insertblk(bname p1 p2 dimscl
+djdgfun.lsp:(defun djdg_insertblkas(bname p1 p2
+djdgfun.lsp:(defun djdg_wtxtonline(p1 p2 text th gap
+djdgfun.lsp:(defun djdg_wtxtonline1(p1 p2 p3 text th gap
+djdgfun.lsp:(defun djdg_rect( p1 ang l thick opt
+djdgfun.lsp:(defun djdg_sldimage( tilename sldname erase / )
+djdgfun.lsp:(defun djdg_sclblk( / )
+djdgfun.lsp:(defun djdg_mtredraw( ss mode / num index )
+djdgfun.lsp:(defun djdg_issamepnt(p1 plist / num index issame)
+djdgfun.lsp:(defun djdg_getpoints(entlst lnend)
+djdgfun.lsp:(defun djdg_loadltype( lt / )
+djdgfun.lsp:(defun DATA-IN(arg1
+djdgfun.lsp:(defun SP-TRUNC(txt
+djdgfun.lsp:(defun IS-NUM(str
+djdgfun.lsp:(defun djdg_splitdimtxt(as1 / mk pos po1 totl divl divl1)
+djdgfun.lsp:(defun djdg_splitdimtxtnum(as1 / mkn divln totln)
+djdgfun.lsp:(defun djdg_dimtxtoreal(dimtxt)
+djdgfun.lsp:(defun djdg_divlen(dst pitch)
+djdgfun.lsp:(defun rto_dimtxt(l / l txt)
+djdgfun.lsp:(defun djdg_getdimlen(dmstr / dmstr)
+djdgfun.lsp:(defun F_DH(SP DST N UD TXT1
+djdgfun.lsp:(defun F_DV(SP DST N LR TXT1
+djdgfun.lsp:(defun F_DA(SP ANG DST N UD TXT1
+djdgfun.lsp:(defun F_DATEXT(SP ANG DST N UD TXT1
+djdgfun.lsp:(defun djdg_splitprenum( numstr / lstr i nonum return ch)
+djdgfun.lsp:  (defun mk_vertlist (vname
+djdgfun.lsp:(defun djdg_splitstr(str ptstr
+djdgfun.lsp:(defun djdg_attwrite (#blk_nm #_lst2 / #_rpt #_tag #_val eea_lst #_chk #_blk)
+djdgfun.lsp:(defun djdg_gettag(etsel / return spnt ename einf ipnt txt tbox tbox1 tbox2 pnt2 xspnt yspnt tag)
+djdgfun.lsp:(defun djdg_getattv( entn / en return ei)
+djdgfun.lsp:(defun djdg_cdimdan(ename cdan / deni as10 as14 ang nas10 ndeni)
+djdgfun.lsp:(defun djdg_angofdimline( ename / enti as70 return)
+djdgfun.lsp:(defun CROSS(aent sp ep /
+djdgfun.lsp:(defun inang(a1 a2 a3 /             ;¿Œºˆ ¡§¿«
+djdgfun.lsp:(defun cp_line_pline(pnt1 pnt2 plist
+djdgfun.lsp:(defun ali_pdim( plist defpnt dirpnt sidepnt textout factor delta prefix postfix oridist gol
+djdgfun.lsp:(defun djdg_angdist(bp tp ang / deltaang dist)
+djdgfun.lsp:(defun goltotaltxt(n d / )
+djdgfun.lsp:(defun textboxm(ename / eni ipnt tb tb1 tb2 mpnt)
+djdgfun.lsp:(defun rotatepnt(p1 bpnt ang / x y z x0 y0 z0 xx yy zz x1 y1 z1)
+djdgfun.lsp:(defun farest(points
+djdgfun.lsp:(defun crossent( ent1 ent2 opt / pts aobj1 aobj2 ipts )
+djdgfun.lsp:(defun djdg_readdatafile( fn
+djdgfun.lsp:(defun point-sort(plist idx ipt
+djdgfun.lsp:(defun entmod_color(ssnm color / ent color)
+DJDGLOGO.LSP:(defun C:DJDGLOGO(/
+DJDGLOGO.LSP:  (defun LOGO_DIALOG (/
+dlive.lsp:(defun c:dlive(
+dlive.lsp:  (defun DLIVE_DIA (
+Do.lsp:(defun C:DO(/    
+Do.lsp:  (defun SETERR(s)    
+Do.lsp:(defun rtos_dimdsep(real precision / real precision txt txtlen count)      
+drebar.lsp:(defun c:drebar(
+drebar.lsp:(defun div_dimtxt(dimstr / dimstrlen golpos eqpos)
+drebar.lsp:(defun c:cpdim(
+drebar.lsp:(defun c:d2l( / ssd be1 be2 be110 be111 be210 be211 lne ass10 ass11
+dsk.lsp:(defun c:DSK(
+dsk.lsp:(defun str_position(str1 str2 / str1 str2 len1 len2 count )
+dsk.lsp:(defun div_dimtxt(dimstr / dimstrlen golpos eqpos)
+dsk.lsp:(defun scl_dimtxt(dimstr scl / dimstr scl len)
+dsk.lsp:(defun scl_mdimtxt(dimtxt scl / dimtxt sktext divtxt divn )
+dsk.lsp:(defun c:ddr ( / ds dh fskew ssdim ndim index diment dimtype dimtxt assoc10 assoc11 assoc50
+dsk.lsp:(defun DDR-dialog( / what_next dcl_id )
+dsk.lsp:(defun get_arc( key / arc2 arc3 )
+dsk.lsp:(defun set_val(key / val )
+DUD.LSP:(defun C:DUD (/
+DUD.LSP:  (defun SETERR(s)                                      ;≥ª¿Â ø°∑Ø∑Á∆æ ¡§¿«
+dwgrtxt.lsp:(defun c:dwgrtxt ()
+dwgrtxt.lsp:(defun delrtext( / ss_lst)
+dynamic.lsp:(defun DATA-IN1(arg1
+dynamic.lsp:(defun c:dyn( )
+dynamic.lsp:(defun draw_model( / )
+dynamic.lsp:(defun draw_node()
+dynamic.lsp:(defun draw_ele()
+dynamic.lsp:(defun read2k(fn / fn opf forcelist ln ellist ellc inode jnode)
+dynamic.lsp:(defun s2kforce(ln / ln )
+dynamic.lsp:(defun compforce(elforce caselist casenum opt
+dynamic.lsp:(defun getinput(ext / input opf ln fname ext)
+dynamic.lsp:(defun c:s2kcomp( / input1 inputfn input count path cmdcount casenum cmd cmdset ncmd results)
+dynamic.lsp:(defun getpath(fn / fn index )
+dynamic.lsp:(defun str_tail(str1 str2 / str1 str2 len1 len2 count )
+dynamic.lsp:(defun str_head(str1 str2 / str1 str2 len1 len2 count )
+dynamic.lsp:(defun fromtostep(from to step / numlist num from to step)
+dynamic.lsp:(defun splitinput(input / input ninput count icount onecmd lastcmd aline inputs  )
+dynamic.lsp:(defun compcmd(cmdset / cmdset count caselist lcnum cmdline fn)
+dynamic.lsp:(defun combcmd(cmdset / cmdset count caselist lcnum sf lcnum cmdline fn combi)
+dynamic.lsp:(defun combforce(elforce lclist lcnum sf opt 
+dynamic.lsp:(defun testcomb( / )
+dynamic.lsp:(defun appendcase(result1 result2 / result1 result2 elnum count addedresult oldele newele)
+dynamic.lsp:(defun printresult(result fn / fn result opf elnum elforce elid casenum casecount caseforce
+dynamic.lsp:(defun printresult1(result caselist fn / fn result caselist opf elnum elforce elid casenum casecount caseforce
+dynamic.lsp:(defun force2str(forcelist)
+dynamic.lsp:(defun rtosfw(num width dec / num width dec str1 lenstr errmsg)
+dynamic.lsp:(defun strcopy(str num / str num return)
+dynamic.lsp:(defun factforce(elforce fact / nele elecount ftotforce cases ncase elenum casecount 
+dynamic.lsp:(defun factatom(inlist sf / inlist sf)
+dynamic.lsp:(defun commandl( oneline / oneline count natom firststr  from to step assline item)
+dynamic.lsp:(defun checkcase(elforce caselist / elforce caselist ncase0 firstelforce casecount thiscase iscase)
+EARTH.LSP:(defun C:EARTH(
+EARTH.LSP:  (defun SETERR(s)
+EARTH.LSP:(defun F_DH(SP DST N UD TXT1
+EARTH.LSP:(defun F_DV(SP DST N LR TXT1
+edim.lsp:(defun c:EDIM(
+edim.lsp:;;;  (defun getLwVert (vlist tmpctr / count tmp)
+edim.lsp:(defun hor_edim(sorted_plist defpnt
+edim.lsp:(defun ver_edim(sorted_plist defpnt
+edim.lsp:(defun ali_edim(sorted_plist defpnt
+edim.lsp:(defun djdg_grpoint( / )
+elm.lsp:(defun c:elm( / ip pv txt )
+elm.lsp:(defun djdgf_ELM(  ip pv txt / 
+elm.lsp:  (defun SETERR(s)
+elm.lsp:(defun c:pel()
+elm.lsp:(defun c:melm( / scl ip elt nip pv ent txt eqpos eltxt el deltay nel neltxt )
+EPL.LSP:(defun C:EPL()
+EPL.LSP:  (defun SETERR(s)
+erebar.lsp:(defun djdg_insertelp( ipnt flaglist /
+erebar.lsp:(defun djdg_devlen1( fck rebarn gap cover sang
+erebar.lsp:(defun djdg_devlen(fck rebarn gap cover sang
+erebar.lsp:(defun djdg_laplen(fck rebarn gap cover sang
+erebar.lsp:(defun djdg_rebarndia( dia / ddia return)
+erebar.lsp:(defun djdg_lapnum(tlen rlen llen / return)
+erebar.lsp:(defun djdg_calcrlen(data func
+erebar.lsp:(defun djdg_calctrlen(attv
+erebar.lsp:(defun djdg_rattmod( ename att / tvlist)
+erebar.lsp:(defun c:er( / s_ent ename edatresult txt tag oldatt newatt )
+erebar.lsp:(defun NV_DIALOG ( old_txt / splited var value dcl_id old_txt )
+erebar.lsp:  (defun SET_TXT( / in tagstr valuestr )
+erebar.lsp:(defun ERA_DIALOG ( attv / splited var value dcl_id old_txt )
+erebar.lsp:  (defun SET_ERA( / fck cover ctc unitl mark dia var1 var2 var3 var4 var5 num eqv temp mark1 mark2 natt)
+erebar.lsp:(defun c:era(
+erebar.lsp:(defun djdg_arrangemark(ename
+erebar.lsp:(defun djdg_getattenti(ename tag
+erebar.lsp:(defun djdg_entinblk( blkname code value / return blk fen feni nen)
+ERR.LSP:  (defun SETERR(s)
+fanch.lsp:(defun c:fanch(
+fanch.lsp:  (defun FANCH_DIA (
+fanch.lsp:  (defun set_anchimage( / )
+fanch.lsp:  (defun do-accept( )
+fanch.lsp:  (defun djdg_sldimage( tilename sldname erase / )
+fcorner.lsp:(defun c:fcorner(
+fcorner.lsp:  (defun fcorner_dia(   / dcl_id 
+FDV.LSP:(defun C:vtest()
+FDV.LSP:(defun F_DV(SP DST N LR TXT1
+FF2.LSP:(defun C:FF2(/
+FF2.LSP:  (defun SETERR(s)
+FF2.LSP:(defun modi_clt( ent c lt /
+FFL.LSP:(defun C:FFL(/
+FFL.LSP:  (defun SETERR(s)
+FFP.LSP:(defun c:FFP(/
+FFP.LSP:  (defun SETERR(s)
+gel.lsp:(defun c:gel(  /
+gel.lsp:(defun djdg_vtcel( vtcinfo station
+gel.lsp:(defun djdg_interpolation(vals sv index
+gel.lsp:(defun djdg_vtcdeltay(vtcinfo xval
+gel.lsp:(defun djdg_readvtcdata(
+gel.lsp:(defun djdg_readdatafile( fn
+gel.lsp:(defun rtosfw(num width dec / num width dec str1 lenstr errmsg)
+gel.lsp:(defun strcopy(str num / str num return)
+gel.lsp:(defun djdg_drawsec(plst
+gel.lsp:(defun djdg_insertelp( ipnt flaglist /
+GENMNU.LSP:(DEFUN C:GENMNU( / os)
+GENMNU.LSP:  (defun SETERR(s)
+GENMNU.LSP: (defun icondwg( xy / x1 x2 x3 x4 x5 x6 x7 y1 y2 y3 y4 y5 y6 y7)
+getprinter.lsp:(defun R15plotters ()
+GRNDMRK.LSP:(defun C:GRNDMRK(/
+GRNDMRK.LSP:  (defun SETERR(s)                          ;≥ª¿Âø°∑Ø∑Á∆æ ¡§¿«
+gsection.LSP:(defun c:gsection(
+gsection.LSP:  (defun mk_vertlist (vname
+gusset.lsp:(defun c:GUSSET( /
+gusset.lsp:  (defun SETERR(s)                              ;≥ª¿Âø°∑Ø∑Á∆æ «œ
+HA.LSP:(defun C:HA(/)
+HA.LSP:  (defun SETERR(s)
+HATCHB.LSP:(defun c:hb () (c:hatchb)) ; this line can be commented out if there is an
+HATCHB.LSP:(defun c:hatchb (/     es    blay  ed1   ed2   loops1      bptf  part
+HATCHB.LSP:  (defun list->variantArray (ptsList / arraySpace sArray)
+HATCHB.LSP:  (defun 3dPoint->2dPoint (3dpt)
+HATCHB.LSP:  (defun errexit (s)
+HATCHB.LSP:  (defun undox ()
+HB.LSP:(defun C:HBLIST(
+HB.LSP:  (defun SETERR(s)
+HB.LSP:(defun DATA-IN(arg1
+HB.LSP:(defun SP-TRUNC(txt
+HB.LSP:(defun IS-NUM(str
+HB.LSP:(defun SORT_LIST(alist aidx
+HB.LSP:(defun LT(arg1 arg2)
+HB.LSP:(defun DEL_ATOM(b_list anth
+HB.LSP:(defun BAR_LIST(blist ipnt s
+HB.LSP:(defun findvar(var_list var tindex
+HB.LSP:(defun c:testfindvar()
+hb1.lsp:(defun C:HBLIST(
+hb1.lsp:  (defun SETERR(s)
+hb1.lsp:(defun DATA-IN(arg1
+hb1.lsp:(defun SP-TRUNC(txt
+hb1.lsp:(defun IS-NUM(str
+hb1.lsp:(defun SORT_LIST(alist aidx
+hb1.lsp:(defun LT(arg1 arg2)
+hb1.lsp:(defun DEL_ATOM(b_list anth
+hb1.lsp:(defun BAR_LIST(blist ipnt s
+hb1.lsp:(defun findvar(tbl_list vlist varname tindex
+hb1.lsp:(defun c:testfindvar()
+hblist.lsp:(defun C:HBLIST(
+hblist.lsp:  (defun SETERR(s)
+hblist.lsp:(defun DATA-IN(arg1
+hblist.lsp:(defun SP-TRUNC(txt
+hblist.lsp:(defun IS-NUM(str
+hblist.lsp:(defun SORT_LIST(alist aidx
+hblist.lsp:(defun LT(arg1 arg2)
+hblist.lsp:(defun DEL_ATOM(b_list anth
+hblist.lsp:(defun BAR_LIST(blist ipnt s
+HOOK.LSP:(defun C:HOOK(/)
+HOOK.LSP:  (defun SETERR(s)
+HROUND.LSP:(defun HROUND(p1s p1e p2s p2e /             ;π› ∂ÛøÓµ˘¿ª «ÿ¡÷¥¬ Function
+hstiff.lsp:(defun c:HSTIFF(
+iblk.lsp:(defun C:IBLK( /
+iblk.lsp:(defun ipnt_nblk(pblkname sblkname
+JEON.LSP:(defun C:JEON(/)
+JEON.LSP:  (defun SETERR(s)
+JONG.LSP:(defun C:PGSET ()
+JONG.LSP:(defun C:TABLE ()
+JONG.LSP:(defun station()
+JONG.LSP:(defun chain()
+JONG.LSP:(defun pole()
+JONG.LSP:(defun C:GROUND ()
+JONG.LSP:(defun C:DESIGN ()
+JONG.LSP:(defun c:vcc()
+JONG.LSP:(defun c:pol()
+jump.lsp:(defun C:JUMP(
+jump.lsp:  (defun SETERR(s)                                          ;≥ª¿Âø°∑Ø∑Á∆æ ¡§¿«
+jump.lsp:(defun f_jump( pnts pnte width gap
+jung.lsp:(defun C:JUNG(/
+jung.lsp:  (defun SETERR(s)                                      ;≥ª¿Â ø°∑Ø∑Á∆æ ¡§¿«
+jung.lsp:(defun JUNGBUNDAE( LR ip SL / LR ip SL)
+JUNG1.LSP:(defun C:JUNG1(/ p1)
+JUNG1.LSP:  (defun SETERR(s)                                          ;≥ª¿Âø°∑Ø∑Á∆æ ¡§¿«
+Jung2.LSP:(defun C:JUNG2(/ p1)
+Jung2.LSP:  (defun SETERR(s)                                          ;≥ª¿Âø°∑Ø∑Á∆æ ¡§¿«
+lanemark.LSP:(defun c:lanemark(
+lanemark.LSP:(defun draw_lmark(ipnt slop lmwidth lmthick
+lap.lsp:(defun c:lap(
+lap.lsp:(defun c:mlap(
+LARC.LSP:(defun c:LARC(/
+LARC.LSP:  (defun SETERR(s)
+ldd.lsp:(defun c:ldd()
+lead.lsp:(defun C:LEAD(
+lead.lsp:  (defun SETERR(s)
+lead.lsp:(defun C:LEADC(
+lead.lsp:  (defun SETERR(s)
+Lead2.lsp:(defun C:LEAD2(/
+Lead2.lsp:  (defun SETERR(s)
+leadc.lsp:(defun C:LEADC(/
+leadc.lsp:  (defun SETERR(s)
+LEE.LSP:(defun c:lee(/ p1 p2)
+LEP.LSP:(defun c:lep(/ p1 p2)
+LII.LSP:(defun c:lii(/ p1 p2)
+LINEXT.LSP:(defun c:linext(/ ent a dis pt1 pt2 pt3 pt10 pt11)
+LINEXT.LSP:  (defun SETERR(s)
+LIP.LSP:(defun c:lip(/ p1 p2)
+LSLOP.LSP:(defun C:LSLOP()
+LSLOP.LSP:  (defun SETERR(s)
+LSLOP.LSP:(defun F_SLOP(MP SGNX SL
+lstiff.lsp:(defun c:lstiff(
+lstiff.lsp:  (defun lstiff_dia(   / dcl_id 
+lstiff.lsp:  (defun set_num( / v vf r result1s result2s )
+lstiff.lsp:  (defun do-accept( / )
+lstiff.lsp:(defun djdg_divide(dst n one / dst n one  q qf qf1 rm rm1 rm2 g1  g2 ng1)
+LVC.LSP:(defun c:lvc()
+MCHT.LSP:(defun C:MCHT(/
+MCHT.LSP:  (defun SETERR(s)
+MCHT.LSP:(defun SORT_LIST(alist aidx
+MCHT.LSP:(defun DEL_ATOM(b_list anth
+measa.LSP:(defun C:MEASA(/
+measa.LSP:  (defun SETERR(s)
+measl.LSP:(defun C:MEASL(/
+measl.LSP:  (defun SETERR(s)
+mgeq.lsp:(defun c:mgeq( / delentlst
+mhole.lsp:(defun c:mhole(
+MIDP.LSP:(defun c:midp(/ p1 p2 rad dist)
+mkbdr.LSP:(defun C:MKBDR(/
+mkbdr.LSP:  (defun SETERR(s)
+mlarc.LSP:(defun c:MLARC(/
+mlarc.LSP:  (defun SETERR(s)                                  ;≥ª¿Â ø°∑Ø∑Á∆æ ¡§¿«
+MLAYER.LSP:(defun c:mlayer (/ newl ox yn ss clayer n i olist elist nlist)
+MLAYER.LSP:(defun LISTLAYER()
+MLAYER.LSP:(defun MAKELAYER ()
+mlead.LSP:(defun C:MLEAD()
+mlead.LSP:  (defun SETERR(s)
+mlead.LSP:(defun CROSS(aent sp ep /
+mlead.LSP:(defun inang(a1 a2 a3 /             ;¿Œºˆ ¡§¿«
+modelm.lsp:(defun c:modelm( / p1 p2 en scl ang )
+modelm.lsp:  (defun MODELM_DIA (
+modelm.lsp:(defun c:extip( / )
+modelm.lsp:(defun c:insertattblock( / )
+modelm.lsp:(defun c:makeattblock( / )
+MODMNU.LSP:(DEFUN C:MODMNU( / os)
+MODMNU.LSP:  (defun SETERR(s)
+MODMNU.LSP: (defun icondwg( xy / x1 x2 x3 x4 x5 x6 x7 y1 y2 y3 y4 y5 y6 y7)
+mtLead.lsp:(defun C:mtLEAD(/
+mtLead.lsp:  (defun SETERR(s)
+mtxt.LSP:(defun C:MTXT(/
+mtxt.LSP:  (defun SETERR(s)
+mtxt.LSP:(defun SORT_LIST(alist aidx
+mtxt.LSP:(defun DEL_ATOM(b_list anth
+nae.LSP:(defun C:NAE(/)
+nae.LSP:  (defun SETERR(s)
+nn.LSP:(defun C:NN( /
+nn.LSP:  (defun SETERR(s)
+nn.LSP:(defun NT_DIALOG ( old_txt / dcl_id old_txt)
+nn.LSP:(defun SET_TXT( / in )
+nn.LSP:(defun spctext()
+nn.LSP:(defun spccode(key / in )
+noripf.LSP:(defun c:noripf(
+noripf.LSP:  (defun mk_vertlist (vname
+noripf.LSP:(defun mk_vertlistp(vname
+noripf.LSP:(defun cp_line_pline(pnt1 pnt2 plist
+noripf.LSP:(defun noripf-dialog(/  
+noripf.LSP:(defun set-wslop()
+noripf.LSP:(defun 2ptext(p1 p2 text
+NORTH.LSP:(defun C:NORTH(/)
+NORTH.LSP:  (defun SETERR(s)                                  ;ÎÇ¥Ïû•ÏóêÎü¨Î£®Ìã¥ Ï†ïÏùò
+Notebox.lsp:(defun C:NOTEBOX(
+Notebox.lsp:  (defun SETERR(s)                                          ;≥ª¿Âø°∑Ø∑Á∆æ ¡§¿«
+nt.lsp:(defun C:NT( /
+nt.lsp:  (defun SETERR(s)
+nt.lsp:(defun NT_DIALOG ( old_txt / dcl_id old_txt)
+nt.lsp:(defun SET_TXT( / in )
+nt.lsp:(defun att_wrt (blk_nm lst2 / rpt tag val eea_lst chk blk)
+NUMCOOR.LSP:(DEFUN C:NUMCOOR()
+NUMCOOR.LSP:  (defun SETERR(s)
+ob-1.LSP:(defun C:OB(/
+ob-1.LSP:  (defun SETERR(s)                                  ;≥ª¿Âø°∑Ø∑Á∆æ ¡§¿«
+OB.LSP:(defun C:OB(/
+OB.LSP:  (defun SETERR(s)                                  ;≥ª¿Âø°∑Ø∑Á∆æ ¡§¿«
+para.lsp:(defun C:para(/  
+para.lsp:  (defun SETERR(s)  
+para.lsp:(defun para-dialog(/  
+para.lsp:(defun setexp(nexp / nexp in )  
+para.lsp:(defun set-div( / in )  
+para.lsp:(defun set-caplen( / in )  
+para.lsp:(defun set-cap( / in )  
+para.lsp:(defun set-both( / in )  
+para.lsp:(defun do-accept()
+para.lsp:(defun set-user()
+para.lsp:(defun do-error()  
+para.lsp:(defun do-cancel()  
+para.lsp:(defun draw_para(epnt mpnt nexp n caplen both / epnt mpnt nexp n caplen both )
+parc.LSP:(defun C:PARC(/
+pcacol.lsp:(defun c:pcacol(
+pcacol.lsp:  (defun mk_vertlist (vname
+pcacol.lsp:(defun getrebarlist ( / entlst nent plst npnt index ent entype)
+pcacol.lsp:(defun getLwVert (vlist tmpctr / count tmp)            
+pcacol.lsp:(defun areaofrebar(barname unit / barname unit )
+pfix.lsp:(defun c:pfix()
+pier.lsp:(defun C:PIER(/
+pier.lsp:      (defun SETERR(s)                                      ;≥ª¿Â ø°∑Ø∑Á∆æ ¡§¿«
+pier.lsp:      (defun SPLICE_DIALOG (/
+pier.lsp:      (defun SET_C1 (/ in value)              ;n1 edit_boxø° ¿‘∑¬¿Ã µÈæÓø‘¿ª ∂ß
+pier.lsp:      (defun SET_BC (/ in value)              ;bc edit_boxø° ¿‘∑¬¿Ã µÈæÓø‘¿ª ∂ß
+pier.lsp:      (defun SET_C2(/ in value)              ;p1 edit_boxø° ¿‘∑¬¿Ã µÈæÓø‘¿ª ∂ß
+pier.lsp:      (defun SET_PD(/ in value)              ;e1 edit_boxø° ¿‘∑¬¿Ã µÈæÓø‘¿ª ∂ß
+pier.lsp:      (defun SET_PL(/ in value)              ;n2 edit_boxø° ¿‘∑¬¿Ã µÈæÓø‘¿ª ∂ß
+pier.lsp:      (defun SET_FB(/ n vlaue)              ;p2 edit_boxø° ¿‘∑¬¿Ã µÈæÓø‘¿ª ∂ß
+pier.lsp:      (defun SET_FH(/ n value)              ;e2 edit_boxø° ¿‘∑¬¿Ã µÈæÓø‘¿ª ∂ß
+pier.lsp:      (defun SET_YS(/ n value)              ;ys edit_boxø° ¿‘∑¬¿Ã µÈæÓø‘¿ª ∂ß
+pier.lsp:      (defun SET_SCOPING(/ n value)              ;scoping edit_boxø° ¿‘∑¬¿Ã µÈæÓø‘¿ª ∂ß
+pier.lsp:      (defun set_rcoping( / in )
+pier.lsp:      (defun set_dim( / in )
+pier.lsp:      (defun do_accept()           ;dialog box∏¶ ≥°≥ª±‚ ¿¸ø° ∏µÁ ¿‘∑¬ µ•¿Ã≈∏ »Æ¿Œ
+pier.lsp:      (defun do_error(tile value)
+pier.lsp:      (defun do_cancel()
+pier.lsp:(defun PIER_SIDE(IP BC C1 C2 PD PL FB FH YS SCOPING
+pier.lsp:(defun COPING(IP BC H1 H2
+pier.lsp:(defun COPINGR(IP BC H1 H2 S
+pier.lsp:(defun PIER_FRONT(IP CL C1 C2 PD PL FB FH
+pier.lsp:(defun FOOTING(IP B H BH BE
+pier.lsp:(defun POST(IP PD PL
+pier.lsp:(defun HROUND(p1s p1e p2s p2e /             ;π› ∂ÛøÓµ˘¿ª «ÿ¡÷¥¬ Function
+pier.lsp:(defun CROSS(aent line_p1 line_p2 /
+pier.lsp:(defun inang(a1 a2 a3 /
+pile.lsp:(defun C:PILE(/
+pile.lsp:  (defun SETERR(s)
+piles.lsp:(defun C:PILES(
+piles.lsp:  (defun SETERR(s)                          ;≥ª¿Âø°∑Ø∑Á∆æ ¡§¿«
+piles.lsp:(defun F_SPILES(IP D L NA P YSCL
+piles.lsp:;(defun F_RCDS(
+piles.lsp:(defun F_SPILE(IP D L S
+piles.lsp:(defun PILES_DIA (/
+piles.lsp:  (defun setdia( / )
+piles.lsp:  (defun pile_check( / )
+pldim.lsp:(defun c:pldim(
+pldim.lsp:(defun djdg_dimtext2pvert(sp ep txt
+pldim.lsp:(defun c:pln(
+PLMARK.LSP:(defun C:PLMARK(/
+PLMARK.LSP:  (defun SETERR(s)
+PLOTA1.LSP:(defun C:PLOTA1( /
+PLOTA1.LSP:(defun SORT_XY(ss_lst
+PLOTA1.LSP:(defun SORT_ENT(alist ass th
+PLOTA1.LSP:(defun DEL_ATOM(b_list anth
+PLOTA3.LSP:(defun C:PLOTA1( /
+plotbdr.lsp:(defun C:PLOTBDR( /
+plotbdr.lsp:(defun DWG_NAME(/ dn ls count ch )
+plotbdr.lsp:(defun BDR_SIZE( BDR_NM / head ent1 pnt1 ent2 pnt2)
+plote.lsp:(defun C:plote( /
+plote.lsp:(defun SORT_XY(ss_lst
+plote.lsp:(defun DWG_NAME(/ dn ls count ch )
+plote.lsp:(defun SORT_ENT(alist ass th
+plote.lsp:(defun DEL_ATOM(b_list anth
+plote.lsp:(defun ipnt_nblk(pblkname sblkname
+ploteps.lsp:(defun C:ploteps( /
+ploteps.lsp:(defun SORT_XY(ss_lst
+ploteps.lsp:(defun DWG_NAME(/ dn ls count ch )
+ploteps.lsp:(defun SORT_ENT(alist ass th
+ploteps.lsp:(defun DEL_ATOM(b_list anth
+ploteps.lsp:(defun ipnt_nblk(pblkname sblkname
+ploteps.lsp:(defun DATA-IN(arg1
+ploteps.lsp:(defun text2string()
+plta1.lsp:(defun C:PLTA1( /
+pnori.lsp:(defun C:PNORI(
+pnori.lsp:  (defun SETERR(s)                                  ;≥ª¿Âø°∑Ø∑Á∆æ ¡§¿«
+pnori.lsp:(defun mk_vertlistp(vname
+pnori.lsp:(defun near_vert(vlst pnt
+pnori.lsp:(defun PointOnPline(Plist Vllist Distfrom0
+pole.LSP:(defun C:pole(/
+pole.LSP:  (defun SETERR(s)
+pole.LSP:(defun draw_pole(ipnt ielv lpole delv div width)
+ppl.lsp:(defun c:ppl( / ssent1 ssent2 bpnt ssum1 ssum2 plist1 plist2 i )
+preg.lsp:(defun c:preg( / p1 p2 p3 p4 ss)
+preg.lsp:(defun entmake_line (pt1 pt2 clr / blg lst ocs pt1 rad )
+pscbeam-1.lsp:(defun C:PSCBEAM()
+pscbeam-1.lsp:  (defun SETERR(s)
+pscbeam-1.lsp:(defun DRAW_BEAM( ipnt / ipnt fp)
+pscbeam-1.lsp:(defun BARRIER( LR ip SL / LR ip SL)
+pscbeam-1.lsp:(defun F_SLOP(MP SGNX SL
+pscbeam-1.lsp:(defun F_DO(SP DST N LR TXT1
+PSCBEAM.LSP:(defun C:PSCBEAM()
+PSCBEAM.LSP:  (defun SETERR(s)
+PSCBEAM.LSP:(defun DRAW_BEAM( ipnt / ipnt fp)
+PSCBEAM.LSP:(defun BARRIER( LR ip SL / LR ip SL)
+PSCBEAM.LSP:(defun F_SLOP(MP SGNX SL
+PSCBEAM.LSP:(defun F_DO(SP DST N LR TXT1
+psnp.lsp:(defun C:aa1( /
+psnp.lsp:(defun c:aa2()
+psnp.lsp:(defun c:aa3()
+psnp.lsp:(defun ipnt_nblk(pblkname sblkname
+psnp.lsp:(defun c:setatt()
+psnp.lsp:(defun get_filist()
+psnp.lsp:(defun djdg_entmod(ass nvalue entname)
+qtable.lsp:(defun C:QTABLE(/
+qtable.lsp:  (defun SETERR(s)
+qtable.lsp:(defun SP-TRUNC(txt /
+qtable.lsp:(defun IS-NUM(str
+RBAR.LSP:(defun C:RBAR(/
+RBAR.LSP:  (defun SETERR(s)
+RBRF.LSP:(defun C:RBRF(/
+RBRF.LSP:  (defun SETERR(s)
+RBRF.LSP:(defun HALFR(l1s l1e l2s l2e bn /
+RBRP.LSP:(defun C:RBRP(/
+RBRP.LSP:  (defun SETERR(s)
+RCD.LSP:(defun C:RCD(/                                              ;¡ˆø™∫Øºˆ ¡§¿«    
+RCD.LSP:  (defun SETERR(s)    
+RCD.LSP:(defun HROUND(p1s p1e p2s p2e /       ;π› ∂ÛøÓµ˘¿ª «ÿ¡÷¥¬ Function    
+RCD.LSP:(defun pado(p1 p2 h l    
+RCD.LSP:;(defun c:pado()    
+rcorner.lsp:(defun c:RCORNER( /
+rcorner.lsp:  (defun SETERR(s)                              ;≥ª¿Âø°∑Ø∑Á∆æ «œ
+RDL.LSP:(defun C:RDL(
+RDL.LSP:  (defun SETERR(s)
+RDL.LSP:(defun strloc(arg1 / rslt count)
+RDLP.LSP:(defun C:RDLP(
+RDLP.LSP:  (defun SETERR(s)
+RDLP.LSP:(defun strloc(arg1 / rslt count)
+re.LSP:(defun c:ReCol(
+re.LSP:  (defun mk_vertlist (vname
+re.LSP:(defun GetRebarlist( / entlst nent plst npnt index ent entype)
+re.LSP:(defun getLwVert (vlist tmpctr / count tmp)            
+re.LSP:(defun areaofrebar(barname unit / barname unit )
+re.LSP:(defun rtosfw(num width dec / num width dec str1 lenstr errmsg)
+re.LSP:(defun strcopy(str num / str num return)
+re.LSP:(defun mkconcdata1(nodelst opnt scl / vlist scl)
+recol.lsp:(defun c:ReCol(
+recol.lsp:  (defun mk_vertlist (vname
+recol.lsp:(defun GetRebarlist( / entlst nent plst npnt index ent entype)
+recol.lsp:(defun getLwVert (vlist tmpctr / count tmp)            
+recol.lsp:(defun areaofrebar(barname unit / barname unit )
+recol.lsp:(defun rtosfw(num width dec / num width dec str1 lenstr errmsg)
+recol.lsp:(defun strcopy(str num / str num return)
+recol.lsp:(defun mkconcdata1(nodelst opnt scl / vlist scl)
+replace.lsp:(defun str-rep (str pat rep)
+rib.lsp:(defun c:rib(
+rib.lsp:  (defun RIB_DIA (/
+rib.lsp:(defun c:scallop1(
+rib.lsp:(defun f_scallop1( p1 p2 thick / p1 p2 thick)
+rib.lsp:(defun c:scallop2(
+rib.lsp:(defun f_scallop2( p1 p2 thick
+rmark1.LSP:(defun C:RMARK1(/
+rmark1.LSP:  (defun SETERR(s)
+rnori.lsp:(defun c:RNORI(
+rnori.lsp:  (defun SETERR(s)                                  ;≥ª¿Âø°∑Ø∑Á∆æ
+rnori.lsp:(defun 3PARC(center_point s_angle total_angle radius
+rnori.lsp:(defun Polar_line(center_point angle radius1 radius2
+ROUND.LSP:(defun C:ROUND(/
+ROUND.LSP:  (defun SETERR(s)
+ROUND.LSP:(defun HROUND(p1s p1e p2s p2e /             ;π› ∂ÛøÓµ˘¿ª «ÿ¡÷¥¬ Function
+RREF.LSP:(defun c:rref()
+RTEXT.LSP:(defun C:RTEXT(/
+RTEXT.LSP:  (defun SETERR(s)
+Rwall.lsp:(defun C:DDRWALL( /
+Rwall.lsp:  (defun SETERR(s)                                      ;≥ª¿Â ø°∑Ø∑Á∆æ ¡§¿«
+Rwall.lsp:  (defun RW_DIALOG (/
+Rwall.lsp:  (defun SET_VAL (key / in value)              ;edit_boxø° ¿‘∑¬¿Ã µÈæÓø‘¿ª ∂ß
+Rwall.lsp:  (defun set_dfile()
+Rwall.lsp:  (defun do_accept()           ;dialog box∏¶ ≥°≥ª±‚ ¿¸ø° ∏µÁ ¿‘∑¬ µ•¿Ã≈∏ »Æ¿Œ
+Rwall.lsp:  (defun do_error(tile value)
+Rwall.lsp:  (defun do_cancel()
+Rwall.lsp:(defun c:RWALL(
+Rwall.lsp:(defun c:rw()
+Rwall.lsp:(defun F_RWALL( IP H1 H2 H3
+Rwall.lsp:(defun F_DH(SP DST N UD TXT1
+Rwall.lsp:(defun F_DV(SP DST N LR TXT1
+Rwall.lsp:(defun DATA-IN(arg1
+Rwall.lsp:(defun SP-TRUNC(txt
+Rwall.lsp:(defun GETPATH(fpath / num_c count )
+s2kcomp.LSP:(defun DATA-IN1(arg1
+s2kcomp.LSP:(defun c:test( / )
+s2kcomp.LSP:(defun read2k(fn / fn opf forcelist ln ellist ellc inode jnode)
+s2kcomp.LSP:(defun s2kforce(ln / ln )
+s2kcomp.LSP:(defun compforce(elforce caselist casenum opt
+s2kcomp.LSP:(defun getinput(ext / input opf ln fname ext)
+s2kcomp.LSP:(defun c:s2kcomp( / input1 inputfn input count path cmdcount casenum cmd cmdset ncmd results)
+s2kcomp.LSP:(defun getpath(fn / fn index )
+s2kcomp.LSP:(defun str_tail(str1 str2 / str1 str2 len1 len2 count )
+s2kcomp.LSP:(defun str_head(str1 str2 / str1 str2 len1 len2 count )
+s2kcomp.LSP:(defun fromtostep(from to step / numlist num from to step)
+s2kcomp.LSP:(defun splitinput(input / input ninput count icount onecmd lastcmd aline inputs  )
+s2kcomp.LSP:(defun compcmd(cmdset / cmdset count caselist lcnum cmdline fn)
+s2kcomp.LSP:(defun combcmd(cmdset / cmdset count caselist lcnum sf lcnum cmdline fn combi)
+s2kcomp.LSP:(defun combforce(elforce lclist lcnum sf opt 
+s2kcomp.LSP:(defun testcomb( / )
+s2kcomp.LSP:(defun appendcase(result1 result2 / result1 result2 elnum count addedresult oldele newele)
+s2kcomp.LSP:(defun printresult(result fn / fn result opf elnum elforce elid casenum casecount caseforce
+s2kcomp.LSP:(defun printresult1(result caselist fn / fn result caselist opf elnum elforce elid casenum casecount caseforce
+s2kcomp.LSP:(defun force2str(forcelist)
+s2kcomp.LSP:(defun rtosfw(num width dec / num width dec str1 lenstr errmsg)
+s2kcomp.LSP:(defun strcopy(str num / str num return)
+s2kcomp.LSP:(defun factforce(elforce fact / nele elecount ftotforce cases ncase elenum casecount 
+s2kcomp.LSP:(defun factatom(inlist sf / inlist sf)
+s2kcomp.LSP:(defun commandl( oneline / oneline count natom firststr  from to step assline item)
+s2kcomp.LSP:(defun checkcase(elforce caselist / elforce caselist ncase0 firstelforce casecount thiscase iscase)
+s2kcomp1.LSP:(defun DATA-IN1(arg1
+s2kcomp1.LSP:(defun c:test( / )
+s2kcomp1.LSP:(defun read2k(fn / fn opf forcelist ln ellist ellc inode jnode)
+s2kcomp1.LSP:(defun s2kforce(ln / ln )
+s2kcomp1.LSP:(defun compforce(elforce caselist casenum opt
+s2kcomp1.LSP:(defun getinput(ext / input opf ln fname ext)
+s2kcomp1.LSP:(defun main( / input count path cmdcount casenum cmd)
+s2kcomp1.LSP:(defun getpath(fn / fn )
+s2kcomp1.LSP:(defun str_tail(str1 str2 / str1 str2 len1 len2 count )
+s2kcomp1.LSP:(defun str_head(str1 str2 / str1 str2 len1 len2 count )
+s2kcomp1.LSP:(defun fromtostep(from to step / numlist num from to step)
+s2kcomp1.LSP:(defun splitinput(input / input ninput count icount onecmd  )
+s2kcomp1.LSP:(defun compcmd(cmdset / cmdset count caselist lcnum)
+s2kcomp1.LSP:(defun combcmd(cmdset / cmdset count caselist lcnum sf)
+s2kcomp1.LSP:(defun combforce(elforce lclist lcnum sf opt / nlc nele result firstlc count elforce lclist sf opt count elnum lcnum)
+s2kcomp1.LSP:(defun testcomb( / )
+s2kcomp1.LSP:(defun appendcase(result1 result2 / result1 result2 elnum count addedresult)
+s2kcomp1.LSP:(defun printresult(result / result elnum )
+s2kcomp1.LSP:(defun force2str(forcelist)
+s2kcomp1.LSP:(defun rtosfw(num width dec / num width dec str1 lenstr errmsg)
+s2kcomp1.LSP:(defun strcopy(str num / str num return)
+s2kcomp1.LSP:(defun factforce(elforce fact / elforce fact )
+s2kcomp1.LSP:(defun commandl( oneline / oneline count)
+s2kcomp2.LSp:(defun DATA-IN1(arg1
+s2kcomp2.LSp:(defun c:test( / )
+s2kcomp2.LSp:(defun read2k(fn / fn opf forcelist ln ellist ellc inode jnode)
+s2kcomp2.LSp:(defun s2kforce(ln / ln )
+s2kcomp2.LSp:(defun compforce(elforce caselist casenum opt
+s2kcomp2.LSp:(defun getinput(ext / input opf ln fname ext)
+s2kcomp2.LSp:(defun c:s2kcomp( / input1 inputfn input count path cmdcount casenum cmd cmdset ncmd results)
+s2kcomp2.LSp:(defun getpath(fn / fn index )
+s2kcomp2.LSp:(defun str_tail(str1 str2 / str1 str2 len1 len2 count )
+s2kcomp2.LSp:(defun str_head(str1 str2 / str1 str2 len1 len2 count )
+s2kcomp2.LSp:(defun fromtostep(from to step / numlist num from to step)
+s2kcomp2.LSp:(defun splitinput(input / input ninput count icount onecmd lastcmd aline inputs  )
+s2kcomp2.LSp:(defun compcmd(cmdset / cmdset count caselist lcnum cmdline fn)
+s2kcomp2.LSp:(defun combcmd(cmdset / cmdset count caselist lcnum sf lcnum cmdline fn combi)
+s2kcomp2.LSp:(defun combforce(elforce lclist lcnum sf opt 
+s2kcomp2.LSp:(defun testcomb( / )
+s2kcomp2.LSp:(defun appendcase(result1 result2 / result1 result2 elnum count addedresult oldele newele)
+s2kcomp2.LSp:(defun printresult(result fn / fn result opf elnum elforce elid casenum casecount caseforce
+s2kcomp2.LSp:(defun printresult1(result caselist fn / fn result caselist opf elnum elforce elid casenum casecount caseforce
+s2kcomp2.LSp:(defun force2str(forcelist)
+s2kcomp2.LSp:(defun rtosfw(num width dec / num width dec str1 lenstr errmsg)
+s2kcomp2.LSp:(defun strcopy(str num / str num return)
+s2kcomp2.LSp:(defun factforce(elforce fact / nele elecount ftotforce cases ncase elenum casecount 
+s2kcomp2.LSp:(defun factatom(inlist sf / inlist sf)
+s2kcomp2.LSp:(defun commandl( oneline / oneline count natom firststr  from to step assline item)
+s2kcomp2.LSp:(defun checkcase(elforce caselist / elforce caselist ncase0 firstelforce casecount thiscase iscase)
+SANG.LSP:(defun C:SANG(/)
+SANG.LSP:  (defun SETERR(s)
+sarea.lsp:(defun c:sarea(/
+sarea.lsp:(defun c:cala( / th ds linegapf thds linegapds icount pp e results plst result1 icountxt ip
+sarea.lsp:(defun plarea(plist lfac
+SARW.LSP:(defun C:SARW(/
+SARW.LSP:  (defun SETERR(s)
+sb.lsp:(defun C:SB(/
+sb.lsp:  (defun SETERR(s)                                      ;≥ª¿Â ø°∑Ø∑Á∆æ ¡§¿«
+sb.lsp:  (defun SB_DIALOG (/
+sb.lsp:  (defun SET_N1 (/ in value)              ;n1 edit_boxø° ¿‘∑¬¿Ã µÈæÓø‘¿ª ∂ß
+sb.lsp:  (defun SET_P1(/ in value)              ;p1 edit_boxø° ¿‘∑¬¿Ã µÈæÓø‘¿ª ∂ß
+sb.lsp:  (defun SET_N2(/ in value)              ;n2 edit_boxø° ¿‘∑¬¿Ã µÈæÓø‘¿ª ∂ß
+sb.lsp:  (defun SET_P2(/ in vlaue)              ;p2 edit_boxø° ¿‘∑¬¿Ã µÈæÓø‘¿ª ∂ß
+sb.lsp:  (defun SET_EX(/ in value)              ;g  edit_boxø° ¿‘∑¬¿Ã µÈæÓø‘¿ª ∂ß
+sb.lsp:  (defun SET_SCALE(/ in value)              ;scale edit_boxø° ¿‘∑¬¿Ã µÈæÓø‘¿ª ∂ß
+sb.lsp:  (defun SET_M1(/ in value)              ;m1 edit_boxø° ¿‘∑¬¿Ã µÈæÓø‘¿ª ∂ß
+sb.lsp:  (defun SET_D1(/ in value)              ;d1 edit_boxø° ¿‘∑¬¿Ã µÈæÓø‘¿ª ∂ß
+sb.lsp:  (defun SET_M2(/ in value)              ;m2 edit_boxø° ¿‘∑¬¿Ã µÈæÓø‘¿ª ∂ß
+sb.lsp:  (defun SET_D2(/ in value)              ;d2 edit_boxø° ¿‘∑¬¿Ã µÈæÓø‘¿ª ∂ß
+sb.lsp:  (defun do_accept()           ;dialog box∏¶ ≥°≥ª±‚ ¿¸ø° ∏µÁ ¿‘∑¬ µ•¿Ã≈∏ »Æ¿Œ
+sb.lsp:  (defun do_error(tile value)
+sb.lsp:  (defun do_cancel()
+sb.lsp:(defun F_DH(SP DST N UD TXT1
+sb.lsp:(defun F_DV(SP DST N LR TXT1
+sb.lsp:(defun F_B5(SSLST SP EP DIR MK DIA /                       ;¡ˆø™∫Øºˆ ¡§¿«
+sb.lsp:(defun TXTINC(TXT IPNT TXTROT)
+Sblock.lsp:(defun C:SBLOCK(
+Sblock.lsp:  (defun SETERR(s)                                      ;≥ª¿Â ø°∑Ø∑Á∆æ ¡§¿«
+Sblock.lsp:  (defun SB_DIALOG (/
+Sblock.lsp:  (defun SET_VAL (key / in value)              ;n1 edit_boxø° ¿‘∑¬¿Ã µÈæÓø‘¿ª ∂ß
+Sblock.lsp:  (defun SET_SCALE(/ in value)              ;scale edit_boxø° ¿‘∑¬¿Ã µÈæÓø‘¿ª ∂ß
+Sblock.lsp:  (defun do_accept()           ;dialog box∏¶ ≥°≥ª±‚ ¿¸ø° ∏µÁ ¿‘∑¬ µ•¿Ã≈∏ »Æ¿Œ
+Sblock.lsp:  (defun do_error(tile value)
+Sblock.lsp:  (defun do_cancel()
+Sblock.lsp:(defun F_DH(SP DST N UD TXT1
+Sblock.lsp:(defun F_DV(SP DST N LR TXT1
+Sblock.lsp:(defun F_B5(SSLST SP EP DIR MK DIA /                       ;¡ˆø™∫Øºˆ ¡§¿«
+Sblock.lsp:(defun F_B3( SSLST MP DIR MK DIA /
+Sblock.lsp:(defun TXTINC(TXT IPNT TXTROT)
+scallop.lsp:(defun c:scallop(
+scallop1.lsp:(defun c:scallop1(
+scallop1.lsp:(defun c:scallop2(
+sclnumtext.LSP:(defun C:sclnumtext(
+sclnumtext.LSP:  (defun SETERR(s)                          ;≥ª¿Âø°∑Ø∑Á∆æ ¡§¿«
+sclnumtext.LSP:(defun IS-NUM(str
+sclnumtext.LSP:(defun get_decnum(txt)
+sclnumtext.LSP:(defun str_position(str1 str2 / str1 str2 len1 len2 count )
+sclt.lsp:(defun C:sclt()
+sclt.lsp:;;;  (defun SETERR(s)                          ;≥ª¿Âø°∑Ø∑Á∆æ ¡§¿«
+SETDIM.LSP:(defun c:setdim()
+Shatch.lsp:(defun c:shatch()
+sheet.LSP:(defun c:sheet(
+sheet.LSP:(defun djdg_drawsheet( p1 p2 b h / ang sign ip p1 p2 )
+sheet.LSP:  (defun djdg_drawasheet(sp ang1 bb hh side / p1 p2 p3 dang deltab )
+SHOE.LSP:(defun C:SHOE(/)
+SHOE.LSP:  (defun SETERR(s)
+Slop.lsp:(defun C:SLOP(/
+Slop.lsp:  (defun SETERR(s)
+slopl.lsp:(defun C:SLOPL(/
+slopl.lsp:  (defun SETERR(s)
+SOLIDBK.LSP:(defun C:solidbk( / scl ans ssc nc llist count cent cc rc fn ipnt ans34)
+SOLIDBK.LSP:  (defun SETERR(s)					;≥ª¿Âø°∑Ø∑Á∆æ ¡§¿«
+SPILE1.LSP:(defun C:SPILE1(/
+SPILE1.LSP:  (defun SETERR(s)
+SPILE2.LSP:(defun C:SPILE2(/
+SPILE2.LSP:  (defun SETERR(s)
+spiles.lsp:(defun C:SPILES(
+spiles.lsp:  (defun SETERR(s)                          ;≥ª¿Âø°∑Ø∑Á∆æ ¡§¿«
+spiles.lsp:(defun F_SPILES(IP D L NA P YSCL
+spiles.lsp:;(defun F_RCDS(
+spiles.lsp:(defun F_SPILE(IP D L S
+SPLICE.LSP:(defun C:SPLICE (/                ;Main program
+SPLICE.LSP:  (defun SETERR(s)                                      ;≥ª¿Â ø°∑Ø∑Á∆æ ¡§¿«
+SPLICE.LSP:  (defun SPLICE_DIALOG (/
+SPLICE.LSP:  (defun SET_N1 (/ in value)              ;n1 edit_boxø° ¿‘∑¬¿Ã µÈæÓø‘¿ª ∂ß
+SPLICE.LSP:  (defun SET_P1(/ in value)              ;p1 edit_boxø° ¿‘∑¬¿Ã µÈæÓø‘¿ª ∂ß
+SPLICE.LSP:  (defun SET_E1(/ in value)              ;e1 edit_boxø° ¿‘∑¬¿Ã µÈæÓø‘¿ª ∂ß
+SPLICE.LSP:  (defun SET_N2(/ in value)              ;n2 edit_boxø° ¿‘∑¬¿Ã µÈæÓø‘¿ª ∂ß
+SPLICE.LSP:  (defun SET_P2(/ n vlaue)              ;p2 edit_boxø° ¿‘∑¬¿Ã µÈæÓø‘¿ª ∂ß
+SPLICE.LSP:  (defun SET_E2(/ n value)              ;e2 edit_boxø° ¿‘∑¬¿Ã µÈæÓø‘¿ª ∂ß
+SPLICE.LSP:  (defun SET_G(/ n value)              ;g  edit_boxø° ¿‘∑¬¿Ã µÈæÓø‘¿ª ∂ß
+SPLICE.LSP:  (defun do_accept()           ;dialog box∏¶ ≥°≥ª±‚ ¿¸ø° ∏µÁ ¿‘∑¬ µ•¿Ã≈∏ »Æ¿Œ
+SPLICE.LSP:  (defun do_error(tile value)
+SPLICE.LSP:  (defun do_cancel()
+SPLICE.LSP:  (defun draw_splice ( ipnt ang num1 pitch1 end1 num2 pitch2 end2 gap /
+SPLITBDR.LSP:(defun C:splitbdr( /
+SPLITBDR.LSP:(defun SORT_XY(ss_lst
+SPLITBDR.LSP:(defun DWG_NAME(/ dn ls count ch )
+SPLITBDR.LSP:(defun SORT_ENT(alist ass th
+SPLITBDR.LSP:(defun DEL_ATOM(b_list anth
+Splitdwg.lsp:(defun C:splitdwg( /
+Splitdwg.lsp:(defun SORT_XY(ss_lst
+Splitdwg.lsp:(defun DWG_NAME(/ dn ls count ch )
+Splitdwg.lsp:(defun SORT_ENT(alist ass th
+Splitdwg.lsp:(defun DEL_ATOM(b_list anth
+sscl.lsp:(defun c:sscl(
+sscl.lsp:(defun djdg_chxdata(ent idx1 idx2 v / xd finallst l return foundflag i idf idf1 newxd oldxd ent)
+sscl.lsp:(defun djdg_findxdata(ent idx1 idx2 / xd l return foundflag i nthv )
+sscl.lsp:;;;(defun te2()
+sscl.lsp:;;;(defun te3()
+STBOX.LSP:(defun C:STBOX()
+STBOX.LSP:  (defun SETERR(s)
+STBOX.LSP:(defun ST_BOX(IP LU TU LL TL HW TW BW /
+STBOX.LSP:(defun STRINGER( IP STLU STTU STHW STTW STLL STTL /
+STBOX.LSP:(defun BARRIER( LR ip SL / LR ip SL)
+STLMNU.LSP:(DEFUN C:STLMNU( / os)
+STLMNU.LSP:  (defun SETERR(s)
+STLMNU.LSP: (defun icondwg( xy / x1 x2 x3 x4 x5 x6 x7 y1 y2 y3 y4 y5 y6 y7)
+STRMNU.LSP:(DEFUN C:STRMNU( / os)
+STRMNU.LSP:  (defun SETERR(s)
+STRMNU.LSP: (defun icondwg( xy / x1 x2 x3 x4 x5 x6 x7 y1 y2 y3 y4 y5 y6 y7)
+STRP1.LSP:(defun C:STRP1(/
+STRP1.LSP:  (defun SETERR(s)
+STRP2.LSP:(defun C:STRP2(/
+STRP2.LSP:  (defun SETERR(s)
+stud.lsp:(defun C:STUD(/ p1 ls p2 lent spnt epnt ang vang vangdgr)
+stud.lsp:  (defun SETERR(s)                                          ;≥ª¿Âø°∑Ø∑Á∆æ ¡§¿«
+styh.LSP:(defun C:STYH(/
+styh.LSP:  (defun SETERR(s)
+SUNGTO.LSP:(defun C:SUNGTO(/ p1)
+SUNGTO.LSP:  (defun SETERR(s)                                          ;≥ª¿Âø°∑Ø∑Á∆æ ¡§¿«
+table.LSP:(defun C:TABLE(/
+table.LSP:  (defun SETERR(s)
+tah.LSP:(defun C:TAH(/
+tah.LSP:  (defun SETERR(s)
+tav.LSP:(defun C:TAV(/
+tav.LSP:  (defun SETERR(s)
+tbar.lsp:(defun C:TBAR(
+tbreak.LSP:(defun C:TBREAK(/
+tbreak.LSP:  (defun SETERR(s)                                  ;≥ª¿Âø°∑Ø∑Á∆æ ¡§¿«
+tc15.LSP:(defun C:TC15(/                                     ;¡ˆø™∫Øºˆ¡§¿«
+tc15.LSP:  (defun SETERR(s)
+tdpf.lsp:(defun c:tdpf( /)
+THUN.LSP:(defun C:THUN(/
+THUN.LSP:  (defun SETERR(s)
+TIE.LSP:(defun C:TIE(/
+TIE.LSP:  (defun SETERR(s)
+TM.LSP:(defun C:TM(/
+TM.LSP:  (defun SETERR(s)
+TM.LSP:(defun TXTMID (ent / ent ta ipnt tbp1 tbp2 dst1 dst2 ang1 ang2 sp ep)
+trans.lsp:(defun C:trans1()
+TRI.LSP:(defun C:TRI(/
+TRI.LSP:  (defun SETERR(s)
+TRI.LSP:(defun WHICH4(ang)
+trim2.lsp:(defun c:TRIM2(
+trim2.lsp:(defun c:TRIMS(
+trimb1.LSP:(defun C:TRIMB1(/
+trimb1.LSP:  (defun SETERR(s)
+trimb2.lsp:(defun C:TRIMB2(/
+trimb2.lsp:  (defun SETERR(s)
+trimb2.lsp:(defun c:mtrimb( / ssvf ssv sshf ssh index elist selist cplist dsten hen eni a10 a11 i
+trimb2.lsp:(defun MTR-DIALOG( /  
+trimb2.lsp:  (defun mtrset_val(key / val )
+trimb2.lsp:  (defun mtrdo-dialog()    ;∏µÁ ∞™ ±§ø™∫Øºˆø° ≥÷±‚
+trimb2.lsp:  (defun mtrdo-cancel( )
+trimb2.lsp:(defun entity-sort(enlist ass ipt
+trimb2.lsp:(defun point-sort(plist idx ipt
+trimb3.LSP:(defun C:TRIMB3( / off_dst   offdst_old  pnt1      pnt2      ss_ent    index
+trimb3.LSP:  (defun SETERR(s)
+trs.lsp:(defun C:trs(
+trs.lsp:(defun delspc( txt / txt1 result lstr i ch)
+trsch.lsp:(defun C:trsch(
+trsch.lsp:(defun delspc( txt / txt1 result lstr i ch)
+trsch.lsp:(defun readhan( )
+trsch.lsp:(defun str-rep (str pat rep)
+trsch.lsp:(defun getum( )
+trsch.lsp:(defun getum1()
+truss.lsp:(defun c:TRUSS( / uc ucl lc lcu sp ep gap ddia ucpl lcpl uclpl lcupl
+truss.lsp:  (defun mk_vertlist (vname
+truss.lsp:(defun mk_vertlistp(vname
+truss.lsp:(defun djdg_plbound(pl / )
+txtfil.lsp:(defun c:txtexp (/ grplst getgname mtextbox ucs_2_mtext FLTR GLST GDICT SS VIEW
+txtfil.lsp:  (defun grplst (/ GRP MSTR ITM NAM ENT GLST)
+txtfil.lsp:  (defun getgname (ENT GLST / MSTR GRP GDATA ITM NAM NLST)
+txtfil.lsp:  (defun mtextbox (MTXT / WDTH HGHT INS JUST ANG P1 P2 P3 P4)
+txtfil.lsp:  (defun ucs_2_mtext (ENT / PTZ PTX PTY PTO)
+txtfil.lsp:(defun c:txtfil( )
+txtfil.lsp:(defun c:textx( )
+txtfil.lsp:(defun viewpnts ( / a b c d x)
+txtgap.LSP:(defun C:TXTGAP(/
+txtgap.LSP:  (defun SETERR(s)                                          ;≥ª¿Âø°∑Ø∑Á∆æ ¡§¿«
+txtgap.LSP:(defun SORT_LIST(alist aidx
+txtgap.LSP:(defun DEL_ATOM(b_list anth
+TXTR.LSP:(defun C:TXTR(/
+TXTR.LSP:  (defun SETERR(s)
+UTLMNU.LSP:(DEFUN C:UTLMNU( / os)
+UTLMNU.LSP:  (defun SETERR(s)
+UTLMNU.LSP: (defun icondwg( xy / x1 x2 x3 x4 x5 x6 x7 y1 y2 y3 y4 y5 y6 y7)
+ve.lsp:(defun c:ve( /
+ve.lsp:(defun draw_ve_graph(ip cr irratio th vth lth titem vitem wfitem lcc /
+w.lsp:(defun C:WELD(/
+w.lsp:  (defun SETERR(s)                                      ;≥ª¿Â ø°∑Ø∑Á∆æ ¡§¿«
+w.lsp:  (defun WELD_DIA (/
+w.lsp:  (defun SET_VAL (key / in value)              ;n1 edit_boxø° ¿‘∑¬¿Ã µÈæÓø‘¿ª ∂ß
+w.lsp:  (defun SET_SCALE(/ in value)              ;scale edit_boxø° ¿‘∑¬¿Ã µÈæÓø‘¿ª ∂ß
+w.lsp:  (defun do_accept()           ;dialog box∏¶ ≥°≥ª±‚ ¿¸ø° ∏µÁ ¿‘∑¬ µ•¿Ã≈∏ »Æ¿Œ
+w.lsp:  (defun do_error(tile value)
+w.lsp:  (defun do_cancel()
+w.lsp:(defun F_DH(SP DST N UD TXT1
+w.lsp:(defun F_DV(SP DST N LR TXT1
+w.lsp:(defun F_B5(SSLST SP EP DIR MK DIA /                       ;¡ˆø™∫Øºˆ ¡§¿«
+w.lsp:(defun F_B3( SSLST MP DIR MK DIA /
+w.lsp:(defun TXTINC(TXT IPNT TXTROT)
+WATERM.LSP:(defun C:WATERM(/
+WATERM.LSP:  (defun SETERR(s)                                      ;≥ª¿Âø°∑Ø∑Á∆æ ¡§¿«
+WAVE.LSP:(defun C:WAVE(/
+WAVE.LSP:  (defun SETERR(s)
+Wb1.lsp:(defun c:wb1()
+Wb1.lsp:  (defun getLwVert (vlist tmpctr / count tmp)
+wb2.lsp:(defun c:wb2()
+wb2.lsp:  (defun getLwVert (vlist tmpctr / count tmp)
+wbl.lsp:(defun c:wbl()
+wbl.lsp:(defun get_fnlist()
+wbl.lsp:(defun delsp(str / )
+WBNAME.LSP:(defun c:wbname()
+WDWGN.LSP:(defun C:WDWGN(/ th ds th fn p)
+WDWGN.LSP:(defun DWG_NAME(/ dn ls count ch )
+WELD.LSP:(defun C:WELD(/
+WELD.LSP:  (defun SETERR(s)                                      ;≥ª¿Â ø°∑Ø∑Á∆æ ¡§¿«
+WELD.LSP:  (defun WELD_DIA (/
+WELD.LSP:  (defun set_f()    ;« ∑øøÎ¡¢¿œ∂ß ∑Á∆Æ∞£∞›, ±◊∑Á∫Í∞¢µµ unable
+WELD.LSP:  (defun set_kv()    ;k,vøÎ¡¢¿œ∂ß ∑Á∆Æ∞£∞›, ±◊∑Á∫Í∞¢µµ enable
+WELD.LSP:(defun fweld( P1 P2 SIZE UL /
+WELD.LSP:(defun kweld( P1 P2 SIZE ROOT ANG UL /
+WELD.LSP:(defun vweld( P1 P2 SIZE root ang UL)
+WELD.LSP:(defun WLEAD( P1 /
+WELD.LSP:(defun ARROW( P1 P2 / P1 P2 pt1 pt2 )
+WFLOW.LSP:(defun C:WFLOW(/)
+WFLOW.LSP:  (defun SETERR(s)                                  ;≥ª¿Âø°∑Ø∑Á∆æ ¡§¿«
+wlen.lsp:(defun C:WLEN(/
+wlen.lsp:  (defun SETERR(s)
+wlen.lsp:(defun c:WCPL( / pl ssfilter ss ety nss i llst len p1 p2 plst lp1 lp2
+wlen.lsp:(defun WCPL-DIALOG( /  
+wlen.lsp:(defun set_val(key / val )
+wlen.lsp:(defun do-dialog()    ;∏µÁ ∞™ ±§ø™∫Øºˆø° ≥÷±‚
+wlen.lsp:(defun do-cancel( )
+wlen.lsp:(defun c:WCPL2( / gapf ssplf sspl ssfilter index plilst sspln ety lpt1 lpt2 eni nss i
+wlen.lsp:(defun WCPL2-DIALOG( /  
+wlen.lsp:  (defun wc2set_val(key / val )
+wlen.lsp:  (defun wc2do-dialog()    ;∏µÁ ∞™ ±§ø™∫Øºˆø° ≥÷±‚
+wlen.lsp:  (defun wc2do-cancel( )
+WSTL.LSP:(defun C:WSTL(/
+WSTL.LSP:  (defun SETERR(s)                          ;≥ª¿Âø°∑Ø∑Á∆æ
+WUE.LSP:(defun C:WUE(/)
+WUE.LSP:  (defun SETERR(s)
+XY.LSP:(defun c:xy(/ xyp)
+Xypline.lsp:(defun C:XYPLINE(
+Xypline.lsp:  (defun SETERR(s)                              ;≥ª¿Âø°∑Ø∑Á∆æ ¡§¿«
+Xypline.lsp:(defun strloc(arg1 / rslt count)
+xysort.LSP:(defun c:testsort()
+xysort.LSP:(defun SORT_XY(ss_lst
+xysort.LSP:(defun SORT_ENT(alist ass th
+xysort.LSP:(defun DEL_ATOM(b_list anth

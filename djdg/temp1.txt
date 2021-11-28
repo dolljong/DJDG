@@ -1,0 +1,8 @@
+db24.lsp:  (while (/= (substr (setq readline (read-line opf)) 2 33) "N O D A L   D E F I N I T I O N S") );
+db24.lsp:  (setq nn (atoi (substr readline 61 5))) 
+db24.lsp:  (while (/= (substr (setq readline (read-line opf)) 2 25) "BEAM ELEMENT INFORMATIONS") );
+db24.lsp:  (setq nel (atoi (substr readline 54 5)))   
+db241.lsp:  (while (/= (substr (setq readline (read-line opf)) 2 33) "N O D A L   D E F I N I T I O N S") );
+db241.lsp:  (setq nn (atoi (substr readline 61 5))) 
+db241.lsp:  (while (/= (substr (setq readline (read-line opf)) 2 25) "BEAM ELEMENT INFORMATIONS") );
+db241.lsp:  (setq nel (atoi (substr readline 54 5)))   
