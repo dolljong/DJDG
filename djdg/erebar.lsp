@@ -206,7 +206,6 @@
 );defun
 
 
-
 ;;;'---------------------------
 ;;;' function : djdg_lapnum (겹이음개소수)
 ;;;'            Yi Suk Jong
@@ -361,7 +360,7 @@
 	upx    (+ diax (* ullen6 4))
 	eqx    (+ diax (* ullen6 5)))
   
-  (setq poslist (list   (list mark1x mark1y 4)	;text포지션 list(flaglist와 짝을 이룬다. 좌표는 삽입점인 라인의 욎쪽 끝부터..
+  (setq poslist (list   (list mark1x mark1y 4)	;text포지션 list(flaglist와 짝을 이룬다. 좌표는 삽입점인 라인의 욎�?끝부터..
 	  	  	(list mark1x mark2y 4)	;정렬방식 0: left, 1: center 2: right 4: middle
 		  	(list diax diay 0)
 		  	(list lenx diay 0)

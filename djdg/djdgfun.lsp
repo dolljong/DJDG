@@ -1243,7 +1243,8 @@
     (setq index 0)                                      ;첫vertex부터
 
     (repeat nvert
-      (setq tmp (nth (+ count (* index 4)) vlist))     ;(10 x y)
+      ;(setq tmp (nth (+ count (* index 4)) vlist))     ;(10 x y)
+      (setq tmp (nth (+ count (* index 5)) vlist))     ;(10 x y)
       (setq tmp (append tmp (list (cdr (assoc 38 vlist)))))  ;z좌표추가
       (setq pt1 (trans (cdr tmp) (cdr (assoc -1 vlist)) 1))  ;ucs좌표로 치환
       (setq vert_list (append vert_list (list pt1)))         ;vertexlist에추가
@@ -1968,3 +1969,35 @@ a1 a2 a3                            ;지역변수 정의
     (entmod ent)
 );defun
 
+
+;------
+; function : twosidemark two side mark
+; input : ipnt : insert point middle of line
+; dir : "L" "R" "U" "D" or (x y)
+; dolljong@gmail.com  2022/1/14
+;------
+(defun twosidemark(ipnt dir txt1 txt2 / )
+  (setq ds (getvar "dimscale")
+	th (getvar "dimtxt")
+	th1 (* ds th))
+  (setvar "textsize" th1)
+  (setq txt1l (djdg_lengthtxt txt1) 
+        txt2l (djdg_lengthtxt txt2))
+  (setq maxtxtlen (max txt1l txt2l))
+  (cond
+    ((= dir "L") (setq ang pi))
+    ((= dir "R") (setq ang 0))
+    ((= dir "U") (setq ang (/ pi 2.0)))
+    ((= dir "D") (setq ang (/ pi -2.0)))
+  );  
+  (setq lang (+ ang (/ pi 2.0))
+	rang (- ang (/ pi 2.0))
+        lpnt (polar ipnt lang maxtxtlen) 
+	rpnt (polar ipnt rang maxtxtlen))
+  (command "line" lpnt rpnt "")
+
+  
+);defun  
+
+;
+;(twosidemark '(0 0) "L" "text1" "text2")
