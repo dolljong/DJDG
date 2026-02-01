@@ -1,3 +1,0 @@
-file for branch djdg1
-modified at master branch
-modified at djdg1 branch

@@ -383,18 +383,19 @@ len rang ps spang rrang rxy
 ;*****************************************
 
 (defun prefix( / cfg count)
-;  (setq cfg (strcat (getenv "acadcfg") "\\"))
-  (setq cfg (vl-string-trim "acad.exe" (findfile "acad.exe")))
+  (setq cfg "c:/djdg/")
+  ; (setq cfg (strcat (getenv "acadcfg") "\\"))
+  ; (setq cfg (vl-string-trim "acad.exe" (findfile "acad.exe")))
 
-  (setq sl (strlen cfg))
-  (setq count 1)
-  (repeat sl
-    (if (= (substr cfg count 1) "\\")
-      (setq cfg (strcat (substr cfg 1 (1- count)) "/"
-                      (substr cfg (+ count 1) (- sl count))))
-    ) ;of if
-    (setq count (1+ count))
-  ); repeat
+  ; (setq sl (strlen cfg))
+  ; (setq count 1)
+  ; (repeat sl
+    ; (if (= (substr cfg count 1) "\\")
+      ; (setq cfg (strcat (substr cfg 1 (1- count)) "/"
+                      ; (substr cfg (+ count 1) (- sl count))))
+    ; ) ;of if
+    ; (setq count (1+ count))
+  ; ); repeat
   cfg
 ) ;of defun
 
@@ -650,8 +651,8 @@ len rang ps spang rrang rxy
 
 (princ "djdg.mnl loaded.")
 (princ)
-(load (strcat (prefix) "djdg/djdgfun"))  ;autoload
-(load (strcat (prefix) "djdg/loadjdg"))  ;autoload
+(load (strcat (prefix) "SRC/djdgfun"))  ;autoload
+(load (strcat (prefix) "SRC/loadjdg"))  ;autoload
 ;(princ "\n[다정다감]이 성공적으로 올려졌습니다. ")
 
 ;;-------------------------

@@ -4,3 +4,4 @@ manual.txt
 *.dwl*
 /manual/pic/
 *.zip
+/pydjdg/
