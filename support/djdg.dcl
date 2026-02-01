@@ -872,7 +872,7 @@ RWALL: dialog {
     :boxed_row{
       label = "Options";
       :toggle {
-        label = "Àü¸é°æ»ç 0.02";
+        label = "Front Slop 0.02";
         key = "fslop";
           mnemonic = "";
       }
@@ -881,6 +881,9 @@ RWALL: dialog {
         key = "dim";
         mnemonic = "D";
       }
+    }
+    : text {
+      label = "Load Data";
     }
     :row {
       :button {
@@ -895,7 +898,32 @@ RWALL: dialog {
         width = 36;
       }
     }
-    ok_cancel_err;
+    : row {
+      : button {
+        label = "OK";
+        key = "accept";
+        is_default = true;
+        width = 8;
+        fixed_width = true;
+        mnemonic = "O";
+      }
+      : button {
+        label = "Reset";
+        key = "reset";
+        width = 8;
+        fixed_width = true;
+        mnemonic = "R";
+      }
+      : button {
+        label = "Cancel";
+        key = "cancel";
+        is_cancel = true;
+        width = 8;
+        fixed_width = true;
+        mnemonic = "C";
+      }
+    }
+    errtile;
   }
  }
 }
@@ -1665,7 +1693,7 @@ CCTC : dialog {
 
           : row {      
             : text{
-              label = "³ª¸ÓÁö  =   ";
+              label = "ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½  =   ";
             }
 
             : text{
@@ -1674,7 +1702,7 @@ CCTC : dialog {
             }
             
             : edit_box {
-              label = "³ª¸ÓÁöºÐÇÒ";
+              label = "ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½";
               key = rnum ;
               edit_width = 4 ;
               value = "1";
@@ -1717,15 +1745,15 @@ CCTC : dialog {
           }
           
         : boxed_radio_row {
-          label = "±âÁ¸Ä¡¼ö¼±Ã³¸®" ;
+          label = "ê¸°ì¡´ì¹˜ìˆ˜ì„  ì²˜ë¦¬" ;
           : radio_button {
             key = "delold" ;
-            label = "Áö¿ì±â" ;
+            label = "ì§€ìš°ê¸°" ;
             mnemonic = "X" ;
           }
           : radio_button {
             key = "plus1dan" ;
-            label = "+1´Ü" ;
+            label = "+1 Level" ;
             mnemonic = "B" ;
           }
         }//boxed_radio_row
