@@ -5,3 +5,4 @@ manual.txt
 /manual/pic/
 *.zip
 /pydjdg/
+.claude/

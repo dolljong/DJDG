@@ -3,17 +3,16 @@
 # Manual
 Site : <a href=http://www.gumifo.org/djdg/manual target=_blank>http://www.gumifo.org/djdg/manual</a>
 # Download
-Click [Clone or Down] button on DJDG repository. Click [Download ZIP]  
-You can get DJDG-master.zip
+이 저장소의 우측상단 [Code]를 선택해서 [Download ZIP]을 선택합니다.  
+DJDG-master.zip 파일을 다운로드 합니다.
 # Install
-1. Unzip DJDG-master.zip
-2. Copy DJDG folder under autocad folder where is ACAD.EXE
-3. Copy BLOCKS folder  under autocad folder where is ACAD.EXE
-4. Copy SUPPORT folder to under autocad folder where is ACAD.EXE
-5. Run AutoCAD
-6. Command menuload
-7. Select djdg.cuix at support folder 
-8. You can find the DJDG menu on menubar. if you can't find menubar then command menubar and select 1.
+1. DJDG-master.zip 파일을 C:\DJDG 폴더에 풉니다.
+2. AutoCAD를 실행합니다.
+3. Munuload명령으로 c:\DJDG\Support 폴더의 djdg.mns를 선택하고 Load합니다.
+4. 여기까지 진행하면 DJDG 메뉴바를 볼 수 있습니다.
+5. 캐드 명령 : OPTIONS 또는 도구/옵션을 선택합니다.
+6. Options에서 파일탭을 선택해서 지원파일검색경로에 c:\djdg\support를 추가합니다.
+
 # Command list
 | Command | 설명(Kor) | Description(Eng) |
 |---------|---------|----------|
