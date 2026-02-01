@@ -6,7 +6,14 @@ Site : <a href=http://www.gumifo.org/djdg/manual target=_blank>http://www.gumifo
 이 저장소의 우측상단 [Code]를 선택해서 [Download ZIP]을 선택합니다.  
 DJDG-master.zip 파일을 다운로드 합니다.
 # Install
-1. DJDG-master.zip 파일을 C:\DJDG 폴더에 풉니다.
+1. DJDG-master.zip 파일을 C:\DJDG 폴더에 풉니다. 아래와 같은 폴더 구성입니다.
+  c:\djdg\
+  ├── blocks/           # AutoCAD 블록 파일
+  ├── djdg.xla          # Excel 애드인
+  ├── manual/           # 매뉴얼
+  ├── pydjdg/           # Python 관련 (gitignore 대상)
+  ├── src/              # AutoLISP 소스 파일 (.lsp)
+  └── support/          # AutoCAD 지원 파일 (djdg.dcl, djdg.lsp, djdg.mnl, djdg.mnr, djdg.cuix 등)
 2. AutoCAD를 실행합니다.
 3. Munuload명령으로 c:\DJDG\Support 폴더의 djdg.mns를 선택하고 Load합니다.
 4. 여기까지 진행하면 DJDG 메뉴바를 볼 수 있습니다.
