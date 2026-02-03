@@ -1,15 +1,21 @@
 html, body {height:100%; margin: 0; padding: 0; }
 
 html>body {
-	font-size: 16px; 
-	font-size: 68.75%;
+	font-size: 14px;
 } /* Reset Base Font Size */
 
 body {
 	font-family: Verdana, helvetica, arial, sans-serif;
-	font-size: 68.75%;
+	font-size: 14px;
 	background: #fff;
 	color: #333;
+}
+
+pre {
+	font-size: 14px;
+	line-height: 1.5;
+	white-space: pre-wrap;
+	word-wrap: break-word;
 }
 
 h1, h2 { font-family: 'trebuchet ms', verdana, arial; padding: 10px; margin: 0 }
@@ -22,3 +28,14 @@ h1 { font-size: large }
 #main { padding: 1em; }
 
 a img { border: none; }
+
+/* Tree frame: highlight current menu item */
+#tree a.current {
+	background-color: #e8e8ff;
+	font-weight: bold;
+}
+
+/* Treeview sidebar */
+#sidetree {
+	width: 200px;
+}

@@ -1,34 +1,66 @@
-<!--!DOCTYPE html-->
+<html>
 <!--html xmlns="http://www.w3.org/1999/xhtml"-->
-<!--head>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=euc-kr">
 <title>[DJDG] Help</title>
-<link rel="stylesheet" onclick=$("#right-box").load(""css/jquery.treeview.css" />
-<link rel="stylesheet" onclick=$("#right-box").load(""css/screen.css" />
+<link rel="stylesheet" href="css/jquery.treeview.css" />
+<link rel="stylesheet" href="css/screen.css" />
 <script src="lib/jquery.js" type="text/javascript"></script>
 <script src="lib/jquery.cookie.js" type="text/javascript"></script>
 <script src="lib/jquery.treeview.js" type="text/javascript"></script>
 <script type="text/javascript">
-		$(function() {
-			$("#tree").treeview({
-				collapsed: true,
-				animated: "medium",
-				control:"#sidetreecontrol",
-				persist: "location"
-			});
-		})
+	$(function() {
+		$("#tree").treeview({
+			collapsed: true,
+			animated: "medium",
+			control:"#sidetreecontrol",
+			persist: "location"
+		});
+		/* highlight current item */
+		$("#tree a[target=right]").click(function(){
+			$("#tree a").removeClass("current");
+			$(this).addClass("current");
+		});
+	});
 </script>
 </head>
-<body!-->
+<body>
 <div id="sidetree">
 	<div class="treeheader">&nbsp;</div>
-    <div align=center>[KOR] <a href=index(en).htm>[ENG]</a></div><br>
-	<div id="sidetreecontrol"><a onclick=$("#right-box").load(""?#">전체 닫기</a> | <a onclick=$("#right-box").load(""?#">전체 열기</a></div>
+    <div align=center>[KOR] <a href="index(en).htm" target="_top">[ENG]</a></div><br>
+	<div id="sidetreecontrol"><a href="?#">전체 닫기</a> | <a href="?#">전체 열기</a></div>
+<div id="treesearch" style="padding:4px 2px; margin-bottom:4px;">
+<input type="text" id="tree_filter" placeholder="검색..." style="width:95%; padding:4px 6px; font-size:12px; border:1px solid #ccc; border-radius:3px; box-sizing:border-box;">
+</div>
+<script type="text/javascript">
+$(function(){
+  $("#tree_filter").bind("keyup", function(){
+    var val = $(this).val().toLowerCase();
+    if(val === ""){
+      $("#tree li").show();
+      $("#tree li.expandable > .hitarea").each(function(){ $(this).parent().find(">ul").hide(); });
+      return;
+    }
+    $("#tree li").each(function(){
+      var li = $(this);
+      var txt = li.children("a").text().toLowerCase();
+      if(txt.indexOf(val) >= 0){
+        li.show(); li.parents("li").show().find(">ul").show(); li.find("li").show(); li.find("ul").show();
+      } else {
+        if(li.find("li").filter(function(){ return $(this).children("a").text().toLowerCase().indexOf(val) >= 0; }).length > 0){
+          li.show(); li.find(">ul").show();
+        } else { li.hide(); }
+      }
+    });
+  });
+});
+</script>
 <UL id="tree">
 	<LI> 
-		<a onclick=$("#right-box").load("aboutdjdg/djdgcad")>		[다정다감]에 대해</a>
+		<a href=aboutdjdg/djdgcad.htm target=right>		[다정다감]에 대해</a>
 	<!--UL>
 		<LI> 
-			<a onclick=$("#right-box").load("aboutdjdg/djdgps")> 			[다정다감] 모임 </a>			
+			<a href=aboutdjdg/djdgps.htm target=right> 			[다정다감] 모임 </a>			
 	</UL-->
 		<LI> 
 			설치하기
@@ -169,7 +201,6 @@
 			<LI> <a href=djdgfont.htm target=right>				토목구조설계용 font(djdg.shx) 보기 </a>
 			<LI> <a href=rref.htm target=right>				Rotate referance </a>
 			<LI> <a href=addtext.htm target=right>				숫자 text에 일정값 더하기 </a>
-			<LI> <a href=addtext1.htm target=right>				숫자 text에 일정값 더하기(구분자 이용) </a>
 			<LI> <a href=delshort.htm target=right>				일정길이 이하의 line지우기 </a>
 		</UL>
 		<LI> <a href=8utl.htm target=right>			도우미 </a>
@@ -213,29 +244,29 @@
 	<LI> 
 		[다정다감] Excel
 	<UL>
-		<LI> <a onclick=$("#right-box").load("xlstool/install/djdgxlainst")>			설치하기 </a>
+		<LI> <a href=xlstool/install/djdgxlainst.htm target=right>			설치하기 </a>
 		<LI> 
 			Toolbar명령
 		<UL>
-			<LI> <a onclick=$("#right-box").load("xlstool/xls2dwg/xls2dwg")>				Excel Table을 캐드로.. </a>
-			<LI> <a onclick=$("#right-box").load("xlstool/txt2xls/txt2xls")>				CAD text(재료표)를 Excel.. </a>
-			<LI> <a onclick=$("#right-box").load("xlstool/xls2pline/xls2pline")>				Excel data를 캐드 Pline으로.. </a>
-			<LI> <a onclick=$("#right-box").load("xlstool/pline2xls/pline2xls")>				CAD의 Pline좌표를 Excel로.. </a>
-			<LI> <a onclick=$("#right-box").load("xlstool/reads2k/reads2k")>				SAP2000 Frame부재력 Excel로 정리하기 </a>
-			<LI> <a onclick=$("#right-box").load("xlstool/sec2xls/sec2xls")>				CAD에서 단면계수구하여 Excel로.. </a>
+			<LI> <a href=xlstool/xls2dwg/xls2dwg.htm target=right>				Excel Table을 캐드로.. </a>
+			<LI> <a href=xlstool/txt2xls/txt2xls.htm target=right>				CAD text(재료표)를 Excel.. </a>
+			<LI> <a href=xlstool/xls2pline/xls2pline.htm target=right>				Excel data를 캐드 Pline으로.. </a>
+			<LI> <a href=xlstool/pline2xls/pline2xls.htm target=right>				CAD의 Pline좌표를 Excel로.. </a>
+			<LI> <a href=xlstool/reads2k/reads2k.htm target=right>				SAP2000 Frame부재력 Excel로 정리하기 </a>
+			<LI> <a href=xlstool/sec2xls/sec2xls.htm target=right>				CAD에서 단면계수구하여 Excel로.. </a>
 		</UL>
 		<LI> 
 			토목구조용함수
 		<UL>
-			<LI> <a onclick=$("#right-box").load("xlsfunction/vtc/vtcdy")>				종단계획고 구하기 </a>
-			<LI> <a onclick=$("#right-box").load("xlsfunction/eqtext/eqtext")>				식을 이용하여 산출근거 보여주기 </a>
-			<LI> <a onclick=$("#right-box").load("xlsfunction/reqas/reqas")>				필요철근량구하기 </a>
-			<LI> <a onclick=$("#right-box").load("xlsfunction/usedas/usedas")>				사용철근량 구하기 </a>
-			<LI> <a onclick=$("#right-box").load("xlsfunction/concells/concells")>				셀을 연결하여 text로 만들기 </a>
-			<LI> <a onclick=$("#right-box").load("xlsfunction/texteq/texteq")>				Text로 된 수식의 값 구하기 </a>
+			<LI> <a href=xlsfunction/vtc/vtcdy.htm target=right>				종단계획고 구하기 </a>
+			<LI> <a href=xlsfunction/eqtext/eqtext.htm target=right>				식을 이용하여 산출근거 보여주기 </a>
+			<LI> <a href=xlsfunction/reqas/reqas.htm target=right>				필요철근량구하기 </a>
+			<LI> <a href=xlsfunction/usedas/usedas.htm target=right>				사용철근량 구하기 </a>
+			<LI> <a href=xlsfunction/concells/concells.htm target=right>				셀을 연결하여 text로 만들기 </a>
+			<LI> <a href=xlsfunction/texteq/texteq.htm target=right>				Text로 된 수식의 값 구하기 </a>
 		</UL>
 	</UL>
 </UL>
 </div>
-<!--/body>
-</html-->
+</body>
+</html>

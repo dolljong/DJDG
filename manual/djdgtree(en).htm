@@ -1,6 +1,6 @@
-<!--!DOCTYPE html-->
+<html>
 <!--html xmlns="http://www.w3.org/1999/xhtml"-->
-<!--head>
+<head>
 
 <title>[DJDG] Help</title>
 
@@ -24,13 +24,38 @@
 </script>
 
 </head>
-<body-->
+<body>
 
 <div id="sidetree">
 	<div class="treeheader">&nbsp;</div>
-    <div align=center><a href="index.htm">[KOR]</a>[ENG]<br></div><br>
+    <div align=center><a href="index.htm" target="_top">[KOR]</a>[ENG]<br></div><br>
 	<div id="sidetreecontrol"><a href="?#">Close All</a> | <a href="?#">Open All</a></div>
-
+<div id="treesearch" style="padding:4px 2px; margin-bottom:4px;">
+<input type="text" id="tree_filter" placeholder="Search..." style="width:95%; padding:4px 6px; font-size:12px; border:1px solid #ccc; border-radius:3px; box-sizing:border-box;">
+</div>
+<script type="text/javascript">
+$(function(){
+  $("#tree_filter").bind("keyup", function(){
+    var val = $(this).val().toLowerCase();
+    if(val === ""){
+      $("#tree li").show();
+      $("#tree li.expandable > .hitarea").each(function(){ $(this).parent().find(">ul").hide(); });
+      return;
+    }
+    $("#tree li").each(function(){
+      var li = $(this);
+      var txt = li.children("a").text().toLowerCase();
+      if(txt.indexOf(val) >= 0){
+        li.show(); li.parents("li").show().find(">ul").show(); li.find("li").show(); li.find("ul").show();
+      } else {
+        if(li.find("li").filter(function(){ return $(this).children("a").text().toLowerCase().indexOf(val) >= 0; }).length > 0){
+          li.show(); li.find(">ul").show();
+        } else { li.hide(); }
+      }
+    });
+  });
+});
+</script>
 <UL id="tree">
 	<LI> 
 		<a href=aboutdjdg/djdgcad(en).htm target=right>		About [DJDG]</a>
@@ -48,12 +73,12 @@
 			
 		<UL>
 			<LI> 
-				<a href=install/djdginst(en).htm target=right>				Install [DJDG] </a>
+				<a href=djdginst(en).htm target=right>				Install [DJDG] </a>
 				
 			<LI> 
-				<a href=install/djdgmnu(en).htm target=right>				load [DJDG] menu </a>
+				<a href=djdgmnu(en).htm target=right>				load [DJDG] menu </a>
 			<LI> 
-				<a href=install/djdgex(en).htm target=right>				Try to draw Example </a>
+				<a href=djdgex(en).htm target=right>				Try to draw Example </a>
 				
 		</UL>
 		<LI> 
@@ -603,6 +628,6 @@
 </UL>
 </div>
 
-<!--/body>
+</body>
 
-</html-->
+</html>

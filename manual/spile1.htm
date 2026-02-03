@@ -1,25 +1,10 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN">
 <html>
 <head>
+<meta http-equiv="Content-Type" content="text/html; charset=euc-kr">
 <title>강관파일(단면)을 그려줍니다.</title>
-<link rel="stylesheet" href="css/jquery.treeview.css" />
 <link rel="stylesheet" href="css/screen.css" />
 
-<script src="lib/jquery.js" type="text/javascript"></script>
-<script src="lib/jquery.cookie.js" type="text/javascript"></script>
-<script src="lib/jquery.treeview.js" type="text/javascript"></script>
-
-<script type="text/javascript">
-		$(function() {
-			$("#tree").treeview({
-				collapsed: true,
-				animated: "medium",
-				control:"#sidetreecontrol",
-				persist: "location"
-			});
-		})
-		
-</script>
 <style>
 <!--
 .사용예 { font-family:'Courier New'; }
@@ -28,8 +13,6 @@
 </head>
 
 <body bgcolor="white" text="black" link="blue" vlink="purple" alink="red">
-<div id="m_left" style="float:left;"><?php include 'djdgtree.htm';?></div>
-<div id="m_right" style="float:left;">
 <h4><font face="굴림">강관파일(단면)&nbsp;그리기(1)</font></h4>
 <pre>&nbsp;
 <img src="spileb.gif" align="middle" width="91" height="68" border="0"><font face="굴림"> </font><img src="spiles.gif" align="middle" width="25" height="23" border="0"> <font face="굴림">Program file name : SPILE1.LSP</font>
@@ -45,7 +28,6 @@
                                           &quot;A&quot;를 입력하면 각도(degree)를 직접 입력 
                                           &quot;0&quot;을 입력하면 직항으로 그림]</pre>
 <pre style="margin-left:10;">  <img src="spile.gif" align="middle"  border="0"></pre>
-</div>
 </body>
 
 </html>
