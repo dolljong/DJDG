@@ -17,7 +17,7 @@ c:\djdg\
 └── support/          # AutoCAD 지원 파일 (djdg.dcl, djdg.lsp, djdg.mnl, djdg.mnr, djdg.cuix 등)
 ```
 2. AutoCAD를 실행합니다.
-3. Munuload명령으로 c:\DJDG\Support 폴더의 djdg.mns를 선택하고 Load합니다.
+3. CUILOAD(또는 MENULOAD)명령으로 c:\DJDG\Support 폴더의 djdg.cuix를 선택하고 Load합니다.
 4. 여기까지 진행하면 DJDG 메뉴바를 볼 수 있습니다.
 5. 캐드 명령 : OPTIONS 또는 도구/옵션을 선택합니다.
 6. Options에서 파일탭을 선택해서 지원파일검색경로에 c:\djdg\support를 추가합니다.
