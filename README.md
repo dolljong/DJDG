@@ -22,6 +22,27 @@ c:\djdg\
 5. 캐드 명령 : OPTIONS 또는 도구/옵션을 선택합니다.
 6. Options에서 파일탭을 선택해서 지원파일검색경로에 c:\djdg\support를 추가합니다.
 
+# CUIX 편집 도구 (cuix_tool.py)
+CUIX 파일은 ZIP 형식의 AutoCAD 커스터마이제이션 패키지입니다.
+`cuix_tool.py`를 사용하면 CUIX 내부의 CUI(XML) 파일을 텍스트 에디터로 직접 수정할 수 있습니다.
+
+### 압축 해제 (extract)
+```
+python support/cuix_tool.py support/djdg.cuix extract
+```
+- `support/djdg/` 폴더에 CUI, XML, BMP 등의 파일이 압축 해제됩니다.
+- CUI 파일을 텍스트 에디터로 수정합니다.
+
+### 재압축 (pack)
+```
+python support/cuix_tool.py support/djdg.cuix pack
+```
+- `support/djdg/` 폴더의 내용을 `djdg.cuix`로 재압축합니다.
+- 기존 CUIX 파일은 `.bak`으로 백업됩니다.
+- XML 유효성 검사를 자동으로 수행합니다.
+- MNR 캐시 파일을 자동 삭제합니다.
+- AutoCAD에서 CUIX를 다시 로드하세요.
+
 # Command list
 | Command | 설명(Kor) | Description(Eng) |
 |---------|---------|----------|
