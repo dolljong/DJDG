@@ -1,0 +1,545 @@
+============================================================
+메뉴에 등록되지 않은 .lsp 파일 목록
+============================================================
+
+분석 대상: C:\djdg\support\djdg.mns
+LSP 폴더: C:\djdg\src
+
+전체 .lsp 파일 수: 316
+메뉴 등록 파일 수: 193
+메뉴 미등록 파일 수: 123
+
+------------------------------------------------------------
+미등록 파일 목록 (123개) - 기능 요약 포함
+------------------------------------------------------------
+
+    1. 3cy.LSP         - 선택한 LINE을 따라 3D 실린더를 일괄 생성
+    2. 3d2d.lsp        - 3D 객체의 Z좌표를 0으로 변환하여 2D화
+    3. 3dp.LSP         - DAT 파일에서 3D 포인트와 노드번호/Z좌표 배치
+    4. ad3.lsp         - 특정 블록의 속성(Attribute) 값을 일괄 변경
+    5. ad4.lsp         - 도곽 블록의 속성(Attribute) 값을 일괄 변경
+    6. addsmi.LSP      - SMI 자막 파일의 싱크 시간을 일괄 조정
+    7. Addtext1.lsp    - 구분자 기준으로 텍스트 숫자값에 값을 더함
+    8. ALLP.LSP        - 도면 내 모든 Border를 찾아 일괄 플롯 출력
+    9. ALLPLOT1.LSP    - A1 도면 Border를 SCR 스크립트로 일괄 출력
+   10. Allplot14.lsp   - Border 내 $PP 블록 기준으로 일괄 플롯 출력
+   11. Allplota1.LSP   - A1 용지 DesignJet 플로터로 일괄 플롯 출력
+   12. allplotex.LSP   - 설정파일(*.set) 기반 Extents 범위 일괄 출력
+   13. allplotscr.lsp  - Border를 A3 용지 기준으로 일괄 PLT 출력
+   14. allplotx.lsp    - Extents 범위를 설정파일 기반으로 단일 출력
+   15. bar00.lsp       - 철근 상세도에서 철근집계표 데이터 추출 및 작성
+   16. bar040219.lsp   - 대화상자 옵션 포함 철근집계표 추출 및 작성
+   17. bar0715.lsp     - 대화상자 기반 철근집계표 추출 및 작성 (최신)
+   18. BARMNU.LSP      - 슬라이드 아이콘 메뉴로 철근 명령 선택 실행
+   19. BEAM.LSP        - 원/호 기준으로 보(beam) 각도 계산 (미완성)
+   20. bi.lsp          - 폴리라인 단면과 철근으로 2축 해석 데이터 생성
+   21. BLIST.LSP       - 데이터 파일을 읽어 철근 집계표(Bar List) 작도
+   22. BT.LSP          - 번호 텍스트를 박스 또는 원으로 감싸서 배치
+   23. CAMBER0.LSP     - 캠버 데이터 파일을 읽어 캠버도와 테이블 작도
+   24. cctc.lsp        - 치수(Dimension)의 CTC 간격을 변경하여 재배치
+   25. challsty.lsp    - 모든 문자 스타일의 폰트를 일괄 변경
+   26. CHB.LSP         - 선택 객체의 선종류를 철근선(CONTINUOUS)으로 변경
+   27. chbdrtxt.lsp    - 도곽 블록 내 특정 위치의 텍스트를 변경
+   28. CHCEN.LSP       - 선택 객체의 선종류를 중심선(CENTER)으로 변경
+   29. CHCLR.LSP       - 데이터 파일 기반으로 특정 색상을 일괄 변경
+   30. CHDASH.LSP      - 선택 객체의 선종류를 숨은선(DASHED)으로 변경
+   31. checkdate.LSP   - 도면의 생성일/수정일을 파일에 기록
+   32. CHELV.LSP       - 폴리라인의 표고(Elevation)를 순차적으로 변경
+   33. CHLAY.LSP       - 선택 객체의 선종류를 ByLayer로 변경
+   34. CHPLCLR.LSP     - 데이터 파일 기반으로 색상을 레이어별 일괄 변경
+   35. CHTEXT.LSP      - 텍스트 높이/정렬/스타일/내용 등을 일괄 편집
+   36. CLCROSS.LSP     - 호(Arc)와 직선의 교차점을 계산하여 표시
+   37. conarc.LSP      - 호 위에서 현(Chord) 길이로 점 위치를 계산
+   38. coord_mo.lsp    - 지시선과 함께 선택점의 X,Y 좌표를 표기
+   39. COPYL.LSP       - 선택 객체를 현재 레이어로 복사
+   40. CRSP.LSP        - 두 직선의 교차점 좌표를 계산
+   41. CSEC.LSP        - 폴리라인과 직선의 교차로 횡단면도 작성
+   42. CTW.LSP         - 텍스트의 폭(Width) 비율을 일괄 변경
+   43. DANG.LSP        - 두 각도 사이의 차이(Delta Angle)를 계산하는 함수
+   44. db241.lsp       - DB-24 차량하중 3D 해석 입력파일 생성
+   45. DCO.LSP         - 원호(Arc/Circle) 구간의 치수를 기입하는 명령
+   46. ddim.lsp        - 거리를 피치로 분할하여 치수 텍스트를 생성하는 함수
+   47. ddrect.lsp      - 대화상자로 크기 입력 후 사각형을 그리는 명령
+   48. DDSCL0.LSP      - 대화상자로 도면 축척/한계/경계를 설정하는 명령
+   49. DETAIL.LSP      - 도면 일부를 원으로 선택하여 상세도를 생성하는 명령
+   50. DHO.LSP         - 수평 치수를 연속 기입하는 명령 (Dimension Horizontal)
+   51. Dimdot.lsp      - 치수선 DOT 블록의 도넛 크기를 변경하는 명령
+   52. DIMMNU.LSP      - 슬라이드 아이콘 메뉴로 치수 명령을 선택 실행
+   53. DJDGLOGO.LSP    - DJDG 로고를 대화상자에 표시하는 명령
+   54. dlive.lsp       - 긴장재(텐던)의 정착장치 화살표를 그리는 명령
+   55. EPL.LSP         - 선택한 선들의 끝점 좌표를 파일로 출력하는 명령
+   56. erebar.lsp      - 철근 속성블록 편집 및 정착/이음길이 자동 계산
+   57. ERR.LSP         - AutoLISP 오류 처리 핸들러 정의
+   58. FDV.LSP         - 수직 치수를 함수로 기입 (Function Dim Vertical)
+   59. FFL.LSP         - 현재 레이어로 Offset 결과를 변경하는 명령
+   60. gel.lsp         - 폴리라인 선형에서 임의 점의 표고(EL)를 산출
+   61. GENMNU.LSP      - 슬라이드 아이콘 메뉴로 일반 명령을 선택 실행
+   62. HATCHB.LSP      - 해치 객체에서 경계선(Boundary)을 재생성하는 명령
+   63. HB.LSP          - 데이터 파일로 철근 물량표(Bar List)를 작성하는 명령
+   64. hb1.lsp         - 철근 물량표(Bar List)를 데이터 파일로부터 자동 작성
+   65. HROUND.LSP      - 두 선분 사이를 반복 이등분하여 보간선 작도
+   66. iblk.lsp        - 기존 삽입된 블록 위치에 다른 블록을 일괄 삽입
+   67. JONG.LSP        - 종단면도 테이블/지반고/계획고/종곡선 작도
+   68. LEE.LSP         - 끝점-끝점(End-End) 스냅으로 선 작도
+   69. LEP.LSP         - 끝점-수직점(End-Perpendicular) 스냅으로 선 작도
+   70. LII.LSP         - 교차점-교차점(Int-Int) 스냅으로 선 작도
+   71. LIP.LSP         - 교차점-수직점(Int-Perpendicular) 스냅으로 선 작도
+   72. lstiff.lsp      - 종방향 보강재(Stiffener)를 등분 배치하여 작도
+   73. LVC.LSP         - 점에서 선분에 수직선을 작도
+   74. mgeq.lsp        - 'L=' 텍스트와 인접 값 텍스트를 하나로 병합
+   75. MIDP.LSP        - 두 점의 중간점 좌표를 계산하여 반환
+   76. mlarc.LSP       - 호(Arc) 또는 원에서 연속으로 호 길이 측정
+   77. MLAYER.LSP      - 선택한 객체들을 새 레이어로 일괄 이동
+   78. MODMNU.LSP      - 슬라이드 아이콘 메뉴로 수정 명령 선택 실행
+   79. nn.LSP          - 대화상자로 TEXT/DIM 문자 내용을 편집
+   80. ob-1.LSP        - 치수선에 OBLIQUE(경사) 각도를 적용
+   81. pcacol.lsp      - 폴리라인 단면과 철근 좌표를 PCA-COL 데이터로 출력
+   82. pile.lsp        - 말뚝(Pile) 단면을 경사 각도 포함하여 작도
+   83. pldim.lsp       - 폴리라인을 따라 연속 치수선을 작도
+   84. PLOTA1.LSP      - 도면 내 모든 Border를 자동 검색하여 일괄 플롯
+   85. PLOTA3.LSP      - Border 블록 기반 A1 도면 일괄 플롯 스크립트 생성
+   86. plote.lsp       - 현재 도면을 PostScript 프린터로 전체 출력
+   87. plta1.lsp       - 데이터 파일의 DWG 목록을 열어 A1 일괄 플롯
+   88. ppl.lsp         - 두 점 그룹을 정렬하여 대응점끼리 선으로 연결
+   89. pscbeam-1.lsp   - PSC 빔 교량 일반단면도 자동 작도
+   90. psnp.lsp        - 도곽 블록 삽입 및 레이아웃 속성 자동 설정
+   91. RDL.LSP         - 데이터 파일을 읽어 좌표점을 선(Line)으로 작도
+   92. RDLP.LSP        - 데이터 파일을 읽어 좌표점을 폴리라인으로 작도
+   93. re.LSP          - RC 기둥 단면/철근 데이터를 이축해석용 파일로 출력
+   94. recol.lsp       - RC 기둥 단면/철근 데이터를 이축해석용 파일로 출력
+   95. replace.lsp     - 문자열 내 특정 패턴을 다른 문자열로 치환
+   96. Rwall.lsp       - 대화상자 입력으로 옹벽 단면도 자동 작도
+   97. s2kcomp1.LSP    - SAP2000 부재력 결과 비교/조합 처리 (버전1)
+   98. s2kcomp2.LSp    - SAP2000 부재력 결과 비교/조합 처리 (버전2)
+   99. sarea.lsp       - 폐합 폴리라인 면적 합산 및 산식 표기
+  100. scallop1.lsp    - 강박스 리브 용접부 스캘럽 형상 작도
+  101. sclnumtext.LSP  - 선택한 숫자 텍스트에 배율을 곱하여 일괄 변경
+  102. sclt.lsp        - APART 레이어 텍스트를 기준점 기준으로 축소
+  103. SETDIM.LSP      - 치수 변수(DIMVAR)를 표준값으로 일괄 설정
+  104. SPLITBDR.LSP    - 도곽별로 도면을 WBLOCK 분리 저장
+  105. Splitdwg.lsp    - 도곽 내 도면번호 텍스트로 WBLOCK 분리 저장
+  106. sscl.lsp        - 삽도 스케일 계산 및 텍스트/치수 크기 자동 조정
+  107. STBOX.LSP       - 강박스 거더 횡단면도 자동 작도
+  108. STLMNU.LSP      - 강구조 메뉴 슬라이드 선택 화면 (아이콘 메뉴)
+  109. STRMNU.LSP      - 구조물 메뉴 슬라이드 선택 화면 (아이콘 메뉴)
+  110. styh.LSP        - 동일 스타일 텍스트의 높이 일괄 변경
+  111. TIE.LSP         - 타이바(Tie bar) 형상 작도
+  112. trans.lsp       - VBA 매크로(한자→한글 변환) 호출
+  113. trs.lsp         - 파일 기반 텍스트 찾기/바꾸기 일괄 치환
+  114. trsch.lsp       - 도면 내 한자 텍스트를 한글로 일괄 변환
+  115. UTLMNU.LSP      - 유틸리티 메뉴 슬라이드 선택 화면 (아이콘 메뉴)
+  116. ve.lsp          - VE(가치공학) 방사형 평가 그래프 작도
+  117. w.lsp           - 용접 마크 작도 및 철근 마킹 함수 모음
+  118. Wb1.lsp         - 텍스트명 기반 WBlock 파일 자동 저장
+  119. wb2.lsp         - 경계선 지정 WBlock 파일 자동 저장
+  120. wbl.lsp         - 텍스트 목록으로 WBlock 파일명 생성 및 저장
+  121. WSTL.LSP        - 선택한 선분의 강재 길이 측정 및 표기
+  122. XY.LSP          - 두 점에서 각각 X, Y 좌표를 따로 취득
+  123. xysort.LSP      - 엔티티를 X,Y 좌표 기준으로 행열 정렬
+
+------------------------------------------------------------
+등록된 파일 목록 (193개)
+------------------------------------------------------------
+
+    1. 2pd.lsp
+    2. ABUT.LSP
+    3. Addtext.lsp
+    4. ahole.lsp
+    5. alead.lsp
+    6. alignBar.LSP
+    7. ALL-ULT.LSP
+    8. allplot.lsp
+    9. allplotb.lsp
+   10. allplotn.lsp
+   11. anch1.lsp
+   12. APLOT.LSP
+   13. ARD.LSP
+   14. ARP.LSP
+   15. ARSLOP.LSP
+   16. aslab.LSP
+   17. aslab1.LSP
+   18. B1.lsp
+   19. B3.lsp
+   20. B4.lsp
+   21. b5.LSP
+   22. b6.LSP
+   23. BAE.LSP
+   24. bar.lsp
+   25. Basec.lsp
+   26. BB.LSP
+   27. BCN.LSP
+   28. bcross.lsp
+   29. BDASH.LSP
+   30. bearing.lsp
+   31. bm1.LSP
+   32. bm2.LSP
+   33. Bm3.lsp
+   34. Bm4.lsp
+   35. bm5.lsp
+   36. Bm6.lsp
+   37. Bmd.lsp
+   38. Bor.lsp
+   39. boring.LSP
+   40. BP.LSP
+   41. BRACKET.LSP
+   42. BRR.LSP
+   43. Brr1.lsp
+   44. BRSE.LSP
+   45. CALT.LSP
+   46. camber.lsp
+   47. cb.LSP
+   48. cdd.lsp
+   49. CDS.LSP
+   50. ceh.LSP
+   51. CHBDR.LSP
+   52. conc.LSP
+   53. COORD2.LSP
+   54. COORD3.LSP
+   55. CRC.LSP
+   56. cth.lsp
+   57. ctxt.lsp
+   58. cutpipe.LSP
+   59. cutpipe1.LSP
+   60. da.lsp
+   61. db24.lsp
+   62. dc.lsp
+   63. ddmcht.lsp
+   64. ddscl.LSP
+   65. DELSHORT.LSP
+   66. dh.lsp
+   67. DIRMRK.LSP
+   68. DIVA.LSP
+   69. DIVL.LSP
+   70. djdgfun.lsp
+   71. Do.lsp
+   72. drebar.lsp
+   73. dsk.lsp
+   74. DUD.LSP
+   75. dwgrtxt.lsp
+   76. dynamic.lsp
+   77. EARTH.LSP
+   78. edim.lsp
+   79. elm.lsp
+   80. fanch.lsp
+   81. fcorner.lsp
+   82. FF2.LSP
+   83. FFP.LSP
+   84. getprinter.lsp
+   85. GRNDMRK.LSP
+   86. gsection.LSP
+   87. gusset.lsp
+   88. HA.LSP
+   89. hblist.lsp
+   90. HOOK.LSP
+   91. hstiff.lsp
+   92. JEON.LSP
+   93. jump.lsp
+   94. jung.lsp
+   95. JUNG1.LSP
+   96. Jung2.LSP
+   97. lanemark.LSP
+   98. lap.lsp
+   99. LARC.LSP
+  100. ldd.lsp
+  101. lead.lsp
+  102. Lead2.lsp
+  103. leadc.lsp
+  104. LINEXT.LSP
+  105. loadjdg.lsp
+  106. LSLOP.LSP
+  107. MCHT.LSP
+  108. measa.LSP
+  109. measl.LSP
+  110. mhole.lsp
+  111. mkbdr.LSP
+  112. mlead.LSP
+  113. modelm.lsp
+  114. mtLead.lsp
+  115. mtxt.LSP
+  116. nae.LSP
+  117. noripf.LSP
+  118. NORTH.LSP
+  119. Notebox.lsp
+  120. nt.lsp
+  121. NUMCOOR.LSP
+  122. OB.LSP
+  123. para.lsp
+  124. parc.LSP
+  125. pfix.lsp
+  126. pier.lsp
+  127. piles.lsp
+  128. PLMARK.LSP
+  129. plotbdr.lsp
+  130. ploteps.lsp
+  131. pnori.lsp
+  132. pole.LSP
+  133. preg.lsp
+  134. PSCBEAM.LSP
+  135. qtable.lsp
+  136. RBAR.LSP
+  137. RBRF.LSP
+  138. RBRP.LSP
+  139. RCD.LSP
+  140. rcorner.lsp
+  141. rib.lsp
+  142. rmark1.LSP
+  143. rnori.lsp
+  144. ROUND.LSP
+  145. RREF.LSP
+  146. RTEXT.LSP
+  147. s2kcomp.LSP
+  148. SANG.LSP
+  149. SARW.LSP
+  150. sb.lsp
+  151. Sblock.lsp
+  152. scallop.lsp
+  153. Shatch.lsp
+  154. sheet.LSP
+  155. SHOE.LSP
+  156. Slop.lsp
+  157. slopl.lsp
+  158. SOLIDBK.LSP
+  159. SPILE1.LSP
+  160. SPILE2.LSP
+  161. spiles.lsp
+  162. SPLICE.LSP
+  163. STRP1.LSP
+  164. STRP2.LSP
+  165. stud.lsp
+  166. SUNGTO.LSP
+  167. table.LSP
+  168. tah.LSP
+  169. tav.LSP
+  170. tbar.lsp
+  171. tbreak.LSP
+  172. tc15.LSP
+  173. tdpf.lsp
+  174. THUN.LSP
+  175. TM.LSP
+  176. TRI.LSP
+  177. trim2.lsp
+  178. trimb1.LSP
+  179. trimb2.lsp
+  180. trimb3.LSP
+  181. truss.lsp
+  182. txtfil.lsp
+  183. txtgap.LSP
+  184. TXTR.LSP
+  185. WATERM.LSP
+  186. WAVE.LSP
+  187. WBNAME.LSP
+  188. WDWGN.LSP
+  189. WELD.LSP
+  190. WFLOW.LSP
+  191. wlen.lsp
+  192. WUE.LSP
+  193. Xypline.lsp
+
+------------------------------------------------------------
+메뉴에서 참조하는 명령어 목록 (204개)
+------------------------------------------------------------
+
+  2pd  (lsp 있음)
+  abut  (lsp 있음)
+  addtext  (lsp 있음)
+  ahole  (lsp 있음)
+  alead  (lsp 있음)
+  alignbar  (lsp 있음)
+  all-ult  (lsp 있음)
+  allplot  (lsp 있음)
+  allplotb  (lsp 있음)
+  allplotn  (lsp 있음)
+  anch1  (lsp 있음)
+  aplot  (lsp 있음)
+  ard  (lsp 있음)
+  arp  (lsp 있음)
+  arslop  (lsp 있음)
+  arwh
+  aslab  (lsp 있음)
+  aslab1  (lsp 있음)
+  b1  (lsp 있음)
+  b3  (lsp 있음)
+  b4  (lsp 있음)
+  b5  (lsp 있음)
+  b6  (lsp 있음)
+  bae  (lsp 있음)
+  bar  (lsp 있음)
+  basec  (lsp 있음)
+  bb  (lsp 있음)
+  bcn  (lsp 있음)
+  bcross  (lsp 있음)
+  bdash  (lsp 있음)
+  bearing  (lsp 있음)
+  bm1  (lsp 있음)
+  bm2  (lsp 있음)
+  bm3  (lsp 있음)
+  bm4  (lsp 있음)
+  bm5  (lsp 있음)
+  bm6  (lsp 있음)
+  bmd  (lsp 있음)
+  bor  (lsp 있음)
+  boring  (lsp 있음)
+  bp  (lsp 있음)
+  bracket  (lsp 있음)
+  brr  (lsp 있음)
+  brr1  (lsp 있음)
+  brse  (lsp 있음)
+  calt  (lsp 있음)
+  camber  (lsp 있음)
+  cb  (lsp 있음)
+  cdd  (lsp 있음)
+  cds  (lsp 있음)
+  ceh  (lsp 있음)
+  chbdr  (lsp 있음)
+  conc  (lsp 있음)
+  coord
+  coord2  (lsp 있음)
+  coord3  (lsp 있음)
+  cpdim
+  crc  (lsp 있음)
+  cth  (lsp 있음)
+  ctxt  (lsp 있음)
+  cutpipe  (lsp 있음)
+  cutpipe1  (lsp 있음)
+  d2l
+  da  (lsp 있음)
+  db24  (lsp 있음)
+  dc  (lsp 있음)
+  ddmcht  (lsp 있음)
+  ddrwall
+  ddscl  (lsp 있음)
+  delshort  (lsp 있음)
+  dh  (lsp 있음)
+  dima
+  dirmrk  (lsp 있음)
+  diva  (lsp 있음)
+  divl  (lsp 있음)
+  djdg.chm
+  do  (lsp 있음)
+  drebar  (lsp 있음)
+  dsk  (lsp 있음)
+  dss
+  dud  (lsp 있음)
+  dv
+  dwgrtxt  (lsp 있음)
+  earth  (lsp 있음)
+  edim  (lsp 있음)
+  elm  (lsp 있음)
+  fanch  (lsp 있음)
+  fcorner  (lsp 있음)
+  ff2  (lsp 있음)
+  ffp  (lsp 있음)
+  grndmrk  (lsp 있음)
+  gsection  (lsp 있음)
+  gusset  (lsp 있음)
+  ha  (lsp 있음)
+  hblist  (lsp 있음)
+  hook  (lsp 있음)
+  hstiff  (lsp 있음)
+  jeon  (lsp 있음)
+  jump  (lsp 있음)
+  jung  (lsp 있음)
+  jung1  (lsp 있음)
+  jung2  (lsp 있음)
+  lanemark  (lsp 있음)
+  lap  (lsp 있음)
+  larc  (lsp 있음)
+  ldd  (lsp 있음)
+  ldim
+  lead  (lsp 있음)
+  lead2  (lsp 있음)
+  leadc  (lsp 있음)
+  linext  (lsp 있음)
+  lslop  (lsp 있음)
+  mcht  (lsp 있음)
+  measa  (lsp 있음)
+  measl  (lsp 있음)
+  melm
+  mhole  (lsp 있음)
+  mkbdr  (lsp 있음)
+  mlap
+  mlead  (lsp 있음)
+  modelm  (lsp 있음)
+  mtlead  (lsp 있음)
+  mtxt  (lsp 있음)
+  nae  (lsp 있음)
+  noripf  (lsp 있음)
+  north  (lsp 있음)
+  notebox  (lsp 있음)
+  nt  (lsp 있음)
+  numcoor  (lsp 있음)
+  ob  (lsp 있음)
+  para  (lsp 있음)
+  parc  (lsp 있음)
+  pel
+  pfix  (lsp 있음)
+  pier  (lsp 있음)
+  piles  (lsp 있음)
+  plmark  (lsp 있음)
+  plotbdr  (lsp 있음)
+  ploteps  (lsp 있음)
+  pnori  (lsp 있음)
+  pole  (lsp 있음)
+  pscbeam  (lsp 있음)
+  qtable  (lsp 있음)
+  rbar  (lsp 있음)
+  rbrf  (lsp 있음)
+  rbrp  (lsp 있음)
+  rcd  (lsp 있음)
+  rcorner  (lsp 있음)
+  rib  (lsp 있음)
+  rmark1  (lsp 있음)
+  rnori  (lsp 있음)
+  round  (lsp 있음)
+  rref  (lsp 있음)
+  rtext  (lsp 있음)
+  s2kcomp  (lsp 있음)
+  sang  (lsp 있음)
+  sarw  (lsp 있음)
+  sb  (lsp 있음)
+  sblock  (lsp 있음)
+  scallop  (lsp 있음)
+  setallplot
+  shatch  (lsp 있음)
+  sheet  (lsp 있음)
+  shoe  (lsp 있음)
+  slop  (lsp 있음)
+  slopl  (lsp 있음)
+  solidbk  (lsp 있음)
+  spile1  (lsp 있음)
+  spile2  (lsp 있음)
+  spiles  (lsp 있음)
+  splice  (lsp 있음)
+  strp1  (lsp 있음)
+  strp2  (lsp 있음)
+  stud  (lsp 있음)
+  sungto  (lsp 있음)
+  table  (lsp 있음)
+  tah  (lsp 있음)
+  tav  (lsp 있음)
+  tbar  (lsp 있음)
+  tbreak  (lsp 있음)
+  tc15  (lsp 있음)
+  tdpf  (lsp 있음)
+  thun  (lsp 있음)
+  tm  (lsp 있음)
+  tri  (lsp 있음)
+  trim2  (lsp 있음)
+  trimb1  (lsp 있음)
+  trimb2  (lsp 있음)
+  trimb3  (lsp 있음)
+  trims
+  truss  (lsp 있음)
+  txtfil  (lsp 있음)
+  txtgap  (lsp 있음)
+  txtr  (lsp 있음)
+  vbarun
+  waterm  (lsp 있음)
+  wave  (lsp 있음)
+  wbname  (lsp 있음)
+  wdwgn  (lsp 있음)
+  weld  (lsp 있음)
+  wflow  (lsp 있음)
+  wlen  (lsp 있음)
+  wue  (lsp 있음)
+  xypline  (lsp 있음)
