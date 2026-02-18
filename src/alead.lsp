@@ -34,82 +34,186 @@
   (setq intpnt (inters ip cp endpnt (polar endpnt angip90 100) nil))
   (setq tang (angle intpnt endpnt))
   (setq lenarw (* ds 2.8978))
-  (setq ip1 (polar ip tang lenarw))
-  (setq cp1 (polar cp tang lenarw))
-  (setq crspnt (cross cent ip1 cp1))
-  (setq tang1 (angle ip crspnt))
-  (if (> (dang tang (angle ip endpnt)) 0) (setq mirr -1) (setq mirr 1))
-  (push-os)
-  (command "insert" (strcat (prefix) "blocks/arw1") ip ds  (* ds mirr) (rtod tang1))
-  (pop-os)
-  (princ "OK")
+  ;(setq ip1 (polar ip tang lenarw))
+  ;(setq cp1 (polar cp tang lenarw))
+  ;(setq crspnt (cross cent ip1 cp1))
+  (setq crspnt (crossac cent ip lenarw))
+  (if (null crspnt)
+    (princ "\në¦¬ë” ì„ ì´ ë„ˆë¬´ ì§§ìŠµë‹ˆë‹¤.\n")
+    (progn
+      (setq tang1 (angle ip crspnt))
+      (if (> (dang tang (angle ip endpnt)) 0) (setq mirr -1) (setq mirr 1))
+      (push-os)
+      (command "insert" (strcat (prefix) "blocks/arw1") ip ds  (* ds mirr) (rtod tang1))
+      (pop-os)
+      (princ "OK")
+    )
+  )
   
 );defun
 
-;****************************************    
-; Function : CROSS    
-;            CROSS point of arc & line    
+;****************************************
+; Function : CROSSAC
+;            CROSS point of Arc & Circle
+;            ë‘ ì›ì˜ êµì ì„ êµ¬í•œ í›„ í˜¸ ë²”ìœ„ ë‚´ì˜ ì ì„ ë°˜í™˜
+;   ì¸ìˆ˜: aent - ARC entity list
+;         cp2  - ì›ì˜ ì¤‘ì‹¬ì 
+;         r2   - ì›ì˜ ë°˜ì§€ë¦„
+;   ë¦¬í„´: í˜¸ ìœ„ì˜ êµì  ë˜ëŠ” nil
+;****************************************
+
+(defun CROSSAC(aent cp2 r2 /
+  a b r sa ea px py
+  AA BB CC m n
+  a1 b1 c1 disc
+  cx1 cx2 cy1 cy2
+  ang1 ang2
+)
+
+  ; ARC ì •ë³´ ì¶”ì¶œ
+  (setq a  (car (cdr (assoc 10 aent))))
+  (setq b  (cadr (cdr (assoc 10 aent))))
+  (setq r  (cdr (assoc 40 aent)))
+  (setq sa (cdr (assoc 50 aent)))
+  (setq ea (cdr (assoc 51 aent)))
+
+  ; ì›ì˜ ì¤‘ì‹¬
+  (setq px (car cp2))
+  (setq py (cadr cp2))
+
+  ; ë‘ ì›ì˜ ë°©ì •ì‹ì„ ë¹¼ë©´ ì§ì„ (ê·¼ì¶•)ì´ ë¨: AA*x + BB*y = CC
+  (setq AA (* 2 (- px a)))
+  (setq BB (* 2 (- py b)))
+  (setq CC (+ (* px px) (* py py) (* r r)
+              (- (* r2 r2)) (- (* a a)) (- (* b b))))
+
+  (if (= BB 0)
+    ;; BB=0: ê·¼ì¶•ì´ ìˆ˜ì§ì„  â†’ x = CC/AA
+    (progn
+      (setq cx1 (/ CC AA)
+            cx2 (/ CC AA)
+            a1  1
+            b1  (* -2 b)
+            c1  (+ (* cx1 cx1) (* -2 a cx1) (* a a) (* b b) (- (* r r)))
+            disc (- (* b1 b1) (* 4 a1 c1))
+      )
+      (if (>= disc 0)
+        (setq cy1 (/ (+ (* -1 b1) (sqrt disc)) (* 2 a1))
+              cy2 (/ (- (* -1 b1) (sqrt disc)) (* 2 a1))
+        )
+      )
+    )
+    ;; ì¼ë°˜: y = m*x + n  (m = -AA/BB, n = CC/BB)
+    (progn
+      (setq m (/ (- AA) BB))
+      (setq n (/ CC BB))
+      (setq a1 (+ 1 (* m m)))
+      (setq b1 (+ (* -2 a) (* 2 m (- n b))))
+      (setq c1 (+ (* a a) (* (- n b) (- n b)) (- (* r r))))
+      (setq disc (- (* b1 b1) (* 4 a1 c1)))
+      (if (>= disc 0)
+        (progn
+          (setq cx1 (/ (+ (* -1 b1) (sqrt disc)) (* 2 a1)))
+          (setq cx2 (/ (- (* -1 b1) (sqrt disc)) (* 2 a1)))
+          (setq cy1 (+ (* m cx1) n))
+          (setq cy2 (+ (* m cx2) n))
+        )
+      )
+    )
+  )
+
+  ; êµì ì´ í˜¸ì˜ ê°ë„ ë²”ìœ„ ì•ˆì— ìžˆëŠ”ì§€ í™•ì¸
+  (if cx1
+    (progn
+      (setq ang1 (angle (list a b 0.0) (list cx1 cy1 0.0)))
+      (setq ang2 (angle (list a b 0.0) (list cx2 cy2 0.0)))
+      (if (inang sa ea ang1)
+        (list cx1 cy1 0.0)
+        (if (inang sa ea ang2)
+          (list cx2 cy2 0.0)
+          nil
+        )
+      )
+    )
+    nil
+  )
+);defun
+
+;****************************************
+; Function : CROSS
+;            CROSS point of arc & line
 ;            By Suk-Jong Yi    
 ;            1995/6/26    
 ;****************************************    
-;ÇÔÂÃ: È£¿Í Á÷¼±ÀÇ ½õÃñÃÊ Ã£±â    
-;     ÀÎÂÃ: ARC entity list, Á÷¼±ÀÇ Ã¹ÃÊ , Á÷¼±ÀÇ ¾¾ÃÊ    
-;     ½á°ú: Á÷¼±°ú ARCÀÇ ½õÃñÃÊ    
+;ê¸°ëŠ¥: í˜¸ì™€ ì§ì„ ì˜ êµì     
+;     ì¸ìž: ARC entity list, ì§ì„ ì˜ ì‹œìž‘ì  , ì§ì„ ì˜ ëì    
+;     ë°˜í™˜: ì§ì„ ê³¼ ARCì˜ êµì     
     
 (defun CROSS(aent sp ep /    
 aent    sp      ep      a       b       r       sa      ea      x1      x2    
-y1      y2      c       d       a1      b1      c1      x1      x2      y1    
-y2      ang1    ang2    
+y1      y2      c       d       a1      b1      c1      cx1     cx2     cy1
+cy2     ang1    ang2    disc
 )    
     
 (push-env)    
-(setq a (car (cdr (assoc 10 aent))))      ; ARC entityÀÇ ÁßÂÔÃÊ xÁÂÅ²    
-(setq b (cadr (cdr (assoc 10 aent))))     ; ARC entityÀÇ ÁßÂÔÃÊ yÁÂÅ²    
-(setq r (cdr (assoc 40 aent)))            ; ARC entityÀÇ ¹ÝÁöÀó    
-(setq sa (cdr (assoc 50 aent)))           ; ARC entityÀÇ ½ÃÀÛ °¢¿Ê    
-(setq ea (cdr (assoc 51 aent)))           ; ARC entityÀÇ ¾¾ °¢¿Ê    
+(setq a (car (cdr (assoc 10 aent))))       
+(setq b (cadr (cdr (assoc 10 aent))))        
+(setq r (cdr (assoc 40 aent)))            
+(setq sa (cdr (assoc 50 aent)))           
+(setq ea (cdr (assoc 51 aent)))           
     
-(setq x1 (car sp))                        ; LINE entityÀÇ ½ÃÀÛÃÊ xÁÂÅ²    
-(setq x2 (car ep))                        ; LINE entityÀÇ ¾¾ÃÊ xÁÂÅ²    
-(setq y1 (cadr sp))                       ; LINE entityÀÇ ½ÃÀÛÃÊ yÁÂÅ²    
-(setq y2 (cadr ep))                       ; LINE entityÀÇ ¾¾ÃÊ yÁÂÅ²    
+(setq x1 (car sp))                           
+(setq x2 (car ep))                        
+(setq y1 (cadr sp))                          
+(setq y2 (cadr ep))                       
 (if (= (- x1 x2) 0)    
-  (progn                                    ;x°¡ constantÀÏ ¶§    
-    (setq c x1    
-          a1 1                              ;yÂî ¾õÇÑ 2Ãñ¹æÁ¤½ÄÀÇ a    
-          b1 (* -2 b)                       ;yÂî ¾õÇÑ 2Ãñ¹æÁ¤½ÄÀÇ b    
-          c1 (+ (* c c) (* -2 a c) (* a a) (* b b) (* -1 r r)) ;yÂî ¾õÇÑ 2Ãñ¹æÁ¤½ÄÀÇ c    
-          y1 (/ (+ (* -1 b1) (sqrt (- (* b1 b1) (* 4 a1 c1)))) (* 2 a1))  ;±Ù 1    
-          y2 (/ (- (* -1 b1) (sqrt (- (* b1 b1) (* 4 a1 c1)))) (* 2 a1))  ;±Ù 2    
-    );setq    
+  (progn                                   
+    (setq c x1
+          a1 1                             
+          b1 (* -2 b)                       
+          c1 (+ (* c c) (* -2 a c) (* a a) (* b b) (* -1 r r)) 
+          disc (- (* b1 b1) (* 4 a1 c1))   ;íŒë³„ì‹
+    );setq
+    (if (>= disc 0)
+      (setq cx1 c
+            cx2 c
+            cy1 (/ (+ (* -1 b1) (sqrt disc)) (* 2 a1))  ;ê·¼ 1
+            cy2 (/ (- (* -1 b1) (sqrt disc)) (* 2 a1))  ;ê·¼ 2
+      )
+    )
   );progn    
-  (progn                                    ; y°¡ xÀÇ ÇÔÂÃÀÏ ¶§    
+  (progn                                   
     
-    (setq c (/ (- y1 y2) (- x1 x2)))          ; y=cx+dÂî¼­ c    
-    (setq d (- y2 (* c x2)))                  ; y=cx+dÂî¼­ d    
-    (setq a1 (+ 1 (* c c)))                   ; xÂî ¾õÇÑ ÀÌÃñ¹æÁ¤½ÄÀÇ a    
-    (setq b1 (+ (* 2 d c) (* -2 a) (* -2 b c)))   ;xÂî ¾õÇÑ ÀÌÃñ¹æÁ¤½ÄÀÇ b    
-    (setq c1 (+ (* a a) (* b b) (* d d) (* -2 b d) (* -1 r r)))  ;ÀÌÃñ ¹æÁ¤½ÄÀÇ c    
-    (setq x1 (/ (+ (* -1 b1) (sqrt (- (* b1 b1) (* 4 a1 c1)))) (* 2 a1)))  ;±Ù 1    
-    (setq x2 (/ (- (* -1 b1) (sqrt (- (* b1 b1) (* 4 a1 c1)))) (* 2 a1)))  ;±Ù 2    
-    (setq y1 (+ (* c x1) d))                  ;±Ù 1ÀÏ ¶§ y°ª    
-    (setq y2 (+ (* c x2) d))                  ;±Ù 2ÀÏ ¶§ y°ª    
-  );progn    
+    (setq c (/ (- y1 y2) (- x1 x2)))
+    (setq d (- y2 (* c x2)))
+    (setq a1 (+ 1 (* c c)))
+    (setq b1 (+ (* 2 d c) (* -2 a) (* -2 b c)))
+    (setq c1 (+ (* a a) (* b b) (* d d) (* -2 b d) (* -1 r r)))
+    (setq disc (- (* b1 b1) (* 4 a1 c1)))
+    (if (>= disc 0)
+      (progn
+        (setq cx1 (/ (+ (* -1 b1) (sqrt disc)) (* 2 a1)))
+        (setq cx2 (/ (- (* -1 b1) (sqrt disc)) (* 2 a1)))
+        (setq cy1 (+ (* c cx1) d))
+        (setq cy2 (+ (* c cx2) d))
+      )
+    )
+  );progn
 )
-(setq ang1 (angle (list a b 0.0) (list x1 y1 0.0)))   ;½õÃÊ1ÀÇ Àý¾õ°¢(¿øÃÊÂî¼­)    
-(setq ang2 (angle (list a b 0.0) (list x2 y2 0.0)))   ;½õÃÊ2ÀÇ Àý¾õ°¢(¿øÃÊÂî¼­)
-
-;(command "line" sp ep "")  
-;(command "line" (list a b 0.0) (list x1 y1 0.0) "")
-;(command "line" (list a b 0.0) (list x2 y2 0.0) "")  
-  
-    
-(if (inang sa ea ang1)    
-  (list x1 y1 0.0)         ;½õÃÊ1ÀÌ È£ÀÇ ½ÃÀÛ°¢°ú ¾¾°¢ »çÀÌÂî ÀÖÀ¸Àý ½õÃÊ ¿Ì·ÁÁÜ    
-  (if (inang sa ea ang2)   ;½õÃÊ2°¡ È£ÀÇ ½ÃÀÛ°¢°ú ¾¾°¢ »çÀÌÂî ÀÖÀ¸Àý ½õÃÊ ¿Ì·ÁÁÜ    
-    (list x2 y2 0.0)    
-    nil                    ;½õÃÊ 1°ú 2°¡ ¸ðµÎ °¢ ¹üÃ¯¸¦ ¹þ¾î³¯ °æ¿ì nil¿Ì·ÁÁÜ    
-  ) ;of if    
+(pop-env)
+(if cx1
+  (progn
+    (setq ang1 (angle (list a b 0.0) (list cx1 cy1 0.0)))
+    (setq ang2 (angle (list a b 0.0) (list cx2 cy2 0.0)))
+    (if (inang sa ea ang1)
+      (list cx1 cy1 0.0)
+      (if (inang sa ea ang2)
+        (list cx2 cy2 0.0)
+        nil
+      )
+    )
+  )
+  nil
 )
 );defun  
 
@@ -121,20 +225,20 @@ y2      ang1    ang2
 ;            1995/6/26    
 ;*************************************************************    
     
-;¾î¶² °¢ÀÌ ÁÖ¾îÁø µÎ°¢(ang1, ang2) »çÀÌ¿¡ ÀÖ´Â°¡?    
-; µÎ°¢ »çÀÌ¿¡ ÀÖ´Â °æ¿ì µÎ°¢ÀÇ Â÷ÀÌ¸¦ µ¹·ÁÁÖ°í    
-; µÎ°¢ »çÀÌ¿¡ ¾ø´Â °æ¿ì´Â nilÀ» µ¹·ÁÁØ´Ù.    
+;ì–´ë–¤ ê°ì´ ì£¼ì–´ì§„ ë‘ê°(ang1, ang2) ì‚¬ì´ì— ìžˆëŠ”ê°€?   
+; ë‘ê° ì‚¬ì´ì— ìžˆëŠ” ê²½ìš° ë‘ê°ì˜ ì°¨ì´ë¥¼ ëŒë ¤ì£¼ê³      
+; ë‘ê° ì‚¬ì´ì— ì—†ëŠ” ê²½ìš°ëŠ” nilì„ ëŒë ¤ì¤€ë‹¤.    
     
-(defun inang(a1 a2 a3 /             ;ÀÎ¼ö Á¤ÀÇ    
-a1 a2 a3                            ;Áö¿ªº¯¼ö Á¤ÀÇ    
+(defun inang(a1 a2 a3 /               
+a1 a2 a3                              
 )    
 (if (> a1 a2)
   (progn
-    (if (or (<= a3 a2) (>= a3 a1)) (- (+ (* 2.0 pi) a2) ) nil)   ;Ã¹°¢ÀÌ µÎ¹øÂ° °¢º¸´Ù Å©¸é +360µµ    , 4»çºÐ¸é --> 1»çºÐ¸é
+    (if (or (<= a3 a2) (>= a3 a1)) (- (+ (* 2.0 pi) a2) ) nil)  ;ì²«ê°ì´ ë‘ë²ˆì§¸ ê°ë³´ë‹¤ í¬ë©´ +360ë„    , 4ì‚¬ë¶„ë©´ --> 1ì‚¬ë¶„ë©´ 
   )
   (progn
-    (if (and (>= a3 a1) (<= a3 a2)) (- a2 a1)    ;ÁÖ¾îÁø °¢ÀÌ µÎ°¢»çÀÌ¿¡ ÀÖÀ¸¸é    
-                                nil)         ; µÎ°¢ÀÇ Â÷ÀÌ¸¦ µ¹·ÁÁÜ    
-  );                                            ; µÎ°¢ »çÀÌ¿¡ ¾øÀ¸¸é nilµ¹·ÁÁÜ       
+    (if (and (>= a3 a1) (<= a3 a2)) (- a2 a1)      ;ì£¼ì–´ì§„ ê°ì´ ë‘ê°ì‚¬ì´ì— ìžˆìœ¼ë©´  
+                                nil)           ; ë‘ê°ì˜ ì°¨ì´ë¥¼ ëŒë ¤ì¤Œ
+  );                                              ; ë‘ê° ì‚¬ì´ì— ì—†ìœ¼ë©´ nilëŒë ¤ì¤Œ     
 );if
 );defun
