@@ -5,7 +5,7 @@
 ;           04/04/26
 ;----------------------------------
 (defun c:scallop1(
-		  /
+		  / p1 p2 thick l A B R l1 ang1 ang p2l p2r p1l p1r
 		  )
   (setq p1 (getpoint "\nPick start point: "))
   (setq p2 (getpoint "\nPick end point: "))
@@ -37,7 +37,7 @@
 );defun
 
 (defun c:scallop2(
-		  /
+		  / p1 p2 thick l A B R l1 ang1 ang p2l p2r p1l p3l p1r
 		  )
   (setq p1 (getpoint "\nPick start point: "))
   (setq p2 (getpoint "\nPick end point: "))
